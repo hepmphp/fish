@@ -1,0 +1,58 @@
+<?php
+/**
+ *  fiename: fish/welcome.php$
+ *  date: 2024/10/17 23:05:55$
+ *  author: hepm<ok_fish@qq.com>$
+ */
+namespace controllers\fish;
+use base\App;
+use base\BaseController;
+use base\Model;
+use helpers\Cache\CacheFactory;
+use helpers\Msg;
+use helpers\Session;
+use models\Users;
+
+class  Welcome extends BaseController {
+
+    /**
+     *
+     * http://127.0.0.1:2222/web/index.php/fish/welcome/index
+     * http://127.0.0.1:2222/web/index.php?g=fish&m=welcome&a=index
+     */
+    public function index(){
+        $data = [
+            'm'=>$this->app->controller,
+            'a'=>$this->app->action,
+        ];
+        //var_dump($data);
+
+        $users = new Users();
+        $one = $users->find(['user_id'=>1]);
+        $two = $users->find(['user_id'=>2]);
+        echo "<pre>";
+//        print_r(  $users->get_last_sql());
+//        print_r($users->db->pdo->errorInfo());
+//        print_r(App::get_instance());
+        $this->view->assign('data',$data);
+        $this->view->display('welcome/index');
+        echo __FILE__;
+    }
+
+    public function cache(){
+        $cache = CacheFactory::get_instance();
+        $cache->set('a',100);
+        var_dump($cache->get('a'));
+    }
+
+    public function session(){
+        Session::init();
+        $_SESSION['a'] = '1000';
+        var_dump($_SESSION);
+    }
+
+    public function msg(){
+        Msg::dump($_SERVER);
+       //Kint::dump($_SERVER);
+    }
+}
