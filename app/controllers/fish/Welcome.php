@@ -9,9 +9,11 @@ use base\App;
 use base\BaseController;
 use base\Model;
 use helpers\Cache\CacheFactory;
+use helpers\ModelGenerator;
 use helpers\Msg;
 use helpers\Session;
 use models\Users;
+
 
 class  Welcome extends BaseController {
 
@@ -52,7 +54,10 @@ class  Welcome extends BaseController {
     }
 
     public function msg(){
-        Msg::dump($_SERVER);
+        $mg = new ModelGenerator();
+        $mg->generator_model();
+   //     Msg::dump($db->fetch_all($sql_fileds));
+        //Msg::dump($_SERVER);
        //Kint::dump($_SERVER);
     }
 }
