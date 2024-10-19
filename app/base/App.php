@@ -7,7 +7,9 @@
 
 namespace base;
 use db\PdoHelper;
+use helpers\Handler;
 use helpers\Input;
+use helpers\Msg;
 
 class App
 {
@@ -55,14 +57,26 @@ class App
     }
 
     public function handle_error_and_exception(){
-//        set_exception_handler('helpers\Handler','exception_handler');
-//        set_error_handler(array('helpers\Handler','error_handler'));
-//        register_shutdown_function(array('helpers\Handler','shutdown_handler'));
+
+        set_error_handler(function ($errno,$errstr,$errfile='',$errline='',$errcontext=array()){
+            $errcode = Handler::$levels[$errno];
+            $log_message = "错误代码:[%s],错误信息:[%s],文件:[%s],行号:[%d],地址:[%s],来源:[%s]";
+            $url     = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            $referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
+            $log_message_format = sprintf($log_message,$errcode,$errstr,$errfile,$errline,$url,$referer);
+            echo( json_encode( array('code' =>$errno,'msg'  =>$log_message_format),JSON_UNESCAPED_UNICODE));
+        });
+        set_exception_handler(function ($exception){
+            echo( json_encode( array('code' =>$exception->getCode(),'msg'  =>$exception->getMessage()),JSON_UNESCAPED_UNICODE));
+        });
+
+        register_shutdown_function(array('helpers\Handler','shutdown_handler'));
     }
 
     public function dispatch(){
         $this->_parse_routes();//路由解析
         $path_info = $this->_parse_path_info();
+
         $path_info = array_values(array_filter($path_info));
 
         $path = '';
@@ -128,6 +142,7 @@ class App
 
     public function _parse_path_info(){
         $path_info = isset($_SERVER['PATH_INFO'])&&!empty($_SERVER['PATH_INFO'])?explode('/',$_SERVER['PATH_INFO']):array(self::$config['const']['DEFAULT_CONTROLLER']);
+
         /**g分组 m控制器 a方法*/
         $g = Input::get('g');
         $m = Input::get('m');

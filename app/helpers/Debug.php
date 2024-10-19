@@ -39,4 +39,8 @@ class Debug {
         print_r(get_included_files());
     }
 
+    static function db_log($sql){
+        error_log(date('Y-m-d H:i:s').'  >'.$sql.PHP_EOL,3,WEB_PATH.'/log/model_db_sql.log');
+    }
+
 }

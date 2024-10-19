@@ -8,6 +8,7 @@
 namespace base;
 
 use db\SqlQueryBuilder;
+use helpers\Debug;
 
 class Model
 {
@@ -49,6 +50,7 @@ class Model
     public function find($where, $fields = '*')
     {
         $sql = $this->sql_query_builder->table($this->table)->field($fields)->limit(1)->where($where)->fetch();
+        $this->debug($sql);
         return $this->db->fetch($sql);
     }
 
@@ -68,6 +70,7 @@ class Model
             ->where($where)
             ->limit($limit, $offset)
             ->fetch_all();
+        $this->debug($sql);
         return $this->db->fetch_all($sql);
     }
 
@@ -79,7 +82,8 @@ class Model
     public function insert($data)
     {
         $sql = $this->sql_query_builder->table($this->table)->insert($data);
-        return $this->insert($data);
+        $this->debug($sql);
+        return $this->db->exec($sql);
     }
 
     /**
@@ -91,7 +95,8 @@ class Model
     public function update($data, $where, $limit = 1)
     {
         $sql = $this->sql_query_builder->table($this->table)->limit($limit)->update($data, $where);
-        return $this->db->update($sql);
+        $this->debug($sql);
+        return $this->db->exec($sql);
     }
 
     /**
@@ -102,7 +107,8 @@ class Model
     public function delete($where)
     {
         $sql = $this->sql_query_builder->table($this->table)->limit(1)->delete($where);
-        return $this->db->delete($sql);
+        $this->debug($sql);
+        return $this->db->exec($sql);
     }
 
     /**
@@ -114,6 +120,7 @@ class Model
     public function get_list($where = array(), $limit = 1, $offset = 100, $fields = '*')
     {
         $sql = $this->sql_query_builder->table($this->table)->field($fields)->where($where)->limit($limit, $offset)->fetch_all();
+        $this->debug($sql);
         return $this->db->fetch_all($sql);
     }
 
@@ -125,12 +132,19 @@ class Model
     public function get_total($where = array())
     {
         $sql = $this->sql_query_builder->table($this->table)->where($where)->count();
+        $this->debug($sql);
         return $this->db->count($sql);
     }
 
     public function get_last_sql()
     {
         return $this->sql_query_builder->get_last_sql();
+    }
+
+    public function debug($sql){
+        if(DEBUG){
+            Debug::db_log($sql);
+        }
     }
 
 }

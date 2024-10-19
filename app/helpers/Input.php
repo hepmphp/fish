@@ -143,4 +143,7 @@ class Input {
         return strtolower($_SERVER['REQUEST_METHOD']) =='post';
     }
 
+    static function ajax_return($status,$msg,$data){
+        echo( json_encode(['status'=>$status,'msg'=>$msg,'data'=>$data],JSON_UNESCAPED_UNICODE));
+    }
 }

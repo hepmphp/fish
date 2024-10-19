@@ -12,7 +12,7 @@ use helpers\Cache\CacheFactory;
 use helpers\ModelGenerator;
 use helpers\Msg;
 use helpers\Session;
-use models\Users;
+
 
 
 class  Welcome extends BaseController {
@@ -29,9 +29,9 @@ class  Welcome extends BaseController {
         ];
         //var_dump($data);
 
-        $users = new Users();
-        $one = $users->find(['user_id'=>1]);
-        $two = $users->find(['user_id'=>2]);
+//        $users = new Users();
+//        $one = $users->find(['user_id'=>1]);
+//        $two = $users->find(['user_id'=>2]);
         echo "<pre>";
 //        print_r(  $users->get_last_sql());
 //        print_r($users->db->pdo->errorInfo());

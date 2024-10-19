@@ -43,7 +43,7 @@ class Handler {
         $referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
 
         $log_message_format = sprintf($log_message,$errcode,$errstr,$errfile,$errline,$url,$referer);
-        error_log($log_message_format.PHP_EOL,3,BASE_PATH.self::LOG_PATH);
+        error_log($log_message_format.PHP_EOL,3,WEB_PATH.self::LOG_PATH);
     }
 
     /**
@@ -63,18 +63,18 @@ class Handler {
             $email_content[] = "User_IP:".$_SERVER['REMOTE_ADDR'];
             $email_content[] = "Time:".$time;
             $email_content_msg = "<pre>".$email_msg."<br/>".implode("<br/>",$email_content);
-            error_log($email_content_msg."<hr>",3,BASE_PATH.self::LAST_ERROR_lOG);
+            error_log($email_content_msg."<hr>",3,WEB_PATH.self::LAST_ERROR_lOG);
             //
         }
     }
 
-    public  function exception_handler($exception) {
-        echo( json_encode( array('code' =>$exception->getCode(),'msg'  =>$exception->getMessage()) ));
+    public  function _exception_handler(\Exception $exception) {
+        echo( json_encode( array('status' =>$exception->getCode(),'msg'  =>$exception->getMessage()) ));
     }
 
     public static function mk_log_dir(){
-        if(!is_dir(BASE_PATH.'/log')){
-            mkdir(BASE_PATH.'/log',0755,true);
+        if(!is_dir(WEB_PATH.'/log')){
+            mkdir(WEB_PATH.'/log',0755,true);
         }
     }
 

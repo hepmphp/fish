@@ -9,7 +9,7 @@ use PDO;
 class PdoHelper
 {
     public $host = '127.0.0.1';
-    public $dbname = 'game_admin';
+    public $dbname = '';
     public $username = 'root';
     public $password = '123456';
     public $port = 3306;

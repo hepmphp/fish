@@ -6,7 +6,7 @@
  */
 $config['master'] = [
     'host' => '127.0.0.1',
-    'dbname' => 'phpbb',
+    'dbname' => 'game_admin',
     'username' => 'root',
     'password' => '123456',
     'port' => 3306,

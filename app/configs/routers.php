@@ -4,7 +4,7 @@
  *  date: 2024/10/17 22:49:51$
  *  author: hepm<ok_fish@qq.com>$
  */
-$routers['login'] = 'fish/welcome/index';
+//$routers['login'] = 'fish/welcome/index';
 $routers['fenxiao_jipiao_index_(\d+)_(\d+)'] = 'fenxiao/jipiao/index?page=$1&perpage=$2';
 $routers['fenxiao_jipiao_test_model'] = 'fenxiao/jipiao/test_model';
 $routers['fenxiao_jipiao_([a-z]+)'] = 'fenxiao/jipiao/$1';

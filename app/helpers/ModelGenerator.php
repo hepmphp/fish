@@ -18,7 +18,7 @@ class ModelGenerator
         }
     }
     public function generator_model(){
-        $info_schema = new InfoSchema('ultrax');
+        $info_schema = new InfoSchema('game_admin');
         $sql = $info_schema->get_table();
         $db = App::get_db();
         $data = $db->fetch_all($sql);
@@ -31,10 +31,13 @@ class ModelGenerator
                     return ucwords($val);
             },$tbname);
             $tbname = implode('',$tbname);
-            var_dump($tbname);
+
             $template = str_replace(array('[Users]','[t]','[p]'),array(str_replace('/','',$tbname),$v['id'],''),$model_template);
             $template = $template.PHP_EOL.'##生成时间:'.date('Y-m-d H:i:s').' 文件路径：'.$this->model_path.$tbname.'.php🐘';
-            file_put_contents($this->model_path.'/'.$tbname.'.php',$template);
+            $curd_file = $this->model_path.'/'.$tbname.'.php';
+            if(!file_exists($curd_file)){
+                file_put_contents($curd_file,$template);
+            }
             highlight_string($template);
           //  echo $template;
 

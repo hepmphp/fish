@@ -9,14 +9,14 @@ namespace db;
 
 class SqlQueryBuilder
 {
-    private $field='*';
-    private $table;
-    private $where;
-    private $orderby;
-    private $groupby;
-    private $having;
-    private $limit;
-    private static $last_sql;
+    public $field_sql='*';
+    public $table_sql;
+    public $where_sql;
+    public $orderby_sql;
+    public $groupby_sql;
+    public $having_sql;
+    public $limit_sql;
+    public static $last_sql;
    //private static $db;
     private static $_instances = array();
 
@@ -26,20 +26,24 @@ class SqlQueryBuilder
     }
     public function field($field)
     {
-        $this->field = $field;
+        $this->field_sql = $field;
         return $this;
     }
     public function table($table)
     {
-        $this->table = $table;
+        $this->table_sql = $table;
         return $this;
     }
     public function where($where)
     {
+        if(empty($where)||is_null($where)){
+            $this->where_sql = '';
+            return  $this;
+        }
         if (is_string($where)) {
-            $this->where = " WHERE ".$where;
+            $this->where_sql = " WHERE ".$where;
         } else {
-            $this->where =  " WHERE ".$this->data_implode($where);
+            $this->where_sql =  " WHERE ".$this->data_implode($where);
         }
         return $this;
     }
@@ -50,7 +54,7 @@ class SqlQueryBuilder
      */
     public function order_by($orderby)
     {
-        $this->orderby = " ORDER BY " . $orderby;
+        $this->orderby_sql = " ORDER BY " . $orderby;
         return $this;
     }
     /**
@@ -60,7 +64,7 @@ class SqlQueryBuilder
      */
     public function group_by($groupby)
     {
-        $this->groupby = " GROUP BY " . $groupby;
+        $this->groupby_sql = " GROUP BY " . $groupby;
         return $this;
     }
     /**
@@ -70,7 +74,7 @@ class SqlQueryBuilder
      */
     public function having($having)
     {
-        $this->having = " Having " . $having;
+        $this->having_sql = " Having " . $having;
         return $this;
     }
     /**
@@ -98,7 +102,7 @@ class SqlQueryBuilder
     public function sql()
     {
         $sql_tpl = "SELECT %s FROM %s  %s";
-        $sql = sprintf($sql_tpl, $this->field, $this->table, $this->where);
+        $sql = sprintf($sql_tpl, $this->field_sql,$this->table_sql, $this->where_sql);
         //group %s having limit xxx
         if (!empty($this->groupby)) {
             $sql .= $this->groupby;
@@ -113,12 +117,13 @@ class SqlQueryBuilder
             $sql .= $this->limit;
         }
         //重置sql
-        $this->field = null;
-        $this->table = null;
-        $this->orderby = null;
-        $this->groupby = null;
-        $this->having = null;
-        $this->limit = null;
+        $this->field_sql = null;
+        $this->table_sql = null;
+        $this->where_sql = null;
+        $this->orderby_sql = null;
+        $this->groupby_sql = null;
+        $this->having_sql = null;
+        $this->limit_sql = null;
         return $sql;
     }
     public function count(){
@@ -145,7 +150,7 @@ class SqlQueryBuilder
     {
         $this->where($where);
         $sql_tpl = "DELETE FROM %s where %s limit %s";
-        $sql = sprintf($sql_tpl, $this->table, $this->where,$limit);
+        $sql = sprintf($sql_tpl, $this->table_sql, $this->where_sql,$limit);
         self::$last_sql[] = $sql;
         //$res = self::$db->exec($sql);
         return $sql;
@@ -189,7 +194,7 @@ class SqlQueryBuilder
                 }
             }
         }
-        $sql = 'UPDATE ' . $this->table . ' SET ' . implode(', ', $fields) .$this->where;
+        $sql = 'UPDATE ' . $this->table_sql . ' SET ' . implode(', ', $fields) .$this->where_sql;
         self::$last_sql[]  = $sql;
        // return self::$db->exec($sql);
         return $sql;
@@ -226,7 +231,10 @@ class SqlQueryBuilder
                         break;
                 }
             }
-            $sql = 'INSERT INTO ' . $this->table . '(' . implode(', ', $columns) . ') VALUES (' . implode($values, ', ') . ')';
+            $values_map = array_map(function($val){
+                return "'{$val}'";
+            },$values);
+            $sql = 'INSERT INTO ' . $this->table_sql . '(' . implode(', ', $columns) . ') VALUES (' . implode( ', ',$values_map) . ')';
             self::$last_sql[]  = $sql;
             //self::$db->exec($sql);
             //$lastId[] = self::$db->lastInsertId();
@@ -252,7 +260,7 @@ class SqlQueryBuilder
     }
     public function quote($string)
     {
-        return $string;
+        return "'{$string}'";
       //  return self::$db->quote($string);
     }
     /**
@@ -315,7 +323,7 @@ class SqlQueryBuilder
         foreach ($array as $value) {
             $temp[] = is_int($value) ? $value : $this->escape($value);
         }
-        return implode($temp, ',');
+        return implode(',',$temp);
     }
     // --------------------------------------------------------------------
     /**

@@ -68,7 +68,7 @@ class Validate
         return $error_status;
     }
 
-    public function get_default_msg($callback, $data = '')
+    public function get_default_msg($callback, $data='')
     {
         $default_msg = [
             Validate::BASE64 => '输入的base64错误',
@@ -94,9 +94,13 @@ class Validate
             Validate::URL => '输入的url格式错误'
         ];
         $error_msg = $default_msg[$callback] ? $default_msg[$callback] : '';
-        if (!empty($data)) {
-            $error_msg = is_array($data) ? sprintf($error_msg, implode(',', $data)) : sprintf($error_msg, $data);
-        }
+//        if (!empty($data)) {
+//            if(is_array($data)){
+//                $error_msg = sprintf($error_msg, implode(',', $data));
+//            }else{
+//                $error_msg = sprintf($error_msg, $data);
+//            }
+//        }
         return $error_msg;
     }
 
@@ -114,11 +118,13 @@ class Validate
     {
         $this->param = $param;
         $this->rules = $rules;
+
     }
 
-    public function validate()
+    public function validate_rules()
     {
         $class_methods = get_class_methods($this);
+
         foreach ($this->param as $key => $value) {
             if (!in_array($this->rules[$key][0], $class_methods)) {
                 foreach ($this->rules[$key] as $rule) {
@@ -130,8 +136,9 @@ class Validate
                     $this->validate_callback($call_back, $value, $error_msg, $status, $data);
                 }
             } else {
+
                 $call_back = $this->rules[$key][0];//验证的回调函数
-                $data = $this->rules[$key][3];//参数
+                $data = isset($this->rules[$key][3])?$this->rules[$key][3]:'';//参数
                 $error_msg = $this->rules[$key][1] ? $this->rules[$key][1] : $this->get_default_msg($call_back, $data);//错误消息
                 $status = $this->rules[$key][2] ? $this->rules[$key][2] : $this->get_default_status($call_back, $data);//错误代码
                 $this->validate_callback($call_back, $value, $error_msg, $status, $data);
@@ -146,7 +153,7 @@ class Validate
 
     public function validate_callback($call_back, $value, $error_msg, $status, $data)
     {
-        if (!call_user_func_array(array(__NAMESPACE__ . '\Validate', $call_back), array($value, $data))) {
+        if (!call_user_func_array(array(__NAMESPACE__ . '\Validate', $call_back), array($value, $data,$error_msg,$status))) {
             $this->set_error($error_msg, $status);
         }
     }
