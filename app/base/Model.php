@@ -19,6 +19,8 @@ class Model
     public $relate_models = array();
     public $sql_query_builder = '';
 
+    public static $debug_table_data;
+
     public function __construct()
     {
         $this->db = App::get_db();
@@ -51,7 +53,9 @@ class Model
     {
         $sql = $this->sql_query_builder->table($this->table)->field($fields)->limit(1)->where($where)->fetch();
         $this->debug($sql);
-        return $this->db->fetch($sql);
+        $res = $this->db->fetch($sql);
+        $this->debug_table($res);
+        return  $res;
     }
 
     /***
@@ -71,7 +75,9 @@ class Model
             ->limit($limit, $offset)
             ->fetch_all();
         $this->debug($sql);
-        return $this->db->fetch_all($sql);
+        $res = $this->db->fetch_all($sql);
+        $this->debug_table($res);
+        return $res;
     }
 
     /**
@@ -84,6 +90,7 @@ class Model
         $sql = $this->sql_query_builder->table($this->table)->insert($data);
         $this->debug($sql);
         return $this->db->exec($sql);
+
     }
 
     /**
@@ -121,7 +128,9 @@ class Model
     {
         $sql = $this->sql_query_builder->table($this->table)->field($fields)->where($where)->limit($limit, $offset)->fetch_all();
         $this->debug($sql);
-        return $this->db->fetch_all($sql);
+        $res = $this->db->fetch_all($sql);
+        $this->debug_table($res);
+        return $res;
     }
 
     /**
@@ -133,7 +142,9 @@ class Model
     {
         $sql = $this->sql_query_builder->table($this->table)->where($where)->count();
         $this->debug($sql);
-        return $this->db->count($sql);
+        $res = $this->db->count($sql);
+        $this->debug_table($res);
+        return $res;
     }
 
     public function get_last_sql()
@@ -144,6 +155,19 @@ class Model
     public function debug($sql){
         if(DEBUG){
             Debug::db_log($sql);
+            Debug::console_log($sql);
+//            Debug::debug_table($sql);
+        }
+    }
+    public function debug_table($data){
+        self::$debug_table_data[] = $data;
+    }
+
+    public function __destruct()
+    {
+        if(DEBUG) {
+            Debug::console_log_table(self::$debug_table_data);
+//            Debug::console_log_table(get_included_files());
         }
     }
 

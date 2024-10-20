@@ -87,9 +87,9 @@ class SqlQueryBuilder
     {
         $param = func_get_args();
         if(func_num_args()==1){
-            $this->limit = " LIMIT $param[0]";
+            $this->limit_sql= " LIMIT $param[0]";
         }else{
-            $this->limit = " LIMIT {$param[0]},{$param[1]}";
+            $this->limit_sql = " LIMIT {$param[0]},{$param[1]}";
         }
         func_num_args();
 

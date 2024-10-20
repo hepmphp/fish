@@ -11,8 +11,8 @@ use base\Model;
 
 class Users extends Model
 {
-    public  $table='users';
-    public  $db_prefix='phpbb_';
+    public  $table='ga_admin_user';
+    public  $db_prefix='';
 
     public function __construct()
     {

@@ -53,9 +53,9 @@ class Timer
     public static function endTime($id)
     {
         $totalTime = self::microtime() - self::$_timer[$id];
-        $totalTimeStr = sprintf('耗时: %.9f s', $totalTime);
-        echo "<hr/>";
-        echo $totalTimeStr;
+        $totalTimeStr = sprintf('耗时: %.9f s ', $totalTime);
+        echo "<pre>";
+        return $totalTimeStr;
     }
     /**结束内存检测
      * @param $id
@@ -65,9 +65,7 @@ class Timer
         $endMem = memory_get_usage();
         $memUsed = $endMem - self::$_mem[$id];
         $memUsedStr = sprintf('内存消耗: %01.9f MB', $memUsed / 1024 / 1024);
-        echo "\t";
-        echo $memUsedStr;
-        echo "<hr/>";
+        return $memUsedStr;
     }
     /**
      * 结束检测
@@ -77,8 +75,8 @@ class Timer
      */
     public static function stop($id)
     {
-        self::endTime($id);
-        self::endMem($id);
+        echo self::endTime($id);
+        echo self::endMem($id);
         Debug::print_include_files();
         echo "<hr>";
         Debug::print_stack_trace();
