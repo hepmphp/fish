@@ -86,10 +86,13 @@ class SqlQueryBuilder
     public function limit()
     {
         $param = func_get_args();
+        $param = array_filter($param);
         if(func_num_args()==1){
             $this->limit_sql= " LIMIT $param[0]";
         }else{
-            $this->limit_sql = " LIMIT {$param[0]},{$param[1]}";
+            if(is_array($param) AND count($param)==2){
+                $this->limit_sql = " LIMIT {$param[0]},{$param[1]}";
+            }
         }
         func_num_args();
 
@@ -101,8 +104,8 @@ class SqlQueryBuilder
      */
     public function sql()
     {
-        $sql_tpl = "SELECT %s FROM %s  %s";
-        $sql = sprintf($sql_tpl, $this->field_sql,$this->table_sql, $this->where_sql);
+        $sql_tpl = "SELECT %s FROM %s  %s %s";
+        $sql = sprintf($sql_tpl, $this->field_sql,$this->table_sql, $this->where_sql,$this->limit_sql);
         //group %s having limit xxx
         if (!empty($this->groupby)) {
             $sql .= $this->groupby;
@@ -127,8 +130,8 @@ class SqlQueryBuilder
         return $sql;
     }
     public function count(){
-        $sql_tpl = "SELECT count(*) FROM %s  %s";
-        $sql = sprintf($sql_tpl, $this->table, $this->where);
+        $sql_tpl = "SELECT count(*) as total FROM %s  %s";
+        $sql = sprintf($sql_tpl, $this->table_sql, $this->where_sql);
         return $sql;
     }
     public function fetch(){

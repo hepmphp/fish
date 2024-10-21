@@ -14,7 +14,6 @@ abstract class BaseController{
 
     protected $view;
 
-
     public function __construct() {
         $this->app = \base\App::get_instance(APP_PATH);
         $this->make_view();

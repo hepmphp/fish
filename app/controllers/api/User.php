@@ -8,6 +8,7 @@ namespace controllers\api;
 use base\exception\LogicException;
 use helpers\Input;
 use helpers\Validate;
+use helpers\Debug;
 use models\curd\AdminUser;
 
 class User extends \base\BaseController{
@@ -69,6 +70,7 @@ class User extends \base\BaseController{
         $data['username'] = Input::get_post('username');
         $data['password'] = Input::get_post('password');
         $res =$this->admin_user->login($data);
+        $res['url'] = '/admin/user/index';
         if($res){
             Input::ajax_return(0,'登录成功',$res);
         }else{
@@ -90,9 +92,13 @@ class User extends \base\BaseController{
         $where = $this->get_search_where();
         $page = Input::get_post('page');
         $per_page = Input::get_post('per_page');
-        $res = $this->admin_user->get_list_info($where,$per_page,$page,'*');
+        list($res,$total) = $this->admin_user->get_list_info($where,$per_page,$page,'*');
+        $data['list'] = $res;
+        $data['total'] = $total;
+        $data['page'] =$page;
+        $data['per_page'] = $per_page;
         if($res){
-            Input::ajax_return(0,'获取数据成功',$res);
+            Input::ajax_return(0,'获取数据成功',$data);
         }else{
             throw new LogicException(100,'获取数据失败');
         }

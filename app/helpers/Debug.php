@@ -61,6 +61,10 @@ class Debug
     }
 
     static function console_log_table($data){
+        return true;
+        if(Input::is_ajax() OR Input::is_post()){
+            return true;
+        }
         $data_json = json_encode($data, JSON_UNESCAPED_SLASHES);
         $message = <<<EOT
 <script> 
@@ -72,6 +76,10 @@ EOT;
     }
     static function console_log($data)
     {
+        return true;
+        if(Input::is_ajax() OR Input::is_post()){
+            return true;
+        }
         static $count;
         $count++;
         $images = '🐘' . date('[Y-m-d H:i:s] ') . 'mysql>' . $count.'';

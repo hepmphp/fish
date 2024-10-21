@@ -84,23 +84,28 @@ class AdminUser extends Model
     }
 
     public function login($data){
+        $data['password'] = trim($data['password']);
         $user= $this->find(['username'=>$data['username']],'id,username,password,salt');
-        if($user['password']== $this->genrate_password($data['password'],$user['salt'])){
+       // var_dump($user['password'],$this->genrate_password($data['password'],$user['salt']));
+        if($user['password'] != $this->genrate_password($data['password'],$user['salt'])){
             throw  new  LogicException(-2,'管理员不存在');
         }
         $user['update_time'] = time();
         $user['last_session_id'] = session_id();
+        $return['id'] = $user['id'];
+        unset($user['id']);
         $res = $this->update($user,['username'=>$data['username']],1);
         if(!$res){
             throw new LogicException(0,'管理员信息修改失败');
         }
 
-        $res['id'] = $user['id'];
-        $res['username'] = $user['username'];
-        $res['time'] = time();
-        $res['expiret_at'] =  $res['time'] +86400;//有效时间1小时
-        $res['access_token'] = md5($data['username'].$res['time'].'201803');
-        return $res;
+
+        $return['username'] = $user['username'];
+        $return['time'] = time();
+        $return['expiret_at'] =  $user['update_time'] +86400;//有效时间1小时
+        $return['access_token'] = md5($data['username'].$user['update_time'].'201803');
+
+        return $return;
     }
 
     public function info($data){
@@ -110,8 +115,11 @@ class AdminUser extends Model
 
     public function get_list_info($where = array(), $limit = 1, $offset = 100, $fields = '*')
     {
+         unset($where['id']);
+        $where = array_filter($where);
         $users = $this->get_list($where,$limit,$offset,$fields);
-        return $users;
+        $total = $this->get_total($where);
+        return [$users,$total['total']];
     }
 
 

@@ -142,6 +142,10 @@ class Input {
     static function is_post(){
         return strtolower($_SERVER['REQUEST_METHOD']) =='post';
     }
+    static function is_ajax()
+    {
+        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'XMLHttpRequest';
+    }
 
     static function ajax_return($status,$msg,$data){
         echo( json_encode(['status'=>$status,'msg'=>$msg,'data'=>$data],JSON_UNESCAPED_UNICODE));

@@ -2985,3 +2985,821 @@ Stack trace:
 [18-Oct-2024 08:06:05 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: 127.0.0.1:6379) in E:\data\www\fish\app\helpers\Session.php on line 62
 [18-Oct-2024 08:06:05 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: 127.0.0.1:6379) in E:\data\www\fish\app\helpers\Session.php on line 62
 [18-Oct-2024 08:06:06 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: 127.0.0.1:6379) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:48:02 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./controllers/test/Admin.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 08:48:02 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./controllers/test/Admin.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 08:48:02 UTC] PHP Fatal error:  Uncaught Error: Class "\controllers\test\Admin" not found in E:\data\www\fish\app\base\App.php:87
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#1 E:\data\www\fish\web\cli.php(22): base\App->run()
+#2 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 87
+[18-Oct-2024 08:48:38 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\web\cli.php on line 18
+[18-Oct-2024 08:48:38 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\web\cli.php on line 19
+[18-Oct-2024 08:48:55 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\web\cli.php on line 18
+[18-Oct-2024 08:48:55 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\web\cli.php on line 19
+[18-Oct-2024 08:49:13 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\web\cli.php on line 18
+[18-Oct-2024 08:49:13 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\web\cli.php on line 19
+[18-Oct-2024 08:49:27 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\web\cli.php on line 18
+[18-Oct-2024 08:49:27 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\web\cli.php on line 19
+[18-Oct-2024 08:51:00 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: 127.0.0.1:6379) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:51:00 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: 127.0.0.1:6379) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:51:00 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: 127.0.0.1:6379) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:51:01 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: 127.0.0.1:6379) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:51:01 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: 127.0.0.1:6379) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:51:01 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: 127.0.0.1:6379) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:51:01 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: 127.0.0.1:6379) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:51:15 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:19 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:20 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:20 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:20 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:20 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:20 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:23 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:24 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:52 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:52 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:52 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:52 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:53 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:53 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:53 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:53 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:54 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:54 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:54 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:54 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:54 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:54 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:55 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:55 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:55 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:55 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:56 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:56 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:56 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:56 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:56 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:57 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:57 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:57 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:57 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:57 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:58 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:58 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:52:58 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:53:07 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:53:08 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:53:08 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 08:53:08 UTC] PHP Warning:  session_start(): Failed to read session data: user (path: E:\data\www\fish\web/cache/) in E:\data\www\fish\app\helpers\Session.php on line 62
+[18-Oct-2024 09:55:56 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./backend/services/helpers/InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:55:56 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./backend/services/helpers/InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:55:56 UTC] PHP Fatal error:  Uncaught Error: Class "backend\services\helpers\InfoSchema" not found in E:\data\www\fish\app\controllers\fish\Welcome.php:56
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\index.php(19): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\fish\Welcome.php on line 56
+[18-Oct-2024 09:56:20 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./backend/services/helpers/InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:20 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./backend/services/helpers/InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:20 UTC] PHP Fatal error:  Uncaught Error: Class "backend\services\helpers\InfoSchema" not found in E:\data\www\fish\app\controllers\fish\Welcome.php:56
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\index.php(19): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\fish\Welcome.php on line 56
+[18-Oct-2024 09:56:22 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./backend/services/helpers/InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:23 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./backend/services/helpers/InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:23 UTC] PHP Fatal error:  Uncaught Error: Class "backend\services\helpers\InfoSchema" not found in E:\data\www\fish\app\controllers\fish\Welcome.php:56
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\index.php(19): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\fish\Welcome.php on line 56
+[18-Oct-2024 09:56:23 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./backend/services/helpers/InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:23 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./backend/services/helpers/InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:23 UTC] PHP Fatal error:  Uncaught Error: Class "backend\services\helpers\InfoSchema" not found in E:\data\www\fish\app\controllers\fish\Welcome.php:56
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\index.php(19): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\fish\Welcome.php on line 56
+[18-Oct-2024 09:56:42 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./controllers/fish/InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:42 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./controllers/fish/InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:42 UTC] PHP Fatal error:  Uncaught Error: Class "controllers\fish\InfoSchema" not found in E:\data\www\fish\app\controllers\fish\Welcome.php:55
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\index.php(19): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\fish\Welcome.php on line 55
+[18-Oct-2024 09:56:43 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./controllers/fish/InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:43 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./controllers/fish/InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:43 UTC] PHP Fatal error:  Uncaught Error: Class "controllers\fish\InfoSchema" not found in E:\data\www\fish\app\controllers\fish\Welcome.php:55
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\index.php(19): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\fish\Welcome.php on line 55
+[18-Oct-2024 09:56:43 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./controllers/fish/InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:43 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./controllers/fish/InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:43 UTC] PHP Fatal error:  Uncaught Error: Class "controllers\fish\InfoSchema" not found in E:\data\www\fish\app\controllers\fish\Welcome.php:55
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\index.php(19): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\fish\Welcome.php on line 55
+[18-Oct-2024 09:56:43 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./controllers/fish/InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:43 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./controllers/fish/InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:43 UTC] PHP Fatal error:  Uncaught Error: Class "controllers\fish\InfoSchema" not found in E:\data\www\fish\app\controllers\fish\Welcome.php:55
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\index.php(19): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\fish\Welcome.php on line 55
+[18-Oct-2024 09:56:43 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./controllers/fish/InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:43 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./controllers/fish/InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 09:56:43 UTC] PHP Fatal error:  Uncaught Error: Class "controllers\fish\InfoSchema" not found in E:\data\www\fish\app\controllers\fish\Welcome.php:55
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\index.php(19): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\fish\Welcome.php on line 55
+[18-Oct-2024 10:02:49 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in E:\data\www\fish\app\helpers\InfoSchema.php on line 49
+[18-Oct-2024 10:02:49 UTC] PHP Fatal error:  Uncaught TypeError: PDO::query(): Argument #1 ($query) must be of type string, array given in E:\data\www\fish\app\db\PdoHelper.php:50
+Stack trace:
+#0 E:\data\www\fish\app\db\PdoHelper.php(50): PDO->query(Array)
+#1 E:\data\www\fish\app\controllers\fish\Welcome.php(61): db\PdoHelper->fetch_all(Array)
+#2 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#3 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#4 E:\data\www\fish\web\index.php(19): base\App->run()
+#5 {main}
+  thrown in E:\data\www\fish\app\db\PdoHelper.php on line 50
+[18-Oct-2024 10:05:03 UTC] PHP Fatal error:  Uncaught TypeError: PDO::query(): Argument #1 ($query) must be of type string, array given in E:\data\www\fish\app\db\PdoHelper.php:50
+Stack trace:
+#0 E:\data\www\fish\app\db\PdoHelper.php(50): PDO->query(Array)
+#1 E:\data\www\fish\app\controllers\fish\Welcome.php(61): db\PdoHelper->fetch_all(Array)
+#2 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#3 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#4 E:\data\www\fish\web\index.php(19): base\App->run()
+#5 {main}
+  thrown in E:\data\www\fish\app\db\PdoHelper.php on line 50
+[18-Oct-2024 10:05:48 UTC] PHP Fatal error:  Uncaught TypeError: PDO::query(): Argument #1 ($query) must be of type string, array given in E:\data\www\fish\app\db\PdoHelper.php:50
+Stack trace:
+#0 E:\data\www\fish\app\db\PdoHelper.php(50): PDO->query(Array)
+#1 E:\data\www\fish\app\controllers\fish\Welcome.php(61): db\PdoHelper->fetch_all(Array)
+#2 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#3 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#4 E:\data\www\fish\web\index.php(19): base\App->run()
+#5 {main}
+  thrown in E:\data\www\fish\app\db\PdoHelper.php on line 50
+[18-Oct-2024 10:12:40 UTC] PHP Warning:  Undefined variable $db in E:\data\www\fish\app\controllers\fish\Welcome.php on line 59
+[18-Oct-2024 10:12:40 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_all() on null in E:\data\www\fish\app\controllers\fish\Welcome.php:59
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\index.php(19): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\fish\Welcome.php on line 59
+[18-Oct-2024 10:12:57 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/User.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:12:57 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/User.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:12:57 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/User.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:12:57 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/User.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:12:57 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/User.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:12:57 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/User.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:12:57 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/User.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:12:57 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/User.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:12:57 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/User.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:12:57 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/User.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:12:57 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/User.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:12:57 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/User.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:01 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:01 UTC] PHP Fatal error:  Uncaught ArgumentCountError: str_replace() expects at least 3 arguments, 2 given in E:\data\www\fish\app\controllers\fish\Welcome.php:63
+Stack trace:
+#0 E:\data\www\fish\app\controllers\fish\Welcome.php(63): str_replace(Array, Array)
+#1 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#2 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#3 E:\data\www\fish\web\index.php(19): base\App->run()
+#4 {main}
+  thrown in E:\data\www\fish\app\controllers\fish\Welcome.php on line 63
+[18-Oct-2024 10:14:12 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:12 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:12 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:12 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:12 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:12 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:12 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:12 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:12 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:12 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:12 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:14:12 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/templdate/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\controllers\fish\Welcome.php on line 62
+[18-Oct-2024 10:19:32 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function controllers\fish\ModelGenerator() in E:\data\www\fish\app\controllers\fish\Welcome.php:57
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\index.php(19): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\fish\Welcome.php on line 57
+[18-Oct-2024 10:19:45 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 10:19:45 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 10:19:45 UTC] PHP Fatal error:  Uncaught Error: Class "InfoSchema" not found in E:\data\www\fish\app\helpers\ModelGenerator.php:14
+Stack trace:
+#0 E:\data\www\fish\app\controllers\fish\Welcome.php(58): helpers\ModelGenerator->generator_model()
+#1 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#2 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#3 E:\data\www\fish\web\index.php(19): base\App->run()
+#4 {main}
+  thrown in E:\data\www\fish\app\helpers\ModelGenerator.php on line 14
+[18-Oct-2024 10:19:57 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 10:19:57 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 10:19:57 UTC] PHP Fatal error:  Uncaught Error: Class "InfoSchema" not found in E:\data\www\fish\app\helpers\ModelGenerator.php:14
+Stack trace:
+#0 E:\data\www\fish\app\controllers\fish\Welcome.php(58): helpers\ModelGenerator->generator_model()
+#1 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#2 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#3 E:\data\www\fish\web\index.php(19): base\App->run()
+#4 {main}
+  thrown in E:\data\www\fish\app\helpers\ModelGenerator.php on line 14
+[18-Oct-2024 10:19:58 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 10:19:58 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 10:19:58 UTC] PHP Fatal error:  Uncaught Error: Class "InfoSchema" not found in E:\data\www\fish\app\helpers\ModelGenerator.php:14
+Stack trace:
+#0 E:\data\www\fish\app\controllers\fish\Welcome.php(58): helpers\ModelGenerator->generator_model()
+#1 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#2 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#3 E:\data\www\fish\web\index.php(19): base\App->run()
+#4 {main}
+  thrown in E:\data\www\fish\app\helpers\ModelGenerator.php on line 14
+[18-Oct-2024 10:19:58 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 10:19:58 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 10:19:58 UTC] PHP Fatal error:  Uncaught Error: Class "InfoSchema" not found in E:\data\www\fish\app\helpers\ModelGenerator.php:14
+Stack trace:
+#0 E:\data\www\fish\app\controllers\fish\Welcome.php(58): helpers\ModelGenerator->generator_model()
+#1 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#2 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#3 E:\data\www\fish\web\index.php(19): base\App->run()
+#4 {main}
+  thrown in E:\data\www\fish\app\helpers\ModelGenerator.php on line 14
+[18-Oct-2024 10:19:58 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./InfoSchema.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 10:19:58 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./InfoSchema.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[18-Oct-2024 10:19:58 UTC] PHP Fatal error:  Uncaught Error: Class "InfoSchema" not found in E:\data\www\fish\app\helpers\ModelGenerator.php:14
+Stack trace:
+#0 E:\data\www\fish\app\controllers\fish\Welcome.php(58): helpers\ModelGenerator->generator_model()
+#1 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#2 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#3 E:\data\www\fish\web\index.php(19): base\App->run()
+#4 {main}
+  thrown in E:\data\www\fish\app\helpers\ModelGenerator.php on line 14
+[18-Oct-2024 10:20:17 UTC] PHP Warning:  Undefined property: helpers\ModelGenerator::$app in E:\data\www\fish\app\helpers\ModelGenerator.php on line 16
+[18-Oct-2024 10:20:17 UTC] PHP Fatal error:  Uncaught Error: Class name must be a valid object or a string in E:\data\www\fish\app\helpers\ModelGenerator.php:16
+Stack trace:
+#0 E:\data\www\fish\app\controllers\fish\Welcome.php(58): helpers\ModelGenerator->generator_model()
+#1 E:\data\www\fish\app\base\App.php(90): controllers\fish\Welcome->msg()
+#2 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#3 E:\data\www\fish\web\index.php(19): base\App->run()
+#4 {main}
+  thrown in E:\data\www\fish\app\helpers\ModelGenerator.php on line 16
+[18-Oct-2024 10:24:47 UTC] PHP Parse error:  syntax error, unexpected token ")" in E:\data\www\fish\app\helpers\ModelGenerator.php on line 26
+[18-Oct-2024 10:25:09 UTC] PHP Parse error:  syntax error, unexpected token ")" in E:\data\www\fish\app\helpers\ModelGenerator.php on line 26
+[18-Oct-2024 10:25:09 UTC] PHP Parse error:  syntax error, unexpected token ")" in E:\data\www\fish\app\helpers\ModelGenerator.php on line 26
+[18-Oct-2024 10:25:09 UTC] PHP Parse error:  syntax error, unexpected token ")" in E:\data\www\fish\app\helpers\ModelGenerator.php on line 26
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/template/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 22
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/template/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 22
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/template/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 22
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/template/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 22
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/template/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 22
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/template/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 22
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/template/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 22
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/template/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 22
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/template/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 22
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/template/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 22
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/template/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 22
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_get_contents(E:\data\www\fish\web/../app/models/template/Users.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 22
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:49 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:26:59 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:27:24 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:31 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:40 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  Undefined array key 1 in E:\data\www\fish\app\helpers\ModelGenerator.php on line 23
+[18-Oct-2024 10:27:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:28:04 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:28:04 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:28:04 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:28:04 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:28:04 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:28:04 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:28:04 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//tag.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:28:04 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:28:04 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:28:04 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:28:04 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:28:04 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//platform.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 25
+[18-Oct-2024 10:35:22 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 33
+[18-Oct-2024 10:35:22 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 33
+[18-Oct-2024 10:35:22 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 33
+[18-Oct-2024 10:35:22 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 33
+[18-Oct-2024 10:35:22 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 33
+[18-Oct-2024 10:35:22 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 33
+[18-Oct-2024 10:35:22 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 33
+[18-Oct-2024 10:35:47 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:35:47 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:35:47 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:35:47 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:35:47 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:35:47 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:35:47 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:23 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:23 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:23 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:23 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:23 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:23 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:23 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:24 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:25 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:25 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:25 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:25 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:25 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:25 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:25 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:40 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:40 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:40 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:40 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:40 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:40 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:40 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:52 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:53 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:57 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:57 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:57 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:57 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:57 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:57 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:57 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:36:58 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:20 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:37:21 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 34
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:06 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Ad/block.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Article/category.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Attach/cate.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/group.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/log.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/menu.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[18-Oct-2024 10:38:07 UTC] PHP Warning:  file_put_contents(E:\data\www\fish\web/../app//models/curd//Admin/user.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\helpers\ModelGenerator.php on line 35
+[19-Oct-2024 10:58:21 UTC] PHP Fatal error:  Uncaught Error: Class "\controllers\api\User" not found in E:\data\www\fish\app\base\App.php:87
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#1 E:\data\www\fish\web\cli.php(21): base\App->run()
+#2 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 87
+[19-Oct-2024 10:58:51 UTC] PHP Warning:  include_once(E:\data\www\fish\web/../app/./controllers/api/LogicException.php): Failed to open stream: No such file or directory in E:\data\www\fish\app\base\Loader.php on line 13
+[19-Oct-2024 10:58:51 UTC] PHP Warning:  include_once(): Failed opening 'E:\data\www\fish\web/../app/./controllers/api/LogicException.php' for inclusion (include_path='.;C:\php\pear') in E:\data\www\fish\app\base\Loader.php on line 13
+[19-Oct-2024 10:58:51 UTC] PHP Fatal error:  Uncaught Error: Class "controllers\api\LogicException" not found in E:\data\www\fish\app\controllers\api\User.php:20
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\api\User->create()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\cli.php(21): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\api\User.php on line 20
+[19-Oct-2024 11:00:12 UTC] PHP Warning:  Undefined array key "错误" in E:\data\www\fish\app\base\exception\LogicException.php on line 22
+[19-Oct-2024 11:00:12 UTC] PHP Deprecated:  Exception::__construct(): Passing null to parameter #1 ($message) of type string is deprecated in E:\data\www\fish\app\base\exception\LogicException.php on line 22
+[19-Oct-2024 11:00:12 UTC] PHP Fatal error:  Uncaught TypeError: Exception::__construct(): Argument #2 ($code) must be of type int, string given in E:\data\www\fish\app\base\exception\LogicException.php:22
+Stack trace:
+#0 E:\data\www\fish\app\base\exception\LogicException.php(22): Exception->__construct('', '\xE9\x94\x99\xE8\xAF\xAF', NULL)
+#1 E:\data\www\fish\app\controllers\api\User.php(20): base\exception\LogicException->__construct('\xE9\x94\x99\xE8\xAF\xAF')
+#2 E:\data\www\fish\app\base\App.php(90): controllers\api\User->create()
+#3 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#4 E:\data\www\fish\web\cli.php(21): base\App->run()
+#5 {main}
+  thrown in E:\data\www\fish\app\base\exception\LogicException.php on line 22
+[19-Oct-2024 11:00:22 UTC] PHP Warning:  Undefined array key 100 in E:\data\www\fish\app\base\exception\LogicException.php on line 22
+[19-Oct-2024 11:00:22 UTC] PHP Deprecated:  Exception::__construct(): Passing null to parameter #1 ($message) of type string is deprecated in E:\data\www\fish\app\base\exception\LogicException.php on line 22
+[19-Oct-2024 11:00:22 UTC] PHP Fatal error:  Uncaught base\exception\LogicException in E:\data\www\fish\app\controllers\api\User.php:20
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\api\User->create()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\cli.php(21): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\api\User.php on line 20
+[19-Oct-2024 11:00:55 UTC] PHP Fatal error:  Uncaught base\exception\LogicException: 1000 in E:\data\www\fish\app\controllers\api\User.php:20
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(90): controllers\api\User->create()
+#1 E:\data\www\fish\app\base\App.php(46): base\App->dispatch()
+#2 E:\data\www\fish\web\cli.php(21): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\api\User.php on line 20
+[19-Oct-2024 11:01:42 UTC] PHP Fatal error:  Uncaught ArgumentCountError: set_exception_handler() expects exactly 1 argument, 2 given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(58): set_exception_handler('helpers\\Handler', 'exception_handl...')
+#1 E:\data\www\fish\app\base\App.php(44): base\App->handle_error_and_exception()
+#2 E:\data\www\fish\web\cli.php(21): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:02:31 UTC] PHP Fatal error:  Uncaught ArgumentCountError: set_exception_handler() expects exactly 1 argument, 2 given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(58): set_exception_handler('helpers\\Handler', '_exception_hand...')
+#1 E:\data\www\fish\app\base\App.php(44): base\App->handle_error_and_exception()
+#2 E:\data\www\fish\web\cli.php(21): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:03:00 UTC] PHP Fatal error:  Uncaught TypeError: set_exception_handler(): Argument #1 ($callback) must be a valid callback or null, function "helpers\Handler\_exception_handler" not found or invalid function name in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(58): set_exception_handler('helpers\\Handler...')
+#1 E:\data\www\fish\app\base\App.php(44): base\App->handle_error_and_exception()
+#2 E:\data\www\fish\web\cli.php(21): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:06:21 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:06:38 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:07:19 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:61
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 61
+[19-Oct-2024 11:08:08 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:08:25 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:08:25 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "helpers\BASE_PATH" in E:\data\www\fish\app\helpers\Handler.php:76
+Stack trace:
+#0 E:\data\www\fish\app\helpers\Handler.php(53): helpers\Handler::mk_log_dir()
+#1 [internal function]: helpers\Handler::shutdown_handler()
+#2 {main}
+  thrown in E:\data\www\fish\app\helpers\Handler.php on line 76
+[19-Oct-2024 11:08:53 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:08:53 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in E:\data\www\fish\app\helpers\Handler.php on line 42
+[19-Oct-2024 11:08:53 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "helpers\BASE_PATH" in E:\data\www\fish\app\helpers\Handler.php:46
+Stack trace:
+#0 E:\data\www\fish\app\helpers\Handler.php(60): helpers\Handler::error_handler(2, 'Undefined array...', 'E:\\data\\www\\fis...', 60)
+#1 [internal function]: helpers\Handler::shutdown_handler()
+#2 {main}
+  thrown in E:\data\www\fish\app\helpers\Handler.php on line 46
+[19-Oct-2024 11:09:21 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:09:21 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in E:\data\www\fish\app\helpers\Handler.php on line 42
+[19-Oct-2024 11:09:21 UTC] PHP Fatal error:  Uncaught Error: Undefined constant "helpers\BASE_PATH" in E:\data\www\fish\app\helpers\Handler.php:46
+Stack trace:
+#0 E:\data\www\fish\app\helpers\Handler.php(60): helpers\Handler::error_handler(2, 'Undefined array...', 'E:\\data\\www\\fis...', 60)
+#1 [internal function]: helpers\Handler::shutdown_handler()
+#2 {main}
+  thrown in E:\data\www\fish\app\helpers\Handler.php on line 46
+[19-Oct-2024 11:09:42 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:09:42 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in E:\data\www\fish\app\helpers\Handler.php on line 42
+[19-Oct-2024 11:09:42 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in E:\data\www\fish\app\helpers\Handler.php on line 42
+[19-Oct-2024 11:09:42 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in E:\data\www\fish\app\helpers\Handler.php on line 42
+[19-Oct-2024 11:09:57 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:09:57 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in E:\data\www\fish\app\helpers\Handler.php on line 42
+[19-Oct-2024 11:09:57 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in E:\data\www\fish\app\helpers\Handler.php on line 42
+[19-Oct-2024 11:09:57 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in E:\data\www\fish\app\helpers\Handler.php on line 42
+[19-Oct-2024 11:11:44 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:11:44 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in E:\data\www\fish\app\helpers\Handler.php on line 42
+[19-Oct-2024 11:11:44 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in E:\data\www\fish\app\helpers\Handler.php on line 42
+[19-Oct-2024 11:11:44 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in E:\data\www\fish\app\helpers\Handler.php on line 42
+[19-Oct-2024 11:13:33 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:13:53 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:13:53 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:13:53 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:13:53 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, ParseError given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(ParseError))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:39:32 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, Error given in E:\data\www\fish\app\base\App.php:58
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(Error))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 58
+[19-Oct-2024 11:41:48 UTC] PHP Fatal error:  Uncaught TypeError: base\App::base\{closure}(): Argument #1 ($exception) must be of type Exception, Error given in E:\data\www\fish\app\base\App.php:59
+Stack trace:
+#0 [internal function]: base\App->base\{closure}(Object(Error))
+#1 {main}
+  thrown in E:\data\www\fish\app\base\App.php on line 59
+[19-Oct-2024 12:46:42 UTC] PHP Warning:  Undefined array key "password" in E:\data\www\fish\app\helpers\Validate.php on line 129
+[19-Oct-2024 12:46:42 UTC] PHP Warning:  Trying to access array offset on null in E:\data\www\fish\app\helpers\Validate.php on line 129
+[19-Oct-2024 12:46:42 UTC] PHP Warning:  Undefined array key "password" in E:\data\www\fish\app\helpers\Validate.php on line 130
+[19-Oct-2024 12:46:42 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in E:\data\www\fish\app\helpers\Validate.php on line 130
+[19-Oct-2024 12:46:42 UTC] PHP Fatal error:  Uncaught TypeError: implode(): Argument #2 ($array) must be of type ?array, string given in E:\data\www\fish\app\db\SqlQueryBuilder.php:229
+Stack trace:
+#0 E:\data\www\fish\app\db\SqlQueryBuilder.php(229): implode(Array, ', ')
+#1 E:\data\www\fish\app\base\Model.php(81): db\SqlQueryBuilder->insert(Array)
+#2 E:\data\www\fish\app\models\curd\AdminUser.php(31): base\Model->insert(Array)
+#3 E:\data\www\fish\app\controllers\api\User.php(37): models\curd\AdminUser->save(Array)
+#4 E:\data\www\fish\app\base\App.php(103): controllers\api\User->create()
+#5 E:\data\www\fish\app\base\App.php(48): base\App->dispatch()
+#6 E:\data\www\fish\web\index.php(19): base\App->run()
+#7 {main}
+  thrown in E:\data\www\fish\app\db\SqlQueryBuilder.php on line 229
+[19-Oct-2024 12:47:14 UTC] PHP Warning:  Undefined array key "password" in E:\data\www\fish\app\helpers\Validate.php on line 129
+[19-Oct-2024 12:47:14 UTC] PHP Warning:  Trying to access array offset on null in E:\data\www\fish\app\helpers\Validate.php on line 129
+[19-Oct-2024 12:47:14 UTC] PHP Warning:  Undefined array key "password" in E:\data\www\fish\app\helpers\Validate.php on line 130
+[19-Oct-2024 12:47:14 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in E:\data\www\fish\app\helpers\Validate.php on line 130
+[19-Oct-2024 12:47:14 UTC] PHP Warning:  Undefined variable $res in E:\data\www\fish\app\controllers\api\User.php on line 38
+[19-Oct-2024 12:48:36 UTC] PHP Warning:  Undefined array key "password" in E:\data\www\fish\app\helpers\Validate.php on line 129
+[19-Oct-2024 12:48:36 UTC] PHP Warning:  Trying to access array offset on null in E:\data\www\fish\app\helpers\Validate.php on line 129
+[19-Oct-2024 12:48:36 UTC] PHP Warning:  Undefined array key "password" in E:\data\www\fish\app\helpers\Validate.php on line 130
+[19-Oct-2024 12:48:36 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in E:\data\www\fish\app\helpers\Validate.php on line 130
+[19-Oct-2024 12:48:36 UTC] PHP Warning:  Undefined variable $res in E:\data\www\fish\app\controllers\api\User.php on line 38
+[19-Oct-2024 12:48:46 UTC] PHP Warning:  Undefined variable $res in E:\data\www\fish\app\controllers\api\User.php on line 38
+[19-Oct-2024 12:49:01 UTC] PHP Fatal error:  Uncaught TypeError: Exception::__construct(): Argument #1 ($message) must be of type string, array given in E:\data\www\fish\app\base\exception\LogicException.php:13
+Stack trace:
+#0 E:\data\www\fish\app\base\exception\LogicException.php(13): Exception->__construct(Array, 100, NULL)
+#1 E:\data\www\fish\app\controllers\api\User.php(34): base\exception\LogicException->__construct(100, Array)
+#2 E:\data\www\fish\app\base\App.php(103): controllers\api\User->create()
+#3 E:\data\www\fish\app\base\App.php(48): base\App->dispatch()
+#4 E:\data\www\fish\web\index.php(19): base\App->run()
+#5 {main}
+  thrown in E:\data\www\fish\app\base\exception\LogicException.php on line 13
+[19-Oct-2024 12:49:43 UTC] PHP Fatal error:  Uncaught base\exception\LogicException: 管理员添加逻辑错误 in E:\data\www\fish\app\controllers\api\User.php:34
+Stack trace:
+#0 E:\data\www\fish\app\base\App.php(103): controllers\api\User->create()
+#1 E:\data\www\fish\app\base\App.php(48): base\App->dispatch()
+#2 E:\data\www\fish\web\index.php(19): base\App->run()
+#3 {main}
+  thrown in E:\data\www\fish\app\controllers\api\User.php on line 34
+[19-Oct-2024 13:41:08 UTC] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[19-Oct-2024 13:44:18 UTC] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[19-Oct-2024 22:29:57 Asia/Shanghai] PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 262144 bytes) in E:\data\www\fish\app\models\curd\AdminUser.php on line 113
+[20-Oct-2024 00:23:45 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:24:11 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:48:50 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:48:50 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:49:18 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:49:18 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:49:20 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:49:20 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:50:01 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:50:01 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:50:01 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:50:01 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:50:02 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:50:02 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:50:03 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[20-Oct-2024 00:50:03 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[21-Oct-2024 00:11:22 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[21-Oct-2024 00:11:22 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[21-Oct-2024 00:14:15 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[21-Oct-2024 00:14:15 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
+[21-Oct-2024 00:25:56 Asia/Shanghai] PHP Warning:  Undefined array key 8192 in E:\data\www\fish\app\base\App.php on line 62
