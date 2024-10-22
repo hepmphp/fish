@@ -115,8 +115,7 @@ class AdminUser extends Model
 
     public function get_list_info($where = array(), $limit = 1, $offset = 100, $fields = '*')
     {
-         unset($where['id']);
-        $where = array_filter($where);
+       // var_dump($limit,$offset);
         $users = $this->get_list($where,$limit,$offset,$fields);
         $total = $this->get_total($where);
         return [$users,$total['total']];

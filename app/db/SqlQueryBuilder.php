@@ -86,13 +86,25 @@ class SqlQueryBuilder
     public function limit()
     {
         $param = func_get_args();
-        $param = array_filter($param);
         if(func_num_args()==1){
             $this->limit_sql= " LIMIT $param[0]";
         }else{
-            if(is_array($param) AND count($param)==2){
-                $this->limit_sql = " LIMIT {$param[0]},{$param[1]}";
-            }
+           if (is_array($param) AND count($param)===2 AND $param[0]==1){
+                $this->limit_sql = " LIMIT $param[1]";
+            }elseif  (is_array($param) AND count($param)==2 AND !empty($param[0])){
+
+               $limit = $param[0];
+               $offset = $param[1];
+               $limit = ($limit-1)*$offset;
+               $limit = max($limit,0);
+               if($offset==0){
+                   $offset = 2;
+               }
+               $this->limit_sql = " LIMIT {$limit},{$offset}";
+               $limit =1;
+               $offset = 100;
+           }
+
         }
         func_num_args();
 
@@ -234,10 +246,10 @@ class SqlQueryBuilder
                         break;
                 }
             }
-            $values_map = array_map(function($val){
-                return "'{$val}'";
-            },$values);
-            $sql = 'INSERT INTO ' . $this->table_sql . '(' . implode(', ', $columns) . ') VALUES (' . implode( ', ',$values_map) . ')';
+//            $values_map = array_map(function($val){
+//                return "{$val}";
+//            },$values);
+            $sql = 'INSERT INTO ' . $this->table_sql . '(' . implode(', ', $columns) . ') VALUES (' . implode( ', ',$values) . ')';
             self::$last_sql[]  = $sql;
             //self::$db->exec($sql);
             //$lastId[] = self::$db->lastInsertId();
@@ -303,7 +315,7 @@ class SqlQueryBuilder
                     break;
                 case 'integer':
                 case 'double':
-                    $wheres[] = $column . '=' . $value; //['id'=>1]
+                    $wheres[] = $column . '=' . "'$value'"; //['id'=>1]
                     break;
                 case 'boolean':
                     $wheres[] = $column . '=' . ($value ? '1' : '0');

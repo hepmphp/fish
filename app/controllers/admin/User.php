@@ -5,13 +5,14 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 namespace controllers\admin;
-use base\exception\LogicException;
 use helpers\Input;
+use models\curd\AdminMenu;
 use models\curd\AdminUser;
 
 class  User extends \base\BaseController{
 
     public $admin_user;
+    public $admin_menu;
 
     public function __construct()
     {
@@ -21,32 +22,42 @@ class  User extends \base\BaseController{
 
     public function get_search_where(){
         $where['username'] = Input::get_post('username');
+        $where['level']    = 0;
+        if(isset($_GET['level'])){
+            $level = Input::get_post('level',0);
+            $where['level'] = intval($level);
+        }
+
         return $where;
     }
 
     public function index(){
-        $data['admin_url'] = '/admin/user/get_list';
-        $data['username'] = Input::get_post('username');
+        $data = $this->get_search_where();
+        $data['admin_url'] = '/admin/user/get_list?iframe=1';
 
         $this->view->assign('data',$data);
-        $this->view->display('admin/index');
+        if(isset($_GET['iframe']) && $_GET['iframe']==1){
+            $this->view->display('admin/user/user_list');
+        }else{
+            $this->view->display('admin/user/index');
+        }
+
     }
 
     public function login(){
-        $this->view->display('admin/login');
+        $this->view->display('admin/user/login');
     }
 
     public function get_list(){
-        $where = $this->get_search_where();
-        $page = Input::get_post('page');
-        $per_page = Input::get_post('per_page');
-        $data = $this->admin_user->get_list_info($where,$per_page,$page,'*');
+        $data = $this->get_search_where();
+        $top_menu = $this->admin_menu->get_top_menu($data['level']);
+        $this->view->assign('top_menu',$top_menu);
         $this->view->assign('data',$data);
-        $this->view->display('admin/user_list');
+        $this->view->display('admin/user/user_list');
     }
 
     public function user_info(){
-        $this->view->display('admin/user_info');
+        $this->view->display('admin/user/user_info');
     }
 
 }

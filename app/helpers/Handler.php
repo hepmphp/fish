@@ -64,7 +64,6 @@ class Handler {
             $email_content[] = "Time:".$time;
             $email_content_msg = "<pre>".$email_msg."<br/>".implode("<br/>",$email_content);
             error_log($email_content_msg."<hr>",3,WEB_PATH.self::LAST_ERROR_lOG);
-            //
         }
     }
 

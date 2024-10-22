@@ -8,6 +8,6 @@
 //url地址
 $const = [
     'SITE_URL'=>'http://127.0.0.1:2222/web/',
-    'DEFAULT_CONTROLLER'=>'fish/welcome'
+    'DEFAULT_CONTROLLER'=>'admin/login'
 ];
 return $const;

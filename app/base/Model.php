@@ -8,7 +8,7 @@
 namespace base;
 
 use db\SqlQueryBuilder;
-use helpers\Debug;
+use helpers\Debuger;
 
 class Model
 {
@@ -20,6 +20,7 @@ class Model
     public $sql_query_builder = '';
 
     public static $debug_table_data;
+    public static $debug_data;
 
     public function __construct()
     {
@@ -66,7 +67,7 @@ class Model
      * @param string $fields
      * @return mixed
      */
-    public function find_all($where, $limit, $offset, $fields = '*')
+    public function find_all($where, $limit=1, $offset=100, $fields = '*')
     {
         $sql = $this->sql_query_builder
             ->table($this->table)
@@ -154,19 +155,25 @@ class Model
 
     public function debug($sql){
         if(DEBUG){
-            Debug::db_log($sql);
-            Debug::console_log($sql);
-//            Debug::debug_table($sql);
+            Debuger::db_log($sql);
+            self::$debug_data[] = $sql;
+
         }
     }
     public function debug_table($data){
-        self::$debug_table_data[] = $data;
+
+        if(isset($data[0]) AND is_array($data[0]) AND isset($data[0]['id']) AND $data[0]['id']>0 ){
+            self::$debug_table_data = $data;
+        }else{
+            self::$debug_table_data[] = $data;
+        }
     }
 
     public function __destruct()
     {
         if(DEBUG) {
-            Debug::console_log_table(self::$debug_table_data);
+            Debuger::console_log(self::$debug_data);
+            Debuger::console_log_table(self::$debug_table_data);
 //            Debug::console_log_table(get_included_files());
         }
     }

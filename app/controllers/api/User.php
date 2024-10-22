@@ -8,7 +8,7 @@ namespace controllers\api;
 use base\exception\LogicException;
 use helpers\Input;
 use helpers\Validate;
-use helpers\Debug;
+use helpers\Debuger;
 use models\curd\AdminUser;
 
 class User extends \base\BaseController{
@@ -23,6 +23,18 @@ class User extends \base\BaseController{
 
     public function get_search_where(){
          $where['username'] = Input::get_post('username');
+         $start_time = Input::get_post('start_time');
+         $end_time = Input::get_post('end_time');
+         if(!empty($start_time)){
+             $where['create_time>'] =strtotime($start_time);
+         }
+         if(!empty($end_time)){
+             $where['create_time<'] = strtotime($end_time);
+         }
+        $where = array_filter($where);
+        if(empty($where)){
+            $where = '';
+        }
          return $where;
     }
 
@@ -70,7 +82,7 @@ class User extends \base\BaseController{
         $data['username'] = Input::get_post('username');
         $data['password'] = Input::get_post('password');
         $res =$this->admin_user->login($data);
-        $res['url'] = '/admin/user/index';
+        $res['admin_url'] = '/admin/user/get_list?iframe=1';
         if($res){
             Input::ajax_return(0,'登录成功',$res);
         }else{
@@ -90,9 +102,10 @@ class User extends \base\BaseController{
 
     public function get_list(){
         $where = $this->get_search_where();
+
         $page = Input::get_post('page');
         $per_page = Input::get_post('per_page');
-        list($res,$total) = $this->admin_user->get_list_info($where,$per_page,$page,'*');
+        list($res,$total) = $this->admin_user->get_list_info($where,$page,$per_page,'*');
         $data['list'] = $res;
         $data['total'] = $total;
         $data['page'] =$page;
@@ -100,7 +113,7 @@ class User extends \base\BaseController{
         if($res){
             Input::ajax_return(0,'获取数据成功',$data);
         }else{
-            throw new LogicException(100,'获取数据失败');
+            throw new LogicException(100,'没有数据');
         }
     }
 

@@ -13,13 +13,13 @@ use helpers\Msg;
 
 class App
 {
-    protected static $instance;
-    protected static $db;
-    public static $config;
-    public $app_path;
-    public $path;
-    public $controller;
-    public $action;
+    protected static $instance=null;
+    protected static $db =null;
+    public static $config=array();
+    public $app_path='';
+    public $path='';
+    public $controller='';
+    public $method='';
 
     static function get_instance($app_path=''){
         if(empty(self::$instance)){
@@ -76,45 +76,55 @@ class App
     public function dispatch(){
         $this->_parse_routes();//路由解析
         $path_info = $this->_parse_path_info();
-
         $path_info = array_values(array_filter($path_info));
-
         $path = '';
-        $method = '';
+        $class_method = '';
         if(count($path_info)==3){
-            list($path,$class,$method) = $path_info;
+            list($path,$class,$class_method) = $path_info;
         }else if(count($path_info)==2){
-            list($class,$method) = $path_info;
+            list($class,$class_method) = $path_info;
         }else{
-            $class = $path_info[0];
-            $method = 'index';
+            $class = is_array($path_info)&&empty($path_info)?'':$path_info[0];
+            $class_method = 'index';
         }
-        $this->controller = $class?$class:'welcome';
+        $this->controller = $class?$class:'user';
         if(empty($path)){
-            $class = '\\controllers\\fish\Welcome';
+            $class = '\\controllers\\admin\user';
         }else{
             $class = ucwords($class);
             $class = "\\controllers\\{$path}\\".$class;
         }
+        $dir_file = WEB_PATH."\\..\\app".$class.'.php';
+        if(file_exists($dir_file)){
+            $this->path = $path;
+            $controller = new $class;
+            if(method_exists($controller,$class_method)){
 
-        $this->path = $path;
-        $controller = new $class;
-        if(method_exists($controller,$method)){
-            $this->action = $method;
-            return $controller->$method();
-        }else{
-            throw new \Exception("{$class} has not method {$method}");
+                $this->method = $class_method;
+                $controller->$class_method();
+            }else{
+                throw new \Exception("{$class} has not method {$class_method}");
+            }
         }
     }
 
     public function _parse_routes(){
+
         $routers = self::$config['routers'];
         if(empty($routers)){
             return array();
         }
-
         $parse_route = '';
         foreach($routers as $rule=>$route){
+            //默认没有路由的情况解析
+            $parse_route = parse_url($_SERVER['REQUEST_URI']);
+            $_SERVER['PATH_INFO'] = $parse_route['path'];
+            if(isset($parse_route['query'])){
+                $_SERVER['QUERY_STRING'] = $parse_route['query'];
+                parse_str($parse_route['query'],$_GET);//解析路由配置参数填充到$_GET参数
+                parse_str($parse_route['query'],$_REQUEST);//解析路由配置参数填充到$_REQUEST
+                break;
+            }
             // Convert wild-cards to RegEx
             $rule = str_replace(':any', '.+', str_replace(':num', '[0-9]+', $rule));
             // Does the RegEx match?
@@ -126,7 +136,6 @@ class App
                         if($key==0)continue;
                         $route =  str_replace('$'.$key,$m_rule,$route);
                     }
-
                 }
                 $parse_route = parse_url($route);
                 $_SERVER['PATH_INFO'] = $parse_route['path'];
@@ -137,12 +146,9 @@ class App
                 }
             }
         }
-
     }
-
     public function _parse_path_info(){
         $path_info = isset($_SERVER['PATH_INFO'])&&!empty($_SERVER['PATH_INFO'])?explode('/',$_SERVER['PATH_INFO']):array(self::$config['const']['DEFAULT_CONTROLLER']);
-
         /**g分组 m控制器 a方法*/
         $g = Input::get('g');
         $m = Input::get('m');
@@ -155,8 +161,5 @@ class App
         }
         return $path_info;
     }
-
-
-
-
+    
 }

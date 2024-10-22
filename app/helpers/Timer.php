@@ -77,11 +77,11 @@ class Timer
     {
         echo self::endTime($id);
         echo self::endMem($id);
-        Debug::print_include_files();
+        Debuger::print_include_files();
         echo "<hr>";
-        Debug::print_stack_trace();
+        Debuger::print_stack_trace();
         echo "<hr>";
-        print_r(\helpers\Debug::last_log());
+        print_r(\helpers\Debuger::last_log());
     }
     /**
      * get microtime float

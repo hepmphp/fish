@@ -1,4 +1,3 @@
-
 /* 分页 */
 function multi(num, perpage,curpage,maxpages) {
     var multipage = '';
@@ -25,7 +24,11 @@ function multi(num, perpage,curpage,maxpages) {
                 to = pages;
             }
         }
-        multipage += (curpage > 1 ? '<li class="page-pre"><a data-page="'+(curpage-1)+'">上一页</a></li>' : '<li class="page-pre"><a href="javascript:void(0)">上一页</a></li>');
+        if(curpage===undefined ||curpage.length===0 ||curpage===null||(typeof value === 'string' && value.trim() === '') )
+        {
+            curpage=1;
+        }
+        multipage += (curpage > 1 ? '<li class="page-pre"><a data-page="'+(curpage-1)+'">上一页</a></li>' : '<li class="page-pre"><a href="javascript:void(0)" data-page="1">上一页</a></li>');
 
         for (i = from; i <= to; i++) {
             multipage += i == curpage ? '<li class="page-number active"><a data-page="'+i+'">'+i+'</a></li>' :'<li class="page-number"><a  data-page="'+i+'">'+i+'</a></li>';
@@ -34,4 +37,3 @@ function multi(num, perpage,curpage,maxpages) {
     }
     return multipage;
 }
-

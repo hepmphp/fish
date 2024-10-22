@@ -9,7 +9,7 @@ use base\App;
 use base\BaseController;
 use base\Model;
 use helpers\Cache\CacheFactory;
-use helpers\Debug;
+use helpers\Debuger;
 use helpers\ModelGenerator;
 use helpers\Msg;
 use helpers\Session;

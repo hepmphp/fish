@@ -7,15 +7,16 @@
 namespace base;
 class PhpView implements ViewInterface {
 
-    protected $view_path = '';
-    protected $vars;
+    public $view_path = '';
+    public $vars;
 
     public function __construct($view_path) {
         $this->view_path = $view_path;
     }
-
-
     public function assign($name, $value = null) {
+        if(empty($value)){
+            return $this;
+        }
         if (is_array($name)) {
             foreach ($name as $k => $v) {
                 $this->vars[$k] = $v;
@@ -26,7 +27,6 @@ class PhpView implements ViewInterface {
 
         return $this;
     }
-
     public function display($view_file) {
         $old_path = getcwd();
         chdir($this->view_path);

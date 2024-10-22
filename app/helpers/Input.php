@@ -5,6 +5,7 @@
  *  author: hepm<ok_fish@qq.com>$
  */
 namespace helpers;
+use helpers\Debuger;
 
 class Input {
     public static function trim(&$data){
@@ -144,10 +145,36 @@ class Input {
     }
     static function is_ajax()
     {
-        return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'XMLHttpRequest';
+         if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && ucwords($_SERVER['HTTP_X_REQUESTED_WITH']) == 'XMLHttpRequest'){
+             return true;
+         } else{
+             return false;
+         }
     }
 
     static function ajax_return($status,$msg,$data){
-        echo( json_encode(['status'=>$status,'msg'=>$msg,'data'=>$data],JSON_UNESCAPED_UNICODE));
+            $json_data = [
+                'status'=>$status,
+                'msg'=>$msg,
+                'data'=>$data,
+            ];
+            echo( json_encode($json_data,JSON_UNESCAPED_UNICODE));
+
     }
+    static function ajax_debug(){
+
+        $console_log       = file_get_contents(WEB_PATH . '/log/console_log.log');
+        $console_log_table = file_get_contents(WEB_PATH . '/log/console_log_table.log');
+        $data['debug']=[
+            'console_log'=>$console_log,
+            'console_log_table'=>$console_log_table
+        ];
+        $json_data = [
+            'status'=>0,
+            'msg'=>'调试日志',
+            'data'=>$data,
+        ];
+        echo( json_encode($json_data,JSON_UNESCAPED_UNICODE));
+    }
+
 }
