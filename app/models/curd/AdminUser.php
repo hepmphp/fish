@@ -9,6 +9,7 @@
 namespace models\curd;
 use base\exception\LogicException;
 use base\Model;
+use helpers\Arr;
 use helpers\Unique;
 
 class AdminUser extends Model
@@ -16,9 +17,12 @@ class AdminUser extends Model
     public  $table='ga_admin_user';
     public  $db_prefix='';
 
+    public  $admin_group='';
+
     public function __construct()
     {
         $this->table = $this->db_prefix.$this->table;
+        $this->admin_group = new AdminGroup();
         parent::__construct();
     }
     /**
@@ -54,13 +58,13 @@ class AdminUser extends Model
 
     public function save($data)
     {
-        $user= $this->find(['username'=>$data['username']],'username,password,salt');
+        $user= $this->find(['id'=>$data['id']],'id,username,password,salt');
         if(!$user){
             throw  new  LogicException(-2,'管理员不存在');
         }
         $user['password'] = $this->genrate_password($data['password'],$user['salt']);
         $user['update_time'] = time();
-        $res = $this->update($user,['username'=>$data['username']],1);
+        $res = $this->update($user,['id'=>$data['id']],1);
         if($res){
             throw new LogicException(0,'管理员修改成功');
         }else{
@@ -68,18 +72,32 @@ class AdminUser extends Model
         }
     }
 
+    public function edit_permission($data){
+        $user= $this->find(['id'=>$data['id']],'id,username,password,salt');
+        if(!$user){
+            throw  new  LogicException(-2,'管理员不存在');
+        }
+        $data['update_time'] = time();
+        $res = $this->update($data,['id'=>$data['id']],1);
+        if($res){
+            throw new LogicException(0,'管理员权限设置成功');
+        }else{
+            throw new LogicException(-1,'管理员权限设置失败');
+        }
+    }
+
     public function delete($data){
-        $user= $this->find(['username'=>$data['username']],'username,password,salt');
+        $user= $this->find(['id'=>$data['id']],'id,username,password,salt');
         if(!$user){
             throw  new  LogicException(-2,'管理员不存在');
         }
         $user['update_time'] = time();
         $user['status'] = -1;
-        $res = $this->update($user,['username'=>$data['username']],1);
+        $res = $this->update($user,['id'=>$data['id']],1);
         if($res){
-            throw new LogicException(0,'管理员修改成功');
+            throw new LogicException(0,'管理员锁定成功');
         }else{
-            throw new LogicException(-1,'管理员修改失败');
+            throw new LogicException(-1,'管理员锁定失败');
         }
     }
 
@@ -109,7 +127,7 @@ class AdminUser extends Model
     }
 
     public function info($data){
-        $user= $this->find(['username'=>$data['username']],'*');
+        $user= $this->find($data,'*');
         return $user;
     }
 
@@ -117,6 +135,21 @@ class AdminUser extends Model
     {
        // var_dump($limit,$offset);
         $users = $this->get_list($where,$limit,$offset,$fields);
+        $groups = $this->admin_group->find_all('',0);
+//        $groups = Arr::index($groups,'id');
+//        var_dump($groups);
+        foreach ($users as $k=>$v){
+            $users[$k]['create_time'] = date('Y-m-d H:i:s',$v['create_time']);
+            $users[$k]['update_time'] = date('Y-m-d H:i:s',$v['update_time']);
+            if(isset($v['group_id']) && isset( $groups[$v['group_id']])){
+                $users[$k]['group_name'] = $groups[$v['group_id']]['name'];
+            }
+            if($users[$k]['status']==-1){
+                $users[$k]['status_name'] = '<span class="label btn-danger" style="background-color: red;" >锁定</span>';
+            }else{
+                $users[$k]['status_name'] = '<span class="label btn-success" style="background-color: green;" >正常</span>';
+            }
+        }
         $total = $this->get_total($where);
         return [$users,$total['total']];
     }

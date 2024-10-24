@@ -40,39 +40,53 @@ class User extends \base\BaseController{
 
     public function create(){
         $data['username'] = Input::get_post('username');
+        $data['realname'] = Input::get_post('realname');
         $data['password'] = Input::get_post('password');
+        $data['re_password'] = Input::get_post('re_password');
+        $data['group_id'] = Input::get_post('group_id');
          if(!Validate::required($data['username'])){
              throw  new LogicException(100,'管理员不能为空');
          }
          if(!Validate::min_length($data['password'],6)){
              throw new LogicException(200,'管理员密码不能小于6位数');
          }
-
+         if($data['password']!=$data['re_password']){
+             throw new LogicException(300,'两次输入的密码不一致');
+         }
+         if(isset($data['re_password'])){
+             unset($data['re_password']);
+         }
         $this->admin_user->create($data);
-
-
     }
     public function update(){
         $data['id'] = Input::get_post('id');
-        $data['username'] = Input::get_post('username');
         $data['password'] = Input::get_post('password');
         $data['re_password'] =  Input::get_post('re_password');
-        if(!Validate::required($data['username'])){
-            throw  new LogicException(100,'管理员不能为空');
-        }
+        $data['mids'] = Input::get_post('mids');
         if(!Validate::min_length($data['password'],6)){
             throw new LogicException(200,'管理员密码不能小于6位数');
         }
         if($data['password']!=$data['re_password']){
             throw new LogicException(300,'两次输入的密码不一致');
         }
+        if(isset( $data['username'])){
+            unset( $data['username']);
+        }
         $this->admin_user->save($data);
+    }
+
+    public function edit_permission(){
+        $data['id'] = Input::get_post('id');
+        $data['mids'] = Input::get_post('mids');
+        if(!Validate::required($data['mids'])){
+            throw  new LogicException(100,'请勾选权限');
+        }
+        $this->admin_user->edit_permission($data);
+
     }
     public function delete(){
         $data['id'] = Input::get_post('id');
-        $data['username'] = Input::get_post('username');
-        $data['status'] = Input::get_post('status');
-        if(!Validate::required($data['username'])){
+        if(!Validate::required($data['id'])){
             throw  new LogicException(100,'管理员不能为空');
         }
         $this->admin_user->delete($data);
@@ -82,7 +96,7 @@ class User extends \base\BaseController{
         $data['username'] = Input::get_post('username');
         $data['password'] = Input::get_post('password');
         $res =$this->admin_user->login($data);
-        $res['admin_url'] = '/admin/user/get_list?iframe=1';
+        $res['admin_url'] = '/admin/user/welcome?iframe=0';
         if($res){
             Input::ajax_return(0,'登录成功',$res);
         }else{

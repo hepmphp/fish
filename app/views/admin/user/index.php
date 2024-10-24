@@ -39,7 +39,7 @@
         <div class="nav-right">
             Hi! <span class="user-item" id="admin_username"><?=$data['username']?><i class="fa fa-angle-down" aria-hidden="true"></i></span>
 	<span class="user-con">
-		<a href="#" class="a1" onclick="user_info('<?=$data['username']?>')"  id="username">账号修改</a>
+		<a href="#" class="a1" onclick="user_info('<?=$data['id']?>')"  id="username">账号修改</a>
 		<a href="#" class="a2">安全退出</a>
 	</span>
 </span>
@@ -98,8 +98,7 @@
     });
 
 
-    function user_info(username) {
-        var username_param = username;
+    function user_info(id) {
         layer.open({
             type: 2,
             title: '修改密码',
@@ -114,7 +113,7 @@
                 var re_password = body.find('#re_password').val();
                 console.log(password);
                 var param ={
-                    username:username_param,
+                    id:id,
                     password:password,
                     re_password:re_password
                 };

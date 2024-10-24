@@ -64,10 +64,10 @@ class App
             $url     = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
             $referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
             $log_message_format = sprintf($log_message,$errcode,$errstr,$errfile,$errline,$url,$referer);
-            echo( json_encode( array('code' =>$errno,'msg'  =>$log_message_format),JSON_UNESCAPED_UNICODE));
+            echo( json_encode( array('status' =>$errno,'msg'  =>$log_message_format),JSON_UNESCAPED_UNICODE));
         });
         set_exception_handler(function ($exception){
-            echo( json_encode( array('code' =>$exception->getCode(),'msg'  =>$exception->getMessage()),JSON_UNESCAPED_UNICODE));
+            echo( json_encode( array('status' =>$exception->getCode(),'msg'  =>$exception->getMessage()),JSON_UNESCAPED_UNICODE));
         });
 
         register_shutdown_function(array('helpers\Handler','shutdown_handler'));

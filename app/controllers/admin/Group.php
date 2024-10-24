@@ -24,9 +24,8 @@ class  Group extends \base\BaseController{
         $where['name'] = trim($where['name']);
         $where['id'] = intval($where['id']);
         $where = array_filter($where);
-        if(isset($_GET['mids'])){
-            $where['mids'] = Input::get_post('mids');
-        }
+        $where['mids'] = Input::get_post('mids');
+
         if(empty($where)){
             $where = '';
         }
@@ -75,14 +74,15 @@ class  Group extends \base\BaseController{
 
     public function edit_permission(){
         $form = $this->get_search_where();
-        $menu_data = $this->admin_menu->get_menu_data($form);
-        $menu_data = json_encode($menu_data,JSON_UNESCAPED_SLASHES);
-        $config_menu  = $this->admin_menu->get_config_menu();
+        $menu_data = $this->admin_menu->get_tree_array($form);
+        $menu_data = json_encode($menu_data,JSON_UNESCAPED_UNICODE);
 
+        $group_info = $this->admin_group->info(['id'=>$form['id']]);
+        $admin_info_mids = explode(',',$group_info['mids']);
         $this->view->assign('form',$form);
+        $this->view->assign('admin_info_mids',json_encode($admin_info_mids));
         $this->view->assign('menu_data',$menu_data);
-        $this->view->assign('config_menu',$config_menu);
-        $this->view->assign('group_mids',json_encode([],JSON_UNESCAPED_SLASHES));
+
         $this->view->display('admin/group/edit_permission');
     }
 

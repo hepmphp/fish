@@ -36,7 +36,9 @@
 		<input placeholder="结束时间" id="end_time" class="form-control date-range01 date-ico" type="text">
 		</span>
             </div>
-            <button class="btn btn-info m-l" type="button" onclick="search()"> 查询</button>
+            <button class="btn btn-info m-l" type="button" onclick="search_list()"> 查询</button>
+
+            <input class="btn btn-info m-l" value="添加" name="search" type="button" style="width:60px;" onclick="add_user()">
         </form>
 
     </div>
@@ -45,22 +47,27 @@
         <table data-toggle="table" class="table-item table">
             <thead>
             <tr>
-                <th>id</th>
-                <th>用户名</th>
-                <th>创建时间</th>
-                <th>修改时间</th>
-                <th>会话id</th>
-                <th>操作</th>
+                <th class="col-5">id</th>
+                <th  class="col-5">状态</th>
+                <th  class="col-5">用户名</th>
+                <th  class="col-5">真实名字</th>
+                <th  class="col-5">用户组</th>
+                <th  class="col-5">创建时间</th>
+                <th  class="col-5">修改时间</th>
+                <th  class="col-5">会话id</th>
+                <th  class="col-5">操作</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+                <td  class="col-5"></td>
+                <td  class="col-5"></td>
+                <td class="col-5"></td>
+                <td  class="col-5"></td>
+                <td class="col-5"></td>
+                <td  class="col-5"></td>
+                <td  class="col-5"></td>
+                <td  class="col-5"></td>
             </tr>
             </tbody>
         </table>
@@ -68,7 +75,7 @@
     <?=\helpers\PageWidget::run();?>
 
 </div>
-
+<script src="<?= STATIC_URL ?>/js/logic/admin/ajax.js?<?=rand()?>"></script>
 <script >
     $('.date-range').dateRangePicker(
         {
@@ -109,7 +116,7 @@
         access_token: $.cookie('access_token')
     };
 
-    function search(){
+    function search_list(){
         var search_param= {
             page: 1,
             per_page : $("#username").val().length==0?100:1,
@@ -126,18 +133,37 @@
     ajax_list(param);
     function ajax_list(param) {
         layer.load(2);
-        var template = '<tr><td>[id]</td><td>[username]</td><td>[create_time]</td><td>[update_time]</td><td>[last_session_id]</td><td><a onclick="user_info(\'[username]\')" class="" data-id="[id]">[修改]</a></td></tr>';
+        var template = '<tr><td >[id]</td>' +
+            '<td>[status]</td>' +
+            '<td>[username]</td>' +
+            '<td>[realname]</td>' +
+            '<td>[group_name]</td>' +
+            '<td>[create_time]</td>' +
+            '<td>[update_time]</td>' +
+            '<td>[last_session_id]</td>' +
+            '<td><a onclick="edit_user(\'[id]\')" class="" data-id="[id]">[修改]</a>' +
+            '<a onclick="group_permission(\'[id]\')" class="">[分配权限]</a>' +
+            '<a  onclick="lock_user(\'[id]\')" style="color: red">[锁定]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/user/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
             if (data.status == 0) {
                 $.each(data.data.list, function (i, d) {
-                    list_html += template.replace(/\[id\]/g, d.id).replace('[username]', d.username).replace('[username]', d.username).replace('[create_time]', d.create_time).replace('[update_time]', d.update_time).replace('[last_session_id]', d.last_session_id);
+                    list_html += template.replace(/\[id\]/g, d.id).
+                    replace('[status]', d.status_name).
+                    replace('[username]', d.username).
+                    replace('[realname]', d.realname).
+                    replace('[group_name]', d.group_name).
+                    replace('[create_time]', d.create_time).
+                    replace('[update_time]', d.update_time).
+                    replace('[last_session_id]', d.last_session_id);
                 });
                 $('table tbody').html(list_html);
                 var total_num = data.data.total;
                 $('.pagination-outline').html(multi(total_num, param.per_page, param.page, 100));
-                window.console.clear();
+                $('#bootstrap-table-js').attr('src',$('#bootstrap-table-js').attr('src')+'?'+<?=rand()?>);
+                $('#bootstrap-table-js-cn').attr('src',$('#bootstrap-table-js-cn').attr('src')+'?'+<?=rand()?>);
+               // window.console.clear();
                 call_debug_log();
             } else {
                 layer.alert(data.msg);
@@ -147,23 +173,24 @@
     }
 
 
-    function user_info(username) {
-        var username_param = username;
+    function edit_user(id) {
+        var username_param = {id:id};
         layer.open({
             type: 2,
             title: '修改密码',
             shadeClose: true,
             btn: ['确认', '关闭'],
-            area: ['300px', '300px'],
-            content: '/admin/user/user_info',
+            area: ['600px', '500px'],
+            content: '/admin/user/update?'+$.param(username_param),
             yes: function (index, layero) {
 
                 var body = layer.getChildFrame('body', index);
+                var id = body.find('#id').val();
                 var password = body.find('#password').val();
                 var re_password = body.find('#re_password').val();
                 console.log(password);
                 var param = {
-                    username: username_param,
+                    id:id,
                     password: password,
                     re_password: re_password
                 };
@@ -174,12 +201,13 @@
                     data: param,
                     dataType: 'json',
                     success: function (data) {
-                        layer.close(2);
-                        layer.alert(data.msg, {icon: 1}, function (index) {
-                                layer.close(index);
-                                layer.closeAll();
-                            }
-                        );
+                        if(data.status==0){
+                            layer.close(2);
+                            alert_success(data.msg);
+                        }else{
+                            alert_fail(data.msg);
+                        }
+
                     }
                 });
 
@@ -188,10 +216,137 @@
             }
         });
     }
+
+    function add_user(){
+        layer.open({
+            type: 2,
+            title: '添加用户',
+            shadeClose: true,
+            btn: ['确认', '关闭'],
+            area: ['600px', '500px'],
+            content: '/admin/user/create',
+            yes: function (index, layero) {
+                var body = layer.getChildFrame('body', index);
+                var username = body.find('#username').val();
+                var realname = body.find('#realname').val();
+                var password = body.find('#password').val();
+                var re_password = body.find('#re_password').val();
+                var group_id = body.find('#group_id').val();
+                var param = {
+                    username: username,
+                    realname: realname,
+                    password:password,
+                    re_password:re_password,
+                    group_id:group_id
+                };
+                layer.load(2);
+                $.ajax({
+                    type: 'POST',
+                    url: '/api/user/create',
+                    data: param,
+                    dataType: 'json',
+                    success: function (data) {
+                        if(data.status==0){
+                            layer.close(2);
+                            alert_success(data.msg);
+                        }else{
+                            alert_fail(data.msg);
+                        }
+                    }
+                });
+
+            }, btn2: function (index, layero) {
+                console.log('no');
+            }
+        });
+    }
+    function group_permission(id){
+        var url = "/admin/user/edit_permission"+"?id="+id+"&iframe=1";
+        permission_form(url,1);
+
+    }
+    //权限设置窗口
+    function permission_form(url,action){
+        var content = url;
+        var title = action==2?'设置用户组权限':'设置用户组权限';
+        var btn =  action==2?['确认','取消']:['确认','取消'];
+        layer.open({
+            type: 2, //iframe
+            area: ['1000px', '850px'],
+            title: title,
+            btn: btn,
+            shade: 0.3, //遮罩透明度
+            content:content,
+            yes: function(index, layero){
+                console.log("tree ok...");
+                var body = layer.getChildFrame('body', index);
+
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                console.log(iframeWin);
+                var mids = new Array();
+                iframeWin.$('.treetable-selected').each(function(){
+                    mids.push($(this).attr('dataid'));
+                    console.log($(this).attr('dataid'));
+                });
+                mids = mids.join(',');
+                var param = {
+                    id:iframeWin.$('#id').val(),
+                    mids:mids
+                };
+                var index = layer.load(2);
+                $.ajax({
+                    type:"POST",
+                    url: "/api/user/edit_permission",
+                    data:  param,
+                    timeout:"4000",
+                    dataType:"json",
+                    success: function(data){
+                        layer.close(index);
+                        if (data.status == 0) {
+                            alert_success(data.msg);
+                        }
+                        else {
+                            alert_fail(data.msg);
+                        }
+                    }
+                });
+            },btn2: function(index, layero){
+
+            }
+            // content:"{:U('Serverpolicy/add')}" //iframe的url
+        });
+    }
+
+    function lock_user(id) {
+        var param =  {id:id};
+        layer.confirm('确定要锁定账号?',{
+                btn: ['确定','取消'], //按钮
+                icon: 3,
+                title:'提示'
+            }, function(){
+                layer.load(2);
+                $.ajax({
+                    type:"POST",
+                    url: '/api/user/delete',
+                    data: param,
+                    timeout:"4000",
+                    dataType:'json',
+                    success: function(data){
+                        if (data.status == 0) {
+                            alert_success(data.msg);
+                        }else {
+                            alert_fail(data.msg);
+                        }
+                    },
+                });
+            }
+
+        );
+    }
 </script>
 <!-- Bootstrap table -->
-<script src="<?= STATIC_URL ?>js/bootstrap-table/bootstrap-table.min.js"></script>
-<script src="<?= STATIC_URL ?>js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-<script src="<?= STATIC_URL ?>js/table-demo.js"></script>
+<script id="bootstrap-table-js" src="<?= STATIC_URL ?>js/bootstrap-table/bootstrap-table.min.js"></script>
+<script id="bootstrap-table-js-cn" src="<?= STATIC_URL ?>js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="<?= STATIC_URL ?>js/table-demo.js?<?=rand()?>"></script>
 </body>
 </html>

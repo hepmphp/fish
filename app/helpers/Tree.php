@@ -151,7 +151,7 @@ class Tree {
      * @param int 被选中的ID，比如在做树型下拉框的时候需要用到
      * @return string
      */
-    public function get_tree_array($myid, $str, $sid = 0, $adds = '', $str_group = '') {
+    public function get_tree_array($myid, $str='', $sid = 0, $adds = '', $str_group = '') {
         $retarray = array();
         //一级栏目数组
         $child = $this->get_child($myid);
@@ -161,7 +161,7 @@ class Tree {
             foreach ($child as $id => $value) {
                 @extract($value);
                 $retarray[$value['id']] = $value;
-                $retarray[$value['id']]["child"] = $this->get_tree_array($id, '');
+                $retarray[$value['id']]["children"] = $this->get_tree_array($id, '');
             }
         }
         return $retarray;

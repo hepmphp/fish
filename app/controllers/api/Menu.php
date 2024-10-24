@@ -12,7 +12,7 @@ use helpers\Debuger;
 use models\curd\AdminMenu;
 use models\curd\AdminUser;
 
-class User extends \base\BaseController{
+class Menu extends \base\BaseController{
     
     public $admin_menu;
     
@@ -40,54 +40,38 @@ class User extends \base\BaseController{
     }
 
     public function create(){
-        $data['username'] = Input::get_post('username');
-        $data['password'] = Input::get_post('password');
-         if(!Validate::required($data['username'])){
-             throw  new LogicException(100,'管理员不能为空');
-         }
-         if(!Validate::min_length($data['password'],6)){
-             throw new LogicException(200,'管理员密码不能小于6位数');
-         }
-
-        $this->admin_user->create($data);
-
-
+        $form['id'] = Input::get_post('id');
+        $form['parentid'] = Input::get_post('parentid');
+        $form['name'] = Input::get_post('name');
+        $form['model'] = Input::get_post('model');
+        $form['action'] = Input::get_post('action');
+        $form['data'] = Input::get_post('data');
+        $form['listorder'] = Input::get_post('listorder');
+        $form['remark'] = Input::get_post('remark');
+        $form['status'] = Input::get_post('status');
+        $this->admin_menu->create($form);
     }
     public function update(){
-        $data['id'] = Input::get_post('id');
-        $data['username'] = Input::get_post('username');
-        $data['password'] = Input::get_post('password');
-        $data['re_password'] =  Input::get_post('re_password');
-        if(!Validate::required($data['username'])){
-            throw  new LogicException(100,'管理员不能为空');
-        }
-        if(!Validate::min_length($data['password'],6)){
-            throw new LogicException(200,'管理员密码不能小于6位数');
-        }
-        if($data['password']!=$data['re_password']){
-            throw new LogicException(300,'两次输入的密码不一致');
-        }
-        $this->admin_user->save($data);
+        $form['id'] = Input::get_post('id');
+        $form['parentid'] = Input::get_post('parentid');
+        $form['name'] = Input::get_post('name');
+        $form['model'] = Input::get_post('model');
+        $form['action'] = Input::get_post('action');
+        $form['data'] = Input::get_post('data');
+        $form['listorder'] = Input::get_post('listorder');
+        $form['remark'] = Input::get_post('remark');
+        $form['status'] = Input::get_post('status');
+        $this->admin_menu->save($form);
+
     }
     public function delete(){
-        $data['id'] = Input::get_post('id');
-        $data['username'] = Input::get_post('username');
-        $data['status'] = Input::get_post('status');
-        if(!Validate::required($data['username'])){
-            throw  new LogicException(100,'管理员不能为空');
-        }
-        $this->admin_user->delete($data);
+        $form['id'] = Input::get_post('id');
+        $this->admin_menu->delete($form);
     }
 
 
     public function info(){
-        $data['username'] = Input::get_post('username');
-        $res = $this->admin_user->info($data);
-        if($res){
-             Input::ajax_return(0,'获取数据成功',$res);
-        }else{
-            throw new LogicException(100,'获取数据失败');
-        }
+
     }
 
     public function get_list(){

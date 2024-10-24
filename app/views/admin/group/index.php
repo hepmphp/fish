@@ -58,6 +58,7 @@
     <?=\helpers\PageWidget::run();?>
 
 </div>
+<script src="<?= STATIC_URL ?>/js/logic/admin/ajax.js?<?=rand()?>"></script>
 
 <script >
     $('.date-range').dateRangePicker(
@@ -117,7 +118,7 @@
             access_token: $.cookie('access_token')
         };
 
-        window.ajax_list = function ajax_list(param) {
+        ajax_list = function ajax_list(param) {
             layer.load(2);
             var template = '<tr><td>[id]</td><td>[name]</td><td>[comment]</td><td><a onclick="group_info(\'[id]\')" class="" >[编辑]</a><a onclick="group_permission(\'[id]\')" class="">[分配权限]</a></td></tr>';
             var list_html = '';
@@ -142,11 +143,8 @@
 
             });
         }
-        ajax_list(window.param);
+        ajax_list(param);
     }
-
-
-
     function group_info(id) {
         var id_param = id;
         layer.open({
@@ -229,6 +227,63 @@
             }, btn2: function (index, layero) {
                 console.log('no');
             }
+        });
+    }
+
+    function group_permission(id){
+        var url = "/admin/group/edit_permission"+"?id="+id+"&iframe=1";
+        permission_form(url,1);
+
+    }
+    //权限设置窗口
+    function permission_form(url,action){
+        var content = url;
+        var title = action==2?'设置用户组权限':'设置用户组权限';
+        var btn =  action==2?['确认','取消']:['确认','取消'];
+        layer.open({
+            type: 2, //iframe
+            area: ['1000px', '850px'],
+            title: title,
+            btn: btn,
+            shade: 0.3, //遮罩透明度
+            content:content,
+            yes: function(index, layero){
+                console.log("tree ok...");
+                var body = layer.getChildFrame('body', index);
+
+                var iframeWin = window[layero.find('iframe')[0]['name']];
+                console.log(iframeWin);
+                var mids = new Array();
+                iframeWin.$('.treetable-selected').each(function(){
+                    mids.push($(this).attr('dataid'));
+                    console.log($(this).attr('dataid'));
+                });
+                mids = mids.join(',');
+                var param = {
+                    id:iframeWin.$('#id').val(),
+                    mids:mids
+                };
+                var index = layer.load(2);
+                $.ajax({
+                    type:"POST",
+                    url: "/admin/group/update",
+                    data:  param,
+                    timeout:"4000",
+                    dataType:"json",
+                    success: function(data){
+                        layer.close(index);
+                        if (data.status == 0) {
+                            alert_success(data.msg);
+                        }
+                        else {
+                            alert_fail(data.msg);
+                        }
+                    }
+                });
+            },btn2: function(index, layero){
+
+            }
+            // content:"{:U('Serverpolicy/add')}" //iframe的url
         });
     }
 </script>

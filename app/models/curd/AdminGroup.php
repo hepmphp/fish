@@ -43,9 +43,18 @@ class AdminGroup extends Model
         if(!$group){
             throw  new  LogicException(-2,'管理员组不存在');
         }
-        $group['name'] = $data['name'];
-        $group['comment'] = $data['comment'];
-        $group['allow_mutil_login'] = $data['allow_mutil_login'];
+        if(!empty($data['name'])){
+            $group['name'] = $data['name'];
+        }
+        if(!empty($data['comment'])){
+            $group['comment'] = $data['comment'];
+        }
+        if(!empty($data['allow_mutil_login'])){
+            $group['allow_mutil_login'] = $data['allow_mutil_login'];
+        }
+        if(!empty($data['mids'])){
+            $group['mids'] = $data['mids'];
+        }
         $res = $this->update($group,['id'=>$data['id']],1);
         if($res){
             throw new LogicException(0,'管理员组修改成功');
@@ -74,18 +83,16 @@ class AdminGroup extends Model
         return $group;
     }
 
+    public function find_all_group($data){
+        $data = array_filter($data);
+        $group = $this->find_all($data);
+        return $group;
+    }
+
     public function get_list_info($where = array(), $limit = 1, $offset = 2, $fields = '*')
     {
         $total = $this->get_total($where);
         $users = $this->get_list($where,$limit,$offset,$fields);
-
-//0 2
-//2 2
-//4 2
-//6 2
-//8
-//10
-
         return [$users,$total['total']];
     }
 

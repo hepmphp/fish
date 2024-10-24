@@ -16,6 +16,7 @@ $('.chat-table').bootstrapTable({
     return data.reduce(function(sum, row) { 
         return sum + (+row[field]);
     }, 0);
+
 }/*实现汇总*/
 
 /*充值对比表格*/

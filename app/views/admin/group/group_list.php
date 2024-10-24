@@ -58,6 +58,7 @@
     <?=\helpers\PageWidget::run();?>
 
 </div>
+<script src="<?= STATIC_URL ?>/js/logic/admin/ajax.js?<?=rand()?>"></script>
 
 <script >
     $('.date-range').dateRangePicker(
@@ -244,7 +245,7 @@
         var btn =  action==2?['确认','取消']:['确认','取消'];
         layer.open({
             type: 2, //iframe
-            area: ['720px', '510px'],
+            area: ['1000px', '850px'],
             title: title,
             btn: btn,
             shade: 0.3, //遮罩透明度
@@ -254,37 +255,34 @@
                 var body = layer.getChildFrame('body', index);
 
                 var iframeWin = window[layero.find('iframe')[0]['name']];
-                 console.log(layero.find('iframe')[0]['name']);
-                var treeObj = iframeWin.zTree;
-
-                console.log(treeObj.getNodes());
-                // var nodes = treeObj.getCheckedNodes();
-
-                // var mids = new Array();
-                // for (var i = 0; i < nodes.length; i++) {
-                //     mids.push(nodes[i].id);
-                // }
-                // var param = {
-                //     id:body.find('#id').val(),
-                //     mids:mids
-                // };
-                // var index = layer.load(2);
-                // $.ajax({
-                //     type:"POST",
-                //     url: "/admin/group/edit_permission",
-                //     data:  param,
-                //     timeout:"4000",
-                //     dataType:"json",
-                //     success: function(data){
-                //         layer.close(index);
-                //         if (data.status == 0) {
-                //             alert_success(data.msg);
-                //         }
-                //         else {
-                //             alert_fail(data.msg);
-                //         }
-                //     }
-                // });
+                 console.log(iframeWin);
+                var mids = new Array();
+                iframeWin.$('.treetable-selected').each(function(){
+                    mids.push($(this).attr('dataid'));
+                        console.log($(this).attr('dataid'));
+                });
+                mids = mids.join(',');
+                var param = {
+                    id:iframeWin.$('#id').val(),
+                    mids:mids
+                };
+                var index = layer.load(2);
+                $.ajax({
+                    type:"POST",
+                    url: "/admin/group/update",
+                    data:  param,
+                    timeout:"4000",
+                    dataType:"json",
+                    success: function(data){
+                        layer.close(index);
+                        if (data.status == 0) {
+                            alert_success(data.msg);
+                        }
+                        else {
+                            alert_fail(data.msg);
+                        }
+                    }
+                });
             },btn2: function(index, layero){
 
             }
