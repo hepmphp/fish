@@ -1,0 +1,281 @@
+@charset "UTF-8";
+ body{
+  position: relative;
+ }
+
+ .double-date{
+  display: inline-block;
+  vertical-align: middle;
+ }
+.table-wrap{
+    width:100%;
+    outline: none;
+    position: relative;
+    font-size: 14px;
+    background: #fff;
+}
+.table-wrap-flex{
+     width:100%;
+    outline: none;
+    position: relative;
+    font-size: 14px;
+    background: #fff;
+    border: 1px #e6e6e6 solid;
+}
+
+
+.table-head{
+    padding-right:17px;
+    background-color: #f4f4f4;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+.table-head-wrap{
+    width:100%;
+    position: relative;
+    overflow: hidden;
+}
+.table-wrap-m {
+    outline: none;
+    position: relative;
+    font-size: 14px;
+    background: #fff;
+    border: 1px #e6e6e6 solid;
+}
+.grid, .combination{
+    margin: 0px;
+    table-layout: fixed;
+    width: 100%;
+    max-width: none;
+    border-spacing: 0px;
+    empty-cells: show;
+    border-width: 0px;
+    outline: 0px none;
+    border-collapse: collapse;
+}
+.grid thead tr:hover, .table-fot .grid tr:hover{
+  background: #f4f4f4;
+}
+.grid tr th{
+    padding: 0.6em 0.5em;
+    vertical-align: middle;
+    overflow: hidden;
+    font-weight: normal;
+    text-align: center;
+    color: #000;
+    font-size: 14px;
+    min-width: 80px;
+}
+.grid tr{
+	    border-bottom: 1px #e6e6e6 solid;
+}
+.grid > tbody > tr:hover{
+  background: #f4f7fd;
+}
+.grid tr th:first-child{
+    border-left-width: 0;
+}
+.grid tr td{
+   line-height: 1.3;
+    overflow: hidden;
+    white-space:normal;
+    word-wrap:break-word;
+    overflow: visible;
+    min-width: 80px;
+    padding: 8px;
+}
+.grid tr td div{
+  font-size: 14px;
+  word-wrap: break-word;
+
+}
+.grid tr td div input[type="text"], .grid tr td div input[type="password"]{
+border: 1px solid #cfdadd;
+text-indent: 10px;
+width: 150px;
+height: 22px;
+line-height: 22px;
+font-size: 12px;
+}
+.grid tr td a{
+  font-size: 14px;
+    color: #0099CC;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 2px;
+}
+.grid tr:last-child td{
+    border-bottom: none;
+}
+.tab-link{
+    display: block;
+    min-height: 18px;
+    line-height: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.table-content, .table-content-x, .table-content-tree, .table-content-m, .table-content-xx, .sdk-table-content, .sdk-table-content-x, .sdk-table-content-m, .table-content-flex, .sdk-table-content-s{
+    white-space: normal;
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: scroll;
+    min-height: 0;
+}
+
+.table-content-tree .tp{
+  cursor: pointer
+}
+.table-content-tree .bm{
+    display: none
+}
+.table-content-tree.on .tp{
+    background: #dcdcdc 
+}
+.table-content-tree.on .bm{
+    background: #f0f0f0;
+}
+.table-content-tree.achive .tp{
+    background: rgba(242, 243, 249, 1) 
+}
+.table-content-tree.achive .tp:hover{
+  background: rgba(242, 243, 249, 1) 
+}
+.table-content-tree.achive .bm{
+  background: #fff;
+}
+.table-content-tree.achive .bm td{
+    color: #999;
+}
+.table-fot{
+  background-color: #f4f4f4;
+  color: #333;
+   padding-right:17px;
+   border-top: 1px solid #ddd;
+   border-bottom: 1px solid #ddd;
+}
+.table-fot .grid tr{
+  border-bottom: none;
+}
+.table-fot .grid tr td{
+  color: #333;
+}
+.table-fot .grid tr td div.Summary{
+  font-weight: bold
+}
+.grid .tp .togg{
+	position: relative
+}
+.grid .tp i.fa{
+  position: absolute;
+  color: rgba(22, 155, 213, 1) 
+}
+.grid .tp .fa-sort{
+	font-size: 22px;
+	right: 5px;
+	top: 7px;
+}
+.grid .tp .fa-sort-down{
+  font-size: 20px;
+  right: 10px;
+  top: 5px;
+}
+.regional-table .achive tr:hover{
+  background: #fff;
+}
+.table-content-tree.achive tr.bm:hover{
+    background: #f4f4f4;
+}
+.regional-table .achive tr:hover{
+  background: #fff;
+}
+/* 表格样式3 */
+.chart-table .table-head, .chart-table .table-content{
+  min-width: 1100px;
+}
+.table-wrap.chart-table{
+  border: none;
+  overflow-x: auto;
+  padding: 0 15px;
+}
+.chart-table .table-head{
+background: #fff;
+color: #333;
+border-bottom: 2px #333 solid;
+border-top: none;
+}
+.combination tr th{
+    padding: 8px 5px;
+    vertical-align: middle;
+    overflow: hidden;
+    font-weight: normal;
+    text-align: center;
+    color: #333;
+    font-size: 14px;
+    min-width: 80px;
+    font-weight: bold;
+    text-align: left;
+}
+.combination tr th:first-child{
+    border-left-width: 0;
+}
+.combination tr td{
+   line-height: 1.3;
+    overflow: hidden;
+    white-space:normal;
+    word-wrap:break-word;
+    overflow: visible;
+    min-width: 80px;
+    padding: 8px 5px;
+    text-align: left;
+}
+.combination tr td div{
+  font-size: 14px;
+  word-wrap: break-word;
+
+}
+.combination tr.hd{
+  border-bottom: 1px solid #999;
+  cursor: pointer
+}
+.combination tr.bm{
+  display: none
+}
+.combination tr.bm.ser td{
+  color: #999
+}
+.combination i.fa-pencil-square-o{
+  font-size: 20px;
+  color:#05ace4;
+  margin-left: 10px;
+}
+.combination select.sel1{
+  width: 110px;
+  color: #999
+}
+.combination select.sel2{
+  width: 110px;
+  color: #333
+}
+.combination a.opear{
+  font-size: 14px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+  text-decoration: underline
+}
+.combination.table-tree.achive{
+  background-color: rgba(238, 249, 253, 1);
+  margin: 5px 0;
+}
+.combination.table-tree.achive tr.hd{
+  border-bottom: 1px dashed #8e8b8b
+}
+.combination .Computer-room{
+  padding-left: 38px;
+}
+.combination .Computer-room span{
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 25px;
+}
