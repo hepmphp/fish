@@ -1,1 +1,0 @@
-<?php //{"User":"root","Password":"H^\u0002YB\u0006","LoginKey":"fd1432a5a0088a8d4325c510b3f26bd8","ip":"127.0.0.1","AvailableTime":1729772799,"AddTime":1200,"language":"zh"}

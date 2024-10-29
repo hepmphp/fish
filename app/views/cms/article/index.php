@@ -24,15 +24,19 @@
 <div class="form-wrapper">
     <div class="form-item">
 
-        <form class="form-inline clearfix" role="form"  action="" method="get">
+        <form class="form-inline clearfix" role="form"  action="#" method="get">
 
             <div class="form-group">
+                <label class="control-label">用户id：</label>
+                <input placeholder="用户id" class="form-control" name="id" id="id" value="" type="text">
+            </div>
+            <div class="form-group">
                 <label class="control-label">用户名：</label>
-                <input placeholder="文本" class="form-control" name="username" id="username" value="" type="text">
+                <input placeholder="用户名" class="form-control" name="admin" id="admin" value="" type="text">
             </div>
             <div class="form-group">
                 <label class="control-label">标题：</label>
-                <input placeholder="文本" class="form-control" name="title" id="title" value="" type="text">
+                <input placeholder="标题" class="form-control" name="title" id="title" value="" type="text">
             </div>
             <div class="form-group">
                 <label class="control-label">添加时间：</label>
@@ -48,14 +52,15 @@
                     <option value="-1">删除</option>
                 </select>
             </div>
-            <button class="btn btn-info m-l" type="submit"> 查询</button>
-            <input class="btn btn-info m-l" value="添加" name="search" type="button" style="width:60px;" onclick="article_layer_form()">
+            <a class="btn btn-info m-l" onclick="search_list()" > 查询</a>
+            <input class="btn btn-info m-l" value="添加" name="search" type="button" style="width:60px;" onclick="article_layer_form('/cms/article/create')">
         </form>
     </div>
     <div class="table-wrap">
         <table  data-toggle="table" class="table-item table">
             <thead>
             <tr>
+                <th>用户id</th>
                 <th>用户名</th>
                 <th>标题</th>
                 <th>关键词</th>
@@ -82,11 +87,13 @@
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                 </tr>
 
             </tbody>
         </table>
     </div>
+    <?=\helpers\PageWidget::run();?>
 </div>
 
 <script src="<?= STATIC_URL ?>/js/logic/admin/ajax.js?<?=rand()?>"></script>
@@ -133,12 +140,15 @@
     function search_list(){
         var search_param= {
             page: 1,
-            per_page : $("#username").val().length==0?100:1,
-            id: $.cookie('id'),
-            username: $("#username").val(),
-            access_token: $.cookie('access_token'),
+            per_page : $("#admin").val().length==0?100:1,
+            id:$('#id').val(),
+            admin: $("#admin").val(),
+            title:$('#title').val(),
             start_time:$('#start_time').val(),
-            end_time:$('#end_time').val()
+            end_time:$('#end_time').val(),
+            status:$('#status').val(),
+            admin_id: $.cookie('admin_id'),
+            access_token: $.cookie('access_token')
         };
 
         console.log(search_param);
@@ -147,36 +157,39 @@
     ajax_list(param);
     function ajax_list(param) {
         layer.load(2);
-        var template = '<tr><td >[id]</td>' +
-            '<td>[status]</td>' +
-            '<td>[username]</td>' +
-            '<td>[realname]</td>' +
-            '<td>[group_name]</td>' +
-            '<td>[create_time]</td>' +
-            '<td>[update_time]</td>' +
-            '<td>[last_session_id]</td>' +
-            '<td><a onclick="edit_user(\'[id]\')" class="" data-id="[id]">[修改]</a>' +
-            '<a onclick="group_permission(\'[id]\')" class="">[分配权限]</a>' +
-            '<a  onclick="lock_user(\'[id]\')" style="color: red">[锁定]</a></td></tr>';
+        var template = '<tr><td >[id]</td><td >[admin]</td>' +
+            '<td>[title]</td>' +
+            '<td>[keywords]</td>' +
+            '<td>[cate_name]</td>' +
+            '<td>[tag_name]</td>' +
+            '<td>[description]</td>' +
+            '<td>[addtime_name]</td>' +
+            '<td>[is_top_name]</td>' +
+            '<td><image src="[list_image_url]" style="width: 60px;height: 60px;"></image></td>' +
+            '<td>[status_name]</td>' +
+            '<td><a onclick="edit_article(\'[id]\')" class="" data-id="[id]">[修改]</a>' +
+            '<a onclick="delete_article(\'[id]\')" class="">[删除]</a></td></tr>';
         var list_html = '';
-        $.getJSON('/api/user/get_list/?' + $.param(param), function (data) {
+        $.getJSON('/api/article/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
             if (data.status == 0) {
                 $.each(data.data.list, function (i, d) {
                     list_html += template.replace(/\[id\]/g, d.id).
-                    replace('[status]', d.status_name).
-                    replace('[username]', d.username).
-                    replace('[realname]', d.realname).
-                    replace('[group_name]', d.group_name).
-                    replace('[create_time]', d.create_time).
-                    replace('[update_time]', d.update_time).
-                    replace('[last_session_id]', d.last_session_id);
+                    replace('[admin]', d.admin).
+                    replace('[title]', d.title).
+                    replace('[keywords]', d.keywords).
+                    replace('[cate_name]', d.cate_name).
+                    replace('[tag_name]', d.tag_name).
+                    replace('[description]', d.description).
+                    replace('[addtime_name]', d.addtime_name).
+                    replace('[is_top_name]', d.is_top_name).
+                    replace('[list_image_url]', d.list_image_url).
+                    replace('[status_name]', d.status_name);
                 });
                 $('table tbody').html(list_html);
                 var total_num = data.data.total;
                 $('.pagination-outline').html(multi(total_num, param.per_page, param.page, 100));
-                $('#bootstrap-table-js').attr('src',$('#bootstrap-table-js').attr('src')+'?'+<?=rand()?>);
-                $('#bootstrap-table-js-cn').attr('src',$('#bootstrap-table-js-cn').attr('src')+'?'+<?=rand()?>);
+                $(".table").bootstrapTable('resetView');
                 // window.console.clear();
                 call_debug_log();
             } else {
@@ -185,10 +198,39 @@
 
         });
     }
+    function edit_article(id){
+        var edit_article_url = '/cms/article/update?id='+id;
+        article_layer_form(edit_article_url,2);
+    }
 
+    function delete_article(id){
+        var param =  {id:id};
+        layer.confirm('确定删除文章?',{
+                btn: ['确定','取消'], //按钮
+                icon: 3,
+                title:'提示'
+            }, function(){
+                layer.load(2);
+                $.ajax({
+                    type:"POST",
+                    url: '/api/article/delete',
+                    data: param,
+                    timeout:"4000",
+                    dataType:'json',
+                    success: function(data){
+                        if (data.status == 0) {
+                            alert_success(data.msg);
+                        }else {
+                            alert_fail(data.msg);
+                        }
+                    },
+                });
+            }
+
+        );
+    }
 
     function article_layer_form(url,action=1){
-        var content = '/cms/article/create';
         var title = action==1?'添加':'修改';
         var btn =  action==1?['确认添加','取消']:['确认修改','取消'];
         var layer_index = layer.open({
@@ -197,28 +239,27 @@
             title: title,
             btn: btn,
             shade: 0.3, //遮罩透明度
-            content:content,
+            content:url,
             yes: function(index, layero){
                 var body = layer.getChildFrame('body', index);
                 var param ={
                     id:body.find('#id').val(),
                     cate_id:body.find('#cate_id').val(),
-                    tag_id:body.find('#tag_id').val(),
-                    admin_id:body.find('#admin_id').val(),
-                    admin_username:body.find('#admin_username').val(),
+                    tag_ids:body.find('#tag_ids').val(),
+                    admin_id:$.cookie('admin_id'),
+                    admin:$.cookie('username'),
                     title:body.find('#title').val(),
                     keywords:body.find('#keywords').val(),
                     description:body.find('#description').val(),
-                    content:body.find('#content').val(),
+                    content:body.find('.ck-content').html(),
                     addtime:body.find('#addtime').val(),
-                    update_time:body.find('#update_time').val(),
                     is_top:body.find('#is_top').val(),
                     list_image_url:body.find('#list_image_url').val(),
                     status:body.find('#status').val()
                 }
-
-                ajax_post(url,param);
-
+                console.log(param);
+                var url = action==1?'/api/article/create':'/api/article/update';
+               ajax_post(url,param);
             },btn2: function(index, layero){
 
             }

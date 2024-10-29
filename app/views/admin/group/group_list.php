@@ -135,6 +135,7 @@
                    $('table tbody').html(list_html);
                    var total_num = data.data.total;
                    $('.pagination-outline').html(multi(total_num, param.per_page, param.page, 100));
+                   $(".table").bootstrapTable('resetView');
                    window.console.clear();
                    call_debug_log();
                } else {

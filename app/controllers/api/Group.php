@@ -62,13 +62,16 @@ class Group extends \base\BaseController{
         $this->admin_group->save($data);
     }
     public function delete(){
-        $data['id'] = Input::get_post('id');
-        $data['username'] = Input::get_post('username');
-        $data['status'] = Input::get_post('status');
-        if(!Validate::required($data['username'])){
-            throw  new LogicException(100,'管理员不能为空');
+        $form['id'] = Input::get_post('id');
+        $form['username'] = Input::get_post('username');
+        $form['status'] = Input::get_post('status');
+        if(!Validate::required($form['id'])){
+            throw  new LogicException(100,'管理员id不能为空');
         }
-        $this->admin_group->delete($data);
+        if(!Validate::required($form['username'])){
+            throw  new LogicException(200,'管理员不能为空');
+        }
+        $this->admin_group->delete($form);
     }
 
     public function group_info(){

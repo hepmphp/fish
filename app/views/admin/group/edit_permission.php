@@ -49,7 +49,7 @@
     var treeTable = $('#demo').bootstrapTreeTable({
         toolbar: "#demo-toolbar",    //顶部工具条
         expandColumn: 1,            // 在哪一列上面显示展开按钮
-        height: 500,
+      //  height: 500,
         parentId : "parentid",
         data:data,
         columns: [{
@@ -63,6 +63,20 @@
                 var menu_tips = '<span class="label btn-success">'+row.level+'级菜单</span><span>'+value+'</span>';
                 return menu_tips;
             }
+        },  {
+            field: 'id',
+            title: 'id',
+            width: '150',
+            align: "left",
+            valign: "bottom",
+            visible: true
+        }, {
+            field: 'parentid',
+            title: '父id',
+            width: '150',
+            align: "left",
+            valign: "bottom",
+            visible: true
         }, {
             title: '状态',
             field: 'status',

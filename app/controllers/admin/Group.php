@@ -35,11 +35,12 @@ class  Group extends \base\BaseController{
         $data = $this->get_search_where();
         $data['admin_url'] = '/admin/group/get_list?iframe=1';
         $this->view->assign('data',$data);
-        if(isset($_GET['iframe']) && $_GET['iframe']==1){
-            $this->view->display('admin/group/group_list');
-        }else{
-            $this->view->display('admin/group/index');
-        }
+        $this->view->display('admin/group/index');
+//        if(isset($_GET['iframe']) && $_GET['iframe']==1){
+//            $this->view->display('admin/group/group_list');
+//        }else{
+//              $this->view->display('admin/group/index');
+//        }
 
     }
 

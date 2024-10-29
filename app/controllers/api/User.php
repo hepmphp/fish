@@ -22,7 +22,7 @@ class User extends \base\BaseController{
 
 
     public function get_search_where(){
-         $where['username'] = Input::get_post('username');
+         $where['username'] = Input::get_post('username','','trim');
          $start_time = Input::get_post('start_time');
          $end_time = Input::get_post('end_time');
          if(!empty($start_time)){

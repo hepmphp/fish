@@ -19,7 +19,6 @@
             extend: 'moon/style.css'
         });
     </script>
-
 </head>
 <body class="form-body">
 <div class="form-wrapper">
@@ -44,7 +43,7 @@
     </div>
 
     <div class="table-wrap">
-        <table data-toggle="table" class="table-item table">
+        <table data-toggle="table" class="table-item table" >
             <thead>
             <tr>
                 <th class="col-5">id</th>
@@ -158,11 +157,14 @@
                     replace('[update_time]', d.update_time).
                     replace('[last_session_id]', d.last_session_id);
                 });
+
                 $('table tbody').html(list_html);
                 var total_num = data.data.total;
                 $('.pagination-outline').html(multi(total_num, param.per_page, param.page, 100));
-                $('#bootstrap-table-js').attr('src',$('#bootstrap-table-js').attr('src')+'?'+<?=rand()?>);
-                $('#bootstrap-table-js-cn').attr('src',$('#bootstrap-table-js-cn').attr('src')+'?'+<?=rand()?>);
+                $(".table").bootstrapTable('resetView');
+                //$('#bootstrap-table-js').attr('src',$('#bootstrap-table-js').attr('src')+'?'+<?//=rand()?>//);
+                //$('#bootstrap-table-js-cn').attr('src',$('#bootstrap-table-js-cn').attr('src')+'?'+<?//=rand()?>//);
+                //$('#bootstrap-table-demo').attr('src',$('#bootstrap-table-demo').attr('src')+'?'+<?//=rand()?>//);
                // window.console.clear();
                 call_debug_log();
             } else {
@@ -270,7 +272,7 @@
         var content = url;
         var title = action==2?'设置用户组权限':'设置用户组权限';
         var btn =  action==2?['确认','取消']:['确认','取消'];
-        layer.open({
+        var index = layer.open({
             type: 2, //iframe
             area: ['1000px', '850px'],
             title: title,
@@ -315,7 +317,9 @@
             }
             // content:"{:U('Serverpolicy/add')}" //iframe的url
         });
+        layer.full(index);
     }
+
 
     function lock_user(id) {
         var param =  {id:id};
@@ -347,6 +351,6 @@
 <!-- Bootstrap table -->
 <script id="bootstrap-table-js" src="<?= STATIC_URL ?>js/bootstrap-table/bootstrap-table.min.js"></script>
 <script id="bootstrap-table-js-cn" src="<?= STATIC_URL ?>js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-<script src="<?= STATIC_URL ?>js/table-demo.js?<?=rand()?>"></script>
+<script id="bootstrap-table-demo" src="<?= STATIC_URL ?>js/table-demo.js?<?=rand()?>"></script>
 </body>
 </html>

@@ -64,6 +64,7 @@ class AdminUser extends Model
         }
         $user['password'] = $this->genrate_password($data['password'],$user['salt']);
         $user['update_time'] = time();
+        $user['status'] = 0 ;
         $res = $this->update($user,['id'=>$data['id']],1);
         if($res){
             throw new LogicException(0,'管理员修改成功');

@@ -6,17 +6,18 @@
  */
 namespace controllers\cms;
 use helpers\Input;
-use models\curd\AdminGroup;
-use models\curd\AdminUser;
 use models\curd\Article as AdminArticle;
+use models\curd\ArticleCategory;
 class Article extends \base\BaseController{
 
     public $admin_menu = array();
     public $admin_article = array();
+    public $article_category = array();
 
     public function __construct()
     {
        $this->admin_article = new AdminArticle();
+       $this->article_category = new ArticleCategory();
         parent::__construct();
     }
 
@@ -31,40 +32,32 @@ class Article extends \base\BaseController{
 
     public function index(){
         $form = $this->get_search_where();
-        $this->view->display('cms/article/article_index');
+        $this->view->display('cms/article/index');
     }
 
     public function create(){
         $form['id'] = '';
-        $form['username'] = '';
-        $form['realname'] = '';
-        $form['password'] = '';
-        $form['re_password'] = '';
-        $form['group_id'] = 0;
+        $form['cate_id'] = '';
+        $form['tag_ids'] = '';
+        $form['title'] = '';
+        $form['keywords'] = '';
+        $form['description'] = '';
+        $form['is_top'] = '';
+        $form['list_image_url'] = '';
+        $form['status'] = '';
+        $form['content'] = '';
+        $select_tree = $this->article_category->get_config_menu([]);
+        $this->view->assign('select_tree',$select_tree);
         $this->view->assign('form',$form);
         $this->view->display('cms/article/create');
     }
 
     public function update(){
         $form['id'] = Input::get_post('id');
-        $this->view->display('cms/user/update');
+        $form = $this->admin_article->info(['id'=>$form['id']]);
+        $select_tree = $this->article_category->get_config_menu(['id'=>$form['cate_id']]);
+        $this->view->assign('select_tree',$select_tree);
+        $this->view->assign('form',$form);
+        $this->view->display('cms/article/create');
     }
-
-
-
-    public function get_list(){
-        $data = $this->get_search_where();
-        $top_menu = $this->admin_menu->get_top_menu(0);
-        $this->view->assign('top_menu',$top_menu);
-        $this->view->assign('data',$data);
-        if(isset($_GET['iframe']) && $_GET['iframe']==1){
-            $this->view->display('admin/user/user_list');
-        }else{
-            $this->view->display('admin/user/index');
-
-        }
-    }
-
-
-
 }

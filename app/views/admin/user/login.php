@@ -81,7 +81,7 @@
             dataType:'json',
             success:function(data){
                 console.log(data);
-                $.cookie('id',data.data.id,{'path':'/'});
+                $.cookie('admin_id',data.data.id,{'path':'/'});
                 $.cookie('username',data.data.username,{'path':'/'});
                 $.cookie('access_token',data.data.access_token,{'path':'/'});
                 if(data.status==0){

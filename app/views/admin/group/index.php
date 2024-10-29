@@ -135,6 +135,7 @@
                     $('table tbody').html(list_html);
                     var total_num = data.data.total;
                     $('.pagination-outline').html(multi(total_num, param.per_page, param.page, 100));
+                    $(".table").bootstrapTable('resetView');
                     window.console.clear();
                     call_debug_log();
                 } else {
@@ -240,7 +241,7 @@
         var content = url;
         var title = action==2?'设置用户组权限':'设置用户组权限';
         var btn =  action==2?['确认','取消']:['确认','取消'];
-        layer.open({
+        var index = layer.open({
             type: 2, //iframe
             area: ['1000px', '850px'],
             title: title,
@@ -285,6 +286,7 @@
             }
             // content:"{:U('Serverpolicy/add')}" //iframe的url
         });
+        layer.full(index);
     }
 </script>
 <!-- Bootstrap table -->

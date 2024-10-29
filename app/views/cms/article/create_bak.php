@@ -42,14 +42,14 @@
             <div class="col-sm-4">
                 <select id="cate_id" name="cate_id" class="form-control">
                     <option value="">请选择</option>
-                    <?=$select_tree?>
+
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-1 control-label" for="tag_ids">标签id  </label>
             <div class="col-sm-4">
-                <input id="tag_ids" name="tag_ids" type="text" value="<?=$form['tag_ids']?>" placeholder="标签id  " class="form-control input-md">
+              <input id="tag_ids" name="tag_ids" type="text" value="<?=$form['tag_ids']?>" placeholder="标签id  " class="form-control input-md">
             </div>
         </div>
 
@@ -96,8 +96,8 @@
             <div class="col-sm-4">
                 <select id="status" name="status" class="form-control">
                     <option value="">请选择</option>
-                    <option value="0"  <?=$form['status']==0?'selected':''?>>正常</option>
-                    <option value="-1"  <?=$form['status']==-1?'selected':''?>>删除</option>
+                    <option value="0"  <?=$form['is_top']==0?'selected':''?>>正常</option>
+                    <option value="-1"  <?=$form['is_top']==-1?'selected':''?>>删除</option>
                 </select>
             </div>
         </div>
@@ -112,7 +112,7 @@
     </div>
 </div>
 
-<script src="<?=STATIC_URL?>js/jquery.min.js"></script>
+
 <script src="<?=STATIC_URL?>js/ckeditor5/build/ckeditor.js?<?=rand()?>"></script>
 <script src="<?=STATIC_URL?>js/ckeditor5/build/translations/zh-cn.js"></script>
 <script src="<?=STATIC_URL?>js/ckfinder/ckfinder.js?<?=rand()?>"></script>
@@ -131,7 +131,9 @@
 
             ],
             shouldNotGroupWhenFull:true,
+            extraPlugins : 'html5video',
         },
+
         mediaEmbed: {
             providers: [
                 {
@@ -200,7 +202,7 @@
                 }
             ],
             toolbar: [
-                // 'imageStyle:full',
+               // 'imageStyle:full',
                 // 'imageStyle:side',
                 'imageStyle:alignLeft',
                 'imageStyle:alignCenter',
@@ -228,49 +230,52 @@
         .then( editor => {
             editor.ui.view.editable.element.style.minHeight = '500px';
             window.editor = editor;
-            editor.model.document.on('change:data', () => {
-                $('#ckf-modal-close')[0].click();
-            });
+
         } )
         .catch( error => {
             console.error( 'There was a problem initializing the editor.', error );
         } );
     document.querySelectorAll('oembed[url]' ).forEach( element => {
+
         const videoLable = document.createElement( 'video' );
+
         videoLable.setAttribute( 'src', element.getAttribute( 'url' ) );
         videoLable.setAttribute( 'controls', 'controls' );
         videoLable.setAttribute( 'style', ' width: 100%;height: 100%; ' );
+
         element.appendChild( videoLable);
     } );
 
-    function add_list_image(){
-        CKFinder.popup( {
-            chooseFiles: true,
-            width: 800,
-            height: 600,
-            onInit: function( finder ) {
-                finder.on( 'files:choose', function( evt ) {
-                    var file = evt.data.files.first();
-                    $('#list_image_url').val(file.getUrl());
-                    $('#list_image').attr('src',file.getUrl()).show();
-                } );
-                finder.on( 'file:choose:resizedImage', function( evt ) {
-                    // var output = $( '#list_image_url' );
-                    // output.value = evt.data.resizedUrl;
-                    $('#list_image_url').val(file.resizedUrl());
-                    $('#list_image').attr('src',file.resizedUrl()).show();
-                } );
-            }
-        } );
-    }
+    // function add_list_image(){
+    //     CKFinder.popup( {
+    //         chooseFiles: true,
+    //         width: 800,
+    //         height: 600,
+    //         onInit: function( finder ) {
+    //             finder.on( 'files:choose', function( evt ) {
+    //                 var file = evt.data.files.first();
+    //                 $('#list_image_url').val(file.getUrl());
+    //                 $('#list_image').attr('src',file.getUrl()).show();
+    //
+    //             } );
+    //
+    //             finder.on( 'file:choose:resizedImage', function( evt ) {
+    //                 var output = $( '#list_image_url' );
+    //                 output.value = evt.data.resizedUrl;
+    //                 $('#list_image_url').val(file.resizedUrl());
+    //                 $('#list_image').attr('src',file.resizedUrl()).show();
+    //             } );
+    //         }
+    //     } );
+    // }
 
 </script>
 
 </body>
 <!-- 全局js -->
-<script src="<?=STATIC_URL?>js/jquery.min.js"></script>
-<script src="<?=STATIC_URL?>js/bootstrap.min.js"></script>
+<script src="<?=STATIC_URL?>/js/jquery.min.js"></script>
+<script src="<?=STATIC_URL?>/js/bootstrap.min.js"></script>
 <!-- Bootstrap table -->
-<script src="<?=STATIC_URL?>js/bootstrap-table/bootstrap-table.min.js"></script>
-<script src="<?=STATIC_URL?>js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="<?=STATIC_URL?>/js/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="<?=STATIC_URL?>/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
 </html>

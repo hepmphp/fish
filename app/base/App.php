@@ -88,12 +88,17 @@ class App
             $class_method = 'index';
         }
         $this->controller = $class?$class:'user';
+
         if(empty($path)){
             $class = '\\controllers\\admin\user';
         }else{
-            $class = ucwords($class);
+            $class = ucwords($class,'_,-');
+            if(strpos($class,'_')!==false OR strpos($class,'-')!==false){
+                $class = str_replace(array('_','-'),array('',''),$class);
+            }
             $class = "\\controllers\\{$path}\\".$class;
         }
+ 
         $dir_file = WEB_PATH."\\..\\app".$class.'.php';
         if(file_exists($dir_file)){
             $this->path = $path;
