@@ -6,13 +6,7 @@
  */
 
 
-//cookie 配置
-$config['cookie'] = array(
-    'COOKIE_PREFIX' => 'fish_', // cookie 名称前缀
-    'COOKIE_EXPIRE' => '86400', // cookie 保存时间
-    'COOKIE_PATH' => '/', // cookie 保存路径
-    'COOKIE_DOMAIN' => "",// cookie 有效域名
-);
+
 
 //sessoin配置
 $config['session'] = array(
@@ -20,7 +14,7 @@ $config['session'] = array(
     'SESSION_OPTIONS' => array(
         //'id'=>'fish',
         //'name'=>'fish',
-        'path'=>WEB_PATH.'/cache/',
+        'path'=>WEB_PATH.'/log/cache/',
         #::todo 配置session redis
         //'path'=>'127.0.0.1:6379',
         'expire' => '3600',//过期时间

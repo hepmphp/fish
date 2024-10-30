@@ -32,15 +32,15 @@
         <div class="navmenu"  id='cssmenu'>
             <ul class="navmenu-item">
                  <?php foreach ($top_menu as $k=>$m){?>
-                <li <?php ($k==0)?'class="active"':''?>><a href="/<?=$m['model']?>/<?=$m['action']?>?<?=http_build_query($_GET)?>"><?=$m['name']?></a></li>
+                <li <?php ($k==0)?'class="active"':''?>><a href="/<?=$m['model']?>/<?=$m['action']?>?iframe=0"><?=$m['name']?></a></li>
                 <?php }?>
             </ul>
         </div>
         <div class="nav-right">
-            Hi! <span class="user-item" id="admin_username"><?=$data['username']?><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+            Hi! <span class="user-item" id="admin_username"><?=$_SESSION['admin_user_username']?><i class="fa fa-angle-down" aria-hidden="true"></i></span>
 	<span class="user-con">
-		<a href="#" class="a1" onclick="user_info('<?=$data['id']?>')"  id="username">账号修改</a>
-		<a href="#" class="a2">安全退出</a>
+		<a href="#" class="a1" onclick="user_info('<?=$_SESSION['admin_user_id']?>')"  id="username">账号修改</a>
+		<a href="#" class="a2" onclick="user_logout()">安全退出</a>
 	</span>
 </span>
         </div>
@@ -62,7 +62,7 @@
                         <?php foreach ($left_menu_child as $k2=>$l_menu2){
                             if($l_menu2['parentid']==$l_menu1['id']){
                         ?>
-                        <li><a class="J_menuItem" href="/<?=$l_menu2['model']?>/<?=$l_menu2['action']?>?<?=http_build_query($_GET)?>&iframe=1"><?=$l_menu2['name']?></a></li>
+                        <li><a class="J_menuItem" href="/<?=$l_menu2['model']?>/<?=$l_menu2['action']?>?iframe=1"><?=$l_menu2['name']?></a></li>
                         <?php }}?>
                     </ul>
                 </li>
@@ -72,7 +72,9 @@
         </div>
         <!--左边 end-->
         <div class="Business-right transition clearfix">
-            <iframe id="J_iframe" class="iframe-box" name="J_iframe" width="100%" height="100%" src="<?=$data['admin_url']?>/?<?=http_build_query($_GET)?>&iframe=1" frameborder="0" data-id="index"></iframe>
+            <?php if(isset($data['admin_url']) && !empty($data['admin_url'])){ ?>
+            <iframe id="J_iframe" class="iframe-box" name="J_iframe" width="100%" height="100%" src="<?=$data['admin_url']?>" frameborder="0" data-id="index"></iframe>
+            <?php }?>
         </div>
     </div>
 </div>
@@ -97,6 +99,20 @@
         $("#boxscroll").niceScroll({cursorborder:"",cursorcolor:"#999"});
     });
 
+    function user_logout(){
+        layer.load(2);
+        $.ajax({
+            type:'POST',
+            url:'/api/user/logout',
+            data:{},
+            dataType:'json',
+            success:function(data) {
+                layer.close(2);
+                window.location.href = data.data.login_url;
+            }
+        });
+    }
+
 
     function user_info(id) {
         layer.open({
@@ -105,9 +121,8 @@
             shadeClose: true,
             btn: ['确认','关闭'],
             area: ['300px', '300px'],
-            content: '/admin/user/user_info',
+            content: '/admin/user/user_info?id='+id,
             yes: function(index, layero){
-
                 var body = layer.getChildFrame('body', index);
                 var password = body.find('#password').val();
                 var re_password = body.find('#re_password').val();

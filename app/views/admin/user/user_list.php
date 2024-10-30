@@ -110,18 +110,13 @@
     var param = {
         page: 1,
         per_page: per_page,
-        id: $.cookie('id'),
-        admin_username: $.cookie('username'),
-        access_token: $.cookie('access_token')
     };
 
     function search_list(){
         var search_param= {
             page: 1,
-            per_page : $("#username").val().length==0?100:1,
-            id: $.cookie('id'),
+            per_page : 20,
             username: $("#username").val(),
-            access_token: $.cookie('access_token'),
             start_time:$('#start_time').val(),
             end_time:$('#end_time').val()
         };
@@ -282,13 +277,13 @@
             yes: function(index, layero){
                 console.log("tree ok...");
                 var body = layer.getChildFrame('body', index);
-
                 var iframeWin = window[layero.find('iframe')[0]['name']];
                 console.log(iframeWin);
                 var mids = new Array();
-                iframeWin.$('.treetable-selected').each(function(){
-                    mids.push($(this).attr('dataid'));
-                    console.log($(this).attr('dataid'));
+                //select_item
+                iframeWin.$("input[name='select_item']:checked").each(function(i){
+                    mids.push($(this).val());
+                    console.log($(this).val());
                 });
                 mids = mids.join(',');
                 var param = {

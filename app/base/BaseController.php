@@ -27,8 +27,14 @@ class BaseController{
         $this->app = \base\App::get_instance(APP_PATH);
         $this->make_view();
         $this->admin_menu = new AdminMenu();
-        $top_menu = $this->admin_menu->get_top_menu(0);
-        list($left_menu,$left_menu_child) = $this->admin_menu->get_left_menu();
+        $menu_id_arr = isset($_SESSION['admin_user_mids'])?$_SESSION['admin_user_mids']:0;
+        $admin_menu_where['level'] = 0;
+        if(!empty($menu_id_arr)){
+            $admin_menu_where['id'] = $menu_id_arr;
+        }
+        $top_menu = $this->admin_menu->get_top_menu($admin_menu_where);
+        list($left_menu,$left_menu_child) = $this->admin_menu->get_left_menu($menu_id_arr);
+
         $this->view->assign('top_menu',$top_menu);
         $this->view->assign('left_menu',$left_menu);
         $this->view->assign('left_menu_child',$left_menu_child);

@@ -112,16 +112,33 @@ class Msg {
         return $r == 'xmlhttprequest';
     }
     public static  function show_msg($msg, $url = "") {
-        echo "<script type=\"text/javascript\">";
-        if (strlen($msg) > 1) {
-            echo "alert(\"$msg\");";
-        }
-        if ($url == "") {
-            echo "history.go(-1);";
-        } else {
-            echo "document.location.href='$url';";
-        }
-        echo "</script>";
+        $static_url = STATIC_URL;
+
+        echo <<<JS
+<script src="{$static_url}js/jquery.min.js"></script>
+<script src="{$static_url}js/layer/layer.js"></script>
+<script>
+
+
+
+   layer.alert('{$msg}',{
+    icon: 5,
+  time: 3*1000,
+  success: function(layero, index){
+    var timeNum = this.time/1000, setText = function(start){
+      layer.title("<span style='color:red;'>"+(start ? timeNum : --timeNum) + " 秒后跳转到登录页</span>", index);
+    };
+    setText(!0);
+    this.timer = setInterval(setText, 1000);
+    if(timeNum <= 0) {clearInterval(this.timer)};
+  }
+  ,end: function(){
+    clearInterval(this.timer);
+    window.location.href='{$url}';
+  }
+});
+</script>
+JS;
         exit();
     }
     public static function cncn_exit($msg,$url){

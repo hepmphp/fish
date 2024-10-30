@@ -63,7 +63,6 @@
                 <th>用户id</th>
                 <th>用户名</th>
                 <th>标题</th>
-                <th>关键词</th>
                 <th>分类</th>
                 <th>标签id  </th>
                 <th>描述</th>
@@ -76,7 +75,6 @@
             </thead>
             <tbody>
                 <tr>
-                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -132,9 +130,6 @@
     var param = {
         page: 1,
         per_page: per_page,
-        id: $.cookie('id'),
-        admin_username: $.cookie('username'),
-        access_token: $.cookie('access_token')
     };
 
     function search_list(){
@@ -147,8 +142,6 @@
             start_time:$('#start_time').val(),
             end_time:$('#end_time').val(),
             status:$('#status').val(),
-            admin_id: $.cookie('admin_id'),
-            access_token: $.cookie('access_token')
         };
 
         console.log(search_param);
@@ -159,7 +152,6 @@
         layer.load(2);
         var template = '<tr><td >[id]</td><td >[admin]</td>' +
             '<td>[title]</td>' +
-            '<td>[keywords]</td>' +
             '<td>[cate_name]</td>' +
             '<td>[tag_name]</td>' +
             '<td>[description]</td>' +
@@ -167,8 +159,8 @@
             '<td>[is_top_name]</td>' +
             '<td><image src="[list_image_url]" style="width: 60px;height: 60px;"></image></td>' +
             '<td>[status_name]</td>' +
-            '<td><a onclick="edit_article(\'[id]\')" class="" data-id="[id]">[修改]</a>' +
-            '<a onclick="delete_article(\'[id]\')" class="">[删除]</a></td></tr>';
+            '<td><a onclick="edit_article(\'[id]\')" class="" data-id="[id]">[修改]</a><br/>' +
+            '<a onclick="delete_article(\'[id]\')" style="color: red;">[删除]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/article/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
@@ -177,7 +169,6 @@
                     list_html += template.replace(/\[id\]/g, d.id).
                     replace('[admin]', d.admin).
                     replace('[title]', d.title).
-                    replace('[keywords]', d.keywords).
                     replace('[cate_name]', d.cate_name).
                     replace('[tag_name]', d.tag_name).
                     replace('[description]', d.description).

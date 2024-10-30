@@ -6,7 +6,9 @@
  */
 namespace controllers\api;
 use base\exception\LogicException;
+use helpers\Cookie;
 use helpers\Input;
+use helpers\Session;
 use helpers\Validate;
 use helpers\Debuger;
 use models\curd\AdminUser;
@@ -59,49 +61,60 @@ class User extends \base\BaseController{
         $this->admin_user->create($data);
     }
     public function update(){
-        $data['id'] = Input::get_post('id');
-        $data['password'] = Input::get_post('password');
-        $data['re_password'] =  Input::get_post('re_password');
-        $data['mids'] = Input::get_post('mids');
-        if(!Validate::min_length($data['password'],6)){
+        $form['id'] = Input::get_post('id');
+        $form['password'] = Input::get_post('password');
+        $form['re_password'] =  Input::get_post('re_password');
+        $form['mids'] = Input::get_post('mids');
+        if(!Validate::min_length($form['password'],6)){
             throw new LogicException(200,'管理员密码不能小于6位数');
         }
-        if($data['password']!=$data['re_password']){
+        if($form['password']!=$form['re_password']){
             throw new LogicException(300,'两次输入的密码不一致');
         }
-        if(isset( $data['username'])){
-            unset( $data['username']);
+        if(isset( $form['username'])){
+            unset( $form['username']);
         }
-        $this->admin_user->save($data);
+        $this->admin_user->save($form);
     }
 
     public function edit_permission(){
-        $data['id'] = Input::get_post('id');
-        $data['mids'] = Input::get_post('mids');
-        if(!Validate::required($data['mids'])){
+        $form['id'] = Input::get_post('id',0,'intval');
+        $form['mids'] = Input::get_post('mids');
+        if(!Validate::required($form['id'])){
+            throw  new LogicException(100,'用户id不能为空');
+        }
+        if(!Validate::required($form['mids'])){
             throw  new LogicException(100,'请勾选权限');
         }
-        $this->admin_user->edit_permission($data);
+        $this->admin_user->edit_permission($form);
 
     }
     public function delete(){
-        $data['id'] = Input::get_post('id');
-        if(!Validate::required($data['id'])){
+        $form['id'] = Input::get_post('id','','intval');
+        if(!Validate::required($form['id'])){
             throw  new LogicException(100,'管理员不能为空');
         }
-        $this->admin_user->delete($data);
+        $this->admin_user->delete($form);
     }
 
     public function login(){
         $data['username'] = Input::get_post('username');
         $data['password'] = Input::get_post('password');
-        $res =$this->admin_user->login($data);
-        $res['admin_url'] = '/admin/user/welcome?iframe=1';
+        $this->admin_user->login($data);
+        $res = array();
+        $res['admin_url'] = '/admin/user/welcome?iframe=0';
         if($res){
             Input::ajax_return(0,'登录成功',$res);
         }else{
             throw new LogicException(100,'管理员登录失败');
         }
+    }
+
+    public function logout(){
+        Session::session_destroy();
+        Cookie::clear();
+        $data['login_url'] = '/admin/user/login';
+        Input::ajax_return(0,'登录成功',$data);
     }
 
     public function info(){
@@ -116,7 +129,6 @@ class User extends \base\BaseController{
 
     public function get_list(){
         $where = $this->get_search_where();
-
         $page = Input::get_post('page');
         $per_page = Input::get_post('per_page');
         list($res,$total) = $this->admin_user->get_list_info($where,$page,$per_page,'*');

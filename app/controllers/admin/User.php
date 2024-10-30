@@ -5,7 +5,9 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 namespace controllers\admin;
+use base\exception\LogicException;
 use helpers\Input;
+use helpers\Session;
 use models\curd\AdminGroup;
 use models\curd\AdminMenu;
 use models\curd\AdminUser;
@@ -18,6 +20,7 @@ class  User extends \base\BaseController{
 
     public function __construct()
     {
+        $this->admin_menu = new AdminMenu();
         $this->admin_user = new AdminUser();
         $this->admin_group = new AdminGroup();
         parent::__construct();
@@ -37,20 +40,19 @@ class  User extends \base\BaseController{
 
     public function welcome(){
         $data = $this->get_search_where();
-        $data['admin_url'] = '/admin/user/get_list?iframe=0';
+        $data['admin_url'] = '/admin/user/welcome?iframe=1';
 
         $this->view->assign('data',$data);
         if(isset($_GET['iframe']) && $_GET['iframe']==1){
-            $this->view->display('admin/user/index');
-        }else{
             $this->view->display('admin/user/welcome');
+        }else{
+           $this->view->display('admin/user/index');
         }
     }
 
     public function index(){
         $data = $this->get_search_where();
-        $data['admin_url'] = '/admin/user/get_list?iframe=0';
-
+        $data['admin_url'] = '/admin/user/get_list?iframe=1';
         $this->view->assign('data',$data);
         if(isset($_GET['iframe']) && $_GET['iframe']==1){
             $this->view->display('admin/user/user_list');
@@ -74,7 +76,7 @@ class  User extends \base\BaseController{
 
     public function update(){
         $form['id'] = Input::get_post('id');
-        $user_group = $this->admin_group->find_all_group(['id'=>$form['id']]);
+        $user_group = $this->admin_group->find_all_group([]);
         $user = $this->admin_user->info(['id'=>$form['id']]);
         $form = $user;
         $this->view->assign('form',$form);
@@ -85,6 +87,7 @@ class  User extends \base\BaseController{
     public function login(){
         $this->view->display('admin/user/login');
     }
+
 
     public function get_list(){
         $data = $this->get_search_where();
@@ -103,9 +106,12 @@ class  User extends \base\BaseController{
         $form = $this->get_search_where();
         $menu_data = $this->admin_menu->get_tree_array($form);
         $menu_data = json_encode($menu_data,JSON_UNESCAPED_UNICODE);
-
-        $group_info = $this->admin_group->info(['id'=>$form['id']]);
-        $admin_info_mids = explode(',',$group_info['mids']);
+        $user_info = $this->admin_user->info(['id'=>$form['id']]);
+        $admin_info_mids = array();
+        if(isset($user_info['mids']) && !empty($user_info['mids'])){
+            $admin_info_mids = explode(',',$user_info['mids']);
+        }
+        //var_dump($admin_info_mids);
         $this->view->assign('form',$form);
         $this->view->assign('admin_info_mids',json_encode($admin_info_mids));
         $this->view->assign('menu_data',$menu_data);
@@ -113,7 +119,7 @@ class  User extends \base\BaseController{
     }
 
     public function user_info(){
-        $form['id'] = Input::get_post('id');
+        $form['id'] = Input::get_post('id','','intval');
         $user = $this->admin_user->info(['id'=>$form['id']]);
         $form = $user;
         $this->view->assign('form',$form);

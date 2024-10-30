@@ -78,9 +78,6 @@
     var param = {
         page: 1,
         per_page: per_page,
-        id: $.cookie('id'),
-        admin_username: $.cookie('username'),
-        access_token: $.cookie('access_token')
     };
 
     function search_list(){
@@ -92,8 +89,6 @@
             start_time:$('#start_time').val(),
             end_time:$('#end_time').val(),
             status:$('#status').val(),
-            id: $.cookie('id'),
-            access_token: $.cookie('access_token')
         };
 
         console.log(search_param);

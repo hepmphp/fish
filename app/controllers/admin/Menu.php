@@ -44,10 +44,10 @@ class  Menu extends \base\BaseController{
         $form['admin_url'] = '/admin/menu/get_list';
         $menu_data = $this->admin_menu->get_tree_array($form);
         $menu_data = json_encode($menu_data,JSON_UNESCAPED_UNICODE);
-        $admin_info = $this->admin_user->info(['id'=>$form['id']]);
-        $admin_info_mids = explode(',',$admin_info['mids']);
+//        $admin_info = $this->admin_user->info(['id'=>$form['id']]);
+//        $admin_info_mids = explode(',',$admin_info['mids']);
         $this->view->assign('form',$form);
-        $this->view->assign('admin_info_mids',json_encode($admin_info_mids));
+//        $this->view->assign('admin_info_mids',json_encode($admin_info_mids));
         $this->view->assign('menu_data',$menu_data);
 
         $this->view->display('admin/menu/index');
@@ -86,8 +86,6 @@ class  Menu extends \base\BaseController{
         $this->view->assign('config_menu',$config_menu);
         $this->view->display('admin/menu/create');
     }
-
-
 
     public function get_list(){
         $data = $this->get_search_where();

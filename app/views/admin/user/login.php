@@ -40,7 +40,6 @@
 </body>
 <!-- 全局js -->
 <script src="<?=STATIC_URL?>/js/jquery.min.js"></script>
-<script src="<?=STATIC_URL?>/js/jquery.cookie.js"></script>
 <script src="<?=STATIC_URL?>/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?=STATIC_URL?>/js/layer/layer.js"></script>
 <script type="text/javascript">
@@ -81,11 +80,11 @@
             dataType:'json',
             success:function(data){
                 console.log(data);
-                $.cookie('admin_id',data.data.id,{'path':'/'});
-                $.cookie('username',data.data.username,{'path':'/'});
-                $.cookie('access_token',data.data.access_token,{'path':'/'});
+                // $.cookie('admin_id',data.data.id,{'path':'/'});
+                // $.cookie('username',data.data.username,{'path':'/'});
+                // $.cookie('access_token',data.data.access_token,{'path':'/'});
                 if(data.status==0){
-                    window.location.href = data.data.admin_url+'&'+$.param(data.data);
+                    window.location.href = data.data.admin_url;
                 }else{
                     layer.alert(data.msg, {icon: 2});
                 }

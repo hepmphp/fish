@@ -226,11 +226,15 @@
         language: 'zh-cn'
     } )
         .then( editor => {
-            editor.ui.view.editable.element.style.minHeight = '500px';
+
+            // editor.ui.view.editable.element.style.minHeight = '500px';
             window.editor = editor;
             editor.model.document.on('change:data', () => {
-                $('#ckf-modal-close')[0].click();
+                if($('#ckf-modal-close').text()!==''){
+                    $('#ckf-modal-close')[0].click();
+                }
             });
+
         } )
         .catch( error => {
             console.error( 'There was a problem initializing the editor.', error );

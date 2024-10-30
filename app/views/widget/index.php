@@ -3,8 +3,8 @@
 <span class="page-list">每页显示
     <span class="btn-group dropup">
             <select class="form-control" id="per_page" onchange="change_page()">
-                <option value="2">2</option>
-                <option value="20">20</option>
+                  <option value="20">20</option>
+                <option value="50">50</option>
                 <option value="100">100</option>
                 <option value="200">200</option>
             </select>

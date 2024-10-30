@@ -12,43 +12,70 @@ use base\App;
 use helpers\Security\DzAuth;
 
 class Cookie {
+
+    static function get_config(){
+        return App::get_instance(APP_PATH)::$config['cookie']['cookie'];
+    }
+
     // 判断Cookie是否存在
     static function is_set($name) {
-        $cookie = App::get_instance(APP_PATH)::$config['config']['cookie'];
-        return isset($_COOKIE[$cookie['COOKIE_PREFIX'].$name]);
+        $config = self::get_config();
+        return isset($_COOKIE[$config['COOKIE_PREFIX'].$name]);
     }
 
     // 获取某个Cookie值
     static function get($name) {
-        $cookie = App::get_instance(APP_PATH)::config['config']['cookie'];
-        $value   = $_COOKIE[$cookie['COOKIE_PREFIX'].$name];
-        $value   =  unserialize(DzAuth::authcode($value));
+        $config = self::get_config();
+        $value = '';
+        if(isset($_COOKIE[$config['COOKIE_PREFIX'].$name])){
+            $value   = $_COOKIE[$config['COOKIE_PREFIX'].$name];
+            $value   =  unserialize(DzAuth::authcode($value));
+        }
         return $value;
+    }
+
+    static function set_all($cookies,$expire='',$path='',$domain=''){
+        $config = self::get_config();
+        if($expire=='') {
+            $expire =   $config['COOKIE_EXPIRE'];
+        }
+        if(empty($path)) {
+            $path = $config['COOKIE_PATH'];
+        }
+        if(empty($domain)) {
+            $domain =   $config['COOKIE_DOMAIN'];
+        }
+        $expire =   !empty($expire)?    time()+$expire   :  0;
+        foreach ($cookies as $name=>$value){
+            $value   =  DzAuth::authcode(serialize($value),'ENCODE');
+            setcookie($config['COOKIE_PREFIX'].$name, $value,$expire,$path,$domain);
+            $_COOKIE[$config['COOKIE_PREFIX'].$name]  =   $value;
+        }
     }
 
     // 设置某个Cookie值
     static function set($name,$value,$expire='',$path='',$domain='') {
-        $cookie = App::get_instance(APP_PATH)::$config['config']['cookie'];
+        $config = self::get_config();
         if($expire=='') {
-            $expire =   $cookie['COOKIE_EXPIRE'];
+            $expire =   $config['COOKIE_EXPIRE'];
         }
         if(empty($path)) {
-            $path = $cookie['COOKIE_PATH'];
+            $path = $config['COOKIE_PATH'];
         }
         if(empty($domain)) {
-            $domain =   $cookie['COOKIE_DOMAIN'];
+            $domain =   $config['COOKIE_DOMAIN'];
         }
         $expire =   !empty($expire)?    time()+$expire   :  0;
         $value   =  DzAuth::authcode(serialize($value),'ENCODE');
-        setcookie($cookie['COOKIE_PREFIX'].$name, $value,$expire,$path,$domain);
-        $_COOKIE[$cookie['COOKIE_PREFIX'].$name]  =   $value;
+        setcookie($config['COOKIE_PREFIX'].$name, $value,$expire,$path,$domain);
+        $_COOKIE[$config['COOKIE_PREFIX'].$name]  =   $value;
     }
 
     // 删除某个Cookie值
     static function delete($name) {
-        $cookie = App::get_instance(APP_PATH)::$config['config']['cookie'];
+        $config = self::get_config();
         Cookie::set($name,'',-3600);
-        unset($_COOKIE[$cookie['COOKIE_PREFIX'].$name]);
+        unset($_COOKIE[$config['COOKIE_PREFIX'].$name]);
     }
 
     // 清空Cookie值

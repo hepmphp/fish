@@ -97,9 +97,7 @@
         var search_param= {
             page: 1,
             per_page : $("#name").val().length==0?100:1,
-            id: $.cookie('id'),
             name: $("#name").val(),
-            access_token: $.cookie('access_token'),
             start_time:$('#start_time').val(),
             end_time:$('#end_time').val()
         };
@@ -113,9 +111,6 @@
        window.param = {
            page: 1,
            per_page: per_page,
-           id: $.cookie('id'),
-           admin_username: $.cookie('username'),
-           access_token: $.cookie('access_token')
        };
 
        ajax_list = function ajax_list(param) {

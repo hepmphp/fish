@@ -7,6 +7,7 @@
 namespace controllers\api;
 use base\exception\LogicException;
 use helpers\Input;
+use helpers\Session;
 use helpers\Validate;
 use models\curd\Article as AdminArticle;
 
@@ -33,9 +34,8 @@ class Article extends \base\BaseController{
         if(!empty($end_time)){
             $where['create_time<'] = strtotime($end_time);
         }
-
-        $where['status'] = Input::get_post('status',0);
         $where = array_filter($where);
+        $where['status'] = Input::get_post('status',0);
         if(empty($where)){
             $where = '';
         }
@@ -45,8 +45,8 @@ class Article extends \base\BaseController{
     public function create(){
         $form['cate_id'] = Input::get_post('cate_id');
         $form['tag_ids'] = Input::get_post('tag_ids');
-        $form['admin_id'] = Input::get_post('admin_id');
-        $form['admin'] = Input::get_post('admin_username');
+        $form['admin_id'] = Session::get('admin_user.id');
+        $form['admin'] =   Session::get('admin_user.username');
         $form['title'] = Input::get_post('title');
         $form['keywords'] = Input::get_post('keywords');
         $form['description'] = Input::get_post('description');
@@ -69,8 +69,8 @@ class Article extends \base\BaseController{
         $form['id'] = Input::get_post('id');
         $form['cate_id'] = Input::get_post('cate_id');
         $form['tag_ids'] = Input::get_post('tag_ids');
-        $form['admin_id'] = Input::get_post('admin_id');
-        $form['admin'] = Input::get_post('admin');
+        $form['admin_id'] = Session::get('admin_user.id');
+        $form['admin'] =   Session::get('admin_user.username');
         $form['title'] = Input::get_post('title');
         $form['keywords'] = Input::get_post('keywords');
         $form['description'] = Input::get_post('description');

@@ -22,8 +22,9 @@ class AdminMenu extends Model
         parent::__construct();
     }
 
-    public function get_top_menu($level=0){
-        $where['level'] = $level;
+    public function get_top_menu($where=array(),$level=0){
+
+      //  $where['level'] = $level;
         $limit =1;
         $offset=100;
         $fields ='*';
@@ -31,8 +32,11 @@ class AdminMenu extends Model
         return $menu;
     }
 
-    public function get_left_menu(){
-        $where = " level in(1,2) and action='index' ";
+    public function get_left_menu($ids){
+        $where = " level in(1,2) and (action='index' OR action='welcome') ";
+        if(!empty($ids) && is_array($ids)){
+            $where = $where." and id in(".implode(',',$ids).")";
+        }
         $limit =1;
         $offset=100;
         $fields ='*';
@@ -145,14 +149,14 @@ class AdminMenu extends Model
     }
 
     public function get_tree_array($parentid=null){
-        $tree = new Tree();
+       // $tree = new Tree();
         $admin_menu = $this->find_all('',1,10000);
-        $tree->init($admin_menu);
-        $res = $tree->get_tree_array(0);
-        $reform_res = [];
-        foreach ($res as $k=>$v){
-            $reform_res[] = $v;
-        }
+//        $tree->init($admin_menu);
+//        $res = $tree->get_tree_array(0);
+//        $reform_res = [];
+//        foreach ($res as $k=>$v){
+//            $reform_res[] = $v;
+//        }
         return $admin_menu;
     }
 

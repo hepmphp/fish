@@ -10,6 +10,7 @@ namespace models\curd;
 use base\exception\LogicException;
 use base\Model;
 use helpers\Arr;
+use helpers\Cookie;
 use helpers\Unique;
 
 class AdminUser extends Model
@@ -104,26 +105,34 @@ class AdminUser extends Model
 
     public function login($data){
         $data['password'] = trim($data['password']);
-        $user= $this->find(['username'=>$data['username']],'id,username,password,salt');
+        $user= $this->find(['username'=>$data['username']],'id,username,group_id,mids,password,salt');
+        if(empty($user)){
+            throw  new  LogicException(-1,'管理员不存在');
+        }
        // var_dump($user['password'],$this->genrate_password($data['password'],$user['salt']));
         if($user['password'] != $this->genrate_password($data['password'],$user['salt'])){
-            throw  new  LogicException(-2,'管理员不存在');
+            throw  new  LogicException(-2,'管理员密码不正确');
         }
-        $user['update_time'] = time();
+        $group = $this->admin_group->info(['id'=>$user['group_id']]);
+        $user['last_login_time'] = time();
         $user['last_session_id'] = session_id();
         $return['id'] = $user['id'];
+        //登录 保存session
+        $_SESSION['admin_user_id'] = $user['id'];
+        $_SESSION['admin_user_username'] = $user['username'];
+        $_SESSION['admin_user_mids'] = !empty($user['mids']) && strpos($user['mids'],',')!==0?explode(',',$user['mids']):'';
+        $_SESSION['admin_user_last_login_time'] = $user['last_login_time'];
+        $_SESSION['admin_user_session_id'] = $user['last_session_id'];
+//        $_SESSION['admin_user.platform_id'] = $user['platform_id'];
+        $_SESSION['admin_user_group_id'] = $user['group_id'];
+        $_SESSION['admin_user_allow_mutil_login'] = isset($group['allow_mutil_login'])?$group['allow_mutil_login']:0;//是否启用账号踢出功能
+
+        Cookie::set('admin_cookie',"{$_SESSION['admin_user_id']}|{$_SESSION['admin_user_session_id']}|{$_SESSION['admin_user_username']}|{$_SESSION['admin_user_group_id']}|{$_SESSION['admin_user_allow_mutil_login']}");
         unset($user['id']);
         $res = $this->update($user,['username'=>$data['username']],1);
         if(!$res){
             throw new LogicException(0,'管理员信息修改失败');
         }
-
-
-        $return['username'] = $user['username'];
-        $return['time'] = time();
-        $return['expiret_at'] =  $user['update_time'] +86400;//有效时间1小时
-        $return['access_token'] = md5($data['username'].$user['update_time'].'201803');
-
         return $return;
     }
 

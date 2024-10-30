@@ -130,12 +130,14 @@
         ],
         onAll: function (data) {
             console.log("onAll");
+
             return false;
         },
         onLoadSuccess: function (data) {
+
             console.log("onLoadSuccess");
             $.each(admin_info_mids,function (i,v){
-                $("input[name='select_item']").eq(v).attr("checked", true);
+                $("input[name='select_item'][value="+v+"]").attr("checked", true);
             });
             return false;
         },

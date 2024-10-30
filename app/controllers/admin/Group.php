@@ -7,6 +7,7 @@
 namespace controllers\admin;
 use base\exception\LogicException;
 use helpers\Input;
+use helpers\Session;
 use helpers\Validate;
 use models\curd\AdminGroup;
 
@@ -76,8 +77,8 @@ class  Group extends \base\BaseController{
         $form = $this->get_search_where();
         $menu_data = $this->admin_menu->get_tree_array($form);
         $menu_data = json_encode($menu_data,JSON_UNESCAPED_UNICODE);
-
         $group_info = $this->admin_group->info(['id'=>$form['id']]);
+
         $admin_info_mids = explode(',',$group_info['mids']);
         $this->view->assign('form',$form);
         $this->view->assign('admin_info_mids',json_encode($admin_info_mids));
@@ -87,11 +88,11 @@ class  Group extends \base\BaseController{
     }
 
     public function update(){
-        $data = $this->get_search_where();
-        if(!Validate::required($data['id'])){
+        $form = $this->get_search_where();
+        if(!Validate::required($form['id'])){
             throw  new LogicException(100,'管理员不能为空');
         }
-        $this->admin_group->save($data);
+        $this->admin_group->save($form);
     }
 
 }

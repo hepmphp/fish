@@ -14,9 +14,9 @@ class PhpView implements ViewInterface {
         $this->view_path = $view_path;
     }
     public function assign($name, $value = null) {
-        if(empty($value)){
-            return $this;
-        }
+//        if(empty($value)){
+//            return $this;
+//        }
         if (is_array($name)) {
             foreach ($name as $k => $v) {
                 $this->vars[$k] = $v;
