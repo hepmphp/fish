@@ -35,7 +35,7 @@ class  Menu extends \base\BaseController{
         $where['listorder'] = Input::get_post('listorder');
         $where['remark'] = Input::get_post('remark');
         $where['status'] = Input::get_post('status');
-        $where = array_filter($where);
+       // $where = array_filter($where);
         return $where;
     }
 
@@ -47,7 +47,7 @@ class  Menu extends \base\BaseController{
 //        $admin_info = $this->admin_user->info(['id'=>$form['id']]);
 //        $admin_info_mids = explode(',',$admin_info['mids']);
         $this->view->assign('form',$form);
-//        $this->view->assign('admin_info_mids',json_encode($admin_info_mids));
+        $this->view->assign('admin_info_mids',json_encode([]));
         $this->view->assign('menu_data',$menu_data);
 
         $this->view->display('admin/menu/index');

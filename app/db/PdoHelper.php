@@ -61,5 +61,6 @@ class PdoHelper
     public function quote($str){
         return $this->pdo->quote($str);
     }
+
 }
 

@@ -54,7 +54,6 @@ class Timer
     {
         $totalTime = self::microtime() - self::$_timer[$id];
         $totalTimeStr = sprintf('耗时: %.9f s ', $totalTime);
-        echo "<pre>";
         return $totalTimeStr;
     }
     /**结束内存检测
@@ -75,13 +74,16 @@ class Timer
      */
     public static function stop($id)
     {
-        echo self::endTime($id);
-        echo self::endMem($id);
-        Debuger::print_include_files();
-        echo "<hr>";
-        Debuger::print_stack_trace();
-        echo "<hr>";
-        print_r(\helpers\Debuger::last_log());
+        $filename = 'debug';
+        $type = 'debug';
+        $html = "debug_start.........................................................................................................................................................\n".
+            self::endTime($id).
+            self::endMem($id)."\n".
+            print_r(\helpers\Debuger::last_log(),true)."\n".
+            Debuger::print_include_files()."\n".
+            Debuger::print_stack_trace()."\n".
+            "debug_end.........................................................................................................................................................\n";
+        Log::file_put_contents($html,$filename,$type);
     }
     /**
      * get microtime float
@@ -97,7 +99,9 @@ class Timer
      */
     public static function go($id)
     {
-        self::start($id);
-        register_shutdown_function('\\helpers\\Timer::stop',$id);
+        if(isset($_SERVER['PATH_INFO'])  && $_SERVER['PATH_INFO']!='/fish/log/index'){
+            self::start($id);
+            register_shutdown_function('\\helpers\\Timer::stop',$id);
+        }
     }
 }

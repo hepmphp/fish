@@ -100,6 +100,9 @@ class SqlQueryBuilder
                if($offset==0){
                    $offset = 2;
                }
+               if($offset<0){
+                   $offset = 0;
+               }
                $this->limit_sql = " LIMIT {$limit},{$offset}";
                $limit =1;
                $offset = 100;

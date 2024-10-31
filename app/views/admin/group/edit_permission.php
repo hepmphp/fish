@@ -22,7 +22,7 @@
 <!-- 全局js -->
 <script  src="<?= STATIC_URL ?>js/jquery.min.js"></script>
 <script  src="<?= STATIC_URL ?>js/layer/layer.js"></script>
-<script src="<?= STATIC_URL ?>/js/logic/admin/ajax.js?<?=rand()?>"></script>
+<script src="<?= STATIC_URL ?>js/logic/admin/ajax.js?<?=rand()?>"></script>
 <script  src="<?= STATIC_URL ?>js/bootstrap-treetable/libs/v3/bootstrap.min.js"></script>
 <script  src="<?= STATIC_URL ?>js/bootstrap-treetable/bootstrap-treetable.js"></script>
 <script>

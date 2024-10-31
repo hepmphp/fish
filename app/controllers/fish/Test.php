@@ -1,126 +1,82 @@
 <?php
-error_reporting(E_ALL);
-/**
- *  fiename: fish/Test.php$🐘
- *  date:  2024/10/30   9:51$🐘
- *  author: hepm<ok_fish@qq.com>$🐘
- */
-/**
-前置中间件：
-cookie验证：验证用户的cookie
-用户角色验证：定义不同的用户角色并验证
-用户权限验证：配置不同的用户权限，并验证
-安全相关，如CSRF校验：CSRF校验中间件
-http方法过滤：过滤特定的GET POST请求
-http或者page cache：对指定路径的页面进行缓存
-跨域中间件：不用在nginx配置，而是通过框架的方式，针对某些域名或某些请求，提供跨域的服务。
-后置中间件：
-共同数据输出：针对统一业务的公共数据，在后置中统一输出
-请求返回浏览器之后的中间件：
-打印日志
-更新session（Laravel）
- */
-//$app = function ($name){
-//    echo "{$name} 项目业务逻辑\n";
-//};
-//
-//$middleware = function ($handler){
-//    return function ($name) use($handler){
-//        echo "{$name} 项目代码执行前的校验代码\n";
-//        return $handler($name);
-//    };
-//};
-//
-//$middleware1 = function ($handler){
-//    return function ($name) use($handler){
-//        echo "{$name} 项目代码执行前的校验代码1\n";
-//        return $handler($name);
-//    };
-//};
-//
-//$middleware3 = function($handler) {
-//    return function($name) use ($handler) {
-//        $return = $handler($name);//重点是这，先执行前置中间件代码和核心应用代码
-//        echo "{$name}项目代码执行后的日志记录代码3<br />";
-//        return $return;
-//    };
-//};
-//
-//function register_middleware($handler,$middleware_arr){
-//    $middleware_arr = array_reverse($middleware_arr);
-//    foreach ($middleware_arr as$middleware){
-//        $handler = $middleware($handler);
-//    }
-//    return $handler;
-//}
-//$run = register_middleware($app,[$middleware,$middleware1,$middleware3]);
-//$run('hello');
 
-class Middleware {
-    public $middlewares = array();
-    public $middlewares_after = array();
-    public $handler = array();
-    public function __construct($handler){
-        $this->handler = $handler;
+// Example implementation of Observer design pattern:
+
+class FileObserver implements SplObserver {
+    public function update(SplSubject $subject) :void{
+        echo date('Y-m-d H:i:s').__CLASS__ . ' - ' . $subject->getName().PHP_EOL;
     }
-    public function register_middleware($middleware,$middleware_after=array()){
-        $this->middlewares = $middleware;
-        $this->middlewares_after = $middleware_after;
+}
+
+class DatabaseObserver implements SplObserver{
+    public function update(SplSubject $subject) :void{
+        echo date('Y-m-d H:i:s').__CLASS__ . ' - ' . $subject->getName().PHP_EOL;
     }
-    public function run_middleware($next=''){
-        $this->middlewares = array_reverse($this->middlewares);
-        foreach ($this->middlewares as$middleware){
-                $middleware_instance = new $middleware;
-                $middleware_instance->handle($this->handler,$next);
+}
+
+class MailObserver implements SplObserver {
+    public function update(SplSubject $subject) :void{
+        // 检查邮件是否设置正确
+        error_log(date('Y-m-d H:i:s').__CLASS__ . ' - ' . $subject->getName().PHP_EOL, 1,
+            "306863208@qq.com");
+//        if (mail('306863208@qq.com', 'log_mail', date('Y-m-d H:i:s').__CLASS__ . ' - ' . $subject->getName().PHP_EOL, '', '')) {
+//            echo "Email sent successfully".PHP_EOL;
+//        } else {
+//            echo "Email sending failed".PHP_EOL;
+//        }
+    }
+}
+
+class LogSubject implements SplSubject {
+    public $_observers;
+    public $_name;
+
+    public function __construct($name) {
+        $this->_name = $name;
+        $this->_observers = new SplObjectStorage();
+    }
+    public function attach(SplObserver $observer) :void{
+        $this->_observers->attach($observer);
+    }
+
+    public function detach(SplObserver $observer) :void{
+        $this->_observers->detach($observer);
+    }
+
+    public function notify() :void{
+        foreach ($this->_observers as $observer) {
+            $observer->update($this);
         }
     }
-    public function run_after_middleware($next=''){
-        $this->middlewares_after = array_reverse($this->middlewares_after);
 
-        foreach ($this->middlewares_after as$middleware){
-            $middleware_instance = new $middleware;
-            $middleware_instance->handle($this->handler,$next);
-        }
+    public function getName() {
+        return $this->_name;
     }
 }
 
-class Filter{
-    public function handle($handler,$next){
-        echo date('Y-m-d H:i:s').__CLASS__."\n";
-        return $next($handler);
-    }
-}
-class Auth{
-    public function handle($handler,$next){
-        echo date('Y-m-d H:i:s').__CLASS__."\n";
-        return $next($handler);
-    }
-}
-class Log{
-    public function handle($handler,$next){
-        echo date('Y-m-d H:i:s').__CLASS__."\n";
-        return $next($handler);
-    }
-}
+$observer1 = new FileObserver();
+$observer2 = new MailObserver();
+$observer3 = new DatabaseObserver();
+$subject = new LogSubject(date("Y-m-d H:i:s").'日志主题...');
 
-class Format{
-    public function handle($handler,$next){
-        echo date('Y-m-d H:i:s').__CLASS__."\n";
-        return $next($handler);
-    }
-}
-class App{
-    public function run(){
-        $middleware = new Middleware($this);
-        $middleware->register_middleware([Filter::class,Auth::class],[Log::class,Format::class]);
-        $next = function (){};
-        $middleware->run_middleware($next);
-        echo 'app controller method call...'.PHP_EOL;
-        $middleware->run_after_middleware($next);
-    }
+$subject->attach($observer1);
+$subject->attach($observer2);
+$subject->attach($observer3);
+$subject->attach($observer1);
+$subject->notify();
 
-}
+/*
+will output:
 
+MyObserver1 - test
+MyObserver2 - test
+*/
 
-$app = new App();
-$app->run();
+$subject->detach($observer2);
+$subject->notify();
+
+/*
+will output:
+
+MyObserver1 - test
+*/

@@ -41,8 +41,7 @@ class Debuger
     static function print_stack_trace()
     {
         $e = new \Exception();
-        echo "<pre>";
-        print_r(str_replace('/path/to/code/', '', $e->getTraceAsString()));
+        return print_r(str_replace('/path/to/code/', '', $e->getTraceAsString()),true);
     }
 
     /*
@@ -50,14 +49,13 @@ class Debuger
      */
     static function print_include_files()
     {
-        echo "<pre>";
-        print_r(get_included_files());
+       return print_r(get_included_files(),true);
     }
 
     static function db_log($sql)
     {
-        $message = date('[Y-m-d H:i:s]') . '  ' . $sql;
-        error_log($message . PHP_EOL, 3, WEB_PATH . '/log/model_db_sql.log');
+        $message = "|\t". $sql;
+        Log::write($message,'model_db_sql');
     }
 
     static function console_log_table($data)

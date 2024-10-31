@@ -7,20 +7,20 @@
 
 namespace base;
 use base\exception\LogicException;
+use db\PdoHelper;
+use base\middleware\AuthMiddleware;
 use base\middleware\SessionMiddleware;
 use base\middleware\LogMiddleware;
-use db\PdoHelper;
-use helpers\Handler;
-use base\middleware\AuthMiddleware;
-use base\middleware\Log;
+use base\middleware\CsrfMiddleware;
 use helpers\Input;
 use helpers\Msg;
 use helpers\Session;
+use helpers\Handler;
 
 class App
 {
-    protected static $instance=null;
-    protected static $db =null;
+    public static $instance=null;
+    public static $db =null;
     public static $config=array();
     public $middleware = array();
     public $app_path='';
@@ -46,9 +46,7 @@ class App
     {
         $this->app_path = $app_path;
         self::$config = new Config($app_path.'configs');
-
     }
-
     public function run(){
         $this->handle_error_and_exception();
         $this->init_dependences();
@@ -62,23 +60,13 @@ class App
         //session
         Session::init();
         //redis
+        //event
+        Event::attach('app');
     }
 
     public function handle_error_and_exception(){
-
-        set_error_handler(function ($errno,$errstr,$errfile='',$errline='',$errcontext=array()){
-            $errcode = Handler::$levels[$errno];
-            $log_message = "错误代码:[%s],错误信息:[%s],文件:[%s],行号:[%d],地址:[%s],来源:[%s]";
-            $url     = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-            $referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
-            $log_message_format = sprintf($log_message,$errcode,$errstr,$errfile,$errline,$url,$referer);
-            echo( json_encode( array('status' =>$errno,'msg'  =>$log_message_format),JSON_UNESCAPED_UNICODE));
-        });
-        set_exception_handler(function ($exception){
-            echo( json_encode( array('status' =>$exception->getCode(),'msg'  =>$exception->getMessage()),JSON_UNESCAPED_UNICODE));
-        });
-
-        register_shutdown_function(array('helpers\Handler','shutdown_handler'));
+        $hanlder = new Handler();
+        $hanlder->register();
     }
 
     public function dispatch(){
@@ -116,9 +104,12 @@ class App
                 $this->method = $class_method;
                 $next = function (){};
                 $this->middleware = new Middleware(self::$instance);
-                $this->middleware->register_middleware([SessionMiddleware::class,AuthMiddleware::class],[LogMiddleware::class]);
+                $this->middleware->register_middleware([SessionMiddleware::class,AuthMiddleware::class,CsrfMiddleware::class],[LogMiddleware::class]);
                 $this->middleware->run_middleware($next);
                 $controller->$class_method();
+//                if (function_exists('fastcgi_finish_request')) {
+//                    fastcgi_finish_request();//主动flush数据给nginx
+//                }
                 $this->middleware->run_after_middleware($next);
             }else{
                 throw new \Exception("{$class} has not method {$class_method}");

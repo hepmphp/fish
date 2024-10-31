@@ -8,21 +8,21 @@
     <meta name="keywords" content="">
     <meta name="description" content="">
     <!--全局样式-->
-    <link href="<?=STATIC_URL?>/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?=STATIC_URL?>/css/style.css" rel="stylesheet">
-    <link href="<?=STATIC_URL?>/css/screen.css" rel="stylesheet">
+    <link href="<?=STATIC_URL?>css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?=STATIC_URL?>css/style.css" rel="stylesheet">
+    <link href="<?=STATIC_URL?>css/screen.css" rel="stylesheet">
     <!--图标-->
-    <link href="<?=STATIC_URL?>/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?=STATIC_URL?>css/font-awesome.min.css" rel="stylesheet">
     <!--导航-->
-    <link href="<?=STATIC_URL?>/css/nav.css" rel="stylesheet">
+    <link href="<?=STATIC_URL?>css/nav.css" rel="stylesheet">
     <!--导航-->
-    <link href="<?=STATIC_URL?>/css/form.css" rel="stylesheet">
+    <link href="<?=STATIC_URL?>css/form.css" rel="stylesheet">
     <!--mobile 样式-->
-    <link href="<?=STATIC_URL?>/css/mobile.css" rel="stylesheet">
+    <link href="<?=STATIC_URL?>css/mobile.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
-    <script src="<?=STATIC_URL?>/js/html5shiv.min.js"></script>
-    <script src="<?=STATIC_URL?>/js/respond.min.js"></script>
+    <script src="<?=STATIC_URL?>js/html5shiv.min.js"></script>
+    <script src="<?=STATIC_URL?>js/respond.min.js"></script>
     <![endif]-->
 </head>
 <body class="gray-bg">
@@ -79,16 +79,16 @@
     </div>
 </div>
 <!-- 全局js -->
-<script src="<?=STATIC_URL?>/js/jquery.min.js"></script>
-<script src="<?=STATIC_URL?>/js/bootstrap.min.js"></script>
+<script src="<?=STATIC_URL?>js/jquery.min.js"></script>
+<script src="<?=STATIC_URL?>js/bootstrap.min.js"></script>
 <!--导航-->
-<script src="<?=STATIC_URL?>/js/nav.js"></script>
+<script src="<?=STATIC_URL?>js/nav.js"></script>
 <!--滚动条美化-->
-<script src="<?=STATIC_URL?>/js/jquery.nicescroll.js"></script>
+<script src="<?=STATIC_URL?>js/jquery.nicescroll.js"></script>
 <!--公共部分-->
-<script src="<?=STATIC_URL?>/js/common.js"></script>
-<script type="text/javascript" src="<?=STATIC_URL?>/js/layer/layer.js"></script>
-<script type="text/javascript">
+<script src="<?=STATIC_URL?>js/common.js"></script>
+<script  src="<?=STATIC_URL?>js/layer/layer.js"></script>
+<script>
     layer.config({
         skin:'layer-ext-moon',
         extend:'moon/style.css'
@@ -155,4 +155,5 @@
     }
 </script>
 </body>
+<?php include_once WEB_PATH.'/../app/views/admin/user/debug.php'?>
 </html>

@@ -11,6 +11,7 @@ use helpers\Input;
 use helpers\Session;
 use helpers\Validate;
 use helpers\Debuger;
+use helpers\VerifyCode;
 use models\curd\AdminUser;
 
 class User extends \base\BaseController{
@@ -98,9 +99,15 @@ class User extends \base\BaseController{
     }
 
     public function login(){
-        $data['username'] = Input::get_post('username');
-        $data['password'] = Input::get_post('password');
-        $this->admin_user->login($data);
+        $form['username'] = Input::get_post('username');
+        $form['password'] = Input::get_post('password');
+        $code = Input::get_post('code');
+        $verify_code = new VerifyCode();
+        if(!$verify_code->check($code)){
+            throw new LogicException(-1,'验证码输入错误');
+        }
+
+        $this->admin_user->login($form);
         $res = array();
         $res['admin_url'] = '/admin/user/welcome?iframe=0';
         if($res){

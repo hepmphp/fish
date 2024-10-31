@@ -29,7 +29,8 @@ class Cookie {
         $value = '';
         if(isset($_COOKIE[$config['COOKIE_PREFIX'].$name])){
             $value   = $_COOKIE[$config['COOKIE_PREFIX'].$name];
-            $value   =  unserialize(DzAuth::authcode($value));
+            $decode_value = DzAuth::authcode($value);
+            $value   =  unserialize($decode_value);
         }
         return $value;
     }

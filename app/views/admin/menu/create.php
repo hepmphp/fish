@@ -7,24 +7,12 @@
     <title></title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <!--全局样式-->
-    <link href="<?=STATIC_URL?>/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?=STATIC_URL?>/css/style.css" rel="stylesheet">
-    <link href="<?=STATIC_URL?>/css/screen.css" rel="stylesheet">
-    <!--图标-->
-    <link href="<?=STATIC_URL?>/css/font-awesome.min.css" rel="stylesheet">
-    <!--表单表格-->
-    <link href="<?=STATIC_URL?>/js/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
-    <link href="<?=STATIC_URL?>/css/form.css" rel="stylesheet">
-    <!--日期-->
-    <link href="<?=STATIC_URL?>/js/date/daterangepicker.css" rel="stylesheet">
-    <!--mobile 样式-->
-    <link href="<?=STATIC_URL?>/css/mobile.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
-    <script src="<?=STATIC_URL?>/js/html5shiv.min.js"></script>
-    <script src="<?=STATIC_URL?>/js/respond.min.js"></script>
+    <script src="<?=STATIC_URL?>js/html5shiv.min.js"></script>
+    <script src="<?=STATIC_URL?>js/respond.min.js"></script>
     <![endif]-->
+    <?=\helpers\AppAsset::run()?>
 </head>
 <body>
 
@@ -96,8 +84,8 @@
             <label class="col-sm-4 control-label" for="status">状态</label>
             <div class="col-sm-4">
                 <select id="status" name="status" class="form-control">
-                    <option value="0" <?php if($vo['status']==$form['status']){ echo "selected";}?>>正常</option>
-                    <option value="-1" <?php if($vo['status']==$form['status']){ echo "selected";}?>>隐藏</option>
+                    <option value="0" <?php if(0==$form['status']){ echo "selected";}?>>正常</option>
+                    <option value="-1" <?php if(-1==$form['status']){ echo "selected";}?>>隐藏</option>
                 </select>
             </div>
         </div>
@@ -105,11 +93,6 @@
     </form>
 </div>
 </body>
-<!-- 全局js -->
-<script src="<?=STATIC_URL?>/js/jquery.min.js"></script>
-<script src="<?=STATIC_URL?>/js/bootstrap.min.js"></script>
-<!-- Bootstrap table -->
-<script src="<?=STATIC_URL?>/js/bootstrap-table/bootstrap-table.min.js"></script>
-<script src="<?=STATIC_URL?>/js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<?=\helpers\AppAsset::run_javascript_end()?>
 
 </html>

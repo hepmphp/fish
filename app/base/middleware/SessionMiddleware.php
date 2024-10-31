@@ -16,9 +16,13 @@ use models\curd\AdminUser;
 
 class SessionMiddleware{
     public function handle($handler,$next){
+
+        if($_SERVER['PATH_INFO']=='/api/captcha/get'){
+            return $next($handler);
+            exit();
+        }
         $is_in_login_url = $_SERVER['PATH_INFO']=='/admin/user/login'?true:false;
         if(isset($_SESSION['admin_user_id']) && $_SESSION['admin_user_id']){
-            //admin_user.allow_mutil_login
             $admin_user_model = new AdminUser();
             $admin_user = $admin_user_model->info(['id'=>$_SESSION['admin_user_id']]);
             if($admin_user['status']!==0){

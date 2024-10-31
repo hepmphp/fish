@@ -4629,14 +4629,14 @@ body.modal-open {
     position: absolute;
     right: 0;
     top: 0;
-    width: 110px;
+    width: 180px;
     height: 40px;
     overflow: hidden;
     border-radius: 5px;
     cursor: pointer;
 }
 .logo-bg{
-    background-color: rgba(4, 0, 0, 1);
+
     width: 440px;
     border-radius: 10px;
     position: relative

@@ -9,8 +9,8 @@
     <meta name="description" content="">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
-    <script src="<?= STATIC_URL ?>/js/html5shiv.min.js"></script>
-    <script src="<?= STATIC_URL ?>/js/respond.min.js"></script>
+    <script src="<?= STATIC_URL ?>js/html5shiv.min.js"></script>
+    <script src="<?= STATIC_URL ?>js/respond.min.js"></script>
     <![endif]-->
     <?=\helpers\AppAsset::run()?>
     <script >
@@ -284,9 +284,6 @@
         layer.full(index);
     }
 </script>
-<!-- Bootstrap table -->
-<script src="<?= STATIC_URL ?>js/bootstrap-table/bootstrap-table.min.js"></script>
-<script src="<?= STATIC_URL ?>js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
-<script src="<?= STATIC_URL ?>js/table-demo.js"></script>
+<?=\helpers\AppAsset::run_javascript_end()?>
 </body>
 </html>

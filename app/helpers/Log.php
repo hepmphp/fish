@@ -32,4 +32,16 @@ class Log
         error_log($message,3, $log_file);//接口请求写入日志
     }
 
+    static function file_put_contents($message,$filename='user',$type='common'){
+        $log_dir = "%s/%s/%s";//日志路径 日志类型 年 月 日
+        $dir = sprintf($log_dir,self::$log_path,$type,date('Y/m/d/'));
+        if(!is_dir($dir)){
+            mkdir($dir,0755,true);
+        }
+        $log_file = $dir.$filename.'.log';
+
+        $message = date('Y-m-d H:i:s')."\t".$message.PHP_EOL;
+        file_put_contents($log_file,$message);//接口请求写入日志
+    }
+
 }

@@ -20,6 +20,10 @@ class AdminLog extends Model
         parent::__construct();
     }
 
+    public function create($data){
+        $this->insert($data);
+    }
+
 
 
 }

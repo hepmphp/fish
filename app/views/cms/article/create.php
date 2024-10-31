@@ -7,24 +7,12 @@
     <title></title>
     <meta name="keywords" content="">
     <meta name="description" content="">
-    <!--全局样式-->
-    <link href="<?=STATIC_URL?>/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?=STATIC_URL?>/css/style.css" rel="stylesheet">
-    <link href="<?=STATIC_URL?>/css/screen.css" rel="stylesheet">
-    <!--图标-->
-    <link href="<?=STATIC_URL?>/css/font-awesome.min.css" rel="stylesheet">
-    <!--表单表格-->
-    <link href="<?=STATIC_URL?>/js/bootstrap-table/bootstrap-table.min.css" rel="stylesheet">
-    <link href="<?=STATIC_URL?>/css/form.css" rel="stylesheet">
-    <!--日期-->
-    <link href="<?=STATIC_URL?>/js/date/daterangepicker.css" rel="stylesheet">
-    <!--mobile 样式-->
-    <link href="<?=STATIC_URL?>/css/mobile.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <meta http-equiv="refresh" content="0;ie.html" />
-    <script src="<?=STATIC_URL?>/js/html5shiv.min.js"></script>
-    <script src="<?=STATIC_URL?>/js/respond.min.js"></script>
+    <script src="<?=STATIC_URL?>js/html5shiv.min.js"></script>
+    <script src="<?=STATIC_URL?>js/respond.min.js"></script>
     <![endif]-->
+    <?=\helpers\AppAsset::run()?>
 </head>
 
 <div class="container col-sm-12" style="margin-top: 10px;">
@@ -226,8 +214,7 @@
         language: 'zh-cn'
     } )
         .then( editor => {
-
-            // editor.ui.view.editable.element.style.minHeight = '500px';
+            editor.ui.view.editable.element.style.height = '500px';
             window.editor = editor;
             editor.model.document.on('change:data', () => {
                 if($('#ckf-modal-close').text()!==''){
@@ -235,17 +222,12 @@
                 }
             });
 
+
+
         } )
         .catch( error => {
             console.error( 'There was a problem initializing the editor.', error );
         } );
-    document.querySelectorAll('oembed[url]' ).forEach( element => {
-        const videoLable = document.createElement( 'video' );
-        videoLable.setAttribute( 'src', element.getAttribute( 'url' ) );
-        videoLable.setAttribute( 'controls', 'controls' );
-        videoLable.setAttribute( 'style', ' width: 100%;height: 100%; ' );
-        element.appendChild( videoLable);
-    } );
 
     function add_list_image(){
         CKFinder.popup( {
@@ -271,10 +253,5 @@
 </script>
 
 </body>
-<!-- 全局js -->
-<script src="<?=STATIC_URL?>js/jquery.min.js"></script>
-<script src="<?=STATIC_URL?>js/bootstrap.min.js"></script>
-<!-- Bootstrap table -->
-<script src="<?=STATIC_URL?>js/bootstrap-table/bootstrap-table.min.js"></script>
-<script src="<?=STATIC_URL?>js/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<?=\helpers\AppAsset::run_javascript_end()?>
 </html>

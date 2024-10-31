@@ -9,10 +9,12 @@ namespace helpers;
 //set_error_handler(array('helpers\Handler','error_handler'));
 //set_exception_handler('_exception_handler');
 //register_shutdown_function(array('helpers\Handler','shutdown_handler'));
+use base\Event;
+
 class Handler {
-    const LOG_PATH = '/log/error_log.log';
-    const LAST_ERROR_lOG = '/log/last_error.html';
-    public static $levels = array(
+    const LOG_PATH = WEB_PATH.'/log/error_log.log';
+    const LAST_ERROR_lOG = WEB_PATH.'/log/last_error.html';
+    public $levels = array(
         E_ERROR  			=>	'Error',
         E_WARNING			=>	'Warning',
         E_PARSE				=>	'Parsing Error',
@@ -27,6 +29,11 @@ class Handler {
         E_STRICT			=>	'Runtime Notice'
     );
 
+    public function register(){
+        set_error_handler(array($this,'error_handler'),E_ALL);
+        set_exception_handler(array($this,'exception_handler'));
+        register_shutdown_function(array($this,'shutdown_handler'));
+    }
     /**
      * 错误处理函数
      * @param $errno
@@ -35,47 +42,44 @@ class Handler {
      * @param string $errline
      * @param array $errcontext
      */
-    public static function error_handler($errno,$errstr,$errfile='',$errline='',$errcontext=array()){
-        self::mk_log_dir();
-        $errcode = self::$levels[$errno];
+    public  function error_handler($errno,$errstr,$errfile='',$errline='',$errcontext=array()){
+        $time = date("Y-m-d H:i:s");
+        $errcode = $this->levels[$errno];
         $log_message = "错误代码:[%s],错误信息:[%s],文件:[%s],行号:[%d],地址:[%s],来源:[%s]";
         $url     = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         $referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
 
-        $log_message_format = sprintf($log_message,$errcode,$errstr,$errfile,$errline,$url,$referer);
-        error_log($log_message_format.PHP_EOL,3,WEB_PATH.self::LOG_PATH);
+        $log_message_format = $time."|".sprintf($log_message,$errcode,$errstr,$errfile,$errline,$url,$referer);
+
+        Event::$subject->set_data($log_message_format);
+        Event::trigger();
+       // error_log($log_message_format.PHP_EOL,3,WEB_PATH.self::LOG_PATH);
     }
 
     /**
      *php错误邮件告警
      */
-    public static function shutdown_handler(){
-        self::mk_log_dir();
+    public  function shutdown_handler(){
         $last_error = error_get_last();
-        if (isset($last_error['type']) && ($last_error['type'] & (E_ERROR | E_PARSE | E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_COMPILE_WARNING)))
+        if (isset($last_error['type']))
         {
             $time = date("Y-m-d H:i:s");
             $email_msg = 'PHP Fatal Error '.$time;
             $email_content[] = "File:".$_SERVER['PHP_SELF'];
             $email_content[] = "Url:http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-            $email_content[] = "Error:".var_export($last_error, true);
+            $email_content[] = "Error:".print_r($last_error, true);
             $email_content[] = "Server_IP:".$_SERVER["SERVER_ADDR"];
             $email_content[] = "User_IP:".$_SERVER['REMOTE_ADDR'];
             $email_content[] = "Time:".$time;
-            $email_content_msg = "<pre>".$email_msg."<br/>".implode("<br/>",$email_content);
-            error_log($email_content_msg."<hr>",3,WEB_PATH.self::LAST_ERROR_lOG);
+            $email_content[] = "Request: ".print_r($GLOBALS,true);
+            $email_content_msg = "<pre>".$email_msg.PHP_EOL.implode(PHP_EOL,$email_content);
+            Event::$subject->set_data($email_content_msg);
+            Event::trigger();
         }
     }
 
-    public  function _exception_handler(\Exception $exception) {
-        echo( json_encode( array('status' =>$exception->getCode(),'msg'  =>$exception->getMessage()) ));
+    public function exception_handler($exception) {
+        echo( json_encode( array('status' =>$exception->getCode(),'msg'  =>$exception->getMessage()),JSON_UNESCAPED_UNICODE));
     }
-
-    public static function mk_log_dir(){
-        if(!is_dir(WEB_PATH.'/log')){
-            mkdir(WEB_PATH.'/log',0755,true);
-        }
-    }
-
 
 }

@@ -41,7 +41,6 @@ class  User extends \base\BaseController{
     public function welcome(){
         $data = $this->get_search_where();
         $data['admin_url'] = '/admin/user/welcome?iframe=1';
-
         $this->view->assign('data',$data);
         if(isset($_GET['iframe']) && $_GET['iframe']==1){
             $this->view->display('admin/user/welcome');
