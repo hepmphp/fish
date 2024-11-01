@@ -49,19 +49,24 @@
      **/
     var treeTable = $('#demo').bootstrapTreeTable({
         toolbar: "#demo-toolbar",    //顶部工具条
-        expandColumn: 1,            // 在哪一列上面显示展开按钮
+        expandColumn: 0,            // 在哪一列上面显示展开按钮
        // height: 500,
         parentId : "parentid",
         data:data,
         columns: [{
-            checkbox: true
-        },{
             title: '菜单名称',
             field: 'name',
             width: '150',
             align: "center",
             formatter: function(value,row, index) {
-                 var menu_tips = '<span class="label btn-success">'+row.level+'级菜单</span><span>'+value+'</span>';
+                var menu_tips = '';
+                if(row.level==0){// label-primary
+                    menu_tips = menu_tips+'<span class="label label-primary">'+row.level+'级菜单</span><span>'+value+'</span>';
+                }else if(row.level==1){
+                    menu_tips = menu_tips+'<span class="label label-success">'+row.level+'级菜单</span><span>'+value+'</span>';
+                }else{
+                    menu_tips = menu_tips+'<span class="label label-info">'+row.level+'级菜单</span><span>'+value+'</span>';
+                }
                 return menu_tips;
             }
         },  {

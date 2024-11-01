@@ -128,9 +128,9 @@ class Model
      * @param int $per_page
      * @param int $offset
      */
-    public function get_list($where = array(), $limit = 1, $offset = 100, $fields = '*')
+    public function get_list($where = array(), $limit = 1, $offset = 100, $fields = '*',$order_by='id asc')
     {
-        $sql = $this->sql_query_builder->table($this->table)->field($fields)->where($where)->limit($limit, $offset)->fetch_all();
+        $sql = $this->sql_query_builder->table($this->table)->field($fields)->where($where)->limit($limit, $offset)->order_by($order_by)->fetch_all();
         $this->debug_start($sql);
         $res = $this->db->fetch_all($sql);
         $this->debug_end($res);

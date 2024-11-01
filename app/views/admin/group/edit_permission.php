@@ -60,7 +60,14 @@
             width: '150',
             align: "center",
             formatter: function(value,row, index) {
-                var menu_tips = '<span class="label btn-success">'+row.level+'级菜单</span><span>'+value+'</span>';
+                var menu_tips = '';
+                if(row.level==0){// label-primary
+                    menu_tips = menu_tips+'<span class="label label-primary">'+row.level+'级菜单</span><span>'+value+'</span>';
+                }else if(row.level==1){
+                    menu_tips = menu_tips+'<span class="label label-success">'+row.level+'级菜单</span><span>'+value+'</span>';
+                }else{
+                    menu_tips = menu_tips+'<span class="label label-info">'+row.level+'级菜单</span><span>'+value+'</span>';
+                }
                 return menu_tips;
             }
         },  {

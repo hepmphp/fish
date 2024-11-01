@@ -165,7 +165,7 @@ class AdminMenu extends Model
         if(isset($data['id'])){
             unset($data['id']);
         }
-        $menu_parent = $this->find(['parentid'=>$data['parentid']]);
+        $menu_parent = $this->find(['id'=>$data['parentid']]);
         $data['level'] = isset($menu_parent['level'])?$menu_parent['level']+1:0;
         $res = $this->insert($data);
         if($res){
@@ -177,7 +177,7 @@ class AdminMenu extends Model
 
     public function save($data)
     {
-        $menu_parent = $this->find(['parentid'=>$data['parentid']]);
+        $menu_parent = $this->find(['id'=>$data['parentid']]);
         $data['level'] = isset($menu_parent['level'])?$menu_parent['level']+1:0;
         $res = $this->update($data,['id'=>$data['id']]);
         if($res){

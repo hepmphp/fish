@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
-    <title></title>
+    <title>用户组列表</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <!--[if lt IE 9]>
@@ -131,8 +131,7 @@
                     var total_num = data.data.total;
                     $('.pagination-outline').html(multi(total_num, param.per_page, param.page, 100));
                     $(".table").bootstrapTable('resetView');
-                    window.console.clear();
-                    call_debug_log();
+
                 } else {
                     layer.alert(data.msg);
                 }

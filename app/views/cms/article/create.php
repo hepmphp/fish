@@ -100,7 +100,7 @@
     </div>
 </div>
 
-<script src="<?=STATIC_URL?>js/jquery.min.js"></script>
+
 <script src="<?=STATIC_URL?>js/ckeditor5/build/ckeditor.js?<?=rand()?>"></script>
 <script src="<?=STATIC_URL?>js/ckeditor5/build/translations/zh-cn.js"></script>
 <script src="<?=STATIC_URL?>js/ckfinder/ckfinder.js?<?=rand()?>"></script>

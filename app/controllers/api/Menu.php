@@ -49,6 +49,17 @@ class Menu extends \base\BaseController{
         $form['listorder'] = Input::get_post('listorder');
         $form['remark'] = Input::get_post('remark');
         $form['status'] = Input::get_post('status');
+
+        if(!Validate::required($form['name'])){
+            throw  new LogicException(100,'菜单名称不能为空');
+        }
+        if(!Validate::required($form['model'])){
+            throw  new LogicException(100,'菜单控制器不能为空');
+        }
+        if(!Validate::required($form['action'])){
+            throw  new LogicException(100,'菜单方法不能为空');
+        }
+
         $this->admin_menu->create($form);
     }
     public function update(){
@@ -61,6 +72,19 @@ class Menu extends \base\BaseController{
         $form['listorder'] = Input::get_post('listorder');
         $form['remark'] = Input::get_post('remark');
         $form['status'] = Input::get_post('status');
+
+        if(!Validate::required($form['id'])){
+            throw  new LogicException(100,'菜单id不能为空');
+        }
+        if(!Validate::required($form['name'])){
+            throw  new LogicException(100,'菜单名称不能为空');
+        }
+        if(!Validate::required($form['model'])){
+            throw  new LogicException(100,'菜单控制器不能为空');
+        }
+        if(!Validate::required($form['action'])){
+            throw  new LogicException(100,'菜单方法不能为空');
+        }
         $this->admin_menu->save($form);
 
     }

@@ -9,6 +9,6 @@ namespace base\observer;
 class MailObserver implements \SplObserver{
 
     public function update(\SplSubject $subject) :void{
-        mail('306863208@qq.com', 'php_error_log_mail', $subject->get_name()."|".$subject->get_data().PHP_EOL, '', '');
+     //   mail('306863208@qq.com', 'php_error_log_mail', $subject->get_name()."|".$subject->get_data().PHP_EOL, '', '');
     }
 }

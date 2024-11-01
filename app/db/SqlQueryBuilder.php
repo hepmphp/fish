@@ -119,21 +119,17 @@ class SqlQueryBuilder
      */
     public function sql()
     {
-        $sql_tpl = "SELECT %s FROM %s  %s %s";
-        $sql = sprintf($sql_tpl, $this->field_sql,$this->table_sql, $this->where_sql,$this->limit_sql);
+        $sql_tpl = "SELECT %s FROM %s  %s %s %s ";
+        $sql = sprintf($sql_tpl, $this->field_sql,$this->table_sql, $this->where_sql,$this->orderby_sql,$this->limit_sql);
         //group %s having limit xxx
-        if (!empty($this->groupby)) {
-            $sql .= $this->groupby;
+        if (!empty($this->groupby_sql)) {
+            $sql .= $this->groupby_sql;
         }
-        if (!empty($this->order)) {
-            $sql .= $this->order;
-        }
+
         if (!empty($this->having)) {
             $sql .= $this->having;
         }
-        if (!empty($this->limit)) {
-            $sql .= $this->limit;
-        }
+
         //重置sql
         $this->field_sql = null;
         $this->table_sql = null;

@@ -1,0 +1,81 @@
+date/time         : 2024-11-01, 14:29:10, 738ms
+computer name     : DESKTOP-LRTJVB4
+user name         : SYSTEM <admin>
+registered owner  : hepm
+operating system  : Windows NT New x64 build 9200
+system language   : Chinese (Simplified)
+system up time    : 3 hours 7 minutes
+program up time   : 10 seconds
+processors        : 8x Intel(R) Core(TM) i7-6700 CPU @ 3.40GHz
+physical memory   : 15677/24479 MB (free/total)
+free disk space   : (C:) 175.25 GB (F:) 780.81 GB
+display mode      : 1024x768, 32 bit
+process id        : $c68
+allocated memory  : 8.47 MB
+command line      : F:\Users\hepm\AppData\Local\Programs\Visual-NMP-x64\Bin\sendmail\sendmail.exe -t
+executable        : sendmail.exe
+exec. date/time   : 2011-06-18 01:10
+compiled with     : Delphi 2006/07
+madExcept version : 3.0l
+callstack crc     : $205f8196, $ff063535, $ff063535
+exception number  : 1
+exception class   : EInOutError
+exception message : I/O error 105.
+
+main thread ($1bb8):
+004b675c +18a8 sendmail.exe sendmail                       922 +440 initialization
+772d50d1 +0021 ntdll.dll                                            KiUserExceptionDispatcher
+0040474d +001d sendmail.exe System                         262   +0 @AfterConstruction
+00444a9f +0063 sendmail.exe IdIOHandlerSocket              335  +13 TIdIOHandlerSocket.Open
+00465637 +0007 sendmail.exe IdSSLOpenSSL                  2122   +1 TIdSSLIOHandlerSocketOpenSSL.Open
+0044157d +0235 sendmail.exe IdTCPClient                    318  +53 TIdTCPClientCustom.Connect
+00445cc8 +00a4 sendmail.exe IdExplicitTLSClientServerBase  257  +23 TIdExplicitTLSClient.Connect
+0045ab7b +0017 sendmail.exe IdSMTP                         373   +2 TIdSMTP.Connect
+004b5f14 +1060 sendmail.exe sendmail                       808 +326 initialization
+763bfcc7 +0017 KERNEL32.DLL                                         BaseThreadInitThunk
+
+thread $9f0:
+763bfcc7 +17 KERNEL32.DLL  BaseThreadInitThunk
+
+thread $1b34:
+763bfcc7 +17 KERNEL32.DLL  BaseThreadInitThunk
+
+thread $2b6c:
+763bfcc7 +17 KERNEL32.DLL  BaseThreadInitThunk
+
+stack dump:
+0019f5b8  5c 67 4b 00 de fa ed 0e - 01 00 00 00 07 00 00 00  \gK.............
+0019f5c8  cc f5 19 00 5c 67 4b 00 - 70 ca 0c 01 5c 67 4b 00  ....\gK.p...\gK.
+0019f5d8  5c 67 4b 00 f0 fd 19 00 - 70 ff 19 00 e8 f5 19 00  \gK.....p.......
+0019f5e8  00 00 00 00 64 30 40 00 - 00 00 00 00 10 51 0c 01  ....d0@......Q..
+0019f5f8  5c 67 4b 00 00 00 00 00 - 47 fa 41 00 10 51 0c 01  \gK.....G.A..Q..
+0019f608  20 f7 19 00 34 f6 19 00 - 40 f6 19 00 00 00 00 00  ....4...@.......
+0019f618  00 00 00 00 00 00 00 00 - b2 8a 2e 77 20 f7 19 00  ...........w....
+0019f628  f0 fd 19 00 70 f7 19 00 - ac f6 19 00 84 fd 19 00  ....p...........
+0019f638  d0 8a 2e 77 f0 fd 19 00 - 08 f7 19 00 84 8a 2e 77  ...w...........w
+0019f648  20 f7 19 00 f0 fd 19 00 - 70 f7 19 00 ac f6 19 00  ........p.......
+0019f658  1c 67 4b 00 f0 fd 19 00 - 20 f7 19 00 00 00 00 00  .gK.............
+0019f668  ef 92 2c 77 20 f7 19 00 - f0 fd 19 00 70 f7 19 00  ..,w........p...
+0019f678  ac f6 19 00 1c 67 4b 00 - 44 fd 19 00 08 b1 0d 01  .....gK.D.......
+0019f688  20 f7 19 00 9d b6 8a 00 - 70 f7 19 00 f0 fd 19 00  ........p.......
+0019f698  32 00 00 00 00 c0 19 00 - 00 00 1a 00 00 00 00 00  2...............
+0019f6a8  00 00 00 00 02 00 00 02 - e0 f8 19 00 0a 00 00 0a  ................
+0019f6b8  00 00 00 00 e1 02 00 e3 - 6c f8 19 00 02 00 00 02  ........l.......
+0019f6c8  ab 8c 2a 77 02 00 00 02 - 00 00 5d 00 e1 02 00 e3  ..*w......].....
+0019f6d8  08 f9 19 00 02 00 00 02 - f0 7f 83 76 02 00 00 02  ...........v....
+0019f6e8  f0 80 83 76 e1 02 00 e3 - 30 55 83 76 18 00 00 18  ...v....0U.v....
+
+disassembling:
+[...]
+004b6742       mov     edx, [ebp-$15c]
+004b6748       mov     eax, [$4bd968]
+004b674d       call    -$b0c2a ($405b28)      ; System.@Write0LString
+004b6752       call    -$b297b ($403ddc)      ; System.@WriteLn
+004b6757       call    -$b36bc ($4030a0)      ; System.@_IOTest
+004b675c 922 > mov     eax, [ebx+4]
+004b675f       call    -$3b3c ($4b2c28)       ; sendmail.errorLog
+004b6764 924   call    -$b1a55 ($404d14)      ; System.@RaiseAgain
+004b6769       call    -$b1a06 ($404d68)      ; System.@DoneExcept
+004b676e 931   xor     eax, eax
+004b6770       pop     edx
+[...]

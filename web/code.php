@@ -1,5 +1,5 @@
 <?php
-namespace helpers;
+
 class VerifyCode{
     public function check($code)
     {
@@ -10,15 +10,15 @@ class VerifyCode{
             return false;
         }
         // session 过期
-        if (time() - $_SESSION['verify_time'] > 60) {
+        if (time() - $_SESSION['verify_time'] > 120) {
             unset($_SESSION['verify_code']);
             unset($_SESSION['verify_time']);
             return false;
         }
         if (strtoupper($code) == $_SESSION['verify_code']) {
-            unset($_SESSION['verify_code']);
-            unset($_SESSION['verify_time']);
-            return true;
+                unset($_SESSION['verify_code']);
+                unset($_SESSION['verify_time']);
+                return true;
         }
         return false;
     }
@@ -26,16 +26,10 @@ class VerifyCode{
         // 生成随机数和运算符
         $num1 = rand(1, 10);
         $num2 = rand(1, 10);
-        $operators = ['+', '-','*'];
+        $operators = ['+', '-'];
         $operator = $operators[array_rand($operators)];
         // 计算结果
-        if($operator=='+'){
-            $captcha_result = $num1+$num2;
-        }elseif($operator=='-'){
-            $captcha_result = $num1-$num2;
-        }elseif ($operator=='*'){
-            $captcha_result = $num1*$num2;
-        }
+        $captcha_result = ($operator == '+') ? ($num1 + $num2) : ($num1 - $num2);
         // 生成验证码字符串
         $captcha_text = "$num1 $operator $num2 = ?";
         // 存储验证码结果
@@ -58,7 +52,7 @@ class VerifyCode{
         }
         // 添加文本
         $font_size = 14;
-        $font = WEB_PATH . '/../vendor/plugin/verifycode/arial.ttf'; // 确保你有这个字体文件，或者使用其他路径
+        $font = __DIR__ . '/../vendor/plugin/verifycode/arial.ttf'; // 确保你有这个字体文件，或者使用其他路径
         imagettftext($image, $font_size, 0, 10, 30, $black, $font, $captcha_text);
         // 输出图片
         header('Content-type: image/png');

@@ -37,7 +37,7 @@
             </div>
             <div class="form-group yzm-item" >
                 <input type="text" id="code" name="code" class="form-control" placeholder="输入图片验证码" style="width: 190px" required="">
-                <span class="form-explain"><img src="/api/captcha/get" class="yzm-img"></span>
+                <span class="form-explain"><img src="/api/captcha/get" style="margin-left: 75px;" class="yzm-img"></span>
             </div>
             <button type="button" class="btn btn-info block full-width m-b" onclick="do_login()">登 录</button>
 

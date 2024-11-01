@@ -12,20 +12,13 @@ use helpers\VerifyCode;
 
 class Captcha extends BaseController
 {
-    public function index(){
 
-    }
 
     public function get(){
 
         $captcha = new VerifyCode();
-        $captcha->entry();
+        $captcha->image();
     }
-
-    public function verify(){
-
-    }
-
 
 
 }

@@ -182,7 +182,7 @@
                 $('.pagination-outline').html(multi(total_num, param.per_page, param.page, 100));
                 $(".table").bootstrapTable('resetView');
                 // window.console.clear();
-                call_debug_log();
+
             } else {
                 layer.alert(data.msg);
             }

@@ -11,7 +11,6 @@ class AppAsset{
         'js/jquery.min.js',
         'js/jquery.cookie.js',
         'js/page.js',
-        'js/debug.js',
         'js/bootstrap.min.js',
         'js/date/moment.min.js',#<!--日期-->
         'js/date/jquery.daterangepicker.js',

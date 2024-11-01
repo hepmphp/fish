@@ -27,18 +27,18 @@
 
 
 </style>
-<ul class="layui-fixbar"><a id="debug_tool" class="layui-icon layui-fixbar-top" lay-type="top" style="display:none">debug</a></ul>
+<ul class="layui-fixbar"><a id="debug_tool" class="layui-icon layui-fixbar-top" lay-type="top" style="display:block">debug</a></ul>
 
 <?php
 $url = 'http://127.0.0.1:2222/tool/log.php?&file_name=debug/'.date("Y/m/d").'/debug.log';
 ?>
 <script>
-    $('html').on('contextmenu', function(e) {
-        e.preventDefault(); // 阻止默认的右键点击菜单
-        // 你可以在这里添加你的逻辑
-        $('#debug_tool').show();
-        $('#debug_tool').trigger('click');
-    });
+    // $('html').on('contextmenu', function(e) {
+    //     e.preventDefault(); // 阻止默认的右键点击菜单
+    //     // 你可以在这里添加你的逻辑
+    //     $('#debug_tool').show();
+    //     $('#debug_tool').trigger('click');
+    // });
 
     $('#debug_tool').click(function (){
         layer.open({

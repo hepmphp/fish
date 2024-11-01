@@ -45,7 +45,7 @@ class  User extends \base\BaseController{
         if(isset($_GET['iframe']) && $_GET['iframe']==1){
             $this->view->display('admin/user/welcome');
         }else{
-           $this->view->display('admin/user/index');
+           $this->view->display('admin/user/admin_iframe');
         }
     }
 
@@ -54,9 +54,9 @@ class  User extends \base\BaseController{
         $data['admin_url'] = '/admin/user/get_list?iframe=1';
         $this->view->assign('data',$data);
         if(isset($_GET['iframe']) && $_GET['iframe']==1){
-            $this->view->display('admin/user/user_list');
-        }else{
             $this->view->display('admin/user/index');
+        }else{
+            $this->view->display('admin/user/admin_iframe');
         }
     }
 

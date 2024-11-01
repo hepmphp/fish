@@ -28,12 +28,6 @@ class ArticleCategory extends BaseController{
         return $where;
     }
 
-    public function index(){
-        $this->view->display('cms/article_category/index');
-    }
-
-
-
     public function create(){
         $form['parentid'] = Input::get_post('parentid');
         $form['name'] = Input::get_post('name');

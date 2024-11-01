@@ -16,8 +16,7 @@ use models\curd\AdminUser;
 
 class SessionMiddleware{
     public function handle($handler,$next){
-
-        if($_SERVER['PATH_INFO']=='/api/captcha/get'){
+        if($_SERVER['PATH_INFO']=='/api/captcha/get'||$_SERVER['PATH_INFO']=='/favicon.ico'){
             return $next($handler);
             exit();
         }
