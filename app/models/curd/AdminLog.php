@@ -11,7 +11,7 @@ use base\Model;
 
 class AdminLog extends Model
 {
-    public  $table='ga_admin_log';
+    public  $table='admin_log';
     public  $db_prefix='';
 
     public function __construct()

@@ -1,0 +1,42 @@
+.container_list {
+	width: 1400px;
+	padding: 0;
+	margin: 0 auto;
+	border: 1px dotted #007aff ;
+}
+.position{
+	margin-left: 10px;
+	border-bottom: 1px solid black;
+}
+.m-t {
+	margin-top: 15px !important;
+}
+.article-list{
+	margin-left: 15px;
+}
+.list-unstyled {
+	padding-left: 0;
+	list-style: none;
+}
+.article-list li {
+	border-bottom: 1px solid #f2f6f8;
+	overflow: hidden;
+	line-height: 42px;
+}
+
+.article-list h3 {
+	font-weight: normal;
+	margin: 0;
+}
+
+.article-list .title {
+	font-size: 14px !important;
+	color: #333;
+	display: inline;
+}
+
+.article-list .time {
+	width: 10em;
+	float: right;
+	color: #888;
+}

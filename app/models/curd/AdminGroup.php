@@ -13,7 +13,7 @@ use helpers\Unique;
 
 class AdminGroup extends Model
 {
-    public  $table='ga_admin_group';
+    public  $table='admin_group';
     public  $db_prefix='';
 
     public function __construct()

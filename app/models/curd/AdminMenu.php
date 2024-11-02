@@ -13,7 +13,7 @@ use helpers\Tree;
 
 class AdminMenu extends Model
 {
-    public  $table='ga_admin_menu';
+    public  $table='admin_menu';
     public  $db_prefix='';
 
     public function __construct()

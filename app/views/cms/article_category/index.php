@@ -46,6 +46,7 @@
         <table  data-toggle="table" class="table-item table">
             <thead>
             <tr>
+                <th>层级</th>
                 <th>分类id</th>
                 <th>父类id</th>
                 <th>分类名</th>
@@ -57,6 +58,7 @@
             </thead>
             <tbody>
             <tr>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
@@ -97,7 +99,7 @@
    ajax_list(param);
     function ajax_list(param) {
         layer.load(2);
-        var template = '<tr><td >[id]</td><td >[parentid]</td><td >[name]</td>' +
+        var template = '<tr><td>[level]</td><td >[id]</td><td >[parentid]</td><td >[name]</td>' +
             '<td>[description]</td>' +
             '<td>[addtime_name]</td>' +
             '<td>[status_name]</td>' +
@@ -109,6 +111,7 @@
             if (data.status == 0) {
                 $.each(data.data.list, function (i, d) {
                     list_html += template.replace(/\[id\]/g, d.id).
+                    replace('[level]', d.level).
                     replace('[parentid]', d.parentid).
                     replace('[name]', d.name).
                     replace('[status_name]', d.status_name).

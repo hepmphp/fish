@@ -5810,7 +5810,7 @@ fieldset[disabled] .navbar-inverse .btn-link:hover {
     font-weight: 700;
     line-height: 1;
     color: #fff;
-    text-align: center;
+    text-align: left;
     white-space: nowrap;
     vertical-align: baseline;
     border-radius: .25em

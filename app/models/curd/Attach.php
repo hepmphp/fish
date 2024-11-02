@@ -11,6 +11,7 @@ use base\Model;
 
 class Attach extends Model
 {
+    public $db ='cms';
     public  $table='cms_attach';
     public  $db_prefix='';
 

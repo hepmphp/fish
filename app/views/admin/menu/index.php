@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="<?= STATIC_URL ?>js/bootstrap-treetable/libs/v3/bootstrap.min.css" type="text/css"/>
     <link rel="stylesheet" href="<?= STATIC_URL ?>js/bootstrap-treetable/bootstrap-treetable.css" type="text/css"/>
 </head>
+<style>
+    .bootstrap-tree-table .treetable-box .treetable-tbody .treetable-selected, .bootstrap-tree-table .treetable-box .treetable-tbody .treetable-hover {
+        background: #1278f6;
+    }
+</style>
 <body>
 <div id="demo-toolbar" class="btn-group" role="group" aria-label="...">
     <button id="expandAllBtn" type="button" class="btn btn-default">展开/折叠 所有</button>
@@ -141,9 +146,6 @@
         },
         onLoadSuccess: function (data) {
            // console.log("onLoadSuccess");
-            $.each(admin_info_mids,function (i,v){
-                $("input[name='select_item']").attr("checked", true);
-            });
             return false;
         },
         onLoadError: function (status) {

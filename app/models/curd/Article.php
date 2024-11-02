@@ -14,6 +14,7 @@ use models\curd\ArticleCategory;
 
 class Article extends Model
 {
+    public  $db ='cms';
     public  $table='cms_article';
     public  $db_prefix='';
 

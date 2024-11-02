@@ -26,11 +26,13 @@ class Url
         foreach($routers as $rule=>$route){
             //默认没有路由的情况解析
             $parse_route = parse_url($_SERVER['REQUEST_URI']);
+
             $_SERVER['PATH_INFO'] = $parse_route['path'];
             if(isset($parse_route['query'])){
                 $_SERVER['QUERY_STRING'] = $parse_route['query'];
                 parse_str($parse_route['query'],$_GET);//解析路由配置参数填充到$_GET参数
                 parse_str($parse_route['query'],$_REQUEST);//解析路由配置参数填充到$_REQUEST
+
                 break;
             }
             // Convert wild-cards to RegEx

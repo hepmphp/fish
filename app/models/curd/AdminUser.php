@@ -15,7 +15,7 @@ use helpers\Unique;
 
 class AdminUser extends Model
 {
-    public  $table='ga_admin_user';
+    public  $table='admin_user';
     public  $db_prefix='';
 
     public  $admin_group='';

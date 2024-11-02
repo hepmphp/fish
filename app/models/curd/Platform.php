@@ -11,7 +11,7 @@ use base\Model;
 
 class Platform extends Model
 {
-    public  $table='ga_platform';
+    public  $table='platform';
     public  $db_prefix='';
 
     public function __construct()

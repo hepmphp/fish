@@ -12,7 +12,7 @@ use helpers\Debuger;
 
 class Model
 {
-    public $db;
+    public $db='master';
     public $table = '';
     public $db_prefix = '';
     public $pkey = 'id';
@@ -27,7 +27,7 @@ class Model
 
     public function __construct()
     {
-        $this->db = App::get_db();
+        $this->db = App::get_db($this->db);
         $this->sql_query_builder = new SqlQueryBuilder();
     }
 

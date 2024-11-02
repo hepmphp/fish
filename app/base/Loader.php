@@ -10,6 +10,8 @@ class Loader
 {
     static function autoload($class){
         $class_path = APP_PATH.'./'.str_replace('\\','/',$class).'.php';
-        include_once $class_path;
+        if(file_exists($class_path)){
+            include_once $class_path;
+        }
     }
 }

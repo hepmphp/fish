@@ -22,8 +22,11 @@ class Config implements \ArrayAccess
         if (empty($this->configs[$key]))
         {
             $file_path = $this->path.'/'.$key.'.php';
-            $config = require_once $file_path;
-            $this->configs[$key] = $config;
+            if(file_exists($file_path)){
+                $config = require_once $file_path;
+                $this->configs[$key] = $config;
+            }
+
         }
         return $this->configs[$key];
     }
