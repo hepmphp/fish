@@ -50,7 +50,7 @@ class Article extends \base\BaseController{
         $form['title'] = Input::get_post('title');
         $form['keywords'] = Input::get_post('keywords');
         $form['description'] = Input::get_post('description');
-        $form['content'] = Input::get_post('content');
+        $form['content'] = Input::get_post('content','','htmlentities');
         $form['is_top'] = Input::get_post('is_top');
         $form['list_image_url'] = Input::get_post('list_image_url');
         $form['status'] = Input::get_post('status');
@@ -74,7 +74,7 @@ class Article extends \base\BaseController{
         $form['title'] = Input::get_post('title');
         $form['keywords'] = Input::get_post('keywords');
         $form['description'] = Input::get_post('description');
-        $form['content'] = Input::get_post('content');
+        $form['content'] = Input::get_post('content','','htmlentities');
         $form['is_top'] = Input::get_post('is_top');
         $form['list_image_url'] = Input::get_post('list_image_url');
         $form['status'] = Input::get_post('status');

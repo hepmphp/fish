@@ -2,7 +2,7 @@
 	width: 1400px;
 	padding: 0;
 	margin: 0 auto;
-	border: 1px dotted #007aff ;
+	border: 1px dotted #9c130a ;
 }
 .position{
 	margin-left: 10px;
@@ -39,4 +39,5 @@
 	width: 10em;
 	float: right;
 	color: #888;
+	margin-right: 10px;
 }

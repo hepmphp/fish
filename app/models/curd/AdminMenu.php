@@ -9,6 +9,7 @@
 namespace models\curd;
 use base\exception\LogicException;
 use base\Model;
+use helpers\Arr;
 use helpers\Tree;
 
 class AdminMenu extends Model
@@ -32,38 +33,59 @@ class AdminMenu extends Model
         return $menu;
     }
 
-    public function get_left_menu($ids){
+    public function get_left_menu($cate){
         $where = " level in(1,2) and (action='index' OR action='welcome') ";
-        if(!empty($ids) && is_array($ids)){
-            $where = $where." and id in(".implode(',',$ids).")";
-        }
         $limit =1;
         $offset=100;
         $fields ='*';
         $menu = $this->get_list($where,$limit,$offset,$fields);
         $data  = array();
         $children = array();
+
+        $admin = [
+            'admin/menu',
+            'admin/user',
+            'admin/group'
+        ];
+
+        $cms = [
+            'cms/article',
+            'cms/article_category',
+            'cms/friend',
+            'cms/tag',
+            'cms/banner'
+
+        ];
+
         foreach ($menu as $k=>$v){
-            if($v['level']==2){
-                $children[] =array(
-                    'name'=>$v['name'],
-                    'id'=>$v['id'],
-                    'parentid'=>$v['parentid'],
-                    'level'=>'level',
-                    'model'=>$v['model'],
-                    'action'=>$v['action']
-                );
-            }else{
-                $data[] = array(
-                    'name'=>$v['name'],
-                    'id'=>$v['id'],
-                    'parentid'=>$v['parentid'],
-                    'level'=>'level',
-                    'model'=>$v['model'],
-                    'action'=>$v['action']
-                );
-            }
+                if($cate=='admin' && !in_array($v['model'],$admin)){
+                    continue;
+                }
+                if($cate=='cms' && !in_array($v['model'],$cms)){
+                    continue;
+                }
+
+                if($v['level']==2){
+                    $children[] =array(
+                        'name'=>$v['name'],
+                        'id'=>$v['id'],
+                        'parentid'=>$v['parentid'],
+                        'level'=>'level',
+                        'model'=>$v['model'],
+                        'action'=>$v['action']
+                    );
+                }else{
+                    $data[] = array(
+                        'name'=>$v['name'],
+                        'id'=>$v['id'],
+                        'parentid'=>$v['parentid'],
+                        'level'=>'level',
+                        'model'=>$v['model'],
+                        'action'=>$v['action']
+                    );
+                }
         }
+
         return [$data,$children];
     }
 
@@ -167,6 +189,7 @@ class AdminMenu extends Model
         }
         $menu_parent = $this->find(['id'=>$data['parentid']]);
         $data['level'] = isset($menu_parent['level'])?$menu_parent['level']+1:0;
+        $data['top_menu_id'] = $menu_parent['parentid'];
         $res = $this->insert($data);
         if($res){
             throw new LogicException(0,'菜单添加成功');
@@ -179,6 +202,7 @@ class AdminMenu extends Model
     {
         $menu_parent = $this->find(['id'=>$data['parentid']]);
         $data['level'] = isset($menu_parent['level'])?$menu_parent['level']+1:0;
+        $data['top_menu_id'] = $menu_parent['parentid'];
         $res = $this->update($data,['id'=>$data['id']]);
         if($res){
             throw new LogicException(0,'菜单修改成功');

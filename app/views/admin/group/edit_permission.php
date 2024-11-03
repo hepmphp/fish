@@ -150,8 +150,13 @@
             console.log("onLoadSuccess");
             $.each(admin_info_mids,function (i,v){
                 $("input[name='select_item'][value="+v+"]").attr("checked", true);
-                $("input[name='select_item'][value="+v+"]").click();
+
             });
+            $.each($("input[name='select_item']:checked"),function (i,v) {
+                $(this).parent().parent().addClass('treetable-selected');
+                $(this).parent().parent().parent().addClass('treetable-selected');
+            })
+          //  $("input[name='select_item'][value="+v+"]").click();
             return false;
         },
         onLoadError: function (status) {
@@ -167,7 +172,10 @@
             return false;
         },
         onClickRow: function (row, $element) {
+            $("input[name='select_item'][value="+row.id+"]").attr("checked", true);
             $("input[name='select_item'][value="+row.parentid+"]").attr("checked", true);
+            $(this).parent().parent().addClass('treetable-selected');
+            $(this).parent().parent().parent().addClass('treetable-selected');
             return false;
         },
         onDblClickRow: function (row, $element) {
@@ -287,6 +295,7 @@
     function check_all(){
         $.each( $("input[name='select_item']"),function (i,v){
             $(this).prop({checked:true});
+
         });
     }
     function un_check_all(){

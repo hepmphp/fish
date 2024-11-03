@@ -40,11 +40,13 @@ class AdminUser extends Model
     public function create($data){
         $salt = Unique::gen_random_string();
         $password = $this->genrate_password($data['password'],$salt);
+        $group = $this->admin_group->info(['id'=>$data['group_id']]);
+
         $data['salt'] = $salt;
         $data['realname'] = $data['username'];
         $data['password'] = $password;
         $data['create_time'] = time();
-        $data['mids'] = '1';
+        $data['mids'] = $group['mids'];
         $user_exits = $this->find(['username'=>$data['username']]);
         if($user_exits){
             throw  new  LogicException(-2,'管理员已经存在');
@@ -126,7 +128,6 @@ class AdminUser extends Model
 //        $_SESSION['admin_user.platform_id'] = $user['platform_id'];
         $_SESSION['admin_user_group_id'] = $user['group_id'];
         $_SESSION['admin_user_allow_mutil_login'] = isset($group['allow_mutil_login'])?$group['allow_mutil_login']:0;//是否启用账号踢出功能
-
         Cookie::set('admin_cookie',"{$_SESSION['admin_user_id']}|{$_SESSION['admin_user_session_id']}|{$_SESSION['admin_user_username']}|{$_SESSION['admin_user_group_id']}|{$_SESSION['admin_user_allow_mutil_login']}");
         unset($user['id']);
         $res = $this->update($user,['username'=>$data['username']],1);

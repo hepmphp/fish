@@ -81,16 +81,26 @@ class CmsApp
             });
     }
 
-    public function dispatch(){
+    public function dispatch()
+    {
         $url = new Url(self::$config['routers']);
 
         $url->parse_routes();//路由解析
         $path_info = $url->parse_path_info();
 
         $path_info = array_values(array_filter($path_info));
+        foreach ($path_info as $k => $p) {
+            if (strpos($p, '.php') !== -1) {
+                $path_info[$k] = str_replace('.php', '', $p);
+            }
+        }
+
         $path = '';
         $class_method = '';
-        if(count($path_info)==3){
+        if (count($path_info)==4){
+            list($path_index,$path_detail,$class,$class_method) = $path_info;
+            $path = $path_detail;
+        }else if(count($path_info)==3){
             list($path,$class,$class_method) = $path_info;
         }else if(count($path_info)==2){
             list($class,$class_method) = $path_info;
@@ -109,7 +119,9 @@ class CmsApp
             }
             $class = "\\cms\\controllers\\{$path}\\".$class;
         }
+
         $dir_file = WEB_PATH."\\..".$class.'.php';
+
         if(file_exists($dir_file)){
             $this->path = $path;
             $controller = new $class;

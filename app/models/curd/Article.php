@@ -28,9 +28,16 @@ class Article extends Model
     }
 
 
-    public function create($data){
-        $data['addtime'] = time();
-        $res = $this->insert($data);
+    public function create($form){
+        $form['addtime'] = time();
+        $cate_parent = $this->article_category->find_all(['parentid'=>$form['cate_id']],1,300);
+
+        if(!empty($cate_parent)){
+            $cate_parent = Arr::getColumn($cate_parent,'id');
+            $form['cate_bids'] = implode(',',$cate_parent);
+
+        }
+        $res = $this->insert($form);
         if($res){
             throw new LogicException(0,'文章添加成功');
         }else{
@@ -38,9 +45,16 @@ class Article extends Model
         }
     }
 
-    public function save($data)
+    public function save($form)
     {
-        $res = $this->update($data,['id'=>$data['id']],1);
+        $cate_parent = $this->article_category->find_all(['parentid'=>$form['cate_id']],1,300);
+        if(!empty($cate_parent)){
+            $cate_parent = Arr::getColumn($cate_parent,'id');
+            $form['cate_bids'] = implode(',',$cate_parent);
+
+        }
+        $form['update_time'] = time();
+        $res = $this->update($form,['id'=>$form['id']],1);
         if($res){
             throw new LogicException(0,'文章保存成功');
         }else{

@@ -28,10 +28,12 @@ class Catelist extends CmsController{
     public function index(){
         $data = [];
         $where = $this->get_search_where();
-        $where['cate_id'] = Input::get_post( 'id');
-        $page = Input::get_post('page');
-        $per_page = Input::get_post('per_page',100);
+        $where['cate_id'] = Input::get_post( 'id','0','intval');
+        $page = Input::get_post('page','1','intval');
+        $per_page = Input::get_post('per_page',20,'intval');
+
         list($res,$total) = $this->article->get_list_info($where,$page,$per_page,'id,cate_id,title,addtime');
+
         $data['list'] = $res;
         $data['total'] = $total;
         $data['page'] =$page;

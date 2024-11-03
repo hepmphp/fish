@@ -35,6 +35,18 @@
             </div>
         </div>
         <div class="form-group">
+            <label class="col-sm-1 control-label" for="title">标题</label>
+            <div class="col-sm-4">
+                <input id="media" name="media" type="text" value="<?=$form['media']?>" placeholder="来源" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-1 control-label" for="title">作者</label>
+            <div class="col-sm-4">
+                <input id="author" name="author" type="text" value="<?=$form['author']?>" placeholder="作者" class="form-control input-md">
+            </div>
+        </div>
+        <div class="form-group">
             <label class="col-sm-1 control-label" for="tag_ids">标签id  </label>
             <div class="col-sm-4">
                 <input id="tag_ids" name="tag_ids" type="text" value="<?=$form['tag_ids']?>" placeholder="标签id  " class="form-control input-md">
@@ -93,7 +105,9 @@
             <label class="col-sm-1 control-label">内容：</label>
             <div class="col-sm-11">
                 <div id="content" name="content">
-                    <?=$form['content']?>
+
+                    <?=htmlspecialchars_decode($form['content'])?>
+
                 </div>
             </div>
         </div>

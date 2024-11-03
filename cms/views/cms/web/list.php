@@ -4,41 +4,51 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>中华人民共和国国防部</title>
-    <link rel="stylesheet" href='<?=STATIC_URL?>/css/styles.css?v=1.0.9'>
-    <link rel="stylesheet" href='<?=STATIC_URL?>/css/list.css'>
+    <title>网站</title>
+    <link rel="stylesheet" href='<?=STATIC_URL?>css/styles.css'>
+    <link rel="stylesheet" href='<?=STATIC_URL?>css/list.css'>
+    <link rel="stylesheet" href='<?=STATIC_URL?>css/page.css'>
+    <script src="<?=STATIC_URL?>js/jquery.min.js"></script>
+    <script src="<?=STATIC_URL?>js/page.js"></script>
+
 </head>
 <body>
 <?php include CMS_PATH.'views/cms/common/header.php';?>
 
-<div class="container_list m-t">
+<div class="container_list m-t ">
     <div class="main-section">
         <p class="position">
             <!--当前位置-->
             <!--begin 863023-0-5-->
             <!--end 863023-0-5-->
-            <a href=" http://www.mod.gov.cn/gfbw/jsxd/index.html" target="_blank" class="">军事行动</a><font class="">/</font>
-            <a href=" http://www.mod.gov.cn/gfbw/jsxd/fk/index.html" target="_blank" class="">反恐</a><font class="">/</font>
+            <a href="<?=\cms\helpers\Uri::list_href($data['list'][0]['cate_id'])?>" class=""><?=$data['list'][0]['cate_name']?>></a>
             列表
         </p>
         <ul class="list-unstyled article-list" id="main-news-list">
             <?php foreach ($data['list'] as $k=>$v){?>
             <li>
-                <a href="/cms.php?g=web&m=detail&a=index&id=<?=$v['id']?>">
+                <a href="<?=\cms\helpers\Uri::detail_href($v['id'])?>">
                     <h3>
                         <p class="title">
-                            <?=$v['title']?>
+                            <?=($k+1)?>. <?=$v['title']?>
                         </p>
-                        <small class="time hidden-xs"><?=$v['addtime_name']?></small>
+                        <small class="time"><?=$v['addtime_name']?></small>
                     </h3>
 
                 </a>
             </li>
             <?php }?>
-            <div id="displaypagenum" class="more-page" style="text-align:center"><a href="index.html">首页</a><span class="page">1</span><a href="index_2.html">2</a><a href="index_2.html">下一页</a><a class="next" href="index_2.html">尾页</a></div>
         </ul>
+
     </div>
 
 </div>
+<div class="container">
+    <?=\helpers\PageWidget::run()?>
+</div>
+<script>
+    $('.pagination-outline').html(multi(<?=$data['total']?>, <?=$data['per_page']?>,  <?=$data['page']?>, 100));
+</script>
+<?php include CMS_PATH.'views/cms/common/footer.php';?>
 </body>
 </html>

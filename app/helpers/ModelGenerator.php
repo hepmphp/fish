@@ -17,8 +17,8 @@ class ModelGenerator
             mkdir($this->model_path,0755,true);
         }
     }
-    public function generator_model(){
-        $info_schema = new InfoSchema('game_admin');
+    public function generator_model($database){
+        $info_schema = new InfoSchema($database);
         $sql = $info_schema->get_table();
         $db = App::get_db();
         $data = $db->fetch_all($sql);

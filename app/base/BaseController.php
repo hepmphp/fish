@@ -36,12 +36,23 @@ class BaseController{
                 $admin_menu_where['id'] = $menu_id_arr;
             }
             $top_menu = $this->admin_menu->get_top_menu($admin_menu_where);
-            list($left_menu,$left_menu_child) = $this->admin_menu->get_left_menu($menu_id_arr);
+
+            $top_menu_1 = $this->admin_menu->get_top_menu(['level'=>1]);
+
+            $top_menu_id = array();
+            foreach ($top_menu_1 as $k=>$top){
+                if($_SERVER['PATH_INFO']==('/'.$top['model'].'/'.$top['action'])){
+                    $top_menu_id = $top['parentid'];
+                }
+            }
+            list($left_menu,$left_menu_child) = $this->admin_menu->get_left_menu($this->app->path);
 
             $this->view->assign('top_menu',$top_menu);
             $this->view->assign('left_menu',$left_menu);
             $this->view->assign('left_menu_child',$left_menu_child);
-            $_csrf_token = md5($_SERVER['REQUEST_URI']);
+            $this->view->assign('top_menu_id',$top_menu_id);
+            $_csrf_token = md5('_fish_token');
+
             Cookie::set('_csrf_token',$_csrf_token);
             Session::set('_csrf_token',$_csrf_token);
         }

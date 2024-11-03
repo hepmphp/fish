@@ -31,8 +31,14 @@ class Article extends \base\BaseController{
 
 
     public function index(){
+        $data['admin_url'] = '/cms/article/index?iframe=1';
         $form = $this->get_search_where();
-        $this->view->display('cms/article/index');
+        $this->view->assign('data',$data);
+        if(isset($_GET['iframe']) && $_GET['iframe']==1){
+            $this->view->display('cms/article/index');
+        }else{
+            $this->view->display('admin/user/admin_iframe');
+        }
     }
 
     public function create(){

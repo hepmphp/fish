@@ -80,7 +80,7 @@ class  Welcome extends BaseController {
 
     public function msg(){
         $mg = new ModelGenerator();
-        $mg->generator_model();
+        $mg->generator_model('fish_cms');
    //     Msg::dump($db->fetch_all($sql_fileds));
         //Msg::dump($_SERVER);
        //Kint::dump($_SERVER);

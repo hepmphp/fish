@@ -42,11 +42,12 @@ class User extends \base\BaseController{
     }
 
     public function create(){
-        $data['username'] = Input::get_post('username');
-        $data['realname'] = Input::get_post('realname');
-        $data['password'] = Input::get_post('password');
-        $data['re_password'] = Input::get_post('re_password');
-        $data['group_id'] = Input::get_post('group_id');
+        $data['username'] = Input::get_post('username','','trim');
+        $data['realname'] = Input::get_post('realname','','trim');
+        $data['password'] = Input::get_post('password','','trim');
+        $data['re_password'] = Input::get_post('re_password','','trim');
+        $data['group_id'] = Input::get_post('group_id',0,'intval');
+       // var_dump($data);exit();
          if(!Validate::required($data['username'])){
              throw  new LogicException(100,'管理员不能为空');
          }
@@ -62,10 +63,10 @@ class User extends \base\BaseController{
         $this->admin_user->create($data);
     }
     public function update(){
-        $form['id'] = Input::get_post('id');
-        $form['password'] = Input::get_post('password');
-        $form['re_password'] =  Input::get_post('re_password');
-        $form['mids'] = Input::get_post('mids');
+        $form['id'] = Input::get_post('id','','intval');
+        $form['password'] = Input::get_post('password','','trim');
+        $form['re_password'] =  Input::get_post('re_password','','trim');
+        $form['mids'] = Input::get_post('mids','','trim');
         if(!Validate::min_length($form['password'],6)){
             throw new LogicException(200,'管理员密码不能小于6位数');
         }
@@ -99,13 +100,13 @@ class User extends \base\BaseController{
     }
 
     public function login(){
-        $form['username'] = Input::get_post('username');
-        $form['password'] = Input::get_post('password');
+        $form['username'] = Input::get_post('username','','trim');
+        $form['password'] = Input::get_post('password','','trim');
         $code = Input::get_post('code');
-        $verify_code = new VerifyCode();
-        if(!$verify_code->check($code)){
-            throw new LogicException(-1,'验证码输入错误');
-        }
+//        $verify_code = new VerifyCode();
+//        if(!$verify_code->check($code)){
+//            throw new LogicException(-1,'验证码输入错误');
+//        }
 
         $this->admin_user->login($form);
         $res = array();

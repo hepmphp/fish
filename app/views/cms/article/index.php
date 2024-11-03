@@ -27,7 +27,7 @@
         <form class="form-inline clearfix" role="form"  action="#" method="get">
 
             <div class="form-group">
-                <label class="control-label">用户id：</label>
+                <label class="control-label">文章id：</label>
                 <input placeholder="用户id" class="form-control" name="id" id="id" value="" type="text">
             </div>
             <div class="form-group">
@@ -60,10 +60,12 @@
         <table  data-toggle="table" class="table-item table">
             <thead>
             <tr>
-                <th>用户id</th>
+                <th>文章id</th>
                 <th>用户名</th>
                 <th>标题</th>
                 <th>分类</th>
+                <th>来源</th>
+                <th>作者</th>
                 <th>标签id  </th>
                 <th>描述</th>
                 <th>添加时间</th>
@@ -75,6 +77,8 @@
             </thead>
             <tbody>
                 <tr>
+                    <td></td>
+                    <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -153,28 +157,39 @@
         var template = '<tr><td >[id]</td><td >[admin]</td>' +
             '<td>[title]</td>' +
             '<td>[cate_name]</td>' +
+            '<td>[media]</td>' +
+            '<td>[author]</td>' +
             '<td>[tag_name]</td>' +
             '<td>[description]</td>' +
             '<td>[addtime_name]</td>' +
             '<td>[is_top_name]</td>' +
-            '<td><image src="[list_image_url]" style="width: 60px;height: 60px;"></image></td>' +
+            '<td>[list_image_url]</td>' +
             '<td>[status_name]</td>' +
-            '<td><a onclick="edit_article(\'[id]\')" class="" data-id="[id]">[修改]</a><br/>' +
+            '<td><a onclick="edit_article(\'[id]\')" class="" data-id="[id]">[修改]</a></td><br/>' +
             '<a onclick="delete_article(\'[id]\')" style="color: red;">[删除]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/article/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
             if (data.status == 0) {
+                var list_image_url = '';
                 $.each(data.data.list, function (i, d) {
+                    if(d.list_image_url.length==0){
+                        list_image_url = '<image src="[list_image_url]"></image>';
+                    }else{
+                        list_image_url = '<image src="[list_image_url]" style="width: 60px;height: 60px;"></image>';
+                    }
+                    list_image_url =     list_image_url.replace("[list_image_url]", d.list_image_url);
                     list_html += template.replace(/\[id\]/g, d.id).
                     replace('[admin]', d.admin).
                     replace('[title]', d.title).
                     replace('[cate_name]', d.cate_name).
+                    replace('[media]', d.media).
+                    replace('[author]', d.author).
                     replace('[tag_name]', d.tag_name).
                     replace('[description]', d.description).
                     replace('[addtime_name]', d.addtime_name).
                     replace('[is_top_name]', d.is_top_name).
-                    replace('[list_image_url]', d.list_image_url).
+                    replace('[list_image_url]', list_image_url).
                     replace('[status_name]', d.status_name);
                 });
                 $('table tbody').html(list_html);
@@ -236,7 +251,10 @@
                 var param ={
                     id:body.find('#id').val(),
                     cate_id:body.find('#cate_id').val(),
+                    cate_name:body.find('#cate_id').text(),
                     tag_ids:body.find('#tag_ids').val(),
+                    media:body.find("#media").val(),
+                    author:body.find('#author').val(),
                     admin_id:$.cookie('admin_id'),
                     admin:$.cookie('username'),
                     title:body.find('#title').val(),

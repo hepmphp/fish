@@ -6,6 +6,8 @@
  */
 
 namespace cms\base;
+use cms\models\FriendLink;
+use helpers\Arr;
 use helpers\Cookie;
 use base\PhpView;
 use base\SmartyView;
@@ -27,8 +29,11 @@ class CmsController{
         $this->make_view();
         $this->article_category = new ArticleCategory();
         list($data,$children) = $this->article_category->get_menus();
+
+        $friend_linsk = (new FriendLink())->get_find_all();
         $this->view->assign('menu_data',$data);
         $this->view->assign('menu_children',$children);
+        $this->view->assign('friend_linsk',$friend_linsk);
         $_csrf_token = md5($_SERVER['REQUEST_URI']);
         Cookie::set('_csrf_token',$_csrf_token);
         Session::set('_csrf_token',$_csrf_token);

@@ -40,15 +40,15 @@ class Menu extends \base\BaseController{
     }
 
     public function create(){
-        $form['id'] = Input::get_post('id');
-        $form['parentid'] = Input::get_post('parentid');
-        $form['name'] = Input::get_post('name');
-        $form['model'] = Input::get_post('model');
-        $form['action'] = Input::get_post('action');
+        $form['id'] = Input::get_post('id',0,'intval');
+        $form['parentid'] = Input::get_post('parentid',0,'intaval');
+        $form['name'] = Input::get_post('name','','trim');
+        $form['model'] = Input::get_post('model','','trim');
+        $form['action'] = Input::get_post('action','','trim');
         $form['data'] = Input::get_post('data');
-        $form['listorder'] = Input::get_post('listorder');
-        $form['remark'] = Input::get_post('remark');
-        $form['status'] = Input::get_post('status');
+        $form['listorder'] = Input::get_post('listorder',0,'intval');
+        $form['remark'] = Input::get_post('remark','','trim');
+        $form['status'] = Input::get_post('status',0,'intval');
 
         if(!Validate::required($form['name'])){
             throw  new LogicException(100,'菜单名称不能为空');

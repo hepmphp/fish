@@ -104,7 +104,8 @@ class App
                 $this->method = $class_method;
                 $next = function (){};
                 $this->middleware = new Middleware(self::$instance);
-                $this->middleware->register_middleware([SessionMiddleware::class,AuthMiddleware::class,CsrfMiddleware::class],[LogMiddleware::class]);
+//                $this->middleware->register_middleware([SessionMiddleware::class,AuthMiddleware::class,CsrfMiddleware::class],[LogMiddleware::class]);
+                $this->middleware->register_middleware([],[]);
                 $this->middleware->run_middleware($next);
                 $controller->$class_method();
 //                if (function_exists('fastcgi_finish_request')) {

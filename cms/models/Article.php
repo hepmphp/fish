@@ -33,11 +33,22 @@ class Article extends Model
         return $article;
     }
 
-    public function get_list_info($where = array(), $limit = 1, $offset = 2, $fields = '*')
+    public function get_list_info($where = array(), $limit = 1, $offset = 100, $fields = '*')
     {
-        $total = $this->get_total($where);
-        $articles = $this->get_list($where,$limit,$offset,$fields);
 
+
+        //获取子分类信息
+        $sub_cate = $this->article_category->find_all(['parentid'=>$where['cate_id']],1,300);
+        $sub_cate_ids = Arr::getColumn($sub_cate,'id');
+        if(empty($sub_cate_ids)){
+            $where_sql = " cate_id={$where['cate_id']} or   FIND_IN_SET({$where['cate_id']},'cate_bids')  ";
+        }else{
+            $where_sql = " cate_id in(".implode(',',$sub_cate_ids) . ")or   FIND_IN_SET({$where['cate_id']},'cate_bids')  ";
+        }
+
+
+        $total = $this->get_total($where_sql);
+        $articles = $this->get_list($where_sql,$limit,$offset,$fields);
         $article_categorys = $this->article_category->find_all('',1,1000);
         $article_categorys_index = Arr::index($article_categorys,'id');
         foreach ($articles as $k=>$article){

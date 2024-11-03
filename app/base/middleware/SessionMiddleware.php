@@ -60,6 +60,7 @@ class SessionMiddleware{
         $where = $controller.' AND '.$method;
         $admin_menu_model = new AdminMenu();
         $admin_menu = $admin_menu_model->info($where);
+
         if(!empty($admin_menu) && isset($admin_menu['id']) && isset($_SESSION['admin_user_mids'])){
             if(!in_array($admin_menu['id'],$_SESSION['admin_user_mids'])){  //权限检查
                 if(Input::is_ajax()) {

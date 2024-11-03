@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <!--全局样式-->
     <link href="<?=STATIC_URL?>css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?=STATIC_URL?>css/style.css" rel="stylesheet">
+    <link href="<?=STATIC_URL?>css/style.css?<?=rand()?>" rel="stylesheet">
     <link href="<?=STATIC_URL?>css/screen.css" rel="stylesheet">
     <!--图标-->
     <link href="<?=STATIC_URL?>css/font-awesome.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@
         <div class="navmenu"  id='cssmenu'>
             <ul class="navmenu-item">
                  <?php foreach ($top_menu as $k=>$m){?>
-                <li <?php ($k==0)?'class="active"':''?>><a href="/<?=$m['model']?>/<?=$m['action']?>?iframe=0"><?=$m['name']?></a></li>
+                <li <?php var_dump($m['top_menu_id'],$top_menu_id);if($m['top_menu_id']==$top_menu_id) {echo 'class="active"';}?>><a href="/<?=$m['model']?>/<?=$m['action']?>?iframe=0"><?=$m['name']?></a></li>
                 <?php }?>
             </ul>
         </div>
@@ -52,7 +52,7 @@
                 网站导航<div class="Slide-left transition"><i class="fa fa-outdent" aria-hidden="true"></div></i>
             </div>
             <ul class="list-unstyled left-Catalog" id="boxscroll">
-                <? var_dump($left_menu_child);?>
+
                 <?php foreach ($left_menu as $k=>$l_menu1){?>
                     <?php if(isset($l_menu1['name']) && !empty($l_menu1['name'])){?>
                 <li class="nav-toggle"><span class="nav-open"><i class="fa fa-bar-chart" aria-hidden="true"></i><?=$l_menu1['name']?></span>
@@ -60,7 +60,7 @@
                     <ul class="list-unstyled leftnav-view">
 
                         <?php foreach ($left_menu_child as $k2=>$l_menu2){
-                            if($l_menu2['parentid']==$l_menu1['id']){
+                            if($l_menu2['parentid']==$l_menu1['id'] ){
                         ?>
                         <li><a class="J_menuItem" href="/<?=$l_menu2['model']?>/<?=$l_menu2['action']?>?iframe=1"><?=$l_menu2['name']?></a></li>
                         <?php }}?>
