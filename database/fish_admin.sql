@@ -20,7 +20,6 @@ CREATE TABLE `admin_group` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='用户分组';
 
-TRUNCATE `admin_group`;
 INSERT INTO `admin_group` (`id`, `name`, `comment`, `mids`, `allow_mutil_login`, `addtime`) VALUES
 (1,	'超级管理员',	'超级管理员',	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,67,68,70,71,22,23,24,25,26,27,62,63,64,28,29,30,31,32,33,34,35,36,38,39,40,41,37,42,43,44,45,46,51,47,48,49,50,52,54,55,56,57,53,58,59,60,61,72,73,74,75,76,77,66,65',	1,	0),
 (2,	'运营人员(查询)',	'运营人员(查询)',	'1,5,6,7,8,9,10,11',	1,	1510747472),
@@ -54,13 +53,12 @@ CREATE TABLE `admin_log` (
   KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='管理员操作日志';
 
-TRUNCATE `admin_log`;
 
 DROP TABLE IF EXISTS `admin_menu`;
 CREATE TABLE `admin_menu` (
   `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
   `parentid` int(6) unsigned DEFAULT 0 COMMENT '菜单上一级id',
-  `top_menu_id` int(11) DEFAULT 0,
+  `top_menu_id` int(11) unsigned DEFAULT 0,
   `model` varchar(255) DEFAULT '0' COMMENT '控制器',
   `action` varchar(255) DEFAULT '0' COMMENT '方法',
   `data` char(50) DEFAULT '0' COMMENT '业务数据',
@@ -75,49 +73,48 @@ CREATE TABLE `admin_menu` (
   KEY `model` (`model`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='后台菜单';
 
-TRUNCATE `admin_menu`;
 INSERT INTO `admin_menu` (`id`, `parentid`, `top_menu_id`, `model`, `action`, `data`, `status`, `name`, `remark`, `listorder`, `level`) VALUES
-(1,	0,	1,	'admin/user',	'welcome',	'',	0,	'系统设置',	'一级菜单',	101,	0),
-(2,	1,	1,	'admin/menu',	'index',	'',	0,	'菜单列表',	'',	1,	1),
-(3,	2,	1,	'admin/menu',	'create',	'',	-1,	'菜单添加',	'',	2,	2),
-(4,	2,	1,	'admin/menu',	'update',	'',	-1,	'菜单修改',	'',	3,	2),
-(5,	2,	1,	'admin/menu',	'delete',	'',	-1,	'菜单删除',	'',	4,	2),
-(6,	2,	1,	'admin/menu',	'index',	'',	0,	'菜单列表',	'',	1,	2),
-(7,	2,	1,	'admin/menu',	'ajax_get_config_menu',	'',	-1,	'获取菜单',	'',	0,	2),
-(8,	1,	0,	'admin/group',	'index',	'',	0,	'用户组',	'',	2,	1),
+(1,	0,	1,	'admin/user',	'welcome',	'1',	0,	'系统设置',	'一级菜单',	0,	0),
+(2,	1,	1,	'admin/menu',	'index',	'',	0,	'菜单列表',	'',	0,	1),
+(3,	2,	1,	'admin/menu',	'create',	'',	0,	'菜单添加',	'',	0,	2),
+(4,	2,	1,	'admin/menu',	'update',	'',	0,	'菜单修改',	'',	0,	2),
+(5,	2,	1,	'admin/menu',	'delete',	'',	0,	'菜单删除',	'',	0,	2),
+(6,	2,	1,	'admin/menu',	'index',	'',	0,	'菜单列表',	'',	0,	2),
+(7,	2,	1,	'admin/menu',	'ajax_get_config_menu',	'',	0,	'获取菜单',	'',	0,	2),
+(8,	1,	0,	'admin/group',	'index',	'',	0,	'用户组',	'',	0,	1),
 (9,	8,	1,	'admin/group',	'index',	'',	0,	'用户组列表',	'',	0,	2),
-(10,	8,	1,	'admin/group',	'create',	'',	-1,	'用户组添加',	'',	0,	2),
-(11,	8,	1,	'admin/group',	'update',	'',	-1,	'用户组修改',	'',	0,	2),
-(12,	8,	1,	'admin/group',	'delete',	'',	-1,	'用户组删除',	'',	0,	2),
-(13,	8,	1,	'admin/group',	'edit_permission',	'',	-1,	'编辑权限',	'',	0,	2),
-(14,	8,	1,	'admin/group',	'menu',	'',	-1,	'获取菜单',	'',	0,	2),
-(15,	1,	0,	'admin/user',	'index',	'',	0,	'用户管理',	'',	3,	1),
+(10,	8,	1,	'admin/group',	'create',	'',	0,	'用户组添加',	'',	0,	2),
+(11,	8,	1,	'admin/group',	'update',	'',	0,	'用户组修改',	'',	0,	2),
+(12,	8,	1,	'admin/group',	'delete',	'',	0,	'用户组删除',	'',	0,	2),
+(13,	8,	1,	'admin/group',	'edit_permission',	'',	0,	'编辑权限',	'',	0,	2),
+(14,	8,	1,	'admin/group',	'menu',	'',	0,	'获取菜单',	'',	0,	2),
+(15,	1,	0,	'admin/user',	'index',	'',	0,	'用户管理',	'',	0,	1),
 (16,	15,	1,	'admin/user',	'index',	'',	0,	'用户列表',	'',	0,	2),
-(17,	15,	1,	'admin/user',	'create',	'',	-1,	'用户添加',	'',	0,	2),
-(18,	15,	1,	'admin/user',	'update',	'',	-1,	'用户修改',	'',	0,	2),
-(19,	15,	1,	'admin/user',	'delete',	'',	-1,	'用户删除',	'',	0,	2),
-(20,	15,	1,	'admin/user',	'edit_password',	'',	-1,	'修改密码',	'',	0,	2),
-(21,	15,	1,	'admin/user',	'edit_permission',	'',	-1,	'权限修改',	'',	0,	2),
-(22,	0,	22,	'developer',	'index',	'',	0,	'开发工具',	'',	100,	0),
-(23,	22,	22,	'gii',	'',	'',	0,	'开发工具',	'',	0,	1),
-(24,	23,	22,	'gii',	'',	'',	0,	'gii',	'',	2,	2),
-(25,	23,	22,	'developer',	'index',	'',	0,	'开发工具',	'',	1,	2),
-(26,	23,	22,	'developer',	'preview',	'',	-1,	'表单生成预览',	'',	2,	2),
-(27,	23,	22,	'developer',	'create_js',	'',	-1,	'生成js',	'',	2,	2),
-(28,	0,	28,	'cms/article',	'index',	'',	0,	'CMS',	'cms',	3,	0),
-(29,	28,	0,	'cms/attach',	'index',	'',	0,	'附件管理',	'0',	0,	1),
+(17,	15,	1,	'admin/user',	'create',	'',	0,	'用户添加',	'',	0,	2),
+(18,	15,	1,	'admin/user',	'update',	'',	0,	'用户修改',	'',	0,	2),
+(19,	15,	1,	'admin/user',	'delete',	'',	0,	'用户删除',	'',	0,	2),
+(20,	15,	1,	'admin/user',	'edit_password',	'',	0,	'修改密码',	'',	0,	2),
+(21,	15,	1,	'admin/user',	'edit_permission',	'',	0,	'权限修改',	'',	0,	2),
+(22,	0,	22,	'tool/developer',	'index',	'',	0,	'开发工具',	'',	100,	0),
+(23,	22,	23,	'tool/developer',	'index',	'',	0,	'开发工具',	'',	0,	1),
+(24,	23,	24,	'tool/developer',	'index',	'',	0,	'开发者中心',	'',	0,	2),
+(25,	23,	25,	'tool/developer',	'preview',	'',	0,	'预览preview',	'',	0,	2),
+(26,	23,	26,	'tool/developer',	'create_js',	'',	0,	'生成js',	'',	0,	2),
+(27,	23,	27,	'tool/developer',	'create_list',	'',	0,	'生成列表',	'',	0,	2),
+(28,	0,	28,	'cms/article',	'index',	'',	0,	'CMS',	'cms',	1,	0),
+(29,	28,	0,	'cms/attach',	'index',	'',	0,	'附件管理',	'0',	1,	1),
 (30,	29,	28,	'cms/attach',	'index',	'',	0,	'附件列表',	'备注',	0,	2),
-(31,	30,	28,	'cms/attach',	'add',	'',	0,	'附件添加',	'附件',	0,	3),
-(32,	29,	28,	'cms/attach/cate',	'index',	'0',	-1,	'附件分类管理',	'cms',	0,	2),
+(31,	29,	28,	'cms/attach',	'add',	'',	0,	'附件添加',	'附件',	0,	2),
+(32,	29,	28,	'cms/attach/cate',	'index',	'0',	0,	'附件分类管理',	'cms',	0,	2),
 (33,	32,	28,	'cms/attach/cate',	'add',	'',	0,	'添加',	'附件分类',	0,	3),
-(34,	32,	28,	'cms/attach/cate',	'search',	'',	-1,	'附件下拉搜索',	'',	1,	3),
-(35,	28,	28,	'cms/ad',	'index',	'',	0,	'广告管理',	'cms',	0,	1),
+(34,	32,	28,	'cms/attach/cate',	'search',	'',	0,	'附件下拉搜索',	'',	0,	3),
+(35,	28,	0,	'cms/ad',	'index',	'',	0,	'广告管理',	'cms',	100,	1),
 (36,	35,	28,	'cms/ad',	'index',	'',	0,	'广告管理',	'cms',	0,	2),
 (37,	35,	28,	'cms/ad/block',	'index',	'',	0,	'广告区块',	'cms',	0,	2),
-(38,	36,	28,	'cms/ad',	'index',	'',	0,	'广告列表',	'cms',	1,	3),
-(39,	36,	28,	'cms/ad',	'create',	'',	0,	'广告添加',	'cms',	1,	3),
-(40,	36,	28,	'cms/ad',	'update',	'',	0,	'广告修改',	'cms',	1,	3),
-(41,	36,	28,	'cms/ad',	'delete',	'',	0,	'广告删除',	'cms',	1,	3),
+(38,	36,	28,	'cms/ad',	'index',	'',	0,	'广告列表',	'cms',	0,	3),
+(39,	36,	28,	'cms/ad',	'create',	'',	0,	'广告添加',	'cms',	0,	3),
+(40,	36,	28,	'cms/ad',	'update',	'',	0,	'广告修改',	'cms',	0,	3),
+(41,	36,	28,	'cms/ad',	'delete',	'',	0,	'广告删除',	'cms',	0,	3),
 (42,	37,	28,	'cms/ad/block',	'index',	'',	0,	'区块列表',	'cms',	0,	3),
 (43,	37,	28,	'cms/ad/block',	'create',	'',	0,	'区块添加',	'cms',	0,	3),
 (44,	37,	28,	'cms/ad/block',	'update',	'',	0,	'区块修改',	'cms',	0,	3),
@@ -127,35 +124,40 @@ INSERT INTO `admin_menu` (`id`, `parentid`, `top_menu_id`, `model`, `action`, `d
 (48,	46,	28,	'cms/article',	'create',	'',	0,	'资讯添加',	'cms',	0,	2),
 (49,	46,	28,	'cms/article',	'update',	'',	0,	'资讯修改',	'cms',	0,	2),
 (50,	46,	28,	'cms/article',	'delete',	'',	0,	'资讯删除',	'cms',	0,	2),
-(52,	28,	0,	'cms/article_category',	'index',	'',	0,	'分类管理',	'cms',	0,	1),
+(52,	28,	0,	'cms/article_category',	'index',	'',	0,	'分类管理',	'cms',	2,	1),
 (53,	46,	28,	'cms/tag',	'index',	'',	0,	'标签管理',	'cms',	0,	2),
-(54,	52,	28,	'cms/article_category',	'index',	'',	0,	'分类列表',	'cms',	0,	2),
+(54,	52,	54,	'cms/article_category',	'index',	'',	0,	'分类列表',	'cms',	0,	2),
 (55,	52,	28,	'cms/article_category',	'create',	'',	0,	'分类添加',	'cms',	0,	2),
 (56,	52,	28,	'cms/article_category',	'update',	'',	0,	'分类修改',	'cms',	0,	2),
 (57,	52,	28,	'cms/article_category',	'delete',	'',	0,	'分类删除',	'cms',	0,	2),
 (58,	53,	28,	'cms/tag',	'index',	'',	0,	'标签列表',	'cms',	0,	3),
 (59,	53,	28,	'cms/tag',	'create',	'',	0,	'标签添加',	'cms',	0,	3),
 (60,	53,	28,	'cms/tag',	'update',	'',	0,	'标签修改',	'cms',	0,	3),
-(61,	53,	28,	'cms/tag',	'delete',	'',	0,	'标签删除',	'cms',	4,	3),
-(62,	22,	0,	'admin/developer',	'index',	'a=1&b=2',	0,	'生成数据',	'a=1&b=2',	0,	0),
-(63,	62,	0,	'admin/developer',	'create',	'a=1&b=2',	0,	'生成数据添加',	'',	0,	0),
-(64,	62,	0,	'admin/developer',	'update',	'a=1&b=2',	0,	'生成数据修改',	'',	0,	0),
-(65,	65,	0,	'admin/developer',	'index',	'a=1&b=2',	-1,	'测试菜单~',	'a=1&b=2',	0,	0),
-(66,	0,	0,	'admin/developer',	'index',	'a=1&b=2',	0,	'测试菜单列表',	'a=1&b=2',	0,	0),
+(61,	53,	28,	'cms/tag',	'delete',	'',	0,	'标签删除',	'cms',	0,	3),
+(62,	22,	0,	'admin/developer',	'index',	'a=1&b=2',	0,	'生成数据',	'a=1&b=2',	0,	1),
+(63,	62,	22,	'admin/developer',	'create',	'a=1&b=2',	0,	'生成数据添加',	'',	0,	2),
+(64,	62,	22,	'admin/developer',	'update',	'a=1&b=2',	0,	'生成数据修改',	'',	0,	2),
+(65,	66,	22,	'admin/developer',	'index',	'a=1&b=2',	0,	'测试菜单~',	'a=1&b=2',	0,	2),
+(66,	22,	0,	'admin/developer',	'index',	'a=1&b=2',	0,	'测试菜单列表',	'a=1&b=2',	0,	1),
 (67,	1,	0,	'admin/user',	'welcome',	'0',	0,	'欢迎页0',	'',	0,	1),
 (68,	67,	0,	'admin/user',	'welcome',	'0',	0,	'欢迎页:)',	'0',	0,	2),
 (70,	67,	0,	'fish/log',	'index',	'0',	0,	'日志查看',	'0',	0,	2),
 (71,	67,	0,	'admin/log',	'index',	'0',	0,	'数据日志查看',	'0',	0,	2),
-(72,	28,	0,	'cms/friend',	'index',	'',	0,	'友情链接管理',	'',	0,	1),
+(72,	28,	0,	'cms/friend',	'index',	'',	0,	'友情链接管理',	'',	4,	1),
 (73,	72,	1,	'cms/friend',	'index',	'',	0,	'链接管理',	'',	0,	2),
 (75,	72,	1,	'cms/friend',	'create',	'',	0,	'链接添加',	'',	0,	2),
 (76,	72,	1,	'cms/friend',	'update',	'',	0,	'链接修改',	'',	0,	2),
 (77,	72,	1,	'cms/friend',	'delete',	'',	0,	'链接删除',	'',	0,	2),
-(78,	28,	0,	'cms/banner',	'index',	'',	0,	'banner管理',	'',	0,	1),
+(78,	28,	0,	'cms/banner',	'index',	'',	0,	'banner管理',	'',	3,	1),
 (79,	78,	28,	'cms/banner',	'index',	'',	0,	'banner管理',	'',	0,	2),
 (80,	78,	28,	'cms/banner',	'create',	'',	0,	'banner添加',	'',	0,	2),
 (81,	78,	28,	'cms/banner',	'update',	'',	0,	'banner修改',	'',	0,	2),
-(82,	78,	28,	'cms/banner',	'delete',	'',	0,	'banner删除',	'',	0,	2);
+(82,	78,	28,	'cms/banner',	'delete',	'',	0,	'banner删除',	'',	0,	2),
+(83,	23,	83,	'tool/developer',	'create_controller',	'',	0,	'生成控制器',	'',	0,	2),
+(84,	23,	84,	'tool/developer',	'create_model',	'',	0,	'生成模型',	'',	0,	2),
+(85,	23,	85,	'admin/developer',	'test',	'',	0,	'测试',	'',	0,	2),
+(86,	23,	86,	'test',	'index',	'',	0,	'测试',	'',	0,	2),
+(87,	23,	87,	'admin/developer',	'test',	'',	0,	'测试',	'',	0,	2);
 
 DROP TABLE IF EXISTS `admin_user`;
 CREATE TABLE `admin_user` (
@@ -176,7 +178,6 @@ CREATE TABLE `admin_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='后台用户表';
 
-TRUNCATE `admin_user`;
 INSERT INTO `admin_user` (`id`, `username`, `realname`, `email`, `password`, `salt`, `create_time`, `update_time`, `status`, `mids`, `platform_id`, `group_id`, `last_session_id`, `last_login_time`) VALUES
 (1,	'sysadmin',	'系统管理',	'',	'3885662a78b79c45ade750345fe0b679',	'i4BeVr',	1479393090,	1730384493,	0,	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,67,68,22,23,24,25,26,27,62,63,64,28,29,30,31,32,33,34,35,36,38,39,40,41,37,42,43,44,45,46,51,47,48,49,50,52,54,55,56,57,53,58,59,60,61,66,65',	1000,	1,	'7hj9dfbac0k219gn9djaulaim9',	1729602375),
 (2,	'test',	'test',	'',	'c51f62115947f3689e5f440819ae7032',	'v6KJ4v',	1510814911,	1730509891,	0,	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61',	61000,	1,	'emklcqulrtkgk1266soo8m07s2',	1513322025),
@@ -195,7 +196,7 @@ INSERT INTO `admin_user` (`id`, `username`, `realname`, `email`, `password`, `sa
 (16,	'test201801',	'test201801',	'',	'3fc4c7da26591658aedd935684f82da8',	'yJKwOy',	1515578711,	0,	0,	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61',	61000,	1,	'',	0),
 (17,	'test201801',	'test201801',	'',	'be5e214206d7c34589524ca824a397b6',	'X0eLAL',	1515578975,	0,	0,	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61',	61000,	1,	'',	0),
 (18,	'test201801',	'test20180',	'',	'',	'cQgx5D',	1515579064,	0,	0,	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61',	61000,	1,	'',	0),
-(20,	'hepm',	'hepm',	'',	'f2160f0825c0a19f406941d818f141a3',	'oA862F',	1729344040,	1730646424,	0,	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,67,68,70,71,22,23,24,25,26,27,62,63,64,28,29,30,31,32,33,34,35,36,38,39,40,41,37,42,43,44,45,46,47,48,49,50,53,58,59,60,61,52,54,55,56,57,72,73,75,76,77,78,79,80,81,82,66,65',	0,	0,	'fn17ereo8jj6thb6enaqskv9eb',	1730647621),
+(20,	'hepm',	'hepm',	'',	'f2160f0825c0a19f406941d818f141a3',	'oA862F',	1729344040,	1730726892,	0,	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,67,68,70,71,22,24,23,25,26,27,83,84,85,86,87,62,63,64,66,65,28,29,30,31,32,33,34,35,36,38,39,40,41,37,42,43,44,45,46,47,48,49,50,53,58,59,60,61,52,54,55,56,57,72,73,75,76,77,78,79,80,81,82',	0,	0,	'ss9p127figr8jqav0salts5kl4',	1730730440),
 (21,	'root',	'root',	'',	'30b37d634a6eb95bd32b885bfd46a7c0',	'BxBaZd',	1729782466,	0,	0,	'1',	0,	1,	'',	0),
 (22,	'fishpm',	'fishpm',	'',	'd8afc59991b441aef2321ff5664f63e4',	'K2xYVk',	1730299517,	1730302445,	0,	'1,67,68',	0,	1,	'f0nks4vau20f5gvqkm4e7rblgb',	1730306418),
 (23,	'zs',	'zs',	'',	'1f84fe923d84205563e27928963f6d06',	'l1GEaY',	1730509912,	0,	0,	'1',	0,	1,	'',	0),
@@ -211,10 +212,9 @@ CREATE TABLE `platform` (
   `domain` varchar(255) NOT NULL DEFAULT '' COMMENT '域名'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='平台';
 
-TRUNCATE `platform`;
 INSERT INTO `platform` (`id`, `sign`, `name`, `ip_list`, `domain`) VALUES
 ('61001',	'youwo',	'游喔',	'',	''),
 ('1000',	'全部平台',	'全部平台',	'',	''),
 ('61000',	'sogou',	'搜狗',	'',	'');
 
--- 2024-11-03 16:13:17
+-- 2024-11-04 15:14:38

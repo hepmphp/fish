@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../php/.idea/php.iml" filepath="$PROJECT_DIR$/../php/.idea/php.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ueditor.iml" filepath="$PROJECT_DIR$/.idea/ueditor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../umeditor-1.2.3/.idea/umeditor-1.2.3.iml" filepath="$PROJECT_DIR$/../umeditor-1.2.3/.idea/umeditor-1.2.3.iml" />
+    </modules>
+  </component>
+</project>

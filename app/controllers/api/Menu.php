@@ -41,7 +41,7 @@ class Menu extends BaseController{
 
     public function create(){
         $form['id'] = Input::get_post('id',0,'intval');
-        $form['parentid'] = Input::get_post('parentid',0,'intaval');
+        $form['parentid'] = Input::get_post('parentid',0,'intval');
         $form['name'] = Input::get_post('name','','trim');
         $form['model'] = Input::get_post('model','','trim');
         $form['action'] = Input::get_post('action','','trim');

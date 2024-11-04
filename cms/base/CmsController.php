@@ -10,6 +10,7 @@ use cms\models\FriendLink;
 use app\base\PhpView;
 use app\base\SmartyView;
 use cms\models\ArticleCategory;
+use cms\helpers\HtmlCache;
 
 class CmsController{
     public  $app = null;
@@ -20,8 +21,8 @@ class CmsController{
     public function __construct() {
         $this->app = CmsApp::get_instance(CMS_PATH);
         $this->make_view();
-//        $this->html_cache = new HtmlCache($this->view,$this->app::$config);
-//        $this->html_cache->start();
+        $this->html_cache = new HtmlCache($this->view,$this->app::$config['routers'],$this->app::$config['redis']['redis']);
+        $this->html_cache->start();
         $this->article_category = new ArticleCategory();
         list($data,$children) = $this->article_category->get_menus();
         $friend_linsk = (new FriendLink())->get_find_all();
@@ -44,7 +45,7 @@ class CmsController{
     }
 
     public function __destruct(){
-        //$this->html_cache->end();
+        $this->html_cache->end();
     }
 
 

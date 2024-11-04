@@ -231,7 +231,7 @@
             title: menu_action===1?'添加菜单':'修改菜单',
             shadeClose: true,
             btn: ['确认', '关闭'],
-            area: ['400px', '400px'],
+            area: ['780px', '550px'],
             content:url ,
             yes: function (index, layero) {
                 var body = layer.getChildFrame('body', index);

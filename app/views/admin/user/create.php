@@ -12,13 +12,7 @@
     <script src="<?=STATIC_URL?>js/html5shiv.min.js"></script>
     <script src="<?=STATIC_URL?>js/respond.min.js"></script>
     <![endif]-->
-    <?=\app\helpers\AppAsset::run()?>
-    <script >
-        layer.config({
-            skin: 'layer-ext-moon',
-            extend: 'moon/style.css'
-        });
-    </script>
+    <?=\app\helpers\AppFormAsset::run()?>
 </head>
 <body>
 <div class="container col-sm-12">
@@ -74,5 +68,5 @@
     </form>
 </div>
 </body>
-<?=\app\helpers\AppAsset::run_javascript_end()?>
+<?=\app\helpers\AppFormAsset::run_javascript_end()?>
 </html>

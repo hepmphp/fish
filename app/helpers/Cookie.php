@@ -9,7 +9,7 @@ namespace app\helpers;
 
 
 use app\base\App;
-use app\helpers\Security\DzAuth;
+use app\helpers\security\DzAuth;
 
 class Cookie {
 

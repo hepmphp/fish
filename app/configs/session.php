@@ -26,16 +26,6 @@ $config['session'] = array(
 //    'VAR_SESSION_ID'=>'',
 );
 
-//reids配置
-$config['redis'] = array(
-    'host' => '127.0.0.1',
-    'port' => 6379,
-    'timeout' => 10,
-    'persistent' => false,
-    'expire' => 0,
-    'length' => 0,
-
-);
 
 
 return $config;

@@ -9,8 +9,8 @@ namespace app\base;
 
 class Config implements \ArrayAccess
 {
-    protected $path;
-    protected $configs = array();
+    public $path;
+    public $configs = array();
 
     function __construct($path)
     {
@@ -22,10 +22,12 @@ class Config implements \ArrayAccess
         if (empty($this->configs[$key]))
         {
             $file_path = $this->path.'/'.$key.'.php';
+
             if(file_exists($file_path)){
                 $config = require_once $file_path;
                 $this->configs[$key] = $config;
             }
+         //   var_dump(  $this->configs);
 
         }
         return $this->configs[$key];

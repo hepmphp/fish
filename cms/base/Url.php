@@ -94,9 +94,9 @@ class Url
             $class = is_array($path_info)&&empty($path_info)?'':$path_info[0];
             $method = 'index';
         }
-       $class=!empty($class)?$class:'index';
+       $class=!empty($class)?$class:'Index';
         if(empty($path)){
-            $class = '\\cms\\controllers\\web\index';
+            $class = '\\cms\\controllers\\web\Index';
             $path = "web";
         }else{
             $class = ucwords($class,'_,-');

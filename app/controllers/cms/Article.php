@@ -38,7 +38,7 @@ class Article extends BaseController{
         if(isset($_GET['iframe']) && $_GET['iframe']==1){
             $this->view->display('cms/article/index');
         }else{
-            $this->view->display('admin/user/admin_iframe');
+            $this->view->display('admin/root/admin_iframe');
         }
     }
 

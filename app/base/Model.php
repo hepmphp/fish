@@ -93,7 +93,8 @@ class Model
     {
         $sql = $this->sql_query_builder->table($this->table)->insert($data);
         $this->debug_start($sql);
-        return $this->db->exec($sql);
+        $this->db->exec($sql);
+        return  $this->db->last_insert_id();
 
     }
 

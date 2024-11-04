@@ -32,13 +32,12 @@ class BaseController{
             $this->make_view();
             $this->admin_menu = new AdminMenu();
             //获取上边菜单和左侧菜单
-            list($top_menu,$left_menu,$left_menu_child,$top_menu_id) = $this->admin_menu->get_top_left_menu($this->app::$config);
+            list($top_menu,$left_menu,$left_menu_child,$top_menu_id) = $this->admin_menu->get_top_left_menu($this->app::$config['routers']);
             $this->view->assign('top_menu',$top_menu);
             $this->view->assign('left_menu',$left_menu);
             $this->view->assign('left_menu_child',$left_menu_child);
             $this->view->assign('top_menu_id',$top_menu_id);
             $_csrf_token = md5('_fish_token');
-
             Cookie::set('_csrf_token',$_csrf_token);
             Session::set('_csrf_token',$_csrf_token);
         }

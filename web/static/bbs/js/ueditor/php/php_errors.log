@@ -1,0 +1,15 @@
+[01-Nov-2024 15:58:38 Asia/chongqing] PHP Fatal error:  Uncaught TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given in E:\data\www\web-demo\php\action_list.php:35
+Stack trace:
+#0 E:\data\www\web-demo\php\controller.php(29): include()
+#1 {main}
+  thrown in E:\data\www\web-demo\php\action_list.php on line 35
+[01-Nov-2024 16:05:12 Asia/chongqing] PHP Fatal error:  Uncaught TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given in E:\data\www\web-demo\php\action_list.php:35
+Stack trace:
+#0 E:\data\www\web-demo\php\controller.php(33): include()
+#1 {main}
+  thrown in E:\data\www\web-demo\php\action_list.php on line 35
+[01-Nov-2024 16:11:23 Asia/chongqing] PHP Fatal error:  Uncaught TypeError: count(): Argument #1 ($value) must be of type Countable|array, null given in E:\data\www\web-demo\ueditor\php\action_list.php:35
+Stack trace:
+#0 E:\data\www\web-demo\ueditor\php\controller.php(29): include()
+#1 {main}
+  thrown in E:\data\www\web-demo\ueditor\php\action_list.php on line 35

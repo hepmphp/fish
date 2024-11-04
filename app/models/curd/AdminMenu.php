@@ -46,7 +46,7 @@ class AdminMenu extends Model
         $admin = [
             'admin/menu',
             'admin/user',
-            'admin/group'
+            'admin/group',
         ];
 
         $cms = [
@@ -55,8 +55,11 @@ class AdminMenu extends Model
             'cms/tag',
             'cms/attach',
             'cms/banner',
-            'cms/friend'
+            'cms/friend',
 
+        ];
+        $tool = [
+            'tool/developer'
         ];
 
         foreach ($menu as $k=>$v){
@@ -66,7 +69,9 @@ class AdminMenu extends Model
                 if($cate=='cms' && !in_array($v['model'],$cms)){
                     continue;
                 }
-
+                if($cate=='tool' && !in_array($v['model'],$tool)){
+                    continue;
+                }
                 if($v['level']==2){
                     $children[] =array(
                         'name'=>$v['name'],
@@ -87,7 +92,6 @@ class AdminMenu extends Model
                     );
                 }
         }
-
         return [$data,$children];
     }
 
@@ -189,10 +193,11 @@ class AdminMenu extends Model
         if(isset($data['id'])){
             unset($data['id']);
         }
+
         $menu_parent = $this->find(['id'=>$data['parentid']]);
         $data['level'] = isset($menu_parent['level'])?$menu_parent['level']+1:0;
-        $data['top_menu_id'] = $menu_parent['parentid'];
-        $res = $this->insert($data);
+        $insert_id = $this->insert($data);
+        $res = $this->update(['top_menu_id'=>$data['top_menu_id']],['id'=>$insert_id]);
         if($res){
             throw new LogicException(0,'菜单添加成功');
         }else{
@@ -204,7 +209,7 @@ class AdminMenu extends Model
     {
         $menu_parent = $this->find(['id'=>$data['parentid']]);
         $data['level'] = isset($menu_parent['level'])?$menu_parent['level']+1:0;
-        $data['top_menu_id'] = $menu_parent['parentid'];
+        $data['top_menu_id'] = $data['id'];
         $res = $this->update($data,['id'=>$data['id']]);
         if($res){
             throw new LogicException(0,'菜单修改成功');
@@ -229,7 +234,7 @@ class AdminMenu extends Model
     }
 
 
-    public function get_top_left_menu($config){
+    public function get_top_left_menu($routers){
         $menu_id_arr = isset($_SESSION['admin_user_mids'])?$_SESSION['admin_user_mids']:0;
         $admin_menu_where['level'] = 0;
         $admin_menu_where['status'] = 0;
@@ -246,7 +251,7 @@ class AdminMenu extends Model
                 $top_menu_id = $top['parentid'];
             }
         }
-        $url = new Url($config['routers']);
+        $url = new Url($routers);
         list($path,$class,$method) = $url->parse_path_class_method();
         list($left_menu,$left_menu_child) = $this->get_left_menu($path);
 
