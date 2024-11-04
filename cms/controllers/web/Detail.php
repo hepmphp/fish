@@ -9,7 +9,7 @@ namespace cms\controllers\web;
 
 use cms\base\CmsController;
 use cms\models\Article;
-use helpers\Input;
+use app\helpers\Input;
 
 
 class Detail extends CmsController{
@@ -29,6 +29,6 @@ class Detail extends CmsController{
         $where['id'] = Input::get_post( 'id');
         $data = $this->article->info($where);
         $this->view->assign('data',$data);
-        $this->view->display('cms/web/detail');
+        $this->view->display('web/detail');
     }
 }

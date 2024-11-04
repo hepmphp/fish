@@ -4,7 +4,7 @@
  *  date: 2024/10/19 19:19:23$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace helpers;
+namespace app\helpers;
 class Unique{
     /*
  * 产生随机字符串

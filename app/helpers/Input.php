@@ -4,8 +4,8 @@
  *  date: 2024/10/17 22:58:05$
  *  author: hepm<ok_fish@qq.com>$
  */
-namespace helpers;
-use helpers\Debuger;
+namespace app\helpers;
+use app\helpers\Debuger;
 
 class Input {
     public static function trim(&$data){

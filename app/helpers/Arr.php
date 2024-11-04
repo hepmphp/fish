@@ -4,7 +4,7 @@
  *  date: 2024/10/18 15:11:32$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace helpers;
+namespace app\helpers;
 /**
  *
  * 数组操作类

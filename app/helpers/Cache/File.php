@@ -1,6 +1,6 @@
 <?php
 
-namespace helpers\Cache;
+namespace app\helpers\Cache;
 
 class File extends Cache{
     public $path = '';

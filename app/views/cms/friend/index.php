@@ -12,7 +12,7 @@
     <script src="<?= STATIC_URL ?>js/html5shiv.min.js"></script>
     <script src="<?= STATIC_URL ?>js/respond.min.js"></script>
     <![endif]-->
-    <?=\helpers\AppAsset::run()?>
+    <?=\app\helpers\AppAsset::run()?>
     <script >
         layer.config({
             skin: 'layer-ext-moon',
@@ -63,7 +63,7 @@
             </tbody>
         </table>
     </div>
-    <?=\helpers\PageWidget::run();?>
+    <?=\app\helpers\PageWidget::run();?>
 </div>
 
 <script src="<?= STATIC_URL ?>/js/logic/admin/ajax.js?<?=rand()?>"></script>
@@ -168,6 +168,6 @@
         });
     }
 </script>
-<?=\helpers\AppAsset::run_javascript_end()?>
+<?=\app\helpers\AppAsset::run_javascript_end()?>
 </body>
 </html>

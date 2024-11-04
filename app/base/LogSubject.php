@@ -4,7 +4,7 @@
  *  date:  2024/10/31   17:54$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace base;
+namespace app\base;
 
 class LogSubject implements \SplSubject {
     public $_observers;

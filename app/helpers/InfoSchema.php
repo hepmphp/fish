@@ -4,8 +4,8 @@
  *  date: 2024/10/18 17:51:35$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace helpers;
-use base\App;
+namespace app\helpers;
+use app\base\App;
 
 class InfoSchema
 {

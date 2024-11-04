@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>网站</title>
-    <link rel="stylesheet" href='<?=STATIC_URL?>/css/styles.css?<?=rand()?>'>
+    <link rel="stylesheet" href='<?=STATIC_URL?>/css/styles.css'>
 </head>
 <body>
-<?php include CMS_PATH.'views/cms/common/header.php';?>
-<?php include CMS_PATH.'views/cms/common/banner.php';?>
+<?php include CMS_PATH.'views/web/common/header.php';?>
+<?php include CMS_PATH.'views/web/common/banner.php';?>
 <div class="container" style="margin-top: 30px;">
     <div class="cm-tab">
         <div class="tab-hd">
@@ -61,7 +61,6 @@
         <?php }?>
     </div>
 </div>
-<?php include CMS_PATH.'views/cms/common/footer.php';?>
+<?php include CMS_PATH.'views/web/common/footer.php';?>
 </body>
 </html>
-<--<?=date("Y-m-d H:i:s")?>-->

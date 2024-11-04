@@ -6,8 +6,8 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace models;
-use base\Model;
+namespace app\models;
+use app\base\Model;
 
 class Users extends Model
 {

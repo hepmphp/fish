@@ -1,6 +1,6 @@
 <?php
 
-namespace helpers\Security;
+namespace app\helpers\Security;
 
 
 

@@ -6,11 +6,12 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace models\curd;
-use base\exception\LogicException;
-use base\Model;
-use helpers\Arr;
-use helpers\Tree;
+namespace app\models\curd;
+use app\base\exception\LogicException;
+use app\base\Model;
+use app\base\Url;
+use app\helpers\Arr;
+use app\helpers\Tree;
 
 class AdminMenu extends Model
 {
@@ -29,16 +30,16 @@ class AdminMenu extends Model
         $limit =1;
         $offset=100;
         $fields ='*';
-        $menu = $this->get_list($where,$limit,$offset,$fields);
+        $menu = $this->get_list($where,$limit,$offset,$fields,'listorder asc');
         return $menu;
     }
 
     public function get_left_menu($cate){
-        $where = " level in(1,2) and (action='index' OR action='welcome') ";
+        $where = " level in(1,2) and (action='index' OR action='welcome') and status=0 ";
         $limit =1;
         $offset=100;
         $fields ='*';
-        $menu = $this->get_list($where,$limit,$offset,$fields);
+        $menu = $this->get_list($where,$limit,$offset,$fields,'listorder asc');
         $data  = array();
         $children = array();
 
@@ -49,11 +50,12 @@ class AdminMenu extends Model
         ];
 
         $cms = [
-            'cms/article',
             'cms/article_category',
-            'cms/friend',
+            'cms/article',
             'cms/tag',
-            'cms/banner'
+            'cms/attach',
+            'cms/banner',
+            'cms/friend'
 
         ];
 
@@ -224,6 +226,32 @@ class AdminMenu extends Model
     public function info($data){
         $menu = $this->find($data,'*');
         return $menu;
+    }
+
+
+    public function get_top_left_menu($config){
+        $menu_id_arr = isset($_SESSION['admin_user_mids'])?$_SESSION['admin_user_mids']:0;
+        $admin_menu_where['level'] = 0;
+        $admin_menu_where['status'] = 0;
+        if(!empty($menu_id_arr)){
+            $admin_menu_where['id'] = $menu_id_arr;
+        }
+        $top_menu = $this->get_top_menu($admin_menu_where);
+
+        $top_menu_1 = $this->get_top_menu(['level'=>1]);
+
+        $top_menu_id = array();
+        foreach ($top_menu_1 as $k=>$top){
+            if($_SERVER['PATH_INFO']==('/'.$top['model'].'/'.$top['action'])){
+                $top_menu_id = $top['parentid'];
+            }
+        }
+        $url = new Url($config['routers']);
+        list($path,$class,$method) = $url->parse_path_class_method();
+        list($left_menu,$left_menu_child) = $this->get_left_menu($path);
+
+        return [$top_menu,$left_menu,$left_menu_child,$top_menu_id];
+
     }
 
 

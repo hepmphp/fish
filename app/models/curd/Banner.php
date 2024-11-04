@@ -6,9 +6,9 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace models\curd;
-use base\exception\LogicException;
-use base\Model;
+namespace app\models\curd;
+use app\base\exception\LogicException;
+use app\base\Model;
 
 class Banner extends Model
 {
@@ -47,7 +47,7 @@ class Banner extends Model
         if($res){
             throw new LogicException(0,'banner删除成功');
         }else{
-            throw new LogicException(-1,'banner删除成功');
+            throw new LogicException(-1,'banner删除失败');
         }
     }
 

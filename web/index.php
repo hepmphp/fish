@@ -10,13 +10,13 @@ define('WEB_PATH',__DIR__);
 define('STATIC_URL','http://127.0.0.1:2222/static/admin/');
 define('APP_PATH',WEB_PATH.'/../app/');
 include APP_PATH.'/base/Loader.php';
-spl_autoload_register("\\base\Loader::autoload");//自有类库自动载入
+spl_autoload_register("\\app\\base\Loader::autoload");//自有类库自动载入
 include WEB_PATH.'/../vendor/autoload.php';
-if(DEBUG){
-    \helpers\Timer::go('app');
-}
+//if(DEBUG){
+//    \helpers\Timer::go('app');
+//}
 
-$app= \base\App::get_instance(APP_PATH);
+$app= \app\base\App::get_instance(APP_PATH);
 $app->run();
 //echo "<pre>";
 //var_dump($app->config['const']);

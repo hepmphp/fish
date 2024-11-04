@@ -4,15 +4,15 @@
  *  date: 2024/10/20 20:44:38$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace controllers\admin;
-use base\exception\LogicException;
-use helpers\Input;
-use helpers\Session;
-use models\curd\AdminGroup;
-use models\curd\AdminMenu;
-use models\curd\AdminUser;
-
-class  User extends \base\BaseController{
+namespace app\controllers\admin;
+use app\base\exception\LogicException;
+use app\helpers\Input;
+use app\helpers\Session;
+use app\models\curd\AdminGroup;
+use app\models\curd\AdminMenu;
+use app\models\curd\AdminUser;
+use app\base\BaseController;
+class  User extends BaseController{
 
     public $admin_user;
     public $admin_menu;

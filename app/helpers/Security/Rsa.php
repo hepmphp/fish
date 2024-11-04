@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace helpers\Security;
+namespace app\helpers\Security;
 
 /**
  *

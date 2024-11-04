@@ -4,11 +4,10 @@
 <!-- Swiper -->
 <div class="swiper-container">
     <div class="swiper-wrapper">
-        <div class="swiper-slide"><img src="<?=STATIC_URL?>/image/banner/1.jpg" style="width: 1440px"></div>
-        <div class="swiper-slide"><img src="<?=STATIC_URL?>/image/banner/2.jpg"  style="width: 1440px"></div>
-        <div class="swiper-slide"><img src="<?=STATIC_URL?>/image/banner/3.jpg"  style="width: 1440px"></div>
-        <div class="swiper-slide"><img src="<?=STATIC_URL?>/image/banner/4.jpg"  style="width: 1440px"></div>
-        <div class="swiper-slide"><img src="<?=STATIC_URL?>/image/banner/13.jpg" style="width: 1440px"></div>
+        <?php foreach ($banner as $bn){?>
+        <div class="swiper-slide"><img src="<?=$bn['image_url']?>" style="width: 1440px"></div>
+        <?php }?>
+
     </div>
     <!-- Add Pagination -->
     <div class="swiper-pagination"></div>

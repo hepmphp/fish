@@ -12,7 +12,7 @@
     <script src="<?= STATIC_URL ?>js/html5shiv.min.js"></script>
     <script src="<?= STATIC_URL ?>js/respond.min.js"></script>
     <![endif]-->
-    <?=\helpers\AppAsset::run()?>
+    <?=\app\helpers\AppAsset::run()?>
     <script >
         layer.config({
             skin: 'layer-ext-moon',
@@ -67,7 +67,7 @@
             </tbody>
         </table>
     </div>
-    <?=\helpers\PageWidget::run();?>
+    <?=\app\helpers\PageWidget::run();?>
 </div>
 
 <script src="<?= STATIC_URL ?>/js/logic/admin/ajax.js?<?=rand()?>"></script>
@@ -121,7 +121,7 @@
 
     function delete_banner(id){
         var param =  {id:id};
-        layer.confirm('确定删除友情链接?',{
+        layer.confirm('确定删除banner?',{
                 btn: ['确定','取消'], //按钮
                 icon: 3,
                 title:'提示'
@@ -191,6 +191,6 @@
         });
     }
 </script>
-<?=\helpers\AppAsset::run_javascript_end()?>
+<?=\app\helpers\AppAsset::run_javascript_end()?>
 </body>
 </html>

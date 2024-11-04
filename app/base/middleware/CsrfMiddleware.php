@@ -4,15 +4,16 @@
  *  date:  2024/10/31   23:46$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace  base\middleware;
-use base\exception\LogicException;
-use helpers\Cookie;
-use helpers\Input;
-use helpers\Msg;
-use helpers\Session;
+namespace  app\base\middleware;
+use app\base\exception\LogicException;
+use app\helpers\Cookie;
+use app\helpers\Input;
+use app\helpers\Msg;
+use app\helpers\Session;
 
 class CsrfMiddleware{
     public function handle($handler,$next){
+
         $csrf_token = Cookie::get('_csrf_token');
         $session_csrf_token = Session::get('_csrf_token');
         if($csrf_token !=$session_csrf_token){

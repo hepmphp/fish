@@ -3,3 +3,4 @@
 /web/ckfinder/
 /web/*.log
 /web/tool/*.log
+/web/html

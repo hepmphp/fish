@@ -9,13 +9,14 @@ namespace cms\base;
 class Loader
 {
     static function autoload($class){
-        $class = str_replace('cms','',$class);
-        $class_path = CMS_PATH.str_replace('\\','/',$class).'.php';
-      //  var_dump($class,$class_path);
+        //$class = str_replace('cms','',$class);
+        $class_path = WEB_PATH.'/../'.str_replace('\\','/',$class).'.php';
+       // var_dump(__FILE__.__LINE__.$class,$class_path);
         if(file_exists($class_path)){
             include_once $class_path;
         }else{
             $class_path = APP_PATH.'./'.str_replace('\\','/',$class).'.php';
+            //var_dump(__FILE__.__LINE__.$class,$class_path);
             if(file_exists($class_path)){
                 include_once $class_path;
             }

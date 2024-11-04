@@ -1,6 +1,6 @@
 <?php
 
-namespace helpers\Cache;
+namespace app\helpers\Cache;
 
 class Memcached extends Cache{
     public $cache_instance = null;

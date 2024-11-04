@@ -6,10 +6,10 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace models\curd;
-use base\exception\LogicException;
-use base\Model;
-use helpers\Tree;
+namespace app\models\curd;
+use app\base\exception\LogicException;
+use app\base\Model;
+use app\helpers\Tree;
 
 class FriendLink extends Model
 {

@@ -4,16 +4,16 @@
  *  date: 2024/10/17 23:05:55$
  *  author: hepm<ok_fish@qq.com>$
  */
-namespace controllers\fish;
-use base\App;
-use base\BaseController;
-use base\Model;
-use helpers\Cache\CacheFactory;
-use helpers\Debuger;
-use helpers\ModelGenerator;
-use helpers\Msg;
-use helpers\Session;
-use models\Users;
+namespace app\controllers\fish;
+use app\base\App;
+use app\base\BaseController;
+use app\base\Model;
+use app\helpers\Cache\CacheFactory;
+use app\helpers\Debuger;
+use app\helpers\ModelGenerator;
+use app\helpers\Msg;
+use app\helpers\Session;
+use app\models\Users;
 
 
 

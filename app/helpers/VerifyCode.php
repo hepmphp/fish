@@ -1,9 +1,8 @@
 <?php
-namespace helpers;
+namespace app\helpers;
 class VerifyCode{
     public function check($code)
     {
-
         // 验证码不能为空
         $secode = isset($_SESSION['verify_code']) ? $_SESSION['verify_code'] : '';
         if (empty($code) || empty($secode)) {

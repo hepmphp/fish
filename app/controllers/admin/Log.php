@@ -5,11 +5,11 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace controllers\admin;
+namespace app\controllers\admin;
 
-use base\BaseController;
-use helpers\Input;
-use models\curd\AdminLog;
+use app\base\BaseController;
+use app\helpers\Input;
+use app\models\curd\AdminLog;
 
 class Log extends BaseController
 {

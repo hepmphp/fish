@@ -4,12 +4,13 @@
  *  date: 2024/10/18 11:22:39$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace base;
+namespace app\base;
 class PhpView implements ViewInterface {
 
     public $view_path = '';
     public $vars;
 
+    public $view_file = '';
     public function __construct($view_path) {
         $this->view_path = $view_path;
     }
@@ -33,6 +34,7 @@ class PhpView implements ViewInterface {
         if(!empty($this->vars)){
             extract($this->vars);
         }
+        $this->view_file = $this->view_path."$view_file.php";
         include "$view_file.php";
         chdir($old_path);
     }

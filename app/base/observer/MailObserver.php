@@ -4,7 +4,7 @@
  *  date:  2024/10/31   17:55$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace base\observer;
+namespace app\base\observer;
 
 class MailObserver implements \SplObserver{
 

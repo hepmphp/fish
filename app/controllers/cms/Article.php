@@ -4,11 +4,12 @@
  *  date: 2024/10/25 7:26:15$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace controllers\cms;
-use helpers\Input;
-use models\curd\Article as AdminArticle;
-use models\curd\ArticleCategory;
-class Article extends \base\BaseController{
+namespace app\controllers\cms;
+use app\helpers\Input;
+use app\models\curd\Article as AdminArticle;
+use app\models\curd\ArticleCategory;
+use app\base\BaseController;
+class Article extends BaseController{
 
     public $admin_menu = array();
     public $admin_article = array();

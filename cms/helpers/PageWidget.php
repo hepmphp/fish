@@ -4,7 +4,7 @@
  *  date: 2024/10/22 18:06:07$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace helpers;
+namespace cms\helpers;
 
 class PageWidget{
 

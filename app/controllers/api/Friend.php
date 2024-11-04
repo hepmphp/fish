@@ -4,14 +4,14 @@
  *  date:  2024/10/29   19:49$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace controllers\api;
+namespace app\controllers\api;
 
-use base\BaseController;
-use base\exception\LogicException;
-use helpers\Input;
-use helpers\Validate;
+use app\base\BaseController;
+use app\base\exception\LogicException;
+use app\helpers\Input;
+use app\helpers\Validate;
 
-use models\curd\FriendLink;
+use app\models\curd\FriendLink;
 
 class Friend extends BaseController{
 

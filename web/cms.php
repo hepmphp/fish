@@ -14,12 +14,13 @@ define('CMS_PATH',WEB_PATH.'/../cms/');
 include CMS_PATH.'/base/Loader.php';
 spl_autoload_register("\\cms\base\Loader::autoload");//自有类库自动载入
 
-if(DEBUG){
-    \helpers\Timer::go('app');
-}
+//if(DEBUG){
+//    \app\helpers\Timer::go('app');
+//}
 
 $app= CmsApp::get_instance(CMS_PATH);
 $app->run();
+
 //echo "<pre>";
 //var_dump($app->config['const']);
 

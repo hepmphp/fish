@@ -12,7 +12,7 @@
     <script src="<?= STATIC_URL ?>js/html5shiv.min.js"></script>
     <script src="<?= STATIC_URL ?>js/respond.min.js"></script>
     <![endif]-->
-    <?=\helpers\AppAsset::run()?>
+    <?=\app\helpers\AppAsset::run()?>
     <script >
         layer.config({
             skin: 'layer-ext-moon',
@@ -95,7 +95,7 @@
             </tbody>
         </table>
     </div>
-    <?=\helpers\PageWidget::run();?>
+    <?=\app\helpers\PageWidget::run();?>
 </div>
 
 
@@ -165,7 +165,7 @@
             '<td>[is_top_name]</td>' +
             '<td>[list_image_url]</td>' +
             '<td>[status_name]</td>' +
-            '<td><a onclick="edit_article(\'[id]\')" class="" data-id="[id]">[修改]</a></td><br/>' +
+            '<td><a onclick="edit_article(\'[id]\')" class="" data-id="[id]">[修改]</a><br/>' +
             '<a onclick="delete_article(\'[id]\')" style="color: red;">[删除]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/article/get_list/?' + $.param(param), function (data) {
@@ -276,6 +276,6 @@
         layer.full(layer_index);
     }
 </script>
-<?=\helpers\AppAsset::run_javascript_end()?>
+<?=\app\helpers\AppAsset::run_javascript_end()?>
 </body>
 </html>

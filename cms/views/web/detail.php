@@ -8,7 +8,7 @@
     <link rel="stylesheet" href='<?=STATIC_URL?>/css/detail.css'>
 
 </head>
-<?php include CMS_PATH.'views/cms/common/header.php';?>
+<?php include CMS_PATH.'views/web/common/header.php';?>
 <div class="container_list m-t">
     <!--原侧边栏已删除-->
     <div class="content">
@@ -36,5 +36,5 @@
     <!--原侧边栏已删除-->
 </div>
 
-<?php include CMS_PATH.'views/cms/common/footer.php';?>
+<?php include CMS_PATH.'views/web/common/footer.php';?>
 </html>

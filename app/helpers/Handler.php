@@ -5,11 +5,11 @@
  *  author: hepm<ok_fish@qq.com>$
  */
 
-namespace helpers;
+namespace app\helpers;
 //set_error_handler(array('helpers\Handler','error_handler'));
 //set_exception_handler('_exception_handler');
 //register_shutdown_function(array('helpers\Handler','shutdown_handler'));
-use base\Event;
+use app\base\Event;
 
 class Handler {
     const LOG_PATH = WEB_PATH.'/log/error_log.log';

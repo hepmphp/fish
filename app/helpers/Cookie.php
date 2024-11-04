@@ -5,11 +5,11 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace helpers;
+namespace app\helpers;
 
 
-use base\App;
-use helpers\Security\DzAuth;
+use app\base\App;
+use app\helpers\Security\DzAuth;
 
 class Cookie {
 

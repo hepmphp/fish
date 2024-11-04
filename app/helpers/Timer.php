@@ -5,7 +5,7 @@
  *  author: hepm<ok_fish@qq.com>$
  */
 
-namespace helpers;
+namespace app\helpers;
 
 class Timer
 {
@@ -79,7 +79,7 @@ class Timer
         $html = "debug_start.........................................................................................................................................................\n".
             self::endTime($id).
             self::endMem($id)."\n".
-            print_r(\helpers\Debuger::last_log(),true)."\n".
+            print_r(\app\helpers\Debuger::last_log(),true)."\n".
             Debuger::print_include_files()."\n".
             Debuger::print_stack_trace()."\n".
             "debug_end.........................................................................................................................................................\n";
@@ -101,7 +101,7 @@ class Timer
     {
         if(isset($_SERVER['PATH_INFO'])  && ($_SERVER['PATH_INFO']!='/fish/log/index' ||  $_SERVER['PATH_INFO']!='/admin/user/logout')){
             self::start($id);
-            register_shutdown_function('\\helpers\\Timer::stop',$id);
+            register_shutdown_function('\\app\\helpers\\Timer::stop',$id);
         }
     }
 }

@@ -4,18 +4,21 @@
  *  date:  2024/10/30   11:17$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace base\middleware;
-use base\App;
-use base\exception\LogicException;
-use helpers\Cookie;
-use helpers\Input;
-use helpers\Msg;
-use helpers\Session;
-use models\curd\AdminMenu;
-use models\curd\AdminUser;
+namespace app\base\middleware;
+use app\base\App;
+use app\base\exception\LogicException;
+use app\helpers\Cookie;
+use app\helpers\Input;
+use app\helpers\Msg;
+use app\helpers\Session;
+use app\models\curd\AdminMenu;
+use app\models\curd\AdminUser;
 
 class SessionMiddleware{
     public function handle($handler,$next){
+        if($_SERVER['PATH_INFO']=='/'){
+            return true;
+        }
         if($_SERVER['PATH_INFO']=='/api/captcha/get'||$_SERVER['PATH_INFO']=='/favicon.ico'){
             return $next($handler);
             exit();

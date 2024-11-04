@@ -5,10 +5,10 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace base;
-use base\observer\DatabaseObserver;
-use base\observer\FileObserver;
-use base\observer\MailObserver;
+namespace app\base;
+use app\base\observer\DatabaseObserver;
+use app\base\observer\FileObserver;
+use app\base\observer\MailObserver;
 
 class Event
 {

@@ -4,12 +4,12 @@
  *  date:  2024/10/29   19:49$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace controllers\cms;
+namespace app\controllers\cms;
 
-use base\BaseController;
-use helpers\Input;
-use models\curd\ArticleCategory as CmsArticleCategory;
-use models\curd\FriendLink;
+use app\base\BaseController;
+use app\helpers\Input;
+use app\models\curd\ArticleCategory as CmsArticleCategory;
+use app\models\curd\FriendLink;
 
 class Friend extends BaseController{
 

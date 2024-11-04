@@ -4,11 +4,11 @@
  *  date:  2024/10/31   10:58$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace controllers\api;
+namespace app\controllers\api;
 
 
-use base\BaseController;
-use helpers\VerifyCode;
+use app\base\BaseController;
+use app\helpers\VerifyCode;
 
 class Captcha extends BaseController
 {

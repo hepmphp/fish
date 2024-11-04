@@ -5,7 +5,7 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace helpers;
+namespace app\helpers;
 /**
  * Class Validate  验证静态类
  */

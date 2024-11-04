@@ -8,7 +8,7 @@
 
 namespace cms\models;
 use base\exception\LogicException;
-use base\Model;
+use cms\base\Model;
 
 class Banner extends Model
 {

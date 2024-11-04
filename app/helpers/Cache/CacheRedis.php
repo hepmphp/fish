@@ -1,6 +1,6 @@
 <?php
 
-namespace helpers\Cache;
+namespace app\helpers\Cache;
 
 /**
  * Redis缓存驱动

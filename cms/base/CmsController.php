@@ -7,36 +7,27 @@
 
 namespace cms\base;
 use cms\models\FriendLink;
-use helpers\Arr;
-use helpers\Cookie;
-use base\PhpView;
-use base\SmartyView;
-use helpers\Session;
+use app\base\PhpView;
+use app\base\SmartyView;
 use cms\models\ArticleCategory;
 
 class CmsController{
-
     public  $app = null;
-
     public $render_engine = 'php';
-
     public $view;
-
-    public $admin_menu;
     public $article_category=array();
+    public $html_cache = '';
     public function __construct() {
         $this->app = CmsApp::get_instance(CMS_PATH);
         $this->make_view();
+//        $this->html_cache = new HtmlCache($this->view,$this->app::$config);
+//        $this->html_cache->start();
         $this->article_category = new ArticleCategory();
         list($data,$children) = $this->article_category->get_menus();
-
         $friend_linsk = (new FriendLink())->get_find_all();
         $this->view->assign('menu_data',$data);
         $this->view->assign('menu_children',$children);
         $this->view->assign('friend_linsk',$friend_linsk);
-        $_csrf_token = md5($_SERVER['REQUEST_URI']);
-        Cookie::set('_csrf_token',$_csrf_token);
-        Session::set('_csrf_token',$_csrf_token);
     }
 
     public function make_view() {
@@ -51,5 +42,11 @@ class CmsController{
             $this->view = new PhpView($view_path);
         }
     }
+
+    public function __destruct(){
+        //$this->html_cache->end();
+    }
+
+
 
 }

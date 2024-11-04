@@ -8,8 +8,8 @@
 
 namespace cms\models;
 
-use base\Model;
-use helpers\Arr;
+use cms\base\Model;
+use app\helpers\Arr;
 
 
 class Article extends Model

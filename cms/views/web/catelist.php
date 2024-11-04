@@ -13,7 +13,7 @@
 
 </head>
 <body>
-<?php include CMS_PATH.'views/cms/common/header.php';?>
+<?php include CMS_PATH.'views/web/common/header.php';?>
 
 <div class="container_list m-t ">
     <div class="main-section">
@@ -44,11 +44,11 @@
 
 </div>
 <div class="container">
-    <?=\helpers\PageWidget::run()?>
+    <?=\cms\helpers\PageWidget::run()?>
 </div>
 <script>
     $('.pagination-outline').html(multi(<?=$data['total']?>, <?=$data['per_page']?>,  <?=$data['page']?>, 100));
 </script>
-<?php include CMS_PATH.'views/cms/common/footer.php';?>
+<?php include CMS_PATH.'views/web/common/footer.php';?>
 </body>
 </html>

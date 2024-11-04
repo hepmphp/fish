@@ -4,7 +4,7 @@
  *  date:  2024/10/30   11:13$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace base;
+namespace app\base;
 class Middleware {
     public $middlewares = array();
     public $middlewares_after = array();

@@ -4,9 +4,9 @@
  *  date:  2024/10/29   19:34$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace controllers\cms;
+namespace app\controllers\cms;
 
-use base\BaseController;
+use app\base\BaseController;
 
 class Attach extends BaseController{
     public function index(){

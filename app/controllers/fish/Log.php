@@ -4,9 +4,9 @@
  *  date:  2024/11/1   0:38$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace controllers\fish;
+namespace app\controllers\fish;
 
-use base\BaseController;
+use app\base\BaseController;
 
 class Log extends BaseController{
 

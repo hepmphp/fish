@@ -5,9 +5,8 @@
  *  date: 2024/10/18 12:30:14$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-
-namespace models\curd;
-use base\Model;
+namespace app\models\curd;
+use app\base\Model;
 
 class Attach extends Model
 {

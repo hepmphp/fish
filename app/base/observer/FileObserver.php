@@ -4,9 +4,9 @@
  *  date:  2024/10/31   17:55$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace base\observer;
+namespace app\base\observer;
 
-use helpers\Log;
+use app\helpers\Log;
 
 class FileObserver implements \SplObserver{
 

@@ -12,7 +12,7 @@
     <script src="<?= STATIC_URL ?>js/html5shiv.min.js"></script>
     <script src="<?= STATIC_URL ?>js/respond.min.js"></script>
     <![endif]-->
-    <?=\helpers\AppAsset::run()?>
+    <?=\app\helpers\AppAsset::run()?>
     <script >
         layer.config({
             skin: 'layer-ext-moon',
@@ -85,6 +85,6 @@
         } );
     }
 </script>
-<?=\helpers\AppAsset::run_javascript_end()?>
+<?=\app\helpers\AppAsset::run_javascript_end()?>
 </body>
 </html>

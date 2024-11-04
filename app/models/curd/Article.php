@@ -6,11 +6,11 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace models\curd;
-use base\exception\LogicException;
-use base\Model;
-use helpers\Arr;
-use models\curd\ArticleCategory;
+namespace app\models\curd;
+use app\base\exception\LogicException;
+use app\base\Model;
+use app\helpers\Arr;
+use app\models\curd\ArticleCategory;
 
 class Article extends Model
 {

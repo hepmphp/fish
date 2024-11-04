@@ -4,16 +4,16 @@
  *  date:  2024/10/30   11:17$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace base\middleware;
-use base\App;
-use base\Event;
-use helpers\Input;
-use helpers\Log;
-use models\curd\AdminLog;
+namespace app\base\middleware;
+use app\base\App;
+use app\base\Event;
+use app\helpers\Input;
+use app\helpers\Log;
+use app\models\curd\AdminLog;
 
 class LogMiddleware{
     public function handle($handler,$next){
-    
+
 //        $admin_log = new AdminLog();
 //        $app = App::get_instance(WEB_PATH);
 //        $controller = "{$app->path}/{$app->controller}";
@@ -43,7 +43,7 @@ class LogMiddleware{
 //                'status'=>1
 //            ];
 //            $admin_log->create($data);
-        }
+//        }
         return $next($handler);
     }
 }

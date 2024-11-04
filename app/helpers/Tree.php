@@ -5,7 +5,7 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace helpers;
+namespace app\helpers;
 
 /**
  *

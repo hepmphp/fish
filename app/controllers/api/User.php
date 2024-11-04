@@ -4,17 +4,17 @@
  *  date: 2024/10/19 18:56:31$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace controllers\api;
-use base\exception\LogicException;
-use helpers\Cookie;
-use helpers\Input;
-use helpers\Session;
-use helpers\Validate;
-use helpers\Debuger;
-use helpers\VerifyCode;
-use models\curd\AdminUser;
-
-class User extends \base\BaseController{
+namespace app\controllers\api;
+use app\base\exception\LogicException;
+use app\helpers\Cookie;
+use app\helpers\Input;
+use app\helpers\Session;
+use app\helpers\Validate;
+use app\helpers\Debuger;
+use app\helpers\VerifyCode;
+use app\models\curd\AdminUser;
+use app\base\BaseController;
+class User extends BaseController{
     
     public $admin_user;
     

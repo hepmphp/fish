@@ -10,7 +10,7 @@ namespace cms\controllers\web;
 use cms\base\CmsController;
 use cms\models\Article;
 
-use helpers\Input;
+use app\helpers\Input;
 
 class Catelist extends CmsController{
 
@@ -40,7 +40,7 @@ class Catelist extends CmsController{
         $data['per_page'] = $per_page;
 
         $this->view->assign('data',$data);
-        $this->view->display('cms/web/list');
+        $this->view->display('web/catelist');
     }
 
     public function test(){

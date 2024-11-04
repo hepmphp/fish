@@ -1,5 +1,5 @@
 <?php
-namespace helpers\Security;
+namespace app\helpers\Security;
 /****
  *
 discuz 安全加密 解密类

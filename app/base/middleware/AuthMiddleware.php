@@ -4,9 +4,9 @@
  *  date:  2024/10/30   18:28$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace base\middleware;
-use helpers\Cookie;
-use helpers\Session;
+namespace app\base\middleware;
+use app\helpers\Cookie;
+use app\helpers\Session;
 
 class AuthMiddleware{
     public function handle($handler,$next){

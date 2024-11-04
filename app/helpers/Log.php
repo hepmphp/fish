@@ -4,7 +4,7 @@
  *  date:  2024/10/30   17:11$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace helpers;
+namespace app\helpers;
 class Log
 {
     public static $log_path = WEB_PATH.'/log/';

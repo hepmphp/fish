@@ -6,8 +6,8 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace models\curd;
-use base\Model;
+namespace app\models\curd;
+use app\base\Model;
 
 class AdminLog extends Model
 {

@@ -5,7 +5,7 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace app\base;
+namespace cms\base;
 
 use app\helpers\Input;
 
@@ -92,18 +92,18 @@ class Url
             list($class,$method) = $path_info;
         }else{
             $class = is_array($path_info)&&empty($path_info)?'':$path_info[0];
-            $method = 'login';
+            $method = 'index';
         }
-        $class=!empty($class)?$class:'user';
+       $class=!empty($class)?$class:'index';
         if(empty($path)){
-            $class = '\\app\\controllers\\admin\User';
-            $method = 'login';
+            $class = '\\cms\\controllers\\web\index';
+            $path = "web";
         }else{
             $class = ucwords($class,'_,-');
             if(strpos($class,'_')!==false OR strpos($class,'-')!==false){
                 $class = str_replace(array('_','-'),array('',''),$class);
             }
-            $class = "\\app\\controllers\\{$path}\\".$class;
+            $class = "\\cms\\controllers\\{$path}\\".$class;
         }
         return [$path,$class,$method];
     }

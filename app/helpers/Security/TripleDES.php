@@ -7,7 +7,7 @@
  * To change this template use File | Settings | File Templates.
  */
 
-namespace helpers\Security;
+namespace app\helpers\Security;
 
 /**
  * Class TripleDES  3DES 加解密类, 可与java的3DES(DESede)加密方式兼容

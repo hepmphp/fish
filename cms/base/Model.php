@@ -5,8 +5,9 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace app\base;
+namespace cms\base;
 
+use cms\base\CmsApp;
 use app\db\SqlQueryBuilder;
 use app\helpers\Debuger;
 
@@ -27,7 +28,7 @@ class Model
 
     public function __construct()
     {
-        $this->db = App::get_db($this->db);
+        $this->db = CmsApp::get_db($this->db);
         $this->sql_query_builder = new SqlQueryBuilder();
     }
 
@@ -157,7 +158,6 @@ class Model
     }
 
     public function debug_start($sql){
-         return true;
         if(DEBUG){
             self::$query_begin = $this->microtime();
             self::$debug_data[] = $sql;
@@ -165,7 +165,6 @@ class Model
         }
     }
     public function debug_end($data){
-        return true;
         self::$query_end = $this->microtime();
         $total_time  = self::$query_end - self::$query_begin;
         $total_time_formart =  sprintf('耗时: %.9f s ', $total_time);
@@ -180,7 +179,6 @@ class Model
 
     public function __destruct()
     {
-        return true;
         if(DEBUG) {
             Debuger::db_log("start_sql_log".str_repeat("#", 200));
             if(!empty(self::$debug_data)){

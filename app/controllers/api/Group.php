@@ -4,15 +4,15 @@
  *  date: 2024/10/19 18:56:31$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace controllers\api;
-use base\exception\LogicException;
-use helpers\Input;
-use helpers\Validate;
-use helpers\Debuger;
-use models\curd\AdminGroup;
+namespace app\controllers\api;
+use app\base\exception\LogicException;
+use app\helpers\Input;
+use app\helpers\Validate;
+use app\helpers\Debuger;
+use app\models\curd\AdminGroup;
 
-
-class Group extends \base\BaseController{
+use app\base\BaseController;
+class Group extends BaseController{
     
     public $admin_group;
     

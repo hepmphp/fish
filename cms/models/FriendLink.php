@@ -7,9 +7,9 @@
  */
 
 namespace cms\models;
-use base\exception\LogicException;
-use base\Model;
-use helpers\Tree;
+use app\base\exception\LogicException;
+use app\helpers\Tree;
+use cms\base\Model;
 
 class FriendLink extends Model
 {

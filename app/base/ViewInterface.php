@@ -5,7 +5,7 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace base;
+namespace app\base;
 
 Interface ViewInterface {
     public function assign($name,$value=null);

@@ -1,6 +1,6 @@
 <?php
 
-namespace helpers\Cache;
+namespace app\helpers\Cache;
 
 class CacheFactory {
     CONST FILE='file';

@@ -4,9 +4,9 @@
  *  date: 2024/10/18 15:18:36$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace helpers;
-use base\App;
-use base\session\SessionRedis;
+namespace app\helpers;
+use app\base\App;
+use app\base\session\SessionRedis;
 
 class Session{
     /**

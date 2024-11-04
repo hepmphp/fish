@@ -4,7 +4,7 @@
  *  date: 2024/10/18 11:46:10$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace db;
+namespace app\db;
 use PDO;
 class PdoHelper
 {

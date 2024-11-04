@@ -5,9 +5,9 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace helpers;
-use base\App;
-use helpers\InfoSchema;
+namespace app\helpers;
+use app\base\App;
+use app\helpers\InfoSchema;
 
 class ModelGenerator
 {

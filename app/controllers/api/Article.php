@@ -4,15 +4,15 @@
  *  date: 2024/10/19 18:56:31$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace controllers\api;
-use base\exception\LogicException;
-use helpers\Input;
-use helpers\Session;
-use helpers\Validate;
-use models\curd\Article as AdminArticle;
+namespace app\controllers\api;
+use app\base\exception\LogicException;
+use app\helpers\Input;
+use app\helpers\Session;
+use app\helpers\Validate;
+use app\models\curd\Article as AdminArticle;
 
-
-class Article extends \base\BaseController{
+use app\base\BaseController;
+class Article extends BaseController{
     
     public $admin_article;
     

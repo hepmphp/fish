@@ -4,9 +4,9 @@
  *  date: 2024/10/18 15:26:25$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace base\session;
-use base\App;
-use helpers\Cache\CacheRedis;
+namespace app\base\session;
+use app\base\App;
+use app\helpers\Cache\CacheRedis;
 
 /**
  * redis session

@@ -4,7 +4,7 @@
  *  date: 2024/10/19 18:55:46$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace base\exception;
+namespace app\base\exception;
 class LogicException extends \Exception {
     public  $data;
     public function __construct($code=100,$msg='',$data='',\Exception $previous=null){

@@ -4,7 +4,7 @@
  *  date: 2024/10/22 18:18:05$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace helpers;
+namespace app\helpers;
 
 class AppAsset{
     public static $js_files = [

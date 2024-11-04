@@ -7,10 +7,10 @@
  */
 
 namespace cms\models;
-use base\exception\LogicException;
-use base\Model;
-use helpers\Arr;
-use helpers\Tree;
+use app\base\exception\LogicException;
+use cms\base\Model;
+use app\helpers\Arr;
+use app\helpers\Tree;
 
 class ArticleCategory extends Model
 {

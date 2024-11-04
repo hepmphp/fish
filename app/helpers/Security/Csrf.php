@@ -1,8 +1,8 @@
 <?php
 
-namespace helpers\Security;
+namespace app\helpers\Security;
 
-use base\Application;
+use app\base\Application;
 
 /**
  *

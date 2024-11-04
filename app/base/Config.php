@@ -5,7 +5,7 @@
  *  author: hepm<ok_fish@qq.com>$
  */
 
-namespace base;
+namespace app\base;
 
 class Config implements \ArrayAccess
 {
