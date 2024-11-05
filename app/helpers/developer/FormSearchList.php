@@ -89,8 +89,8 @@ EOT;
         <div class="form-group">
             <label class="control-label">[name]：</label>
             <span class="date-range">
-            <input placeholder="开始时间" class="form-control date-range00 date-ico" name="begin_[field]" type="text" value="<?=\$form['begin_[field]'])?>">
-            <input placeholder="结束时间" class="form-control date-range01 date-ico" name="end_[field]" type="text" value="<?=\$form['end_[field]'])?>">
+            <input placeholder="开始时间" class="form-control date-range00 date-ico" name="begin_[field]" type="text" value="<?=\$form['begin_[field]']?>">
+            <input placeholder="结束时间" class="form-control date-range01 date-ico" name="end_[field]" type="text" value="<?=\$form['end_[field]']?>">
             </span>
         </div>
 EOT;

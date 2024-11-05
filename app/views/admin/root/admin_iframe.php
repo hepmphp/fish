@@ -24,6 +24,7 @@
     <script src="<?=STATIC_URL?>js/html5shiv.min.js"></script>
     <script src="<?=STATIC_URL?>js/respond.min.js"></script>
     <![endif]-->
+    <script src="<?=STATIC_URL?>js/translate.js"></script>
 </head>
 <body class="gray-bg">
 <div class="wrapper">
@@ -78,6 +79,7 @@
         </div>
     </div>
 </div>
+
 <!-- 全局js -->
 <script src="<?=STATIC_URL?>js/jquery.min.js"></script>
 <script src="<?=STATIC_URL?>js/bootstrap.min.js"></script>

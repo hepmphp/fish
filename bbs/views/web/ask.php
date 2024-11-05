@@ -24,31 +24,32 @@
             <div class="aw-content-wrap clearfix">
                 <div class="col-sm-12 col-md-12 aw-main-content">
 
-                    <form action="http://127.0.0.1:1111/wecenter/?/publish/ajax/publish_question/" method="post" id="question_form" onsubmit="return false;">
-                        <input type="hidden" name="post_hash" value="4cba482680a02ca38e238d4307b57502">
-                        <input type="hidden" name="attach_access_key" value="285e00d166e81eb6a61e46ede36e2fbd">
-                        <input type="hidden" name="question_id" id="question_id" value="">
-                        <input type="hidden" name="ask_user_id" value="">
-                        <select name="category_id" class="collapse" id="category_id">
-                            <option value="0">- 请选择分类 -</option>
-                            <option value="1">默认分类</option><option value="2">人文</option><option value="3">艺术</option><option value="4">生活</option><option value="5">技术</option>						</select>
+                    <form action="/bbs.php/web/ask/create" method="post" id="question_form" >
+
+
                         <div class="aw-mod aw-mod-publish">
                             <div class="mod-body">
                                 <h3>问题标题:</h3>
                                 <!-- 问题标题 -->
                                 <div class="aw-publish-title">
                                     <div>
-                                        <input type="text" placeholder="问题标题..." name="question_content" id="question_contents" value="" class="form-control">
+                                        <input type="text" placeholder="问题标题..." name="subject" id="subject" value="" class="form-control">
                                     </div>
                                 </div>
                                 <!-- end 问题标题 -->
+                                <h3>分类:</h3>
+                                <div>
 
-
-                                <script id="editor" type="text/plain" style="width:1024px;height:500px;margin-top: 50px"></script>
+                                    <select name="fid" id="fid">
+                                        <option>请选择</option>
+                                        <?=$config_menu?>
+                                    </select>
+                                </div>
+                                <script name="content" id="editor" type="text/plain" style="width:1024px;height:500px;margin-top: 50px"></script>
 
                             </div>
                             <div class="mod-footer clearfix">
-                                <a class="btn btn-large btn-success btn-publish-submit" id="publish_submit" style="margin-right: 70px">确认发起</a>
+                                <input type="submit" class="btn btn-large btn-success btn-publish-submit" value="确认发起" id="publish_submit" style="margin-right: 70px">
                             </div>
                         </div>
                     </form>
@@ -70,4 +71,5 @@
     var ue = UE.getEditor('editor');
 </script>
 <?php include BBS_PATH.'views/web/common/up_to_top.php'?>
+<?php include BBS_PATH.'views/web/common/footer.php'?>
 </html>

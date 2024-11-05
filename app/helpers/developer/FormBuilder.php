@@ -484,6 +484,7 @@ EOT;
 
     public static function get_form_html($database,$table,$config_fied_builder_types,$get_form_builder_types){
         list($fields,$select) = (new InfoSchema($database))->get_all_fields($table);
+
         //生成html
         $form_html = '';
         foreach($fields as $field=>$name){
@@ -514,7 +515,7 @@ EOT;
     <script src="<?=STATIC_URL?>js/html5shiv.min.js"></script>
     <script src="<?=STATIC_URL?>js/respond.min.js"></script>
     <![endif]-->
-    <?=\app\helpers\AppFormAsset::run()?>
+    <?php \app\helpers\AppFormAsset::run()?>
 </head>
 <body>
 <div class="container col-sm-12" style="margin-top: 10px;">
@@ -525,7 +526,7 @@ EOT;
 </div>
 
 </body>
-<?=\app\helpers\AppFormAsset::run_javascript_end()?>
+<?php \app\helpers\AppFormAsset::run_javascript_end()?>
 </html>
 HTML;
         $html = str_replace('[form_html]',$form_html,$html);

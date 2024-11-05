@@ -1,6 +1,6 @@
 <?php
 
-namespace app\helpers\Cache;
+namespace  app\helpers\cache;
 
 /**
  * Redis缓存驱动
@@ -82,7 +82,7 @@ class CacheRedis extends Cache {
         }
         if ($result && $this->options['length'] > 0) {
             // 记录缓存队列
-            $this->queue($name);
+           // $this->queue($name);
         }
         return $result;
     }

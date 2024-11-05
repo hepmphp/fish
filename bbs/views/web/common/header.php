@@ -1,3 +1,4 @@
+<script type="text/javascript" src="<?=STATIC_URL?>js/jquery.min.js"></script>
 <div class="aw-top-menu-wrap">
     <div class="container">
         <!-- logo -->
@@ -6,7 +7,7 @@
         </div>
         <!-- end logo -->
         <!-- 搜索框 -->
-        <div class="aw-search-box  hidden-xs hidden-sm">
+        <div class="aw-search-box  hidden-xs hidden-sm" style="display: none;">
             <form class="navbar-search" action="http://127.0.0.1:1111/wecenter/?/search/" id="global_search_form" method="post">
                 <input class="form-control search-query" type="text" placeholder="搜索问题、话题或人" autocomplete="off" name="q" id="aw-search-query">
                 <span title="搜索" id="global_search_btns" onclick="$('#global_search_form').submit();"><i class="icon icon-search"></i></span>
@@ -22,6 +23,7 @@
                 </div>
             </form>
         </div>
+
         <!-- end 搜索框 -->
         <!-- 导航 -->
         <div class="aw-top-nav navbar">
@@ -34,14 +36,9 @@
             </div>
             <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="http://127.0.0.1:1111/wecenter/?/home/"><i class="icon icon-home"></i> 动态</a></li>
+                    <li><a href="/bbs.php"><i class="icon icon-home"></i> 动态</a></li>
                     <li><a href="http://127.0.0.1:1111/wecenter" class="active"><i class="icon icon-list"></i> 发现</a></li>
-
-                    <!-- <li><a href="http://127.0.0.1:1111/wecenter/?/question/" class="">问题</a></li>
-
-                    <li><a href="http://127.0.0.1:1111/wecenter/?/article/" class="">文章</a></li> -->
-
-                    <li><a href="http://127.0.0.1:1111/wecenter/?/topic/"><i class="icon icon-topic"></i> 话题</a></li>
+                    <li><a href="<?=\bbs\helpers\Uri::list_href(0)?>"><i class="icon icon-topic"></i> 话题</a></li>
                     <li>
                         <a href="http://127.0.0.1:1111/wecenter/?/notifications/" class=""><i class="icon icon-bell"></i> 通知</a>
                         <span class="badge badge-important" style="display:none" id="notifications_unread">0</span>
@@ -104,5 +101,6 @@
             </div>
         </div>
         <!-- end 发起 -->
+
     </div>
 </div>

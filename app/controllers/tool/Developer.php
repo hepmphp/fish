@@ -66,7 +66,8 @@ class Developer extends BaseController{
         $this->view->assign('config_form_builder_type',$config_form_builder_type);
         $this->view->assign('config_search_builder_type',$config_search_builder_type);
         $this->view->assign('config_search_list_type',$config_search_list_type);
-        $data['admin_url'] = '/admin/developer/index?iframe=1';
+        $this->view->assign('config_menu',$config_menu);
+        $data['admin_url'] = '/tool/developer/index?iframe=1';
         $this->view->assign('data',$data);
         if(isset($_GET['iframe']) && $_GET['iframe']==1){
             $this->view->display('tool/developer/index');
@@ -77,6 +78,7 @@ class Developer extends BaseController{
     }
 
     public function preview(){
+
         $create_file = Input::get_post('create_file','0','intval');
         $database = Input::get_post('database','','trim');
         $table = Input::get_post('table','','trim');
@@ -87,36 +89,9 @@ class Developer extends BaseController{
             $config_fied_builder_types[$field] = $get_form_builder_types[$k];
         }
         $html = FormBuilder::get_form_html($database,$table,$config_fied_builder_types,$get_form_builder_types);
-        if($create_file==1){
-//            $view_path = CurdHelper::get_view_path($database,$table);
-//            //视图
-//            //modules/cms/view/cms-cate/create
-//            $view_file = $view_path.'/create.php';
-//            //  echo $view_file;
-//            if(!file_exists($view_file)){//不允许覆盖
-//                $res = file_put_contents($view_file,$html);
-//                if($res){
-//                    $response = array(
-//                        'status'=>0,
-//                        'msg'=>Yii::t('app','视图创建成功')
-//                    );
-//                }else{
-//                    $response = array(
-//                        'status'=>-2,
-//                        'msg'=>Yii::t('app','视图创建失败')
-//                    );
-//                }
-//            }else{
-//                $response = array(
-//                    'status'=>-1,
-//                    'msg'=>Yii::t('app','视图已存在,请手动覆盖')
-//                );
-//            }
-//            return $this->asJson($response);
-        }else{
-            highlight_string($html);exit();
+        highlight_string($html);exit();
 
-        }
+
     }
 
     public function create_js(){
@@ -167,7 +142,29 @@ class Developer extends BaseController{
     }
 
     public function create_menu(){
+        $database = Input::get_post('database');
+        $table = Input::get_post('table');
+        $parentid =Input::get_post('parentid');
+        $table_name = str_replace('_','/',$table);
+        $actions = array(
+            'index',
+            'create',
+            'update',
+            'delete',
+        );
+        $config_action_name = array(
+            'index'=>'列表',
+            'create'=>'添加',
+            'update'=>'修改',
+            'delete'=>'删除',
+        );
+        foreach ($actions as $k=>$action){
+            $sql = $sql.<<<SQL
+ INSERT INTO  admin_menu (model,action,listorder,name,parentid,level) VALUES ('{$table_name}','{$action}','{$k}','{$config_action_name[$action]}',{$parentid},2);\n
 
+SQL;
+        }
+        highlight_string($sql);
     }
 
 

@@ -9,6 +9,12 @@ use app\base\App;
 use app\base\session\SessionRedis;
 
 class Session{
+
+    public function __construct()
+    {
+
+    }
+
     /**
      * @brief   diy_session_destroy     彻底注销session
      *

@@ -103,7 +103,7 @@ class Menu extends BaseController{
 
         $page = Input::get_post('page');
         $per_page = Input::get_post('per_page');
-        list($res,$total) = $this->admin_user->get_list_info($where,$per_page,$page,'*');
+        list($res,$total) = $this->admin_menu->get_list_info($where,$per_page,$page,'*');
         $data['list'] = $res;
         $data['total'] = $total;
         $data['page'] =$page;

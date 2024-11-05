@@ -19,6 +19,7 @@ class [database] extends BaseController{
     }
 
     public function get_search_where(){
+        $where = array();
         [search_where]
         $where = array_filter($where);
         return $where;

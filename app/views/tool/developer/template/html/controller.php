@@ -16,6 +16,7 @@ use app\models\curd\[model];
      }
 
     public function get_search_where(){
+         $where = array();
         [search_where]
         $where = array_filter($where);
         return $where;

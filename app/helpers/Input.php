@@ -19,7 +19,7 @@ class Input {
         array_walk($data,
             function(&$value, $key) use($preserve_key) {
                 if (is_array($value)) {
-                    return xss_clean($value, $preserve_key);
+                    return self::xss_clean($value, $preserve_key);
                 } else {
                     if (in_array($key, $preserve_key) === false) {
                         $value = htmlspecialchars($value, ENT_COMPAT ,'GB2312');

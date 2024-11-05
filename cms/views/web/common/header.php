@@ -17,13 +17,21 @@
 <div class="header">
     <div class="container-header">
         <div class="header-box">
+            <!-- 增加某种语言切换的按钮。注意 ul上加了一个 class="ignore" 代表这块代码不会被翻译到 -->
+            <ul class="ignore" style="float: right;list-style: none;margin-bottom: 50px;z-index: 10000">
+                <li style="float: left;"><a href="javascript:translate.changeLanguage('english');">English</a>|</li>
+                <li style="float: left;"><a href="javascript:translate.changeLanguage('chinese_traditional');">繁體中文</a>|</li>
+                <li style="float: left;"><a href="javascript:translate.changeLanguage('chinese_simplified');">简体中文</a>|</li>
+            </ul>
                 <div class="top_bg" style="height: 168px;">
                     <div class="logo" style="padding-top: 36px;">
                         <img src="<?=STATIC_URL?>image/top-logo.png" alt="" tabindex="0" aria-label="">
                     </div>
                 </div>
         </div>
-    </div></div>
+    </div>
+
+</div>
 
 <!--NAVIGATION-->
 

@@ -59,7 +59,17 @@ class AdminMenu extends Model
 
         ];
         $tool = [
-            'tool/developer'
+            'tool/developer',
+            'tool/file',
+            'tool/mysql',
+            'tool/log',
+            'tool/redis'
+        ];
+
+        $bbs = [
+            'bbs/forum',
+            'bbs/cate_list',
+            'bbs/user',
         ];
 
         foreach ($menu as $k=>$v){
@@ -72,6 +82,10 @@ class AdminMenu extends Model
                 if($cate=='tool' && !in_array($v['model'],$tool)){
                     continue;
                 }
+                if($cate=='bbs' && !in_array($v['model'],$bbs)){
+                    continue;
+                }
+
                 if($v['level']==2){
                     $children[] =array(
                         'name'=>$v['name'],
@@ -197,7 +211,7 @@ class AdminMenu extends Model
         $menu_parent = $this->find(['id'=>$data['parentid']]);
         $data['level'] = isset($menu_parent['level'])?$menu_parent['level']+1:0;
         $insert_id = $this->insert($data);
-        $res = $this->update(['top_menu_id'=>$data['top_menu_id']],['id'=>$insert_id]);
+        $res = $this->update(['top_menu_id'=>$menu_parent['top_menu_id']],['id'=>$insert_id]);
         if($res){
             throw new LogicException(0,'菜单添加成功');
         }else{

@@ -1,9 +1,9 @@
 
 var urls = {
-    create_url:'[path]/[table]/create',
-    update_url:'[path]/[table]/update',
-    delete_url:'[path]/[table]/delete',
-    info_url:'[path]/[table]/info'
+    create_url:'/[path]/[table]/create',
+    update_url:'/[path]/[table]/update',
+    delete_url:'/[path]/[table]/delete',
+    info_url:'/[path]/[table]/info'
 };
 
 /***

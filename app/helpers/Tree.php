@@ -32,6 +32,8 @@ class Tree {
      */
     public $ret = '';
 
+    public static $str;
+
     /**
      * 构造函数，初始化类
      * @param array 2维数组，例如：

@@ -12,7 +12,7 @@
     <script src="<?= STATIC_URL ?>js/html5shiv.min.js"></script>
     <script src="<?= STATIC_URL ?>js/respond.min.js"></script>
     <![endif]-->
-    <?=\app\helpers\AppAsset::run()?>
+    <?php \app\helpers\AppAsset::run()?>
     <script >
         layer.config({
             skin: 'layer-ext-moon',
@@ -26,7 +26,7 @@
         <form class="form-inline clearfix" role="form"  action="#" method="get">
             [search_field]
             <a class="btn btn-info m-l" onclick="search_list()" > 查询</a>
-            <input class="btn btn-info m-l" value="添加" name="search" type="button" style="width:60px;" onclick="create_form('')">
+            <input class="btn btn-info m-l" value="添加" name="search" type="button" style="width:60px;" onclick="add()">
         </form>
     </div>
     <div class="table-wrap">
@@ -48,7 +48,7 @@
             </tbody>
         </table>
     </div>
-    <?=\app\helpers\PageWidget::run();?>
+    <?php \app\helpers\PageWidget::run();?>
 </div>
 
 <script src="<?= STATIC_URL ?>/js/logic/admin/ajax.js?<?=rand()?>"></script>
@@ -80,7 +80,7 @@
 
         var template = '<tr>' +
             [td_template]
-            '<a onclick="delete_[table](\'[id]\')" class="">[删除]</a></td></tr>';
+            '<td><a onclick="delete_[table](\'[id]\')" class="">[删除]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/[table]/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
@@ -102,6 +102,6 @@
     }
 
 </script>
-<?=\app\helpers\AppAsset::run_javascript_end()?>
+<?php \app\helpers\AppAsset::run_javascript_end()?>
 </body>
 </html>

@@ -9,6 +9,7 @@ namespace bbs\base;
 
 use app\base\PhpView;
 use app\base\SmartyView;
+use bbs\models\Forum;
 
 
 class BbsController{
@@ -17,10 +18,14 @@ class BbsController{
     public $view;
     public $article_category=array();
     public $html_cache = '';
+    public $forum = '';
     public function __construct() {
 
         $this->app = BbsApp::get_instance(BBS_PATH);
         $this->make_view();
+        $this->forum = new Forum();
+        $form_list = $this->forum->find_all('',1,100,'*');
+        $this->view->assign('forum_list',$form_list);
 
     }
 

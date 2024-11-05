@@ -37,7 +37,7 @@
                     <div class="aw-mod aw-question-detail aw-item">
                         <div class="mod-head">
                             <h1>
-                                开发、运维、测试那个比较有前途? </h1>
+                                <?=$post['subject']?> </h1>
                             <div id="threadstamp"><img src="<?=STATIC_URL?>image/stamp/001.gif" title="置顶"></div>
                             <div class="operate clearfix">
 
@@ -45,39 +45,12 @@
                         </div>
                         <div class="mod-body">
                             <div class="content markitup-box">
-                                作者：乔木leon<br>
-                                链接：<a href="https://www.zhihu.com/question/385693701/answer/1683670696" rel="nofollow"
-                                      target="_blank">https://www.zhihu.com/question ... 70696</a><br>
-                                来源：知乎<br>
-                                著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。<br>
-                                <br>
-                                测试最好入门但是门槛低内卷快。工资也低。<br>
-                                <br>
-                                开发来钱快但是强度大。<br>
-                                <br>
-                                运维比较长久但是什么都要会且工资参差不齐。<br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                先说测试：<br>
-                                <br>
-                                测试这个岗位入门门槛没有开发那么高，一般也有一些女孩子在做这个，但是测试这个岗位，低端的特别低端，甚至有人肉测试的，内卷比较严重，大把的人想着做测试入门然后转开发。导致这个行业内水平也是参差不齐，厉害的不输于开发，可以自己写工具测试，低端的就是这里抄抄那里抄抄，这个岗位不是太高端的话工资偏低，我这里就见过三四千的测试，且很多培训机构出来的一般就是做测试。感觉是最不长久的一个岗位，上限很低。<br>
-                                <br>
-                                开发：<br>
-                                <br>
-                                工资涨的快，一两年的开发工资远超一两年的运维和测试，但是工作强度大，客户坑爹，产品也坑爹。需求也奇葩，且内卷严重，要做好长期透支身体精力的准备，说白了就是拿命换钱，职业周期短，抛开一些真正有核心技术的大厂不谈，很多时候一般的公司开发岗，要求并不是那么高，很有可能是，你做了三年五年，和人家一年两年的水平差不多，这个时候一个30岁的程序员和二十四五的程序员比起来并没有什么优势，当然，资历和水平牛逼了的另算，但是我相信绝大多数程序员都是被卷的命。要提早想好30岁之后干什么去。<br>
-                                <br>
-                                运维：<br>
-                                <br>
-                                杂事最多，什么都要会，甚至有些公司网络，服务器，甚至helpdesk都要你一个人搞，离谱的还要干行政的活。出了问题测试甩锅，开发甩锅，用户甩锅。工资涨幅比较慢，三年五年的运维和七年八年的运维工资区别不大，和开发一样，很多工资也用不到多么高端的运维技术，你最多的活就是部署个东西，重装个服务器，电脑，搞搞交换机啥玩意的。工作强度看情况，闲的时候可能很闲，忙的时候可能会忙死。运维这个活典型的面试造火箭，工作拧螺丝。很多东西不要求你多精通，但是你必须懂，不然开发能把你忽悠瘸了。职业寿命比开发要长点，但是其实硬说也长不了哪去。大部分公司招人还是要求35岁一下。运维的工资在一段时间内会有一个瓶颈，比如你今年拿一万，两年三年后可能还是拿一万，突破口很不好找。一个是运维很多时候都是在干杂货，对于个人提升真的挺有限的，这个需要靠你的自制力自学一些东西，不然的话技术水平停滞不前也很危险。<br>
-                                <br>
-                                我的经验是，反正都是被卷的命，选开发，来钱快一点。。
+                               <?=$post['content']?>
                             </div>
                         </div>
                         <div class="mod-footer">
                             <div class="meta">
-                                <span class="text-color-999">2024-10-15</span>
+                                <span class="text-color-999"><?=date('Y-m-d h:i:s',$post['created_time'])?></span>
                                 <a class="text-color-999" href="http://127.0.0.1:1111/wecenter/?/publish/2"><i
                                         class="icon icon-edit"></i>编辑</a>
                                 <div class="pull-right more-operate">
@@ -138,7 +111,7 @@
                                     <!-- 用户头像 -->
                                     <a class="aw-user-img aw-border-radius-5"
                                        href="http://127.0.0.1:1111/wecenter/?/people/admin" data-id="1"><img
-                                            src="http://127.0.0.1:1111/wecenter/static/common/avatar-mid-img.png"
+                                            src="<?=STATIC_URL?>image/avator/10001.jpg"
                                             alt=""></a>                                        <!-- end 用户头像 -->
                                     <div class="title">
                                         <p>
@@ -384,4 +357,5 @@
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
     var ue = UE.getEditor('editor');
 </script>
+<?php include BBS_PATH.'views/web/common/footer.php'?>
 </html>

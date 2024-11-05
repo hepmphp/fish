@@ -15,8 +15,7 @@ class Model
     public $db='master';
     public $table = '';
     public $db_prefix = '';
-    public $pkey = 'id';
-    public $relate_models = array();
+
     public $sql_query_builder = '';
 
     public static $debug_table_data;
@@ -31,19 +30,7 @@ class Model
         $this->sql_query_builder = new SqlQueryBuilder();
     }
 
-    /**
-     * 处理只提供主键的情况
-     *
-     * @param string|array|int $condition 条件
-     * @return string|array
-     */
-    protected function pkey_condition($condition)
-    {
-        if (is_numeric($condition)) {  // 主键
-            $condition = array(static::$pkey => $condition);
-        }
-        return $condition;
-    }
+
 
     /***
      *  用法

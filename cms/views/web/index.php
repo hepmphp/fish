@@ -11,6 +11,7 @@
 <body>
 <?php include CMS_PATH.'views/web/common/header.php';?>
 <?php include CMS_PATH.'views/web/common/banner.php';?>
+
 <div class="container" style="margin-top: 30px;">
     <div class="cm-tab">
         <div class="tab-hd">

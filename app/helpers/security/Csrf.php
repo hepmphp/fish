@@ -76,7 +76,7 @@ class Csrf {
     public function __construct($config="")
     {
         if(empty($config)){
-            $this->config = Application::getInstance()->config['config'];
+            $this->config = App::getInstance()->config['config'];
         }else{
             $this->config = $config;
         }

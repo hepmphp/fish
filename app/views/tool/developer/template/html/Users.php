@@ -8,7 +8,7 @@
 
 namespace app\models\curd;
 use app\base\Model;
-
+use app\base\exception\LogicException;
 class [Users] extends Model
 {
     public  $table='[t]';

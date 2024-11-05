@@ -43,7 +43,7 @@ class CurdHelper {
      */
     public static function get_view_path($database,$table){
         $database = str_replace('fish_','',$database);
-        $table_arr = explain('_',$table);
+        $table_arr = explode('_',$table);
         $_talbe = end($table_arr);
         $view_path = APP_PATH.'/views/{$database}/{$_talbe}/';
         if(!is_dir($view_path)){

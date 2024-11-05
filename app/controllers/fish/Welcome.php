@@ -8,7 +8,7 @@ namespace app\controllers\fish;
 use app\base\App;
 use app\base\BaseController;
 use app\base\Model;
-use app\helpers\Cache\CacheFactory;
+use app\helpers\cache\CacheFactory;
 use app\helpers\Debuger;
 use app\helpers\ModelGenerator;
 use app\helpers\Msg;

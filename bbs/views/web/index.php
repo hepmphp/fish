@@ -27,106 +27,29 @@
                     <!-- 我关注的话题 -->
                     <div class="aw-mod aw-topic-list">
                         <div class="mod-body clearfix">
+                            <?php foreach ($forum_list as $k=>$list){?>
                             <div class="aw-item">
                                 <!-- 话题图片 -->
-                                <a class="img aw-border-radius-5" href="http://127.0.0.1:1111/wecenter/?/topic/%E7%BC%96%E7%A8%8B" data-id="5">
-                                    <img src="http://127.0.0.1:1111/wecenter/uploads/topic/20241015/66f7894b880891e0a4c01b5ff8b63064_50_50.jpg" alt="">
+                                <a class="img aw-border-radius-5" href="" data-id="5">
+                                    <img src="<?=STATIC_URL?>image/topic-mid-img.png" alt="">
                                 </a>
                                 <!-- end 话题图片 -->
                                 <p class="clearfix">
                                     <!-- 话题内容 -->
                                     <span class="topic-tag">
-                                        <a class="text" href="http://127.0.0.1:1111/wecenter/?/topic/%E7%BC%96%E7%A8%8B" data-id="5">编程</a>
+                                        <a class="text" href="<?=\bbs\helpers\Uri::list_href($list['id'])?>" data-id=""><?=$list['name']?></a>
                                     </span>
                                     <!-- end 话题内容 -->
                                 </p>
                                 <p class="text-color-999">
                                     <span>1 个讨论</span>
-                                    <span>1 个关注</span>
                                 </p>
                                 <p class="text-color-999">
-                                    7 天新增 1 个讨论, 30 天新增 1 个讨论                                </p>
+                                    7 天新增 1 个讨论, 30 天新增 1 个讨论
+                                </p>
                             </div>
-                            <div class="aw-item">
-                                <!-- 话题图片 -->
-                                <a class="img aw-border-radius-5" href="http://127.0.0.1:1111/wecenter/?/topic/%E7%A4%BE%E4%BC%9A%E5%AD%A6" data-id="4">
-                                    <img src="http://127.0.0.1:1111/wecenter/static/common/topic-mid-img.png" alt="">
-                                </a>
-                                <!-- end 话题图片 -->
-                                <p class="clearfix">
-                                    <!-- 话题内容 -->
-                                    <span class="topic-tag">
-                                        <a class="text" href="http://127.0.0.1:1111/wecenter/?/topic/%E7%A4%BE%E4%BC%9A%E5%AD%A6" data-id="4">社会学</a>
-                                    </span>
-                                    <!-- end 话题内容 -->
-                                </p>
-                                <p class="text-color-999">
-                                    <span>0 个讨论</span>
-                                    <span>1 个关注</span>
-                                </p>
-                                <p class="text-color-999">
-                                    7 天新增 0 个讨论, 30 天新增 0 个讨论                                </p>
-                            </div>
-                            <div class="aw-item">
-                                <!-- 话题图片 -->
-                                <a class="img aw-border-radius-5" href="http://127.0.0.1:1111/wecenter/?/topic/%E5%BF%83%E7%90%86%E5%AD%A6" data-id="3">
-                                    <img src="http://127.0.0.1:1111/wecenter/static/common/topic-mid-img.png" alt="">
-                                </a>
-                                <!-- end 话题图片 -->
-                                <p class="clearfix">
-                                    <!-- 话题内容 -->
-                                    <span class="topic-tag">
-                                        <a class="text" href="http://127.0.0.1:1111/wecenter/?/topic/%E5%BF%83%E7%90%86%E5%AD%A6" data-id="3">心理学</a>
-                                    </span>
-                                    <!-- end 话题内容 -->
-                                </p>
-                                <p class="text-color-999">
-                                    <span>0 个讨论</span>
-                                    <span>1 个关注</span>
-                                </p>
-                                <p class="text-color-999">
-                                    7 天新增 0 个讨论, 30 天新增 0 个讨论                                </p>
-                            </div>
-                            <div class="aw-item">
-                                <!-- 话题图片 -->
-                                <a class="img aw-border-radius-5" href="http://127.0.0.1:1111/wecenter/?/topic/%E5%8C%BB%E5%AD%A6" data-id="2">
-                                    <img src="http://127.0.0.1:1111/wecenter/static/common/topic-mid-img.png" alt="">
-                                </a>
-                                <!-- end 话题图片 -->
-                                <p class="clearfix">
-                                    <!-- 话题内容 -->
-                                    <span class="topic-tag">
-                                        <a class="text" href="http://127.0.0.1:1111/wecenter/?/topic/%E5%8C%BB%E5%AD%A6" data-id="2">医学</a>
-                                    </span>
-                                    <!-- end 话题内容 -->
-                                </p>
-                                <p class="text-color-999">
-                                    <span>0 个讨论</span>
-                                    <span>1 个关注</span>
-                                </p>
-                                <p class="text-color-999">
-                                    7 天新增 0 个讨论, 30 天新增 0 个讨论                                </p>
-                            </div>
-                            <div class="aw-item">
-                                <!-- 话题图片 -->
-                                <a class="img aw-border-radius-5" href="http://127.0.0.1:1111/wecenter/?/topic/%E9%BB%98%E8%AE%A4%E8%AF%9D%E9%A2%98" data-id="1">
-                                    <img src="http://127.0.0.1:1111/wecenter/static/common/topic-mid-img.png" alt="">
-                                </a>
-                                <!-- end 话题图片 -->
-                                <p class="clearfix">
-                                    <!-- 话题内容 -->
-                                    <span class="topic-tag">
-                                        <a class="text" href="http://127.0.0.1:1111/wecenter/?/topic/%E9%BB%98%E8%AE%A4%E8%AF%9D%E9%A2%98" data-id="1">默认话题</a>
-                                    </span>
-                                    <!-- end 话题内容 -->
-                                </p>
-                                <p class="text-color-999">
-                                    <span>0 个讨论</span>
-                                    <span>0 个关注</span>
-                                </p>
-                                <p class="text-color-999">
-                                    7 天新增 0 个讨论, 30 天新增 0 个讨论                                </p>
-                            </div>
+                            <?php }?>
+
                         </div>
                         <div class="mod-footer clearfix">
                         </div>
@@ -138,5 +61,6 @@
     </div>
 </div>
 <?php include BBS_PATH.'views/web/common/up_to_top.php'?>
+<?php include BBS_PATH.'views/web/common/footer.php'?>
 </body>
 </html>

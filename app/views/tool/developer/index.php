@@ -237,7 +237,7 @@
             table:table,
             database:database
         };
-        var preview_url = "/admin/developer/preview?"+ $.param(param);
+        var preview_url = "/tool/developer/preview?"+ $.param(param);
         layer.open({
             type: 2, //iframe
             area: ['1200px', '750px'],
@@ -272,7 +272,7 @@
             table:table,
             database:database
         };
-        var list_url = "/admin/developer/create_list?"+$.param(param);
+        var list_url = "/tool/developer/create_list?"+$.param(param);
         layer.open({
             type: 2, //iframe
             area: ['1200px', '750px'],
@@ -312,7 +312,7 @@
             table:table,
             database:database
         };
-        var controller_url = "/admin/developer/create_controller?"+ $.param(param);
+        var controller_url = "/tool/developer/create_controller?"+ $.param(param);
         layer.open({
             type: 2, //iframe
             area: ['1200px', '750px'],
@@ -348,7 +348,7 @@
             table:table,
             database:database
         };
-        var model_url = "/admin/developer/create_model?="+ $.param(param);
+        var model_url = "/tool/developer/create_model?="+ $.param(param);
         layer.open({
             type: 2, //iframe
             area: ['1200px', '750px'],
@@ -367,7 +367,7 @@
     });
 
     $('#btn_js').click(function(){
-        var create_js_url = '/admin/developer/create_js';
+        var create_js_url = '/tool/developer/create_js';
         var table = $('#table').val();
         var fields = new Array();
         var form_builder_types = new Array();
@@ -407,16 +407,17 @@
     });
 
     $('#btn_menu').click(function(){
-        var create_js_url = '?r=developer/create-menu';
+        var create_js_url = '/tool/developer/create_menu';
         var table = $('#table').val();
         var parent_id = $('#parent_id').val();
-        var js_url = create_js_url+"&table="+table+"&parent_id="+parent_id;
+        var js_url = create_js_url+"?table="+table+"&parentid="+parent_id;
         //  console.log(fields);
         layer.open({
             type: 2, //iframe
             area: ['1200px', '750px'],
             title: '预览',
             btn: [],
+            shadeClose: true,
             shade: 0.3, //遮罩透明度
             content:js_url,
             btn: ['生成','取消'],

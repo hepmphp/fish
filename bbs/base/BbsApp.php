@@ -80,6 +80,7 @@ class BbsApp
                 $this->path = $path;
                 $this->controller = $class;
                 $this->method = $method;
+
 //                $next = function (){};
 //                $this->middleware = new Middleware(self::$instance);
 //                $this->middleware->register_middleware([SessionMiddleware::class,AuthMiddleware::class,CsrfMiddleware::class],[LogMiddleware::class]);

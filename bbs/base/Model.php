@@ -7,7 +7,7 @@
 
 namespace bbs\base;
 
-use cms\base\CmsApp;
+use bbs\base\BbsApp;
 use app\db\SqlQueryBuilder;
 use app\helpers\Debuger;
 
@@ -28,7 +28,7 @@ class Model
 
     public function __construct()
     {
-        $this->db = CmsApp::get_db($this->db);
+        $this->db = BbsApp::get_db($this->db);
         $this->sql_query_builder = new SqlQueryBuilder();
     }
 

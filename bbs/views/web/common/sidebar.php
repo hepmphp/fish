@@ -1,28 +1,36 @@
 <link href="<?=STATIC_URL?>css/sidebar.css" rel="stylesheet" type="text/css" />
+<style>
+    .fixed_top_1{
+        position: fixed;
+        top: 0px;
+        left: 20px;
+        margin-top:15px;
+        width: 300px;
+        height: 30px;
+        z-index: 99999;
+        border-radius: 2%;
+        overflow: hidden;
+    }
+</style>
+<div class="fixed_top_1">
+    <h3 class="aside-title;">
+        <!-- 增加某种语言切换的按钮。注意 ul上加了一个 class="ignore" 代表这块代码不会被翻译到 -->
+        <ul class="ignore" style="float: left;list-style: none;clear:both;">
+            <li style="float: left;"><a href="javascript:translate.changeLanguage('english');" style="color: #ffffff;">English</a>&nbsp;&nbsp;</li>
+            <li style="float: left;"><a href="javascript:translate.changeLanguage('chinese_traditional');" style="color: #ffffff;">繁體中文</a>&nbsp;&nbsp;</li>
+            <li style="float: left;"><a href="javascript:translate.changeLanguage('chinese_simplified');" style="color: #ffffff;">简体中文</a></li>
+        </ul>
+    </h3>
+</div>
 <div class="fixed_top">
-    <h3 class="aside-title">论坛分类</h3>
+    <div>
+        <h3 class="aside-title">论坛分类</h3>
+    </div>
     <div id="forum_list" >
         <ul>
-            <li><a href="" class="icon icon-topic">1.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">2.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">3.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">4.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">5.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">6.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">7.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">8.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">9.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">10.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">11.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">12.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">13.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">14.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">15.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">16.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">17.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">18.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">19.我是国宝熊猫</a> </li>
-            <li><a href="" class="icon icon-topic">20.我是国宝熊猫</a> </li>
+            <?php foreach ($forum_list as $k=>$list){?>
+            <li><a href="<?=\bbs\helpers\Uri::list_href($list['id'])?>" class="icon icon-topic"><?=($k+1)?> <?=$list['name']?></a> </li>
+            <?php }?>
         </ul>
     </div>
 

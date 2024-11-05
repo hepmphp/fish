@@ -4,7 +4,7 @@
  *  date:  2024/11/4   10:22$🐘
  *  author: hepm<ok_fish@qq.com>$🐘
  */
-namespace cms\helpers;
+namespace bbs\helpers;
 
 use app\helpers\Cache\CacheFactory;
 use cms\base\Url;

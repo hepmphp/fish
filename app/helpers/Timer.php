@@ -28,7 +28,7 @@ class Timer
     public static function start($id)
     {
         if (isset(self::$_timer[$id]))
-            throw new Exception("Timer already set: $id");
+            throw new \Exception("Timer already set: $id");
         self::startTime($id);
         self::startMem($id);
     }
@@ -99,7 +99,7 @@ class Timer
      */
     public static function go($id)
     {
-        if(isset($_SERVER['PATH_INFO'])  && ($_SERVER['PATH_INFO']!='/fish/log/index' ||  $_SERVER['PATH_INFO']!='/admin/user/logout')){
+        if(isset($_SERVER['PATH_INFO'])  && ($_SERVER['PATH_INFO']!='/tool/log/index' ||  $_SERVER['PATH_INFO']!='/admin/user/logout')){
             self::start($id);
             register_shutdown_function('\\app\\helpers\\Timer::stop',$id);
         }

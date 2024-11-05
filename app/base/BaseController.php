@@ -27,6 +27,7 @@ class BaseController{
 
 
     public function __construct() {
+
         if(strpos($_SERVER['REQUEST_URI'],'/api/')!==-1){//api请求不加载页面及菜单
             $this->app = \app\base\App::get_instance(APP_PATH);
             $this->make_view();

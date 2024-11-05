@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\helpers\Cache;
+namespace app\helpers\cache;
 
 
 abstract class Cache {

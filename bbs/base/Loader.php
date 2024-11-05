@@ -16,7 +16,7 @@ class Loader
             include_once $class_path;
         }else{
             $class_path = APP_PATH.'./'.str_replace('\\','/',$class).'.php';
-            //var_dump(__FILE__.__LINE__.$class,$class_path);
+         //   var_dump(__FILE__.__LINE__.$class,$class_path);
             if(file_exists($class_path)){
                 include_once $class_path;
             }
