@@ -10,7 +10,7 @@ var urls = {
  * 添加
  */
 function add(){
-    var url = urls.create_url;
+    var url = '/[path]/[table]/create';
     layer_form(url,1,['900px', '600px']);
 }
 /**
@@ -18,7 +18,7 @@ function add(){
  * @param id
  */
 function edit(id) {
-    var url = urls.update_url+"?id="+id;
+    var url = "/[path]/[table]/create?id="+id;
     layer_form(url,2,['900px', '600px']);
 }
 

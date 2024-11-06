@@ -23,17 +23,19 @@
         <div class="row">
             <div class="aw-content-wrap clearfix">
                 <div class="col-sm-12 col-md-12 aw-main-content">
-
+                    <?php if(empty($post['id'])){?>
                     <form action="/bbs.php/web/ask/create" method="post" id="question_form" >
-
-
+                    <?php }else{?>
+                    <form action="/bbs.php/web/ask/update_ask" method="post" id="question_form" >
+                    <?php }?>
+                         <input type="hidden" name="id" id="id" value="<?=$post['id']?>">
                         <div class="aw-mod aw-mod-publish">
                             <div class="mod-body">
                                 <h3>问题标题:</h3>
                                 <!-- 问题标题 -->
                                 <div class="aw-publish-title">
                                     <div>
-                                        <input type="text" placeholder="问题标题..." name="subject" id="subject" value="" class="form-control">
+                                        <input type="text" placeholder="问题标题..." name="subject" id="subject" value="<?=$post['subject']?>" class="form-control">
                                     </div>
                                 </div>
                                 <!-- end 问题标题 -->
@@ -45,7 +47,7 @@
                                         <?=$config_menu?>
                                     </select>
                                 </div>
-                                <script name="content" id="editor" type="text/plain" style="width:1024px;height:500px;margin-top: 50px"></script>
+                                <div name="content" id="editor"   type="text/plain" style="width:1024px;height:500px;margin-top: 50px"></div>
 
                             </div>
                             <div class="mod-footer clearfix">
@@ -69,6 +71,9 @@
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
     var ue = UE.getEditor('editor');
+    ue.ready(function (){
+        UE.getEditor('editor').setContent('<?=$post['content']?>');
+    });
 </script>
 <?php include BBS_PATH.'views/web/common/up_to_top.php'?>
 <?php include BBS_PATH.'views/web/common/footer.php'?>

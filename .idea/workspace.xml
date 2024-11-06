@@ -2,81 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70599de6-1c42-4819-9704-773d568c4494" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/GrepConsole.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copyright/fish.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/fish.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fish.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/stat.log" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/statistics-view.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/base/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/base/BaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/base/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/base/Model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/Menu.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/Menu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/fish/Log.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tool/Log.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/fish/Welcome.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/fish/Welcome.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tool/Developer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tool/Developer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/Input.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/Input.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/Session.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/Session.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/Timer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/Timer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/Tree.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/Tree.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/cache/Cache.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/cache/Cache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/cache/CacheFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/cache/CacheFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/cache/CacheRedis.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/cache/CacheRedis.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/cache/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/cache/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/cache/Memcache.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/cache/Memcache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/cache/Memcached.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/cache/Memcached.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/developer/CurdHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/developer/CurdHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/developer/FormBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/developer/FormBuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/developer/FormSearchList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/developer/FormSearchList.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/security/Csrf.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/security/Csrf.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/curd/AdminMenu.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/curd/AdminMenu.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/root/admin_iframe.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/root/admin_iframe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/user/welcome.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/user/welcome.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tool/developer/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tool/developer/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tool/developer/template/html/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tool/developer/template/html/Users.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/CateList.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/CateList.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/bbs/Forum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/bbs/Forum.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bbs/catelist/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bbs/catelist/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bbs/forum/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bbs/forum/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/tool/developer/template/html/controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tool/developer/template/html/controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tool/developer/template/html/controller_api.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tool/developer/template/html/controller_api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/tool/developer/template/html/list.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tool/developer/template/html/list.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/tool/developer/template/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tool/developer/template/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/base/BbsApp.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/base/BbsApp.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/base/BbsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/base/BbsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/base/Loader.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/base/Loader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/base/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/base/Model.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/controllers/web/Ask.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/controllers/web/Ask.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/controllers/web/BbsList.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/controllers/web/BbsList.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/controllers/web/Index.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/controllers/web/Index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/controllers/web/Question.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/controllers/web/Question.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/helpers/HtmlCache.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/helpers/HtmlCache.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/helpers/PageWidget.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/helpers/PageWidget.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/controllers/web/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/controllers/web/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/helpers/Uri.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/helpers/Uri.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/models/Forum.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/models/Forum.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/models/Posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/models/Posts.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/views/web/ask.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/ask.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/bbslist.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/bbslist.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/bbslist.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/bbslist/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/views/web/common/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/common/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/common/sidebar.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/common/sidebar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/views/web/question.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/question.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/base/CmsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/base/CmsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/views/web/common/banner.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/views/web/common/banner.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/views/web/common/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/views/web/common/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/views/web/common/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/views/web/common/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cms/views/web/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/cms/views/web/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/admin/images/bg1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/admin/images/bg11.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/admin/js/logic/admin/ajax.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/admin/js/logic/admin/ajax.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tool/adminer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tool/log.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tool/mysql_show.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tool/redis_admin.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/user/password.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/user/password.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/user/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/user/register.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -107,25 +63,24 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/static/bbs/image" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/static/bbs/js" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\data\www\fish\web\static\bbs\image" />
+      <recent name="E:\data\www\fish\web\static\bbs\js" />
+      <recent name="E:\data\www\fish\bbs\views\web\user" />
+      <recent name="E:\data\www\fish\web\static\bbs\js\select2\js" />
       <recent name="E:\data\www\fish\bbs\models" />
+      <recent name="E:\data\www\fish\bbs\controllers\web" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\data\www\fish\bbs\views\web\bbslist" />
+      <recent name="E:\data\www\fish\bbs\views\web" />
       <recent name="E:\data\www\fish\app\controllers\api" />
       <recent name="E:\data\www\fish\app\controllers\tool" />
       <recent name="E:\data\www\fish\app\controllers\admin" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="ComposerRunConfigurationType" factoryName="Composer Script">
-      <option name="pathToComposerJson" value="$PROJECT_DIR$/composer.json" />
-      <method v="2" />
-    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -136,6 +91,9 @@
       <option name="presentableId" value="Default" />
       <updated>1730813672923</updated>
       <workItem from="1730813674983" duration="16542000" />
+      <workItem from="1730857816829" duration="8433000" />
+      <workItem from="1730867585099" duration="9000" />
+      <workItem from="1730879731509" duration="23860000" />
     </task>
     <servers />
   </component>
@@ -152,5 +110,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

@@ -38,7 +38,7 @@
                                                 <label class="control-label" for="input-password-old">当前密码</label>
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <input type="password" class="form-control" id="input-password-old" name="old_password">
+                                                        <input type="password" class="form-control" id="old_password" name="old_password">
                                                     </div>
                                                 </div>
                                             </div>
@@ -46,7 +46,7 @@
                                                 <label class="control-label" for="input-password-new">新的密码</label>
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <input type="password" class="form-control" id="input-password-new" name="password">
+                                                        <input type="password" class="form-control" name="password" id="password">
                                                     </div>
                                                 </div>
                                             </div>
@@ -54,7 +54,7 @@
                                                 <label class="control-label" for="input-password-re-new">确认密码</label>
                                                 <div class="row">
                                                     <div class="col-lg-4">
-                                                        <input type="password" class="form-control" id="input-password-re-new" name="re_password">
+                                                        <input type="password" class="form-control"  id="re_password" name="re_password">
                                                     </div>
                                                 </div>
                                             </div>
@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="mod-footer clearfix">
-                                <a href="javascript:;" class="btn btn-large btn-success pull-right" style=" margin-right: 900px;">保存</a>
+                                <a href="javascript:;" class="btn btn-large btn-success pull-right" id="reset_password" style=" margin-right: 900px;">保存</a>
                             </div>
                         </div>
 
@@ -76,4 +76,51 @@
     </div>
 </div>
 </body>
+<script type="text/javascript" src="<?=STATIC_URL?>js/jquery.min.js"></script>
+<script type="text/javascript" src="<?=STATIC_URL?>js/layer/layer.js"></script>
+<script>
+    $("#reset_password").click(function () {
+
+        var old_password = $('#old_password').val();
+        var password = $('#password').val();
+        var re_password = $('#re_password').val();
+        if (old_password == '') {
+            layer.msg('请填写旧密码', {icon: 2});
+            return false;
+        }
+        if (password == '') {
+            layer.alert('请填写新密码', {icon: 2});
+            return false;
+        }
+        if (password != re_password) {
+            layer.alert('新密码填写不一样', {icon: 2});
+            return false;
+        }
+
+        var param = {
+            old_password: old_password,
+            password: password,
+            re_password: re_password
+        };
+        console.log(param);
+        $.ajax({
+            type: 'POST',
+            url: '/bbs.php/web/user/password',
+            data: param,
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                if (data.status == 0) {
+                    layer.alert(data.msg, {icon: 1}, function () {
+                        layer.closeAll();
+                    });
+                } else {
+                    layer.alert(data.msg, {icon: 2}, function () {
+                        layer.closeAll();
+                    });
+                }
+            }
+        });
+    });
+</script>
 </html>

@@ -7,6 +7,8 @@
 namespace bbs\base;
 use app\db\PdoHelper;
 use app\base\Config;
+use app\helpers\Session;
+
 class BbsApp
 {
     public static $instance=null;
@@ -46,7 +48,7 @@ class BbsApp
     }
 
     public function init_dependences(){
-
+        Session::init();
     }
 
     public function handle_error_and_exception(){
@@ -91,7 +93,7 @@ class BbsApp
 //                }
                 //$this->middleware->run_after_middleware($next);
             }else{
-                throw new \Exception("{$class} has not method {$method}");
+                throw new \Exception(-100,"{$class} has not method {$method}");
             }
         }
     }

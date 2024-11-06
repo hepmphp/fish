@@ -1,4 +1,5 @@
 <script type="text/javascript" src="<?=STATIC_URL?>js/jquery.min.js"></script>
+<script type="text/javascript" src="<?=STATIC_URL?>js/layer/layer.js"></script>
 <div class="aw-top-menu-wrap">
     <div class="container">
         <!-- logo -->
@@ -37,27 +38,27 @@
             <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/bbs.php"><i class="icon icon-home"></i> 动态</a></li>
-                    <li><a href="http://127.0.0.1:1111/wecenter" class="active"><i class="icon icon-list"></i> 发现</a></li>
                     <li><a href="<?=\bbs\helpers\Uri::list_href(0)?>"><i class="icon icon-topic"></i> 话题</a></li>
-                    <li>
-                        <a href="http://127.0.0.1:1111/wecenter/?/notifications/" class=""><i class="icon icon-bell"></i> 通知</a>
-                        <span class="badge badge-important" style="display:none" id="notifications_unread">0</span>
-                        <div class="aw-dropdown pull-right hidden-xs">
-                            <div class="mod-body">
-                                <ul id="header_notification_list"><p class="aw-padding10" align="center">没有未读通知</p></ul>
-                            </div>
-                            <div class="mod-footer">
-                                <a href="http://127.0.0.1:1111/wecenter/?/notifications/">查看全部</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <a style="font-weight:bold;">· · ·</a>
-                        <div class="dropdown-list pull-right">
-                            <ul id="extensions-nav-list">
-                            </ul>
-                        </div>
-                    </li>
+                    <li><a href="/bbs.php/web/user/register" class="active"><i class="icon icon-list"></i>注册</a></li>
+<!--                    <li>-->
+<!--                        <a href="http://127.0.0.1:1111/wecenter/?/notifications/" class=""><i class="icon icon-bell"></i> 通知</a>-->
+<!--                        <span class="badge badge-important" style="display:none" id="notifications_unread">0</span>-->
+<!--                        <div class="aw-dropdown pull-right hidden-xs">-->
+<!--                            <div class="mod-body">-->
+<!--                                <ul id="header_notification_list"><p class="aw-padding10" align="center">没有未读通知</p></ul>-->
+<!--                            </div>-->
+<!--                            <div class="mod-footer">-->
+<!--                                <a href="http://127.0.0.1:1111/wecenter/?/notifications/">查看全部</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+<!--                    <li>-->
+<!--                        <a style="font-weight:bold;">· · ·</a>-->
+<!--                        <div class="dropdown-list pull-right">-->
+<!--                            <ul id="extensions-nav-list">-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </li>-->
                 </ul>
             </nav>
         </div>
@@ -66,15 +67,15 @@
         <div class="aw-user-nav">
             <!-- 登陆&注册栏 -->
             <a href="http://127.0.0.1:1111/wecenter/?/people/admin" class="aw-user-nav-dropdown">
-                <img alt="admin" src="http://127.0.0.1:1111/wecenter/static/common/avatar-mid-img.png">
+                <img alt="admin" src="<?=STATIC_URL?>image/avator/<?=$bbs_user['avator']?>">
 
             </a>
             <div class="aw-dropdown dropdown-list pull-right">
                 <ul class="aw-dropdown-list">
-                    <li><a href="/bbs.php/web/user/register"><i class="icon icon-inbox"></i> 私信<span class="badge badge-important collapse" id="inbox_unread" style="display: none;">0</span></a></li>
-                    <li class="hidden-xs"><a href="/bbs.php/web/user/find_password"><i class="icon icon-setting"></i> 设置</a></li>
-                    <li class="hidden-xs"><a href="/bbs.php/web/user/password"><i class="icon icon-job"></i> 管理</a></li>
-                    <li><a href="http://127.0.0.1:1111/wecenter/?/account/logout/"><i class="icon icon-logout"></i> 退出</a></li>
+                    <li><a href="/bbs.php/web/bbslist/create"><i class="icon icon-inbox"></i> 私信<span class="badge badge-important collapse" id="inbox_unread" style="display: none;">0</span></a></li>
+                    <li class="hidden-xs"><a href="/bbs.php/web/user/info"><i class="icon icon-setting"></i> 修改头像</a></li>
+                    <li class="hidden-xs"><a href="/bbs.php/web/user/password"><i class="icon icon-job"></i> 修改密码</a></li>
+                    <li><a href="/bbs.php/web/user/logout"><i class="icon icon-logout" id="logout"></i> 退出</a></li>
                 </ul>
             </div>
             <!-- end 登陆&注册栏 -->
@@ -88,7 +89,7 @@
                 <ul>
                     <li>
                         <form method="post" action="http://127.0.0.1:1111/wecenter/?/publish/">
-                            <a href="/bbs.php/web/ask/index">问题</a>
+                            <a href="<?=\bbs\helpers\Uri::ask_href('')?>">问题</a>
                         </form>
 
                     </li>
@@ -104,3 +105,24 @@
 
     </div>
 </div>
+<script>
+    $('#logout').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: '/bbs.php/web/user/logout',
+            data: {},
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == 0) {
+                    layer.alert(data.msg, {icon: 1}, function () {
+                        window.location.href = '/bbs.php/web/user/login';
+                    });
+                } else {
+                    layer.alert(data.msg, {icon: 2}, function () {
+
+                    });
+                }
+            }
+        });
+    });
+</script>

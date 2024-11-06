@@ -103,10 +103,10 @@ class User extends BaseController{
         $form['username'] = Input::get_post('username','','trim');
         $form['password'] = Input::get_post('password','','trim');
         $code = Input::get_post('code');
-//        $verify_code = new VerifyCode();
-//        if(!$verify_code->check($code)){
-//            throw new LogicException(-1,'验证码输入错误');
-//        }
+        $verify_code = new VerifyCode();
+        if(!$verify_code->check($code)){
+            throw new LogicException(-1,'验证码输入错误');
+        }
 
         $this->admin_user->login($form);
         $res = array();

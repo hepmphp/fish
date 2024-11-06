@@ -64,7 +64,6 @@
                 <th>板块id</th>
                 <th>父id</th>
                 <th>主题</th>
-                <th>内容</th>
                 <th>发帖时间</th>
                 <th>用户id</th>
                 <th>用户名</th>
@@ -126,7 +125,6 @@
             '<td>[fid]</td>'+
             '<td>[pid]</td>'+
             '<td>[subject]</td>'+
-            '<td>[content]</td>'+
             '<td>[created_time]</td>'+
             '<td>[user_id]</td>'+
             '<td>[username]</td>'+
@@ -137,36 +135,36 @@
             '<td>[modified_ip]</td>'+
             '<td>[total_reply]</td>'+
             '<td>[status]</td>'+
-
-            '<a onclick="del(\'[id]\')" class="">[删除]</a></td></tr>';
+            '<td><a onclick="edit(\'[id]\')" class="">[编辑]</a><a onclick="del(\'[id]\')" class="">[删除]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/catelist/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
             if (data.status == 0) {
-                $.each(data.data.list, function (i, d) {
-                    list_html += template.
-                    replace('[id]', d.id).
-                    replace('[fid]', d.fid).
-                    replace('[pid]', d.pid).
-                    replace('[subject]', d.subject).
-                    replace('[content]', d.content).
-                    replace('[created_time]', d.created_time).
-                    replace('[user_id]', d.user_id).
-                    replace('[username]', d.username).
-                    replace('[ip]', d.ip).
-                    replace('[modified_time]', d.modified_time).
-                    replace('[modified_username]', d.modified_username).
-                    replace('[modified_userid]', d.modified_userid).
-                    replace('[modified_ip]', d.modified_ip).
-                    replace('[total_reply]', d.total_reply).
-                    replace('[status]', d.status);
-                });
-                $('table tbody').html(list_html);
-                var total_num = data.data.total;
-                $('.pagination-outline').html(multi(total_num, param.per_page, param.page, 100));
-                $(".table").bootstrapTable('resetView');
-                // window.console.clear();
-
+                if(data.data.list){
+                    $.each(data.data.list, function (i, d) {
+                        list_html += template.
+                        replace('[id]', d.id).
+                        replace('[fid]', d.fid).
+                        replace('[pid]', d.pid).
+                        replace('[subject]', d.subject).
+                        replace('[content]', d.content).
+                        replace('[created_time]', d.created_time).
+                        replace('[user_id]', d.user_id).
+                        replace('[username]', d.username).
+                        replace('[ip]', d.ip).
+                        replace('[modified_time]', d.modified_time).
+                        replace('[modified_username]', d.modified_username).
+                        replace('[modified_userid]', d.modified_userid).
+                        replace('[modified_ip]', d.modified_ip).
+                        replace('[total_reply]', d.total_reply).
+                        replace('[status]', d.status);
+                    });
+                    $('table tbody').html(list_html);
+                    var total_num = data.data.total;
+                    $('.pagination-outline').html(multi(total_num, param.per_page, param.page, 100));
+                    $(".table").bootstrapTable('resetView');
+                    // window.console.clear();
+                }
             } else {
                 layer.alert(data.msg);
             }
@@ -194,7 +192,7 @@
      * @param id
      */
     function edit(id) {
-        var url = urls.update_url+"?id="+id;
+        var url = "/bbs/cate_list/update?id="+id;
         layer_form(url,2,['900px', '600px']);
     }
 

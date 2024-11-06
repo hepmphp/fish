@@ -5,7 +5,7 @@ namespace app\controllers\[database];
 use app\base\BaseController;
 use app\helpers\Input;
 use app\models\curd\[model];
-
+use app\helpers\Validate;
  class [database] extends BaseController{
 
      public $[table]  = '';

@@ -8,7 +8,7 @@
 
 namespace bbs\models;
 use bbs\base\Model;
-use app\base\exception\LogicException;
+use bbs\base\exception\LogicException;
 use app\helpers\Tree;
 
 class Forum extends Model
@@ -23,6 +23,42 @@ class Forum extends Model
         parent::__construct();
     }
 
+    public static function get_config_status(){
+        return [
+            0=>['id'=>0,'name'=>'正常'],
+            -1=>['id'=>-1,'name'=>'隐藏'],
+
+        ];
+    }
+    public function create($form){
+        $cate_parent = $this->find(['id'=>$form['parentid']]);
+        $form['level'] = isset($cate_parent['level'])?$cate_parent['level']+1:0;
+        $form['created_time'] = time();
+        $res = $this->insert($form);
+        if($res){
+            throw  new LogicException(0,'分类添加成功');
+        }else{
+            throw  new LogicException(-1,'分类添加失败');
+        }
+    }
+    public function save($form){
+        $res = $this->update($form,['id'=>$form['id']],1);
+        if($res){
+            throw new LogicException(0,'分类修改成功');
+        }else{
+            throw new LogicException(-1,'分类修改失败');
+        }
+    }
+
+    public function delete($form){
+        $form['status'] = -1;
+        $res = $this->update($form,['id'=>$form['id']],1);
+        if($res){
+            throw new LogicException(0,'删除成功');
+        }else{
+            throw new LogicException(-1,'删除成功');
+        }
+    }
 
     public function info($data){
         $info = $this->find(['id'=>$data['id']],'*');
@@ -36,14 +72,6 @@ class Forum extends Model
         return [$data,$total['total']];
     }
 
-    public static function get_config_status(){
-        return [
-            0=>['id'=>0,'name'=>'正常'],
-            -1=>['id'=>-1,'name'=>'隐藏'],
-
-        ];
-    }
-
     public function get_config_menu($form){
         $tree = new Tree();
         $where = array();
@@ -54,12 +82,13 @@ class Forum extends Model
         if(!empty($form['level'])){
             $where['level>'] = $form['level'];
         }
+
         $admin_menu = $this->find_all($where,1,10000);
         $array = array();
         foreach ($admin_menu as $r) {
             if(isset($form['id']) && $form['id'] !=null){
                 $r['selected'] = $r['id'] == $form['id'] ? 'selected' : '';
-            }else{
+            } else{
                 $r['selected'] = '';
             }
 

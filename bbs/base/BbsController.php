@@ -10,6 +10,7 @@ namespace bbs\base;
 use app\base\PhpView;
 use app\base\SmartyView;
 use bbs\models\Forum;
+use bbs\models\User as M_User;
 
 
 class BbsController{
@@ -19,14 +20,25 @@ class BbsController{
     public $article_category=array();
     public $html_cache = '';
     public $forum = '';
+    public $user = array();
+    public $bbs_user = array();
     public function __construct() {
 
         $this->app = BbsApp::get_instance(BBS_PATH);
         $this->make_view();
         $this->forum = new Forum();
-        $form_list = $this->forum->find_all('',1,100,'*');
-        $this->view->assign('forum_list',$form_list);
+        $this->user = new M_User();
+        if(isset($_SESSION['bbs_user_id'])){
+            $this->bbs_user = $this->user->info(['id'=>$_SESSION['bbs_user_id']]);
+        }
 
+
+        $form_list = $this->forum->find_all('',1,100,'*');
+        $config_menu = $this->forum->get_config_menu([]);
+
+        $this->view->assign('forum_list',$form_list);
+        $this->view->assign('bbs_user',$this->bbs_user);
+        $this->view->assign('config_menu',$config_menu);
     }
 
     public function make_view() {

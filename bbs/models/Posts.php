@@ -9,7 +9,7 @@
 namespace bbs\models;
 use app\helpers\Input;
 use bbs\base\Model;
-use app\base\exception\LogicException;
+use bbs\base\exception\LogicException;
 
 class Posts extends Model
 {
@@ -17,12 +17,18 @@ class Posts extends Model
     public  $table='bbs_posts';
     public  $db_prefix='';
 
+    public $forum = '';
+
+
     public function __construct()
     {
         $this->table = $this->db_prefix.$this->table;
+        $this->forum = new Forum();
         parent::__construct();
     }
     public function create($form){
+        $forum = $this->forum->info(['id'=>$form['fid']]);
+        $form['forum_name'] = $forum['name'];
         $form['created_time'] = time();
         $form['user_id'] = 1;
         $form['username'] = 'fish';
@@ -36,6 +42,8 @@ class Posts extends Model
         }
     }
     public function save($form){
+        $reply = $this->info(['id'=>$form['id']]);
+        $form['pid'] = $reply['pid'];
         $res = $this->update($form,['id'=>$form['id']],1);
         if($res){
             throw new LogicException(0,'修改成功');

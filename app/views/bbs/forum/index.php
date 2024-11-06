@@ -120,14 +120,15 @@
             '<td>[logo]</td>'+
             '<td>[created_time]</td>'+
             '<td>[status]</td>'+
-
-            '<td><a onclick="del(\'[id]\')" class="">[删除]</a></td></tr>';
+            '<td><a onclick="edit(\'[id]\')" class="">[编辑]</a><a onclick="del(\'[id]\')" class="">[删除]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/forum/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
             if (data.status == 0) {
                 $.each(data.data.list, function (i, d) {
                     list_html += template.
+                    replace('[id]', d.id).
+                    replace('[id]', d.id).
                     replace('[id]', d.id).
                     replace('[parentid]', d.parentid).
                     replace('[level]', d.level).
@@ -169,7 +170,7 @@
      * @param id
      */
     function edit(id) {
-        var url = urls.update_url+"?id="+id;
+        var url = '/bbs/forum/update?id='+id;
         layer_form(url,2,['900px', '600px']);
     }
 

@@ -18,7 +18,7 @@ class CateList extends BaseController{
     }
 
     public function get_search_where(){
-
+        $where = array();
         $fid = Input::get_post('fid','','intval,trim');
         if($fid){
             if(!Validate::required('fid')){

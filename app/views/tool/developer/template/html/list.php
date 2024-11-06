@@ -80,7 +80,7 @@
 
         var template = '<tr>' +
             [td_template]
-            '<td><a onclick="delete_[table](\'[id]\')" class="">[删除]</a></td></tr>';
+            '<td><a onclick="edit(\'[id]\')" class="">[编辑]</a>|<a onclick="del(\'[id]\')" class="">[删除]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/[table]/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
