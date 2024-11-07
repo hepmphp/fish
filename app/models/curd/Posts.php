@@ -30,6 +30,7 @@ class Posts extends Model
         }
     }
     public function save($form){
+
         $res = $this->update($form,['id'=>$form['id']],1);
         if($res){
             throw new LogicException(0,'修改成功');

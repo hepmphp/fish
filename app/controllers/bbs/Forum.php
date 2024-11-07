@@ -4,6 +4,7 @@ namespace app\controllers\bbs;
 
 use app\base\BaseController;
 use app\helpers\Input;
+use app\helpers\SiteUrl;
 use app\models\curd\Forum as M_Forum;
 use app\helpers\Validate;
 
@@ -88,8 +89,12 @@ class Forum extends BaseController{
     public function update(){
         $form = $this->get_search_where();
         $config_status = $this->forum::get_config_status();
-        $select_tree = $this->forum->get_config_menu(['id'=>$form['id']]);
-        $this->view->assign('form',$form);
+        $forum = $this->forum->info(['id'=>$form['id']]);
+        $select_tree = $this->forum->get_config_menu(['id'=>$forum['parentid']]);
+        $list_images = explode(',',$forum['logo']);
+        $forum['list_image_url'][] = SiteUrl::get_image_url($list_images[0]);
+
+        $this->view->assign('form',$forum);
         $this->view->assign('select_tree',$select_tree);
         $this->view->assign('config_status',$config_status);
         $this->view->display('bbs/forum/create');

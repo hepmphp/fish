@@ -7,6 +7,7 @@
  */
 
 namespace bbs\models;
+use app\helpers\Arr;
 use bbs\base\Model;
 use bbs\base\exception\LogicException;
 use app\helpers\Tree;
@@ -69,6 +70,7 @@ class Forum extends Model
     {
         $total = $this->get_total($where);
         $data = $this->get_list($where, $limit, $offset, $fields);
+
         return [$data,$total['total']];
     }
 

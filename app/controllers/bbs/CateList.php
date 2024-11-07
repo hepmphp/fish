@@ -5,6 +5,8 @@ namespace app\controllers\bbs;
 use app\base\BaseController;
 use app\helpers\Input;
 use app\models\curd\Posts;
+use app\helpers\Validate;
+use app\helpers\SiteUrl;
 
 class CateList extends BaseController{
 
@@ -17,12 +19,12 @@ class CateList extends BaseController{
 
     public function get_search_where(){
         $where = array();
-        $fid = Input::get_post('fid','','intval,trim');
-        if($fid){
-            if(!Validate::required('fid')){
+        $id = Input::get_post('id','','intval,trim');
+        if($id){
+            if(!Validate::required('id')){
                 throw  new  LogicException(-1,'链接名称');
             }
-            $where['fid'] = $fid;
+            $where['id'] = $id;
         }
 
         $pid = Input::get_post('pid','','intval,trim');
@@ -104,6 +106,29 @@ class CateList extends BaseController{
 
     public function update(){
         $form = $this->get_search_where();
+        $form = $this->posts->info(['id'=>$form['id']]);
+        $stamp_path = WEB_PATH.'/static/bbs/image/stamp/*';
+        $images = glob($stamp_path);
+        $options = array();
+        $image_list = array();
+        foreach ($images as $k=>$image){
+            // <option data-img-src="img/adnan.png">Adnan Sagar</option>
+            $filename = basename($image);
+            $selected  = '';
+            if($filename==$form['stamp']){
+                $selected = 'selected';
+
+            }
+            $url = SiteUrl::get_stamp_url($filename);
+            $options[] = "<option value='{$filename}' $selected>{$filename}</option>\n";
+            if($k==0){
+                $image_list[] = "<img src='{$url}' class='image' value='{$filename}' style='width:90px;height: 90px;' >\n";
+            }else{
+                $image_list[] = "<img src='{$url}' class='image'  value='{$filename}' style='width:90px;height: 90px;display: none' >\n";
+            }
+        }
+        $this->view->assign('image_list',$image_list);
+        $this->view->assign('options',$options);
         $this->view->assign('form',$form);
         $this->view->display('bbs/catelist/create');
     }

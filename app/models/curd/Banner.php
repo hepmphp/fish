@@ -9,6 +9,7 @@
 namespace app\models\curd;
 use app\base\exception\LogicException;
 use app\base\Model;
+use app\helpers\SiteUrl;
 
 class Banner extends Model
 {
@@ -62,7 +63,12 @@ class Banner extends Model
         $banner = $this->get_list($where, $limit, $offset, $fields);
         foreach ($banner as $k=>$ban){
             $banner[$k]['status_name'] = $ban['status']==0?'正常':'删除';
+            if(!empty($ban['image_url'])){
+                $list_images = explode(',',$ban['image_url']);
+                $banner[$k]['image_url'] =SiteUrl::get_image_url($list_images[0]);
+            }
         }
+
         return [$banner,$total['total']];
     }
 

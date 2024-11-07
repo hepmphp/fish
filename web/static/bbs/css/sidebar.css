@@ -8,6 +8,7 @@
     z-index: 99999;
     border-radius: 2%;
     overflow: hidden;
+    border:1px solid  rgb(73, 158, 243);
 }
 
  .aside-title {

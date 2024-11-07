@@ -18,10 +18,22 @@
 <div class="container col-sm-12" style="margin-top: 10px;">
     <div class="form-horizontal">
         <input type="hidden" id="id" value="<?=$form['id']?>">
-        <div class="form-group">
+        <div  class="form-group" style="margin-left: 300px;">
+            <?php foreach ($image_list as $image){?>
+                <?=$image?>
+            <?php }?>
+            <select id="stamp" name="stamp" class="my-select">
+                <option value="">请选择</option>
+                <?php foreach ($options as $option){?>
+                    <?=$option?>
+                <?php }?>
+            </select>
+        </div>
+
+        <div class="form-group" style="display: none">
             <label class="col-sm-4 control-label" for="id">id</label>
             <div class="col-sm-4">
-                <input id="id" name="id" type="text" value="<?=$form['id']?>" placeholder="id" class="form-control input-md">
+                <input id="id" name="id" type="hidden" value="<?=$form['id']?>" placeholder="id" class="form-control input-md">
             </div>
         </div>
         <div class="form-group">
@@ -113,5 +125,17 @@
 </div>
 
 </body>
+<script>
+    var that = "<?=$form['stamp']?>";
+    $('.image').filter("[value='"+that+"']").show().siblings('.image').hide();
+    $('#stamp').change(function () {
+        var that = $(this).val();
+        $('.image').filter("[value='"+that+"']").show().siblings('.image').hide();
+        // console.log(that);
+        // $.each($('.image'), function (i, v) {
+        //     $(this).eq($(this).val()).show().siblings('.image').hide();
+        // });
+    });
+</script>
 <?=\app\helpers\AppFormAsset::run_javascript_end()?>
 </html>

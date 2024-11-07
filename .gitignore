@@ -4,3 +4,4 @@
 /web/*.log
 /web/tool/*.log
 /web/html
+/web/upload

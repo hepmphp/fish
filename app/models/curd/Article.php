@@ -10,6 +10,7 @@ namespace app\models\curd;
 use app\base\exception\LogicException;
 use app\base\Model;
 use app\helpers\Arr;
+use app\helpers\SiteUrl;
 use app\models\curd\ArticleCategory;
 
 class Article extends Model
@@ -99,10 +100,11 @@ class Article extends Model
             }else{
                 $articles[$k]['is_top_name'] = '<span class="label btn-success" style="background-color: green;" >置顶 </span>';
             }
-
-
-
-
+          //  var_dump($article['list_image_url']);
+            if(!empty($article['list_image_url'])){
+                $list_images = explode(',',$article['list_image_url']);
+                $articles[$k]['list_image_url'] = SiteUrl::get_image_url($list_images[0]);
+            }
         }
         return [$articles,$total['total']];
     }

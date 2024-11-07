@@ -93,7 +93,7 @@
     function ajax_list(param) {
         layer.load(2);
         var template = '<tr><td >[id]</td><td >[name]</td><td >[domain]</td><td><a onclick="banner_info([id])"><img src="[image_url]" style="width: 80px;height: 60px;"></td></a><td >[status_name]</td>' +
-            '<td><a onclick="banner_layer_form(\'[id]\')" class="" data-id="[id]">[修改]</a>' +
+            '<td><a onclick="banner_layer_form(\'[id]\',2)" class="" data-id="[id]">[修改]</a>' +
             '<a onclick="delete_banner(\'[id]\')" class="">[删除]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/banner/get_list/?' + $.param(param), function (data) {
@@ -157,11 +157,17 @@
             content:banner_url,
             yes: function(index, layero){
                 var body = layer.getChildFrame('body', index);
+                var images  = new Array();
+                $.each(body.find('.image-item'),function (i,v){
+                    if($(this).attr('src')){
+                        images.push($(this).attr('src'));
+                    }
+                });
                 var param ={
                     id:body.find('#id').val(),
                     name:body.find('#name').val(),
                     domain:body.find('#domain').val(),
-                    image_url:body.find('#image_url').val(),
+                    image_url:images.join(','),
                     status:body.find('#status').val(),
                 }
                 console.log(param);
@@ -182,8 +188,6 @@
             area: ['1430px', '710px'],
             content: '/cms/banner/info?id='+id_param,
             yes: function (index, layero) {
-
-
 
             }, btn2: function (index, layero) {
                 console.log('no');

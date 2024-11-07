@@ -67,7 +67,13 @@ class Forum extends BaseController{
             }
             $where['status'] = $status;
         }
-
+        $logo = Input::get_post('logo','','trim');
+        if($logo){
+            if(!Validate::required('logo')){
+                throw  new  LogicException(-1,'链接名称');
+            }
+            $where['logo'] = $logo;
+        }
 
         $where = array_filter($where);
         return $where;

@@ -117,7 +117,7 @@
             '<td>[parentid]</td>'+
             '<td>[level]</td>'+
             '<td>[name]</td>'+
-            '<td>[logo]</td>'+
+            '<td><img src="[logo]"></td>'+
             '<td>[created_time]</td>'+
             '<td>[status]</td>'+
             '<td><a onclick="edit(\'[id]\')" class="">[编辑]</a><a onclick="del(\'[id]\')" class="">[删除]</a></td></tr>';
@@ -211,20 +211,25 @@
             content:content,
             yes: function(index, layero){
                 var body = layer.getChildFrame('body', index);
+                var images  = new Array();
+                $.each(body.find('.image-item'),function (i,v){
+                    if($(this).attr('src')){
+                        images.push($(this).attr('src'));
+                    }
+                });
                 var param ={
-
                     id:body.find('#id').val(),
                     parentid:body.find('#parentid').val(),
                     level:body.find('#level').val(),
                     name:body.find('#name').val(),
-                    logo:body.find('#logo').val(),
+                    logo:images.join(','),
                     created_time:body.find('#created_time').val(),
                     status:body.find('#status').val()
 
                 };
                 //todo生成js验证
                 if(param.id){
-                    var url = urls.update_url+'&id='+param.id;
+                    var url = urls.update_url+'?id='+param.id;
                 }else{
                     var url = urls.create_url
                 }

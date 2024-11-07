@@ -30,9 +30,6 @@
         var param = {
             page: page,
             per_page: $('#per_page').val(),
-            id: $.cookie('id'),
-            admin_username: $.cookie('username'),
-            access_token: $.cookie('access_token')
         };
         ajax_list(param);
     });
@@ -43,9 +40,6 @@
             var param = {
                 page: page,
                 per_page: per_page,
-                id: $.cookie('id'),
-                admin_username: $.cookie('username'),
-                access_token: $.cookie('access_token')
             };
             ajax_list(param);
         }
@@ -64,9 +58,6 @@
             var param = {
                 page: 1,
                 per_page: per_page,
-                id: $.cookie('id'),
-                admin_username: $.cookie('username'),
-                access_token: $.cookie('access_token')
             };
             ajax_list(param);
         }

@@ -24,14 +24,14 @@ class Ask extends BbsController{
     }
 
     public function index(){
-        $config_menu = $this->form->get_config_menu([]);
         $post['id'] = Input::get_post('id',0,'intval');
+        $config_menu = $this->form->get_config_menu(['id'=>$post['id']]);
         $post['subject'] = '';
         $post['content'] = '';
         $post['created_time'] = time();
         $this->view->assign('config_menu',$config_menu);
         $this->view->assign('post',$post);
-        $this->view->display('web/ask');
+        $this->view->display('web/ask/index');
     }
 
     public function create(){
@@ -68,7 +68,7 @@ class Ask extends BbsController{
         }
         $this->view->assign('config_menu',$config_menu);
         $this->view->assign('post',$post);
-        $this->view->display('web/ask');
+        $this->view->display('web/ask/index');
     }
 
     public function ajax_update(){
@@ -84,7 +84,7 @@ class Ask extends BbsController{
         }
         $this->view->assign('config_menu',$config_menu);
         $this->view->assign('post',$post);
-        $this->view->display('web/ajax_ask');
+        $this->view->display('web/ask/ajax_ask');
     }
 
     public function ajax_create(){
@@ -96,7 +96,7 @@ class Ask extends BbsController{
         $config_menu = $this->forum->get_config_menu([]);
         $this->view->assign('config_menu',$config_menu);
         $this->view->assign('form',$form);
-        $this->view->display('web/ajax_create');
+        $this->view->display('web/ask/ajax_create');
     }
 
     public function update_ask(){
@@ -142,7 +142,7 @@ class Ask extends BbsController{
         $this->view->assign('config_menu',$config_menu);
         $this->view->assign('post',$post);
         $this->view->assign('reply',$reply);
-        $this->view->display('web/see_reply_list');
+        $this->view->display('web/ask/see_reply_list');
 
     }
 
@@ -157,7 +157,7 @@ class Ask extends BbsController{
         $config_menu = $this->forum->get_config_menu(['id'=>$form['fid']]);
         $this->view->assign('config_menu',$config_menu);
         $this->view->assign('form',$form);
-        $this->view->display('web/ajax_reply_create');
+        $this->view->display('web/ask/ajax_reply_create');
     }
 
 

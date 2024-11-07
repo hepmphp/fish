@@ -10,8 +10,7 @@ class PageWidget{
 
     static function run()
     {
-        $widget_file = file_get_contents(BBS_PATH.'views/widget/index.php');
-        echo $widget_file;
+        include BBS_PATH.'views/widget/index.php';
     }
 
 

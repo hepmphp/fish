@@ -8,19 +8,40 @@ namespace bbs\helpers;
 class Uri
 {
 
-    static function list_href($id){
+    static function bbs_list_index_href($id){
 
-        return '/bbs.php/web/bbs-list/index?id='.$id.'.html';
+        return  SITE_URL.'/web/bbs_list/index?id='.$id;
     }
+
+    static function bbs_list_href($id){
+        return  SITE_URL.'/web/bbs_list/list?id='.$id;
+    }
+
+    static function bbs_list_create(){
+        return  SITE_URL.'/web/bbs_list/create';
+    }
+
     static function detail_href($id){
         #/web/detail/index?id=1
-        return '/bbs.php/web/question/index?id='.$id.'.html';
+        return SITE_URL.'/web/question/index?id='.$id;
     }
     static function update_href($id){
         #/web/detail/index?id=1
-        return '/bbs.php/web/ask/update?id='.$id.'.html';
+        return  SITE_URL.'/web/ask/update?id='.$id;
     }
     static function ask_href($id){
-        return '/bbs.php/web/ask/index?id='.$id.'.html';
+        return  SITE_URL.'/web/ask/index?id='.$id;
     }
+    static function ask_create_href($id){
+        return  SITE_URL.'/web/ask/create?id='.$id;
+    }
+
+    static function question_href($id){
+        return  SITE_URL.'/web/question/index?id='.$id;
+    }
+    static function user_bbslist_href($id){
+        return  SITE_URL.'/web/user/bbslist?user_id='.$id;
+    }
+    //bbs.php/web/user/bbslist
+
 }

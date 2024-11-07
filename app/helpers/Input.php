@@ -177,4 +177,27 @@ class Input {
         echo( json_encode($json_data,JSON_UNESCAPED_UNICODE));
     }
 
+
+    static function is_mobile() {
+        $userAgent = $_SERVER['HTTP_USER_AGENT'];
+        $mobileAgents = array(
+            "android",
+            "blackberry",
+            "iphone",
+            "ipad",
+            "ipod",
+            "iemobile",
+            "windows ce",
+            "windows phone"
+        );
+        $mobile = false;
+        foreach ($mobileAgents as $agent) {
+            if (strripos($userAgent, strtolower($agent)) !== false) {
+                $mobile = true;
+                break;
+            }
+        }
+        return $mobile;
+    }
+
 }

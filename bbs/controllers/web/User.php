@@ -7,18 +7,20 @@
 
 namespace bbs\controllers\web;
 
+use app\helpers\Arr;
 use bbs\base\exception\LogicException;
 use app\helpers\Input;
 use app\helpers\Session;
 use app\helpers\Validate;
 use app\helpers\VerifyCode;
 use bbs\base\BbsController;
+use bbs\models\Posts;
 use bbs\models\User as M_User;
 class User extends BbsController{
-
+    public $posts= '';
     public function __construct()
     {
-
+        $this->posts = new Posts();
         parent::__construct();
     }
 
@@ -157,6 +159,40 @@ class User extends BbsController{
 
     public function find_password(){
         $this->view->display('web/user/find_password');
+    }
+
+    public function bbslist(){
+        $data = [];
+        $where = [];
+        if(Input::get_post('user_id')){
+            $where['user_id'] = Input::get_post( 'user_id','0','intval');
+        }
+
+        $page = Input::get_post('page','1','intval');
+        $per_page = Input::get_post('per_page',20,'intval');
+        $per_page = 3;
+        list($res,$total) = $this->posts->get_list_info($where,$page,$per_page,'*');
+
+        $user_ids = Arr::getColumn($res,'user_id');
+        if(!empty($user_ids)){
+            $where_user_id['id'] = $user_ids;
+            $users = $this->user->find_all($where_user_id,1,1000);
+            $user_index = Arr::index($users,'id');
+            foreach ($res as $k=>$v){
+                if(isset($user_index[$v['user_id']])){
+                    $res[$k]['avator'] = $user_index[$v['user_id']]['avator'];
+                }else{
+                    $res[$k]['avator'] = '';
+                }
+
+            }
+        }
+        $data['list'] = $res;
+        $data['total'] = $total;
+        $data['page'] =$page;
+        $data['per_page'] = $per_page;
+        $this->view->assign('data',$data);
+        $this->view->display('web/user/bbslist');
     }
 
 }

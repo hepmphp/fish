@@ -1,5 +1,14 @@
+<style xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    .pagination{
+        width: 900px;
+    }
+    .pagination-outline{
+        width: 600px;
+    }
+
+</style>
 <div class="page-bottom clearfix">
-    <div class="pull-right pagination">
+    <div class=" pagination">
 <span class="page-list">每页显示
     <span class="btn-group dropup">
             <select class="form-control" id="per_page" onchange="change_page()">
@@ -9,6 +18,7 @@
                 <option value="200">200</option>
             </select>
         </span>条</span>
+
 
         <ul class="pagination pagination-outline">
             <li class="page-pre"><a href="javascript:void(0)">&laquo;</a></li>
@@ -22,14 +32,13 @@
     </div>
 </div>
 <script>
-    function ajax_list(param){
-        console.log(window.location.search);
-        const url_params = new URLSearchParams(window.location.search);
-        console.log(url_params);
-        const id = url_params.get('id');
-
-        window.location.href = 'http://'+window.location.host+"/cms.php/web/catelist/index?id="+id+'&'+$.param(param);
-    }
+    const url_params = new URLSearchParams(window.location.search);
+    const id = url_params.get('id');
+    // function ajax_list(param){
+    //     console.log(window.location.search);
+    //     console.log(url_params);
+    //     window.location.href = window.location.href+'&'+$.param(param);
+    // }
     $(".pagination-outline").delegate('a', 'click', function () {
         console.log('pagination-outline');
         $(this).parent('li').addClass('active').siblings().removeClass('active');

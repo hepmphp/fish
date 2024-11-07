@@ -10,6 +10,8 @@
     <link href="<?= STATIC_URL ?>css/bootstrap.css" rel="stylesheet" type="text/css"/>
     <link href="<?= STATIC_URL ?>css/icon.css" rel="stylesheet" type="text/css"/>
     <link href="<?= STATIC_URL ?>css/commom.css" rel="stylesheet" type="text/css"/>
+    <link href="<?= STATIC_URL ?>css/page.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="<?=STATIC_URL?>js/page.js"></script>
 </head>
 <body>
 <?php include BBS_PATH . 'views/web/common/header.php' ?>
@@ -31,9 +33,12 @@
                 <div class="col-sm-12 col-md-12 aw-main-content">
                     <div class="aw-mod aw-topic-detail-title">
                         <div class="mod-body" style="width:150px;margin: 0 auto;">
-                            <img src="http://127.0.0.1:1111/wecenter/uploads/topic/20241015/66f7894b880891e0a4c01b5ff8b63064_50_50.jpg"
-                                 alt="编程">
+                            <?php if(empty($forum_data['name'])){?>
+                            <h2 class="pull-left">论坛</h2>
+                            <?php }else{?>
+                            <img class="" src="<?=\bbs\helpers\SiteUrl::get_image_url($forum_data['logo'])?>">
                             <h2 class="pull-left"><?=$forum_data['name']?></h2>
+                            <?php }?>
                         </div>
                     </div>
 
@@ -60,11 +65,14 @@
                                                 <?php foreach ($data['list'] as $k=>$v){?>
                                                 <div class="aw-item article">
                                                     <a class="aw-user-name hidden-xs" data-id="1"
-                                                       href="http://127.0.0.1:1111/wecenter/?/people/admin"
+                                                       href=""
                                                        rel="nofollow">
                                                         <img
-                                                                src="<?=STATIC_URL?>image/avator/10001.jpg"
+                                                                src="<?=\bbs\helpers\SiteUrl::get_avator_url($v['avator'])?>"
                                                                 alt=""></a>
+                                                    <?php if(!empty($v['stamp'])){?>
+                                                        <div id="" style="float: right;"><img src="<?=\bbs\helpers\SiteUrl::get_stamp_url($v['stamp'])?>"></div>
+                                                    <?php }?>
                                                     <div class="aw-question-content">
                                                         <h4>
                                                             <a href="<?=\bbs\helpers\Uri::detail_href($v['id'])?>"><?=$v['subject']?></a>
@@ -73,6 +81,7 @@
                                                             <?=date('Y-m-d H:i:s',$v['created_time'])?>
                                                         </span>
                                                     </div>
+
                                                 </div>
                                                 <?php }?>
                                             </div>
@@ -83,8 +92,20 @@
                             </div>
                         </div>
                     </div>
-                    <?php include BBS_PATH . 'views/web/common/up_to_top.php' ?>
-                    <?php include BBS_PATH . 'views/web/common/auto_index.php' ?>
-                    <?php include BBS_PATH.'views/web/common/footer.php'?>
+                    <?=\bbs\helpers\PageWidget::run()?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<?php include BBS_PATH . 'views/web/common/up_to_top.php' ?>
+<?php include BBS_PATH . 'views/web/common/auto_index.php' ?>
+<?php include BBS_PATH.'views/web/common/footer.php'?>
+<script>
+    $('.pagination-outline').html(multi(<?=$data['total']?>, <?=$data['per_page']?>,  <?=$data['page']?>, 100));
+    function ajax_list(param_data){
+        window.location.href = "<?=\bbs\helpers\Uri::bbs_list_index_href($_GET['id'])?>&"+$.param(param_data);
+    }
+</script>
 </body>
 </html>

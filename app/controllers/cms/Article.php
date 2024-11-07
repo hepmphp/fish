@@ -6,6 +6,7 @@
  */
 namespace app\controllers\cms;
 use app\helpers\Input;
+use app\helpers\SiteUrl;
 use app\models\curd\Article as AdminArticle;
 use app\models\curd\ArticleCategory;
 use app\base\BaseController;
@@ -62,6 +63,14 @@ class Article extends BaseController{
     public function update(){
         $form['id'] = Input::get_post('id');
         $form = $this->admin_article->info(['id'=>$form['id']]);
+        if(!empty($form['list_image_url'])){
+            $list_images = explode(',',$form['list_image_url']);
+            $list_image_urls = array();
+            foreach ($list_images as $k=>$v){
+                $list_image_urls[] = SiteUrl::get_image_url($v);
+            }
+            $form['list_image_url'] = $list_image_urls;
+        }
         $select_tree = $this->article_category->get_config_menu(['id'=>$form['cate_id']]);
         $this->view->assign('select_tree',$select_tree);
         $this->view->assign('form',$form);

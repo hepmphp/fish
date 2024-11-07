@@ -69,7 +69,7 @@ class AdminMenu extends Model
         $bbs = [
             'bbs/forum',
             'bbs/cate_list',
-            'bbs/user',
+            'bbs/bbs_user',
         ];
 
         foreach ($menu as $k=>$v){

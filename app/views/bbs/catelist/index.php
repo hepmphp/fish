@@ -144,6 +144,8 @@
                     $.each(data.data.list, function (i, d) {
                         list_html += template.
                         replace('[id]', d.id).
+                        replace('[id]', d.id).
+                        replace('[id]', d.id).
                         replace('[fid]', d.fid).
                         replace('[pid]', d.pid).
                         replace('[subject]', d.subject).
@@ -175,7 +177,7 @@
 
     var urls = {
         create_url:'/api/cate_list/create',
-        update_url:'/api/cat_list/update',
+        update_url:'/api/cate_list/update',
         delete_url:'/api/cate_list/delete',
         info_url:'/api/cate_list/info'
     };
@@ -234,12 +236,12 @@
             yes: function(index, layero){
                 var body = layer.getChildFrame('body', index);
                 var param ={
-
+                    stamp:body.find('#stamp').val(),
                     id:body.find('#id').val(),
                     fid:body.find('#fid').val(),
                     pid:body.find('#pid').val(),
                     subject:body.find('#subject').val(),
-                    content:body.find('#content').val(),
+                    content:body.find('#content').text(),
                     created_time:body.find('#created_time').val(),
                     user_id:body.find('#user_id').val(),
                     username:body.find('#username').val(),
@@ -250,11 +252,10 @@
                     modified_ip:body.find('#modified_ip').val(),
                     total_reply:body.find('#total_reply').val(),
                     status:body.find('#status').val()
-
                 };
                 //todo生成js验证
                 if(param.id){
-                    var url = urls.update_url+'&id='+param.id;
+                    var url = urls.update_url+'?id='+param.id;
                 }else{
                     var url = urls.create_url
                 }

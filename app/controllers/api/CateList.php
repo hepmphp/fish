@@ -19,7 +19,14 @@ class CateList extends BaseController{
 
     public function get_search_where(){
         $where = array();
-        $fid = Input::get_post('fid','','intval,trim');
+        $id = Input::get_post('id','','trim');
+        if($id){
+            if(!Validate::required('id')){
+                throw  new  LogicException(-1,'链接名称');
+            }
+            $where['id'] = $id;
+        }
+        $fid = Input::get_post('fid','','trim');
         if($fid){
             if(!Validate::required('fid')){
                 throw  new  LogicException(-1,'链接名称');
@@ -27,7 +34,7 @@ class CateList extends BaseController{
             $where['fid'] = $fid;
         }
 
-        $pid = Input::get_post('pid','','intval,trim');
+        $pid = Input::get_post('pid','','trim');
         if($pid){
             if(!Validate::required('pid')){
                 throw  new  LogicException(-1,'链接名称');
@@ -35,7 +42,7 @@ class CateList extends BaseController{
             $where['pid'] = $pid;
         }
 
-        $subject = Input::get_post('subject','','intval,trim');
+        $subject = Input::get_post('subject');
         if($subject){
             if(!Validate::required('subject')){
                 throw  new  LogicException(-1,'链接名称');
@@ -59,7 +66,7 @@ class CateList extends BaseController{
             $where['addtime < '] = strtotime($end_time);
         }
 
-        $user_id = Input::get_post('user_id','','intval,trim');
+        $user_id = Input::get_post('user_id','','trim');
         if($user_id){
             if(!Validate::required('user_id')){
                 throw  new  LogicException(-1,'链接名称');
@@ -67,7 +74,7 @@ class CateList extends BaseController{
             $where['user_id'] = $user_id;
         }
 
-        $username = Input::get_post('username','','intval,trim');
+        $username = Input::get_post('username','','trim');
         if($username){
             if(!Validate::required('username')){
                 throw  new  LogicException(-1,'链接名称');
@@ -75,15 +82,20 @@ class CateList extends BaseController{
             $where['username'] = $username;
         }
 
-        $status = Input::get_post('status','','intval,trim');
+        $status = Input::get_post('status','','trim');
         if($status){
             if(!Validate::required('status')){
                 throw  new  LogicException(-1,'链接名称');
             }
             $where['status'] = $status;
         }
-
-
+        $stamp = Input::get_post('stamp','','trim');
+        if($stamp){
+            if(!Validate::required('stamp')){
+                throw  new  LogicException(-1,'链接名称');
+            }
+            $where['stamp'] = $stamp;
+        }
         $where = array_filter($where);
         return $where;
     }
@@ -95,6 +107,7 @@ class CateList extends BaseController{
     }
 
     public function update(){
+
         $form = $this->get_search_where();
         $this->posts->save($form);
     }

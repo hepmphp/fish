@@ -64,7 +64,7 @@ function layer_form(url,action,area){
             };
             //todo生成js验证
             if(param.id){
-                var url = urls.update_url+'&id='+param.id;
+                var url = urls.update_url+'?id='+param.id;
             }else{
                 var url = urls.create_url
             }

@@ -72,7 +72,7 @@ class CurdHelper {
 
         //搜索条件替换
         $where_tpl = <<<EOT
-        \$[field] = Input::get_post('[field]','','intval,trim');
+        \$[field] = Input::get_post('[field]','','trim');
         if(\$[field]){
           if(!Validate::required('[field]')){
                throw  new  LogicException(-1,'链接名称');

@@ -34,13 +34,12 @@
                 <input id="name" name="name" type="text" value="<?=$form['name']?>" placeholder="名称" class="form-control input-md">
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-4 control-label" for="logo">图标</label>
-            <div class="col-sm-4">
-                <input id="logo" name="logo" type="text" value="<?=$form['logo']?>" placeholder="图标" class="form-control input-md">
-            </div>
-        </div>
-
+        <style>
+            .image_list_class{
+                margin-left: 240px;
+            }
+        </style>
+        <?php include APP_PATH.'/views/admin/root/upload.php';?>
         <div class="form-group">
             <label class="col-sm-4 control-label" for="level">层级</label>
             <div class="col-sm-4">

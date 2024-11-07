@@ -44,7 +44,7 @@ class Handler {
      */
     public  function error_handler($errno,$errstr,$errfile='',$errline='',$errcontext=array()){
         $time = date("Y-m-d H:i:s");
-        $errcode = $this->levels[$errno];
+        $errcode = isset($this->levels[$errno])?$this->levels[$errno]:-100;
         $log_message = "错误代码:[%s],错误信息:[%s],文件:[%s],行号:[%d],地址:[%s],来源:[%s]";
         $url     = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         $referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';

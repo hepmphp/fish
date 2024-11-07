@@ -38,6 +38,7 @@
                                         </div>
                                 </div>
                             </div>
+
                             <div class="mod-body" style="width: 600px;margin-left: 30px;margin-top: 30px;">
                                 <div class="aw-mod aw-user-setting-bind">
                                     <div class="mod-body">

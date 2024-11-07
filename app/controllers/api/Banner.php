@@ -57,7 +57,7 @@ class Banner extends BaseController{
         if(!Validate::required($form['name'])){
             throw  new  LogicException(-1,'链接名称');
         }
-        if(!Validate::required($form['link_address'])){
+        if(!Validate::required($form['image_url'])){
             throw  new  LogicException(-2,'链接地址');
         }
         $this->bannner->save($form);

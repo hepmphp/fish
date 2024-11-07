@@ -10,6 +10,8 @@
     <link href="<?=STATIC_URL?>/css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="<?=STATIC_URL?>/css/icon.css" rel="stylesheet" type="text/css" />
     <link href="<?=STATIC_URL?>/css/commom.css" rel="stylesheet" type="text/css" />
+    <link href="<?= STATIC_URL ?>css/page.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="<?=STATIC_URL?>js/page.js"></script>
 </head>
 <body>
 <?php include BBS_PATH.'views/web/common/header.php'?>
@@ -27,17 +29,17 @@
                     <!-- 我关注的话题 -->
                     <div class="aw-mod aw-topic-list">
                         <div class="mod-body clearfix">
-                            <?php foreach ($forum_list as $k=>$list){?>
+                            <?php foreach ($data['list'] as $k=>$list){?>
                             <div class="aw-item">
                                 <!-- 话题图片 -->
-                                <a class="img aw-border-radius-5" href="" data-id="5">
-                                    <img src="<?=STATIC_URL?>image/topic-mid-img.png" alt="">
+                                <a class="img aw-border-radius-5 " href="" data-id="5">
+                                    <img class="image_logo" src="<?=\bbs\helpers\SiteUrl::get_image_url($list['logo'])?>" alt="">
                                 </a>
                                 <!-- end 话题图片 -->
                                 <p class="clearfix">
                                     <!-- 话题内容 -->
                                     <span class="topic-tag">
-                                        <a class="text" href="<?=\bbs\helpers\Uri::list_href($list['id'])?>" data-id=""><?=$list['name']?></a>
+                                        <a class="text" href="<?=\bbs\helpers\Uri::bbs_list_index_href($list['id'])?>" data-id=""><?=$list['name']?></a>
                                     </span>
                                     <!-- end 话题内容 -->
                                 </p>
@@ -55,11 +57,21 @@
                         </div>
                     </div>
                     <!-- end 我关注的话题 -->
+                    <div class="container">
+                        <?=\bbs\helpers\PageWidget::run()?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $('.pagination-outline').html(multi(<?=$data['total']?>, <?=$data['per_page']?>,  <?=$data['page']?>, 100));
+    function ajax_list(param){
+        const url_params = new URLSearchParams(window.location.search);
+        window.location.href = '/bbs.php/web/index/index?'+$.param(param);
+    }
+</script>
 <?php include BBS_PATH.'views/web/common/up_to_top.php'?>
 <?php include BBS_PATH.'views/web/common/footer.php'?>
 </body>

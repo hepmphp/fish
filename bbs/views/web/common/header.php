@@ -19,7 +19,7 @@
                         <p class="search"><span>搜索:</span><a onclick="$('#global_search_form').submit();"></a></p>
                     </div>
                     <div class="mod-footer">
-                        <a href="javascript:;" onclick="$('#header_publish').click();" class="pull-right btn btn-mini btn-success publish">发起问题</a>
+                        <a href="javascript:;"  class="pull-right btn btn-mini btn-success publish">发起问题</a>
                     </div>
                 </div>
             </form>
@@ -38,8 +38,9 @@
             <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/bbs.php"><i class="icon icon-home"></i> 动态</a></li>
-                    <li><a href="<?=\bbs\helpers\Uri::list_href(0)?>"><i class="icon icon-topic"></i> 话题</a></li>
+                    <li><a href="<?=\bbs\helpers\Uri::bbs_list_index_href(0)?>"><i class="icon icon-topic"></i> 话题</a></li>
                     <li><a href="/bbs.php/web/user/register" class="active"><i class="icon icon-list"></i>注册</a></li>
+                    <li><a href="/bbs.php/web/user/login" class="active"><i class="icon icon-list"></i>登录</a></li>
 <!--                    <li>-->
 <!--                        <a href="http://127.0.0.1:1111/wecenter/?/notifications/" class=""><i class="icon icon-bell"></i> 通知</a>-->
 <!--                        <span class="badge badge-important" style="display:none" id="notifications_unread">0</span>-->
@@ -66,9 +67,10 @@
         <!-- 用户栏 -->
         <div class="aw-user-nav">
             <!-- 登陆&注册栏 -->
+            <?php if(!empty($bbs_user['avator'])){?>
             <a href="http://127.0.0.1:1111/wecenter/?/people/admin" class="aw-user-nav-dropdown">
                 <img alt="admin" src="<?=STATIC_URL?>image/avator/<?=$bbs_user['avator']?>">
-
+            <?php }?>
             </a>
             <div class="aw-dropdown dropdown-list pull-right">
                 <ul class="aw-dropdown-list">
@@ -84,19 +86,20 @@
         <!-- 发起 -->
         <div class="aw-publish-btn">
 
-            <a id="header_publish" class="btn-primary" href="#"><i class="icon icon-ask"></i>发起</a>
+            <a id="header_publish" class="btn-primary" href="<?=\bbs\helpers\Uri::ask_href(\app\helpers\Input::get_post('id'))?>"><i class="icon icon-ask"></i>发起</a>
             <div class="dropdown-list pull-right">
                 <ul>
                     <li>
-                        <form method="post" action="http://127.0.0.1:1111/wecenter/?/publish/">
-                            <a href="<?=\bbs\helpers\Uri::ask_href('')?>">问题</a>
-                        </form>
-
+                        <a href="<?=\bbs\helpers\Uri::ask_href(\app\helpers\Input::get_post('id'))?>">问题</a>
                     </li>
                     <li>
-                        <form method="post" action="#">
-                            <a  href="/bbs.php/web/question/index">文章</a>
-                        </form>
+                        <a href="<?=\bbs\helpers\Uri::bbs_list_href(\app\helpers\Input::get_post('id'))?>">分类列表</a>
+                    </li>
+                    <li>
+                        <a href="<?=\bbs\helpers\Uri::bbs_list_create()?>">添加分类</a>
+                    </li>
+                    <li>
+                        <a href="<?=\bbs\helpers\Uri::user_bbslist_href($bbs_user['id'])?>">用户帖子</a>
                     </li>
                 </ul>
             </div>

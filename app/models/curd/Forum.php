@@ -9,6 +9,7 @@
 namespace app\models\curd;
 use app\base\Model;
 use app\base\exception\LogicException;
+use app\helpers\SiteUrl;
 use app\helpers\Tree;
 
 class Forum extends Model
@@ -62,6 +63,13 @@ class Forum extends Model
     {
         $total = $this->get_total($where);
         $data = $this->get_list($where, $limit, $offset, $fields);
+        foreach ($data as $k=>$v){
+            if(!empty($v['logo'])){
+                $list_images = explode(',',$v['logo']);
+                $data[$k]['logo'] = SiteUrl::get_image_url($list_images[0]);
+            }
+        }
+
         return [$data,$total['total']];
     }
 

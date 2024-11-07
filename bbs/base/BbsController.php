@@ -28,17 +28,18 @@ class BbsController{
         $this->make_view();
         $this->forum = new Forum();
         $this->user = new M_User();
+        $this->bbs_user['avator'] = '';
         if(isset($_SESSION['bbs_user_id'])){
             $this->bbs_user = $this->user->info(['id'=>$_SESSION['bbs_user_id']]);
         }
 
 
         $form_list = $this->forum->find_all('',1,100,'*');
-        $config_menu = $this->forum->get_config_menu([]);
+
 
         $this->view->assign('forum_list',$form_list);
         $this->view->assign('bbs_user',$this->bbs_user);
-        $this->view->assign('config_menu',$config_menu);
+       // $this->view->assign('config_menu',$config_menu);
     }
 
     public function make_view() {

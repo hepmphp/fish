@@ -36,19 +36,7 @@
                 <input id="domain" name="domain" type="text" value="<?=$form['name']?>" placeholder="域名" class="form-control input-md">
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-4 control-label" for="name">图像地址</label>
-            <div class="col-sm-4">
-                <span>
-                       <image src="<?=$form['image_url']?>" id="list_image" style="height: 60px;width: 60px;"></image>
-                      <input id="image_url" name="image_url" type="text" value="<?=$form['']?>" placeholder="图像地址" class="form-control input-md">
-                       <button type="button" class="btnImg btn btn-success" onclick="add_bannner_image()">浏览</button>
-                </span>
-
-            </div>
-
-        </div>
-
+        <?php include APP_PATH.'/views/admin/root/upload.php';?>
         <div class="form-group">
             <label class="col-sm-1 control-label" for="status">状态</label>
             <div class="col-sm-4">
@@ -59,7 +47,6 @@
                 </select>
             </div>
         </div>
-
     </div>
 </div>
 <script src="<?=STATIC_URL?>js/ckfinder/ckfinder.js?<?=rand()?>"></script>

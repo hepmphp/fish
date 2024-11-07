@@ -6,21 +6,31 @@
  */
 namespace bbs\controllers\web;
 
+use app\helpers\Input;
 use bbs\base\BbsController;
 use bbs\models\Forum;
 
 class Index extends BbsController{
 
-    public $form = '';
+    public $forum = array();
     public function __construct()
     {
-        $this->form = new Forum();
+        $this->forum = new Forum();
         parent::__construct();
     }
 
     public function index(){
-
-        $this->view->display('web/index');
+        $page = Input::get_post('page','1','intval');
+        $per_page = Input::get_post('per_page',20,'intval');
+        $per_page = 2;
+        $where = '';
+        list($res,$total) = $this->forum->get_list_info($where,$page,$per_page,'*');
+        $data['list'] = $res;
+        $data['total'] = $total;
+        $data['page'] =$page;
+        $data['per_page'] = $per_page;
+        $this->view->assign('data',$data);
+        $this->view->display('web/index/index');
     }
 
 

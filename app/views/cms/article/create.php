@@ -77,19 +77,8 @@
                     <option value="2"  <?=$form['is_top']==2?'selected':''?> >头条</option>
                 </select>
             </div>
-
         </div>
-        <div class="form-group">
-            <label class="col-sm-1 control-label">列表显示图片：</label>
-            <div class="col-sm-4">
-             <span>
-                 <image src="<?=$form['list_image_url']?>" id="list_image" style="height: 60px;width: 60px;"></image>
-                 <input value="<?=$form['list_image_url']?>" name="list_image_url" class="input-md form-control"  type="text" id="list_image_url">
-             </span>
-            </div>
-
-            <button type="button" class="btnImg btn btn-success" onclick="add_list_image()">浏览</button>
-        </div>
+        <?php include APP_PATH.'/views/admin/root/upload.php';?>
         <!-- Select Basic -->
         <div class="form-group">
             <label class="col-sm-1 control-label" for="status">状态</label>

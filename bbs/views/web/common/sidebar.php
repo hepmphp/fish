@@ -1,3 +1,4 @@
+<?php if(!\app\helpers\Input::is_mobile()){?>
 <link href="<?=STATIC_URL?>css/sidebar.css" rel="stylesheet" type="text/css" />
 <style>
     .fixed_top_1{
@@ -29,9 +30,11 @@
     <div id="forum_list" >
         <ul>
             <?php foreach ($forum_list as $k=>$list){?>
-            <li><a href="<?=\bbs\helpers\Uri::list_href($list['id'])?>" class="icon icon-topic"><?=($k+1)?> <?=$list['name']?></a> </li>
+            <li><a href="<?=\bbs\helpers\Uri::bbs_list_index_href($list['id'])?>" class="icon icon-topic"><?=($k+1)?> <?=$list['name']?></a> </li>
             <?php }?>
         </ul>
     </div>
 
 </div>
+
+<?php }?>

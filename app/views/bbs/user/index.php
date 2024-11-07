@@ -70,7 +70,6 @@
                 <th>当前用户组ID</th>
                 <th>注册时间</th>
                 <th>用户附加组的ID缓存字段</th>
-
                 <th>操作</th>
             </tr>
             </thead>
@@ -125,8 +124,7 @@
             '<td>[groupid]</td>'+
             '<td>[addtime]</td>'+
             '<td>[groups]</td>'+
-
-            '<a onclick="delete_bbs_user(\'[id]\')" class="">[删除]</a></td></tr>';
+            '<td><a onclick="delete_bbs_user(\'[id]\')" class="">[删除]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/bbs_user/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
@@ -140,8 +138,7 @@
                     replace('[status]', d.status).
                     replace('[groupid]', d.groupid).
                     replace('[addtime]', d.addtime).
-                    replace('[groups]', d.groups).
-
+                    replace('[groups]', d.groups)
                 });
                 $('table tbody').html(list_html);
                 var total_num = data.data.total;

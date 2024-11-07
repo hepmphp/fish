@@ -248,6 +248,12 @@
             content:url,
             yes: function(index, layero){
                 var body = layer.getChildFrame('body', index);
+                var images  = new Array();
+                $.each(body.find('.image-item'),function (i,v){
+                    if($(this).attr('src')){
+                        images.push($(this).attr('src'));
+                    }
+                });
                 var param ={
                     id:body.find('#id').val(),
                     cate_id:body.find('#cate_id').val(),
@@ -263,10 +269,10 @@
                     content:body.find('.ck-content').html(),
                     addtime:body.find('#addtime').val(),
                     is_top:body.find('#is_top').val(),
-                    list_image_url:body.find('#list_image_url').val(),
+                    list_image_url:images.join(','),
                     status:body.find('#status').val()
                 }
-                console.log(param);
+
                 var url = action==1?'/api/article/create':'/api/article/update';
                ajax_post(url,param);
             },btn2: function(index, layero){

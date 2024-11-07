@@ -7,31 +7,32 @@
  */
 
 namespace bbs\models;
+use app\helpers\Arr;
 use app\helpers\Input;
 use bbs\base\Model;
 use bbs\base\exception\LogicException;
+use bbs\models\User;
 
 class Posts extends Model
 {
     public $db ='bbs';
     public  $table='bbs_posts';
     public  $db_prefix='';
-
     public $forum = '';
-
-
+    public $user = '';
     public function __construct()
     {
         $this->table = $this->db_prefix.$this->table;
         $this->forum = new Forum();
+        $this->user = new User();
         parent::__construct();
     }
     public function create($form){
         $forum = $this->forum->info(['id'=>$form['fid']]);
         $form['forum_name'] = $forum['name'];
         $form['created_time'] = time();
-        $form['user_id'] = 1;
-        $form['username'] = 'fish';
+        $form['user_id'] = $_SESSION['bbs_user_id'];
+        $form['username'] = $_SESSION['bbs_user_username'];
         $form['ip'] = Input::get_client_ip();
         $form['status']  = 0 ;
         $res = $this->insert($form);
@@ -71,6 +72,19 @@ class Posts extends Model
     {
         $total = $this->get_total($where);
         $data = $this->get_list($where, $limit, $offset, $fields);
+        $user_ids = Arr::getColumn($data,'user_id');
+        if(!empty($user_ids)){
+            $where_user_id['id'] = $user_ids;
+            $users = $this->user->find_all($where_user_id,1,1000);
+            $user_index = Arr::index($users,'id');
+            foreach ($data as $k=>$v){
+                if(isset($user_index[$v['user_id']])){
+                    $data[$k]['avator'] = $user_index[$v['user_id']]['avator'];
+                }else{
+                    $data[$k]['avator'] = '';
+                }
+            }
+        }
         return [$data,$total['total']];
     }
 

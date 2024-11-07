@@ -24,7 +24,6 @@
     <script src="<?=STATIC_URL?>js/html5shiv.min.js"></script>
     <script src="<?=STATIC_URL?>js/respond.min.js"></script>
     <![endif]-->
-    <script src="<?=STATIC_URL?>js/translate.js"></script>
 </head>
 <body class="gray-bg">
 <div class="wrapper">
@@ -158,4 +157,5 @@
 </script>
 </body>
 <?php include_once WEB_PATH.'/../app/views/admin/user/debug.php'?>
+
 </html>
