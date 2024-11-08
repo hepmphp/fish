@@ -35,7 +35,7 @@ class AdminMenu extends Model
     }
 
     public function get_left_menu($cate){
-        $where = " level in(1,2) and (action='index' OR action='welcome') and status=0 ";
+        $where = " level in(1,2) and (action='index' OR action='welcome' OR action='detail') and status=0 ";
         $limit =1;
         $offset=100;
         $fields ='*';
@@ -56,7 +56,8 @@ class AdminMenu extends Model
             'cms/attach',
             'cms/banner',
             'cms/friend',
-
+            'cms/file',
+            'cms/folder',
         ];
         $tool = [
             'tool/developer',

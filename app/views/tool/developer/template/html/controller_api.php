@@ -7,14 +7,14 @@ use app\base\exception\LogicException;
 use app\helpers\Input;
 use app\helpers\Validate;
 
-use app\models\curd\[model];
+use app\models\curd\[model] as M_[model];
 
-class [database] extends BaseController{
+class [model] extends BaseController{
 
     public $[table] = '';
     public function __construct()
     {
-        $this->[table] = new [model]();
+        $this->[table] = new M_[model]();
         parent::__construct();
     }
 

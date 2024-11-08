@@ -65,7 +65,7 @@
                                                 <?php foreach ($data['list'] as $k=>$v){?>
                                                 <div class="aw-item article">
                                                     <a class="aw-user-name hidden-xs" data-id="1"
-                                                       href=""
+                                                       href="<?=\bbs\helpers\Uri::user_bbslist_href($v['user_id'])?>"
                                                        rel="nofollow">
                                                         <img
                                                                 src="<?=\bbs\helpers\SiteUrl::get_avator_url($v['avator'])?>"

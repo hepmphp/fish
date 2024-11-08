@@ -140,7 +140,9 @@
                             <input type="hidden" name="fid" value="<?=$post['fid']?>">
                             <input type="hidden" name="subject" value="<?=$post['subject']?>">
                             <div class="mod-head">
+                                <?php if(!empty($bbs_user['avator'])){?>
                                 <a href="#" class="aw-user-name"><img alt="admin" src="<?=\bbs\helpers\SiteUrl::get_avator_url($bbs_user['avator'])?>"></a>
+                                <?php }?>
                                 <p>
                                     <label class="pull-right">
                                     </label>

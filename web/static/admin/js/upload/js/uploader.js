@@ -4,9 +4,9 @@ uploadImg();//多图上传
 function uploadImg(){
     $(".upload-img-mutil input").change(function() {
         var that = $(this);
-        console.log(that);
         var formdata = new FormData();
         formdata.append('file', this.files[0]);
+        formdata.append('folder',$.trim($("#folder_id").find("option:selected").text()));
         var str = '<div class="upload-img  upload-img-mutil left"><span class="image-item"></span><img src="" alt=""><input type="file" name="images" style="opacity:0" accept="image/*" capture="camera"/><i class="iconfont icon-lajitong"></i><i class="iconfont icon-tianjia"></i><div class="over-cover"></div></div>';
         $.ajax({
             type: 'POST',

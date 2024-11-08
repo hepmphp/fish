@@ -18,7 +18,7 @@ function add(){
  * @param id
  */
 function edit(id) {
-    var url = "/[path]/[table]/create?id="+id;
+    var url = "/[path]/[table]/update?id="+id;
     layer_form(url,2,['900px', '600px']);
 }
 

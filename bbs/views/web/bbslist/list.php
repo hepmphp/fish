@@ -60,7 +60,7 @@
                                                 <?php foreach ($data['list'] as $k=>$v){?>
                                                     <div class="aw-item article">
                                                         <a class="aw-user-name hidden-xs" data-id="1"
-                                                           href="http://127.0.0.1:1111/wecenter/?/people/admin"
+                                                           href=""
                                                            rel="nofollow">
                                                             <img
                                                                     src="<?=\bbs\helpers\SiteUrl::get_image_url($v['logo'])?>"
@@ -94,7 +94,7 @@
 <script>
     $('.pagination-outline').html(multi(<?=$data['total']?>, <?=$data['per_page']?>,  <?=$data['page']?>, 100));
     function ajax_list(param){
-        window.location.href = "<?=\bbs\helpers\Uri::bbs_list_href($_GET['id'])?>&"+$.param(param);
+        window.location.href = "<?=\bbs\helpers\Uri::bbs_list_href($_get['id'])?>&"+$.param(param);
     }
 </script>
 <script>

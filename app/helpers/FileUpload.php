@@ -19,7 +19,7 @@ class FileUpload
     function __construct($upload_dir = '')
     {
 
-        $this->upload_dir = $upload_dir;
+        $this->upload_dir = $upload_dir.'/';
     }
 
     /**
@@ -61,7 +61,7 @@ class FileUpload
         if (copy($file['tmp_name'], $savefile)) {
             chmod($savefile, 0644);
             unlink($file['tmp_name']);
-            $uploadedfile = array('url' => $this->upload_url.$this->upload_dir . date('Y/m/d/').$temp_filename, 'filename' => date('Y/m/d/').$temp_filename, 'filepath' => $savefile, 'filesize' => $file['size'], 'fileext' => $fileext);
+            $uploadedfile = array('url' => $this->upload_url.$this->upload_dir . date('Y/m/d/').$temp_filename, 'filename' => $this->upload_dir.date('Y/m/d/').$temp_filename, 'filepath' => $savefile, 'filesize' => $file['size'], 'fileext' => $fileext);
         } else {
             throw new LogicException(-100, '移动文件出错');
         }

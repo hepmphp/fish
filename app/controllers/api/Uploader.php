@@ -13,7 +13,10 @@ use app\helpers\Input;
 class Uploader extends BaseController{
     public function index(){
         if(Input::is_ajax() && isset($_FILES['file'])){
-            $upload = new FileUpload();
+            $folder = Input::get_post('folder','','trim,strip_tags');
+            $folder = str_replace('└','',$folder);
+            $folder = str_replace(' ','',$folder);
+            $upload = new FileUpload($folder);
             $res = $upload->upload();
             Input::ajax_return(0,'',$res);
         }

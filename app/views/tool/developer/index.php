@@ -57,6 +57,7 @@
             <button class="btn" type="button" id="btn_model">预览模型</button>
             <button class="btn" type="button" id="btn_list">预览列表</button>
             <button class="btn" type="button" id="btn_controller">预览控制器</button>
+            <button class="btn" type="button" id="btn_controller_api">预览控制器API</button>
             &nbsp;&nbsp;&nbsp;&nbsp;
 
             <div class="form-group">
@@ -289,8 +290,14 @@
             }
         });
     });
+    $('#btn_controller_api').click(function () {
+        ajax_controller(1);
+    });
 
     $('#btn_controller').click(function(){
+        ajax_controller(0);
+    });
+    function ajax_controller(is_api){
         var fields = new Array();
         var search_builder_types = new Array();
         var form_builder_types = new Array();
@@ -310,7 +317,8 @@
             form_builder_types:form_builder_types,
             search_builder_types,search_builder_types,
             table:table,
-            database:database
+            database:database,
+            is_api:is_api,
         };
         var controller_url = "/tool/developer/create_controller?"+ $.param(param);
         layer.open({
@@ -328,7 +336,7 @@
 
             }
         });
-    });
+    }
 
     $('#btn_model').click(function(){
         var fields = new Array();

@@ -4,14 +4,14 @@ namespace app\controllers\[database];
 
 use app\base\BaseController;
 use app\helpers\Input;
-use app\models\curd\[model];
+use app\models\curd\[model] as M_[model];
 use app\helpers\Validate;
- class [database] extends BaseController{
+ class [model] extends BaseController{
 
      public $[table]  = '';
      public function __construct()
      {
-         $this->[table] = new [model]();
+         $this->[table] = new M_[model]();
          parent::__construct();
      }
 
