@@ -15,11 +15,16 @@ class LogicException extends \Exception {
                 parent::__construct($msg,$code,$previous);
             }
         }else{
-            if($code==0){
-                Msg::show_msg($msg,$_SERVER['HTTP_REFERER'],1);
+            if(!empty($_SERVER['HTTP_REFERER'])){
+                if($code==0){
+                    Msg::show_msg($msg,$_SERVER['HTTP_REFERER'],1);
+                }else{
+                    Msg::show_msg($msg,$_SERVER['HTTP_REFERER'],2);
+                }
             }else{
-                Msg::show_msg($msg,$_SERVER['HTTP_REFERER'],2);
+                Msg::show_msg($msg,'/bbs.php',2);
             }
+
 
         }
 

@@ -113,7 +113,7 @@
                 var pid = body.find('#pid').val();
                 var fid = body.find('#fid').val();
                 var subject = body.find('#subject').val();
-                var content_html = body.find('#edui1_iframeholder').find('#ueditor_0').contents().find('body').html();
+                var content_html = body.find('#content').html();
                 var param = {
                     id:id,
                     pid: pid,

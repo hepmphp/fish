@@ -3,14 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>文件管理</title>
-    <link rel="stylesheet" href="<?= STATIC_URL ?>/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
-    <link rel="stylesheet" href="<?= STATIC_URL ?>/js/ztree/css/demo.css" type="text/css">
-    <script type="text/javascript" src="<?= STATIC_URL ?>/js/jquery.min.js"></script>
-    <script type="text/javascript" src="<?= STATIC_URL ?>/js/logic/admin/ajax.js"></script>
-    <script type="text/javascript" src="<?= STATIC_URL ?>/js/layer/layer.js"></script>
-    <script type="text/javascript" src="<?= STATIC_URL ?>/js/ztree/js/jquery.ztree.core.js"></script>
-    <script type="text/javascript" src="<?= STATIC_URL ?>/js/ztree/js/jquery.ztree.excheck.js"></script>
-    <script type="text/javascript" src="<?= STATIC_URL ?>/js/ztree/js/jquery.ztree.exedit.js"></script>
+
 
 </head>
 <body>
@@ -19,10 +12,9 @@
     <div class="Business-top clearfix">
      <span class="file_title">文件管理</span>
     </div>
+    <div class="Business-top-header clearfix">
+    </div>
     <div class="Business-left clearfix">
-        <div class="Website-nav">
-            目录<div class="Slide-left transition"><i class="fa fa-outdent"></i></div>
-        </div>
         <ul id="treeDemo" class="ztree"></ul>
         <div id="rMenu" class="context-menu-list">
             <ul>
@@ -37,29 +29,33 @@
             </ul>
         </div>
     </div>
+
     <!--左边 end-->
     <div class="Business-right clearfix">
-        <iframe id="J_iframe" class="iframe-box" name="J_iframe" width="100%" height="100%" src="/cms/file/folder?iframe=1" frameborder="0" data-id="index"></iframe>
+        <?php include APP_PATH.'/views/cms/file/folder.php'?>
+<!--        <iframe id="J_iframe" class="iframe-box" name="J_iframe" width="100%" height="100%" src="/cms/file/folder?iframe=1" frameborder="0" data-id="index"></iframe>-->
     </div>
 
 </div>
 
 </body>
 <script>
+    var folder_id = '<?=\app\helpers\Input::get_post('folder_id')?>';
     var zNodes = <?=json_encode($folders,JSON_UNESCAPED_SLASHES)?>;
 </script>
 <style>
 
 </style>
+
 <script>
     var urls = {
-        create_url:'/api/folder/create',
-        update_url:'/api/folder/update',
-        delete_url:'/api/folder/delete',
-        info_url:'/api/folder/info'
+        create_folder_url:'/api/folder/create',
+        update_folder_url:'/api/folder/update',
+        delete_folder_url:'/api/folder/delete',
+        info_folder_url:'/api/folder/info'
     };
     //表单
-    function layer_form(url,action,area){
+    function layer_folder_form(url,action,area){
         var content = url;
         var title = action==2?'修改':'添加';
         var btn =  action==2?['确认修改','取消']:['确认添加','取消'];
@@ -81,9 +77,9 @@
                 };
                 //todo生成js验证
                 if(param.id){
-                    var url = urls.update_url+'?id='+param.id;
+                    var url = urls.update_folder_url+'?id='+param.id;
                 }else{
-                    var url = urls.create_url
+                    var url = urls.create_folder_url
                 }
                 ajax_post(url,param);
 
@@ -98,7 +94,7 @@
     <!--
     var setting = {
         view: {
-            dblClickExpand: true,
+            dblClickExpand: false,
             showLine: false,
             showIcon: false,
             addDiyDom: addDiyDom
@@ -115,8 +111,10 @@
             }
         },
         callback: {
-            beforeClick:beforeClick,
-            onRightClick: OnRightClick
+            // beforeClick:beforeClick,
+            onRightClick: OnRightClick,
+            onClick:onClick,
+            onDblClick:onDblClick,
         }
     };
     function beforeClick(treeId, treeNode) {
@@ -195,7 +193,7 @@
     function addTreeNode() {
         var id = zTree.getSelectedNodes()[0].id;
         var url = '/cms/folder/create?id='+id;
-        layer_form(url,1,['400px', '350px']);
+        layer_folder_form(url,1,['400px', '350px']);
 
     }
     function removeTreeNode() {
@@ -205,7 +203,7 @@
                 icon: 3,
                 title:'提示'
             }, function(){
-                ajax_post(urls.delete_url,{id:id})
+                ajax_post(urls.delete_folder_url,{id:id})
             },
             function(){
 
@@ -216,15 +214,26 @@
     function checkTreeNode(checked) {
         var id = zTree.getSelectedNodes()[0].id;
         var url = '/cms/folder/update?id='+id;
-        layer_form(url,1,['400px', '350px']);
+        layer_folder_form(url,1,['400px', '350px']);
 
     }
+
+    function onClick(event, treeId, treeNode){
+        console.log($(this));
+        var id = zTree.getSelectedNodes()[0].id;
+        window.location.href = '/cms/file/index?iframe=1&folder_id='+id;
+    }
+    function onDblClick(event, treeId, treeNode){
+        var id = zTree.getSelectedNodes()[0].id;
+        window.location.href = '/cms/file/index?iframe=1&folder_id='+id;
+    }
+
     function resetTree() {
         hideRMenu();
         $.fn.zTree.init($("#treeDemo"), setting, zNodes);
     }
 
-    var zTree, rMenu;
+    var zTree, rMenu,curMenu;
     $(document).ready(function(){
         var treeObj = $("#treeDemo");
         $.fn.zTree.init(treeObj, setting, zNodes);
@@ -232,7 +241,8 @@
         rMenu = $("#rMenu");
 
         zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
-        curMenu = zTree_Menu.getNodes()[0];
+        // curMenu = zTree_Menu.getNodes()[0];
+        curMenu = zTree_Menu.getNodeByParam("id", folder_id);
         zTree_Menu.selectNode(curMenu);
 
         treeObj.hover(function () {
@@ -245,4 +255,12 @@
     });
     //-->
 </SCRIPT>
+<link rel="stylesheet" href="<?= STATIC_URL ?>/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+<link rel="stylesheet" href="<?= STATIC_URL ?>/js/ztree/css/demo.css" type="text/css">
+<script type="text/javascript" src="<?= STATIC_URL ?>/js/jquery.min.js"></script>
+<script type="text/javascript" src="<?= STATIC_URL ?>/js/logic/admin/ajax.js"></script>
+<script type="text/javascript" src="<?= STATIC_URL ?>/js/layer/layer.js"></script>
+<script type="text/javascript" src="<?= STATIC_URL ?>/js/ztree/js/jquery.ztree.core.js"></script>
+<script type="text/javascript" src="<?= STATIC_URL ?>/js/ztree/js/jquery.ztree.excheck.js"></script>
+<script type="text/javascript" src="<?= STATIC_URL ?>/js/ztree/js/jquery.ztree.exedit.js"></script>
 </html>

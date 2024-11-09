@@ -27,7 +27,7 @@ class AppAsset{
     public static $css_files =[
         'css/bootstrap.min.css',#<!--全局样式-->
         'css/style.css',#<!--全局样式-->
-        'css/screen.css',#<!--全局样式-->
+//        'css/screen.css',#<!--全局样式-->
         'css/font-awesome.min.css',#<!--图标-->
         'js/bootstrap-table/bootstrap-table.min.css',#<!--表单表格-->
         'css/form.css',#<!--表单表格-->

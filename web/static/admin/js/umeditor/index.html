@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link href="./themes/default/css/umeditor.css" rel="stylesheet">
+</head>
+<body>
+<script src="./jquery.js"></script>
+<script src="./umeditor.config.js"></script>
+<script src="./umeditor.js"></script>
+<script src="./layer/layer.js"></script>
+<body>
+    <div class="container col-sm-12" style="margin-top: 10px;">
+
+        <div class="form-horizontal">
+
+            <div class="form-group">
+
+                <label class="col-sm-1 control-label">内容：</label>
+                <div class="col-sm-11">
+                    <script type="text/plain" name="content" id="content" value="" style="width:100%;height: 400px;"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+<style>
+    /*设置按扭样式*/
+    .edui-icon-test {
+        background-position: -380px 0;
+    }
+</style>
+<script>
+    var um = UM.getEditor('content', {
+        toolbar: [
+            'source | undo redo | bold italic underline strikethrough | superscript subscript | forecolor backcolor | removeformat |',
+            'insertorderedlist insertunorderedlist | selectall cleardoc paragraph | fontfamily fontsize',
+            '| justifyleft justifycenter justifyright justifyjustify |',
+            'link unlink | emotion image video  | map',
+            '| horizontal print preview fullscreen', 'drafts', 'formula', 'test'
+        ]
+    });
+    um.ready(function () {
+        //设置编辑器的内容
+        um.setContent("");
+        $('.edui-container').width("900px");
+        $('.edui-body-container').width("900px");
+    });
+    UM.registerUI('test',
+        function (name) {
+            var me = this;
+            var $btn = $.eduibutton({
+                icon: name,
+                click: function () {
+                    layer.open({
+                        type: 2, //iframe
+                        area: ['900px', '560px'],
+                        title: '选择图片',
+                        btn: ['确认', '取消'],
+                        shadeClose: true,
+                        shade: 0.3, //遮罩透明度
+                        content: 'http://127.0.0.1:3333/?r=cms/attach/index&iframe=1',
+                        yes: function (index, layero) {
+
+                            var body = window.layer.getChildFrame('body', index);
+
+                            var image_list = '<p><img src="[src]" _src="[src]" ></p>' + "\n";
+                            var html_image_list = '';
+                            $.each(body.find('.image_border'),function (i,v) {
+                                console.log('aaaaaaaaaaaaaaaaaaaaa');
+                                html_image_list = html_image_list + image_list.replace('[src]', $(this).attr('src')).replace('[_src]', $(this).attr('_src'));
+                                //attach_urls.push($(this).attr('src'));
+                            });
+                            $('#content').append(html_image_list);
+                            layer.closeAll();
+                            console.log("checked...");
+//                                            ajax_post(url,param);
+                        }, btn2: function (index, layero) {
+
+                        }
+                        // content:"{:U('Serverpolicy/add')}" //iframe的url
+                    });
+                },
+                title: '相册插入图片'
+            });
+
+            this.addListener('selectionchange', function () {
+                //切换为不可编辑时，把自己变灰
+                var state = this.queryCommandState(name);
+                $btn.edui().disabled(state == -1).active(state == 1)
+            });
+            return $btn;
+        }
+    );
+</script>
+
+
+</body>
+</html>

@@ -92,7 +92,7 @@ class Forum extends BaseController{
         $forum = $this->forum->info(['id'=>$form['id']]);
         $select_tree = $this->forum->get_config_menu(['id'=>$forum['parentid']]);
         $list_images = explode(',',$forum['logo']);
-        $forum['list_image_url'][] = SiteUrl::get_image_url($list_images[0]);
+        $forum['logo_url'][] = SiteUrl::get_image_url($list_images[0]);
 
         $this->view->assign('form',$forum);
         $this->view->assign('select_tree',$select_tree);

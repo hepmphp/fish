@@ -33,7 +33,7 @@
 							</span>
                             <a href="<?=\bbs\helpers\Uri::bbs_list_index_href($post['fid'])?>">
                                 <div style="float:right;width: 72px;height: 72px;margin: 0 auto;">
-                                    <img src="<?=\bbs\helpers\SiteUrl::get_image_url($forum['logo'])?>">
+                                    <img src="<?=\bbs\helpers\SiteUrl::get_image_url($forum['logo'])?>" style="width: 80px;height: 80px">
                                 </div>
                             </a>
                         </div>
@@ -133,6 +133,7 @@
                     </div>
                     <!-- end 问题详细模块 -->
                     <!-- 回复编辑器 -->
+                    <?php if(!empty($bbs_user['id'])){?>
                     <div class="aw-mod aw-replay-box question" style="    width: 1070px;margin: 0 auto;">
                         <a name="answer_form"></a>
                         <form action="/bbs.php/web/question/create" method="post" id="answer_form" class="question_answer_form">
@@ -149,15 +150,16 @@
                                     <?=$bbs_user['username']?> </p>
                             </div>
                             <div class="mod-body">
-                                <div class="aw-mod aw-editor-box">
-                                    <script name="content" id="editor" type="text/plain" style="width:1024px;height:500px;margin-top: 50px"></script>
+                                <div class="aw-mod aw-editor-box" style="margin: 0 auto;">
+                                    <script name="content" id="content" type="text/plain" style="width:900px;height:500px;"></script>
                                     <div class="mod-footer clearfix">
-                                        <input type="submit" class="btn btn-large btn-success btn-publish-submit" value="回复" id="publish_submit" style="float:right;margin-right: 70px">
+                                        <input type="submit" class="btn btn-large btn-success btn-publish-submit" value="回复" id="publish_submit" style="float:right;margin-right: 450px;margin-top: 30px;">
                                     </div>
                                 </div>
                             </div>
                         </form>
                     </div>
+                    <?php }?>
                     <!-- end 回复编辑器 -->
                 </div>
 
@@ -172,17 +174,8 @@
 </body>
 
 <?php include BBS_PATH.'views/web/common/up_to_top.php'?>
-<script type="text/javascript" charset="utf-8" src="<?=STATIC_URL?>js/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="<?=STATIC_URL?>js/ueditor/ueditor.all.min.js"></script>
-<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-<script type="text/javascript" charset="utf-8" src="<?=STATIC_URL?>js/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript">
-    //实例化编辑器
-    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    var ue = UE.getEditor('editor');
+<?php include BBS_PATH.'views/web/common/editor.php'?>
 
-</script>
 <script>
     function see_reply_list(id){
         var content = '/bbs.php/web/ask/see_reply_list?id='+id;
@@ -201,7 +194,7 @@
                 var pid = body.find('#pid').val();
                 var fid = body.find('#fid').val();
                 var subject = body.find('#subject').val();
-                var content_html = body.find('#edui1_iframeholder').find('#ueditor_0').contents().find('body').html();
+                var content_html = body.find('#content').html();
                 var param = {
                     id: id,
                     pid: pid,
@@ -209,7 +202,6 @@
                     subject: subject,
                     content: content_html
                 };
-                console.log(param);
                 layer.load(2);
                 $.ajax({
                     type: 'POST',
@@ -254,7 +246,7 @@
                 var pid = body.find('#pid').val();
                 var fid = body.find('#fid').val();
                 var subject = body.find('#subject').val();
-                var content_html = body.find('#edui1_iframeholder').find('#ueditor_0').contents().find('body').html();
+                var content_html = body.find('#content').html();
                 var param = {
                     id:id,
                     pid: pid,
@@ -308,7 +300,7 @@
                 var pid = body.find('#pid').val();
                 var fid = body.find('#fid').val();
                 var subject = body.find('#subject').val();
-                var content_html = body.find('#edui1_iframeholder').find('#ueditor_0').contents().find('body').html();
+                var content_html = body.find('#content').html();
                 var param = {
                     id:id,
                     pid: pid,

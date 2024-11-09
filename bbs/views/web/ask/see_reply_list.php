@@ -108,6 +108,7 @@
                         </div>
                     </div>
                     <!-- end 问题详细模块 -->
+                    <?php if(!empty($bbs_user['id'])){?>
                     <!-- 回复编辑器 -->
                     <div class="aw-mod aw-replay-box question">
                         <a name="answer_form"></a>
@@ -123,17 +124,16 @@
                                     </label>
                                     <?=$bbs_user['username']?> </p>
                             </div>
-                            <div class="mod-body">
+                            <div class="mod-body" style="margin-top: 30px;">
                                 <div class="aw-mod aw-editor-box">
-                                    <script name="content" id="editor" type="text/plain" style="width:1024px;height:500px;margin-top: 50px"></script>
-
+                                    <script name="content" id="content" type="text/plain" style="width:700px;height:500px;"></script>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <!-- end 回复编辑器 -->
+                    <?php }?>
                 </div>
-
             </div>
         </div>
     </div>
@@ -142,17 +142,7 @@
 
 </body>
 <?php include BBS_PATH.'views/web/common/up_to_top.php'?>
-<script type="text/javascript" charset="utf-8" src="<?=STATIC_URL?>js/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" charset="utf-8" src="<?=STATIC_URL?>js/ueditor/ueditor.all.min.js"></script>
-<!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
-<!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-<script type="text/javascript" charset="utf-8" src="<?=STATIC_URL?>js/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript">
-    //实例化编辑器
-    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    var ue = UE.getEditor('editor');
-
-</script>
+<?php include BBS_PATH.'views/web/common/editor.php'?>
 <script>
     function see_post_reply(id){
         var content = '/bbs.php/web/ask/ajax_create?id='+id;
@@ -171,7 +161,7 @@
                 var pid = body.find('#pid').val();
                 var fid = body.find('#fid').val();
                 var subject = body.find('#subject').val();
-                var content_html = body.find('#edui1_iframeholder').find('#ueditor_0').contents().find('body').html();
+                var content_html = body.find('#content').html();
                 var param = {
                     id: id,
                     pid: pid,

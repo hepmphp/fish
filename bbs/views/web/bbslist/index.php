@@ -36,7 +36,7 @@
                             <?php if(empty($forum_data['name'])){?>
                             <h2 class="pull-left">论坛</h2>
                             <?php }else{?>
-                            <img class="" src="<?=\bbs\helpers\SiteUrl::get_image_url($forum_data['logo'])?>">
+                            <img class="" src="<?=\bbs\helpers\SiteUrl::get_image_url($forum_data['logo'])?>" style="width: 80px;height: 80px;">
                             <h2 class="pull-left"><?=$forum_data['name']?></h2>
                             <?php }?>
                         </div>

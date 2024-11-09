@@ -13,6 +13,7 @@
     <script src="<?=STATIC_URL?>js/respond.min.js"></script>
     <![endif]-->
     <?php \app\helpers\AppFormAsset::run()?>
+    <script  src="<?= STATIC_URL ?>/js/layer/layer.js"></script>
 </head>
 <body>
 <div class="container col-sm-12" style="margin-top: 10px;">

@@ -84,7 +84,11 @@ class User extends Model
     }
 
     public function login($form){
-        $user= $this->find(['username'=>$form['username']],'*');
+        if(preg_match("/^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,}$/i", $form['username'])){
+            $user= $this->find(['email'=>$form['username']],'*');
+        }else{
+            $user= $this->find(['username'=>$form['username']],'*');
+        }
         if(empty($user)){
             throw  new  LogicException(-1,'用户不能在');
         }
@@ -110,6 +114,7 @@ class User extends Model
         if($user['password'] != $this->genrate_password($form['old_password'],$user['salt'])){
             throw  new  LogicException(-2,'用户名或者密码不正确');
         }
+        unset($form['old_password']);
 
         $user['password'] = $this->genrate_password($form['password'],$user['salt']);
         $user['update_time'] = time();
@@ -122,6 +127,22 @@ class User extends Model
         }
     }
 
+    public function save_password_by_mail($form)
+    {
+        $user= $this->find(['id'=>$form['id']],'*');
+        if(empty($user)){
+            throw  new  LogicException(-1,'用户不能在');
+        }
+        $user['password'] = $this->genrate_password($form['password'],$user['salt']);
+        $user['update_time'] = time();
+        $user['status'] = 0 ;
+        $res = $this->update($user,['id'=>$form['id']],1);
+        if($res){
+            throw new LogicException(0,'密码重置成功');
+        }else{
+            throw new LogicException(-1,'密码重置失败');
+        }
+    }
 
 }#end
 

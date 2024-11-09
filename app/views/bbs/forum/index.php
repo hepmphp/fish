@@ -117,7 +117,7 @@
             '<td>[parentid]</td>'+
             '<td>[level]</td>'+
             '<td>[name]</td>'+
-            '<td><img src="[logo]"></td>'+
+            '<td><img src="[logo]" style="width: 30px;height: 30px;"></td>'+
             '<td>[created_time]</td>'+
             '<td>[status]</td>'+
             '<td><a onclick="edit(\'[id]\')" class="">[编辑]</a><a onclick="del(\'[id]\')" class="">[删除]</a></td></tr>';

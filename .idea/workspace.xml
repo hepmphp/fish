@@ -3,19 +3,37 @@
   <component name="ChangeListManager">
     <list default="true" id="70599de6-1c42-4819-9704-773d568c4494" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/Uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/Uploader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/bbs/Forum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/bbs/Forum.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/cms/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/cms/File.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/AppAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/AppAsset.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/helpers/FileUpload.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/FileUpload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/curd/AdminMenu.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/curd/AdminMenu.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/curd/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/curd/File.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/admin/root/upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/root/upload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tool/developer/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tool/developer/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tool/developer/template/html/controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tool/developer/template/html/controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tool/developer/template/html/controller_api.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tool/developer/template/html/controller_api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tool/developer/template/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tool/developer/template/js/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/base/BbsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/base/BbsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bbs/forum/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bbs/forum/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/bbs/forum/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bbs/forum/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/cms/article/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/article/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/cms/article/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/article/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/cms/file/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/file/create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/cms/file/folder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/file/folder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/cms/file/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/file/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/base/exception/LogicException.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/base/exception/LogicException.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/controllers/web/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/controllers/web/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/models/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/ask/ajax_ask.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/ask/ajax_ask.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/ask/ajax_create.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/ask/ajax_create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/ask/ajax_reply_create.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/ask/ajax_reply_create.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/ask/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/ask/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/ask/see_reply_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/ask/see_reply_list.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/views/web/bbslist/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/bbslist/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/views/web/bbslist/list.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/bbslist/list.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/common/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/common/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/common/upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/common/upload.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/views/web/question/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/question/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/admin/js/upload/js/uploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/admin/js/upload/js/uploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/user/bbslist.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/user/bbslist.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/user/find_password.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/user/find_password.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bbs/views/web/user/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/user/register.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/static/admin/js/ztree/css/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/admin/js/ztree/css/demo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/static/admin/js/ztree/css/metroStyle/metroStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/admin/js/ztree/css/metroStyle/metroStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +55,18 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/bbs/views/web/bbslist/list.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/password.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/views/web/common/header.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/register.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/bbslist.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/find_password.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/controllers/web/User.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/views/web/ask/see_reply_list.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/controllers/web/Ask.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/views/web/ask/ajax_reply_create.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/plugin/verifycode" />
@@ -53,7 +83,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/static/admin/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -91,6 +122,12 @@
       <workItem from="1730997866149" duration="23000" />
       <workItem from="1731031151881" duration="1299000" />
       <workItem from="1731053922945" duration="32724000" />
+      <workItem from="1731121490644" duration="10517000" />
+      <workItem from="1731137918915" duration="5284000" />
+      <workItem from="1731148060698" duration="26000" />
+      <workItem from="1731148273507" duration="14285000" />
+      <workItem from="1731162692802" duration="58000" />
+      <workItem from="1731163149713" duration="4802000" />
     </task>
     <servers />
   </component>

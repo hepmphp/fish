@@ -161,6 +161,68 @@ class User extends BbsController{
         $this->view->display('web/user/find_password');
     }
 
+    public function reset_password(){
+        $email = Input::get_post('username','','trim');
+        $user_exists = $this->user->info(['email'=>$email]);
+        if(empty($user_exists['id'])){
+            throw new LogicException(-100,'用户账号错误');
+        }
+        $code = Input::get_post('code','','trim');
+        $captcha = new VerifyCode();
+        if(!$captcha->check($code)){
+            throw new LogicException(-100,'验证码错误');
+        }
+
+        $reset_mail_url = 'http://127.0.0.1:2222/bbs.php/web/user/reset_password_mail_html?user_id=%s&fish_code=%s';
+        $reset_mail_url = sprintf($reset_mail_url,$user_exists['id'],md5(date('Ymd').'fish_ok_'.$user_exists['id']));
+
+        $message = file_get_contents(BBS_PATH.'views/web/user/reset_password_mail_template.php');
+        $message = str_replace(['[email]','[reset_mail_url]'],[$email,$reset_mail_url],$message);
+
+        // To send HTML mail, the Content-type header must be set
+        $headers[] = 'MIME-Version: 1.0';
+        $headers[] = 'Content-type: text/html; charset=iso-8859-1';
+        $res = mail($email,'用户密码重置',$message,implode("\r\n", $headers));
+        if($res){
+            $this->view->assign('email',$email);
+            $this->view->display('web/user/reset_password_mail_success');
+        }else{
+            throw new LogicException(-100,'密码重置邮件发送失败,请稍后再试一下:)');
+        }
+
+
+    }
+
+    public function reset_password_mail_html(){
+
+        $user_id = Input::get_post('user_id','','trim');
+        if(empty($user_id)){
+            throw new LogicException(-100,'用户账号错误');
+        }
+        $fish_code = Input::get_post('fish_code','','trim');
+        if($fish_code!=md5(date('Ymd').'fish_ok_'.$user_id)){
+            throw new LogicException(-100,'验证码错误');
+        }
+        $form['fish_code'] = $fish_code;
+        $form['user_id'] = $user_id;
+        $this->view->assign('form',$form);
+        $this->view->display('web/user/reset_password_mail_html');
+    }
+
+    public function reset_password_mail(){
+
+        $user_id = Input::get_post('user_id','','trim');
+        if(empty($user_id)){
+            throw new LogicException(-100,'用户账号错误');
+        }
+        $fish_code = Input::get_post('fish_code','','trim');
+        if($fish_code!=md5(date('Ymd').'fish_ok_'.$user_id)){
+            throw new LogicException(-100,'验证码错误');
+    }
+        $password = Input::get_post('password','','trim');
+        $this->user->save_password_by_mail(['id'=>$user_id,'password'=>$password]);
+    }
+
     public function bbslist(){
         $data = [];
         $where = [];

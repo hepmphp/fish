@@ -1,6 +1,7 @@
 <link href="<?= STATIC_URL ?>js/upload/css/image.css" rel="stylesheet">
 <link href="<?= STATIC_URL ?>js/upload/css/iconfont.css" rel="stylesheet">
 <script src="<?= STATIC_URL ?>js/jquery.min.js"></script>
+<script src="<?= STATIC_URL ?>js/layer/layer.js"></script>
 <div class="form-group" style="margin-top: 30px;">
     <label class="col-sm-1 control-label image_list_class">图片：</label>
     <div class="col-sm-4">

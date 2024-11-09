@@ -266,7 +266,7 @@
                     title:body.find('#title').val(),
                     keywords:body.find('#keywords').val(),
                     description:body.find('#description').val(),
-                    content:body.find('.ck-content').html(),
+                    content:body.find('#content').html(),
                     addtime:body.find('#addtime').val(),
                     is_top:body.find('#is_top').val(),
                     list_image_url:images.join(','),

@@ -79,6 +79,20 @@ class File extends  BaseController{
 
     public function index(){
         $folders = $this->folder->find_all(['status'=>0],1,1000,'id,parentid as pId,name');
+        $form = $this->get_search_where();
+        $page = Input::get_post('page','1','intval');
+        $per_page = Input::get_post('per_page',200,'intval');
+        $per_page = 2;
+        list($res,$total) = $this->file->get_list_info($form,$page,$per_page,'*');
+        $data['list'] = $res;
+        $data['total'] = $total;
+        $data['page'] =$page;
+        $data['per_page'] = $per_page;
+
+        $config_folder_id = $this->folder->get_config_menu(['id'=>$form['folder_id']]);
+        $this->view->assign('form', $form);
+        $this->view->assign('data', $data);
+        $this->view->assign('config_folder_id', $config_folder_id);
         $this->view->assign('folders',$folders);
         $this->view->display('cms/file/index');
     }
@@ -95,13 +109,14 @@ class File extends  BaseController{
         $form = $this->get_search_where();
         $page = Input::get_post('page','1','intval');
         $per_page = Input::get_post('per_page',200,'intval');
+        $per_page = 2;
         list($res,$total) = $this->file->get_list_info($form,$page,$per_page,'*');
         $data['list'] = $res;
         $data['total'] = $total;
         $data['page'] =$page;
         $data['per_page'] = $per_page;
 
-        $config_folder_id = $this->folder->get_config_menu([]);
+        $config_folder_id = $this->folder->get_config_menu(['id'=>$form['folder_id']]);
         $this->view->assign('form', $form);
         $this->view->assign('data', $data);
         $this->view->assign('config_folder_id', $config_folder_id);

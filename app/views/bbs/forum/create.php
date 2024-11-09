@@ -39,6 +39,10 @@
                 margin-left: 240px;
             }
         </style>
+        <script>
+            var images_list = <?php echo json_encode([$form['logo']]); ?>;
+            var image_list_url = <?php echo json_encode([$form['logo_url']]); ?>;
+        </script>
         <?php include APP_PATH.'/views/admin/root/upload.php';?>
         <div class="form-group">
             <label class="col-sm-4 control-label" for="level">层级</label>

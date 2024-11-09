@@ -13,6 +13,7 @@
     <script src="<?=STATIC_URL?>js/respond.min.js"></script>
     <![endif]-->
     <?=\app\helpers\AppAsset::run()?>
+    <link href="<?=STATIC_URL?>js/umeditor/themes/default/css/umeditor.css" rel="stylesheet">
 </head>
 
 <div class="container col-sm-12" style="margin-top: 10px;">
@@ -78,6 +79,10 @@
                 </select>
             </div>
         </div>
+        <script>
+            var images_list = <?php echo json_encode([$form['file']]); ?>;
+            var image_list_url = <?php echo json_encode([$form['file_url']]); ?>;
+        </script>
         <?php include APP_PATH.'/views/admin/root/upload.php';?>
         <!-- Select Basic -->
         <div class="form-group">
@@ -90,169 +95,96 @@
                 </select>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-1 control-label">内容：</label>
-            <div class="col-sm-11">
-                <div id="content" name="content">
-
-                    <?=htmlspecialchars_decode($form['content'])?>
-
+        <div class="container col-sm-12" style="margin-top: 10px;">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">内容：</label>
+                    <div class="col-sm-11">
+                        <div type="text/plain" name="content" id="content"   style="width:1000px;height: 500px;"><?=html_entity_decode($form['content'])?></div>
+                    </div>
                 </div>
             </div>
         </div>
+        <style>
+            /*设置按扭样式*/
+            .edui-icon-test {
+                background-position: -380px 0;
+            }
+        </style>
+<!--        <div class="form-group">-->
+<!--            <label class="col-sm-1 control-label">内容：</label>-->
+<!--            <div class="col-sm-11">-->
+<!--                <div id="content" name="content">-->
+<!---->
+<!--                    --><?//=htmlspecialchars_decode($form['content'])?>
+<!---->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </div>
 
-
-<script src="<?=STATIC_URL?>js/ckeditor5/build/ckeditor.js?<?=rand()?>"></script>
-<script src="<?=STATIC_URL?>js/ckeditor5/build/translations/zh-cn.js"></script>
-<script src="<?=STATIC_URL?>js/ckfinder/ckfinder.js?<?=rand()?>"></script>
+<script src="<?=STATIC_URL?>js/umeditor/umeditor.config.js"></script>
+<script src="<?=STATIC_URL?>js/umeditor/umeditor.js"></script>
 <script>
-    ClassicEditor.create( document.querySelector( '#content' ),{
-        toolbar: {
-            items: [
-                'sourceEditing',
-                '|','undo','redo',
-                '|','heading',
-                '|','findandReplace','alignment','bold','italic','underline','code',
-                'horizontalLine','removeformat','link','strikethrough','subscript','superscript','blockQuote','specialCharacters',
-                '|','FontSize','FontColor','FontBackgroundColor','FontFamily','highlight',
-                '|','numberedList','bulletedList','todoList','outdent','indent','pageBreak',
-                '|','insertImage','cKFinder','insertTable','mediaEmbed',
+    var um = UM.getEditor('content', {
+        toolbar: [
+            'source | undo redo | bold italic underline strikethrough | superscript subscript | forecolor backcolor | removeformat |',
+            'insertorderedlist insertunorderedlist | selectall cleardoc paragraph | fontfamily fontsize',
+            '| justifyleft justifycenter justifyright justifyjustify |',
+            'link unlink | emotion  video  | map',
+            '| horizontal print preview fullscreen', 'drafts', 'formula', 'test'
+        ]
+    });
+    um.ready(function () {
+        //设置编辑器的内容
+        //um.setContent(html_content);
+        $('.edui-container').width("1000px");
+        $('.edui-body-container').width("1000px");
+    });
+    UM.registerUI('test',
+        function (name) {
+            var me = this;
+            var $btn = $.eduibutton({
+                icon: name,
+                click: function () {
+                    layer.open({
+                        type: 2, //iframe
+                        area: ['1100px', '800px'],
+                        title: '选择图片',
+                        btn: ['确认', '取消'],
+                        shadeClose: true,
+                        shade: 0.3, //遮罩透明度
+                        content: '/cms/file/index?iframe=1',
+                        yes: function (index, layero) {
+                            var body = window.layer.getChildFrame('body', index);
+                            var image_list = '<p><img src="[src]" _src="[src]" ></p>' + "\n";
+                            var html_image_list = '';
+                            $.each(body.find('.image_border>a>img'),function (i,v) {
+                                console.log('aaaaaaaaaaaaaaaaaaaaa');
+                                html_image_list = html_image_list + image_list.replace('[src]', $(this).attr('src')).replace('[_src]', $(this).attr('src'));
+                                //attach_urls.push($(this).attr('src'));
+                            });
+                            $('#content').append(html_image_list);
+                            layer.closeAll();
+                            console.log("checked...");
+                        }, btn2: function (index, layero) {
 
-            ],
-            shouldNotGroupWhenFull:true,
-        },
-        mediaEmbed: {
-            providers: [
-                {
-                    name: 'myprovider',
-                    url: [
-                        /\/media\/(\w+)/,
-                        /^.*/
-                    ],
-                    html: match => {
-                        //获取媒体url
-                        const input = match['input'];
-                        console.log('input' + match['input']);
-                        return (
-                            '<div style="position: relative; padding-bottom: 100%; height: 0; padding-bottom: 70%;">' +
-                            `<iframe src="http://${input}" ` +
-                            'style="position: absolute; width: 100%; height: 100%; top: 0; left: 0;" ' +
-                            'frameborder="0" allowtransparency="true" allow="encrypted-media">' +
-                            '</iframe>' +
-                            '</div>'
-                        );
-                    }
-                }
-            ]
-        },
-        ckfinder: {
-            uploadUrl: 'http://127.0.0.1:2222/ckfinder/file/index?command=QuickUpload&type=Files&responseType=json',
-        },
-        //设置字体
-        fontFamily: {
-            options: [
-                'default',
-                'Blackoak Std',
-                '宋体,SimSun',
-                '新宋体,NSimSun',
-                '微软雅黑,Microsoft YaHei',
-                '楷体_GB2312,KaiTi_GB2312',
-                '隶书,LiSu',
-                '幼园,YouYuan',
-                '华文细黑,STXihei',
-            ]
-        },
-        image: {
-            styles: [
-                'full','alignLeft', 'alignCenter', 'alignRight'
-            ],
-            resizeOptions: [
-                {
-                    name: 'resizeImage:原尺寸',
-                    label: '原尺寸',
-                    value: null
+                        }
+                        // content:"{:U('Serverpolicy/add')}" //iframe的url
+                    });
                 },
-                {
-                    name: 'resizeImage:25',
-                    label: '25%',
-                    value: '25'
-                },
-                {
-                    name: 'resizeImage:50',
-                    label: '50%',
-                    value: '50'
-                },
-                {
-                    name: 'resizeImage:75',
-                    label: '75%',
-                    value: '75'
-                }
-            ],
-            toolbar: [
-                // 'imageStyle:full',
-                // 'imageStyle:side',
-                'imageStyle:alignLeft',
-                'imageStyle:alignCenter',
-                'imageStyle:alignRight',
-                '|',
-                'resizeImage',
-                '|',
-                'toggleImageCaption',
-                'imageTextAlternative',
-                'linkImage'
-            ],
-
-        },
-        table: {
-            contentToolbar: [
-                'tableColumn',
-                'tableRow',
-                'mergeTableCells',
-                'tableCellProperties',
-                'tableProperties'
-            ]
-        },
-        language: 'zh-cn'
-    } )
-        .then( editor => {
-            editor.ui.view.editable.element.style.height = '500px';
-            window.editor = editor;
-            editor.model.document.on('change:data', () => {
-                if($('#ckf-modal-close').text()!==''){
-                    $('#ckf-modal-close')[0].click();
-                }
+                title: '相册插入图片'
             });
 
-
-
-        } )
-        .catch( error => {
-            console.error( 'There was a problem initializing the editor.', error );
-        } );
-
-    function add_list_image(){
-        CKFinder.popup( {
-            chooseFiles: true,
-            width: 800,
-            height: 600,
-            onInit: function( finder ) {
-                finder.on( 'files:choose', function( evt ) {
-                    var file = evt.data.files.first();
-                    $('#list_image_url').val(file.getUrl());
-                    $('#list_image').attr('src',file.getUrl()).show();
-                } );
-                finder.on( 'file:choose:resizedImage', function( evt ) {
-                    // var output = $( '#list_image_url' );
-                    // output.value = evt.data.resizedUrl;
-                    $('#list_image_url').val(file.resizedUrl());
-                    $('#list_image').attr('src',file.resizedUrl()).show();
-                } );
-            }
-        } );
-    }
-
+            this.addListener('selectionchange', function () {
+                //切换为不可编辑时，把自己变灰
+                var state = this.queryCommandState(name);
+                $btn.edui().disabled(state == -1).active(state == 1)
+            });
+            return $btn;
+        }
+    );
 </script>
 
 </body>

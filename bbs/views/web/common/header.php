@@ -37,29 +37,11 @@
             </div>
             <nav role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/bbs.php"><i class="icon icon-home"></i> 动态</a></li>
+                    <li><a href="/bbs.php"><i class="icon icon-home"></i> 首页</a></li>
                     <li><a href="<?=\bbs\helpers\Uri::bbs_list_index_href(0)?>"><i class="icon icon-topic"></i> 话题</a></li>
-                    <li><a href="/bbs.php/web/user/register" class="active"><i class="icon icon-list"></i>注册</a></li>
-                    <li><a href="/bbs.php/web/user/login" class="active"><i class="icon icon-list"></i>登录</a></li>
-<!--                    <li>-->
-<!--                        <a href="http://127.0.0.1:1111/wecenter/?/notifications/" class=""><i class="icon icon-bell"></i> 通知</a>-->
-<!--                        <span class="badge badge-important" style="display:none" id="notifications_unread">0</span>-->
-<!--                        <div class="aw-dropdown pull-right hidden-xs">-->
-<!--                            <div class="mod-body">-->
-<!--                                <ul id="header_notification_list"><p class="aw-padding10" align="center">没有未读通知</p></ul>-->
-<!--                            </div>-->
-<!--                            <div class="mod-footer">-->
-<!--                                <a href="http://127.0.0.1:1111/wecenter/?/notifications/">查看全部</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                        <a style="font-weight:bold;">· · ·</a>-->
-<!--                        <div class="dropdown-list pull-right">-->
-<!--                            <ul id="extensions-nav-list">-->
-<!--                            </ul>-->
-<!--                        </div>-->
-<!--                    </li>-->
+                    <li><a href="/bbs.php/web/user/login"  ><i class=""></i>登录</a></li>
+                    <li><a href="/bbs.php/web/user/register"  ><i class=""></i>注册</a></li>
+                    <li><a href="/bbs.php/web/user/find_password"  ><i class=""></i>找回密码</a></li>
                 </ul>
             </nav>
         </div>
@@ -74,7 +56,6 @@
             </a>
             <div class="aw-dropdown dropdown-list pull-right">
                 <ul class="aw-dropdown-list">
-                    <li><a href="/bbs.php/web/bbslist/create"><i class="icon icon-inbox"></i> 私信<span class="badge badge-important collapse" id="inbox_unread" style="display: none;">0</span></a></li>
                     <li class="hidden-xs"><a href="/bbs.php/web/user/info"><i class="icon icon-setting"></i> 修改头像</a></li>
                     <li class="hidden-xs"><a href="/bbs.php/web/user/password"><i class="icon icon-job"></i> 修改密码</a></li>
                     <li><a href="/bbs.php/web/user/logout"><i class="icon icon-logout" id="logout"></i> 退出</a></li>

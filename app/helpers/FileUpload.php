@@ -8,7 +8,7 @@ class FileUpload
 {
 
     public $field;
-    public $alowexts = array('gif', 'jpg', 'jpeg', 'png', 'bmp');
+    public $alowexts = array('gif', 'jpg', 'jpeg', 'png', 'bmp','txt','pdf','mp3','mp4');
     public $upload_maxsize = '1000000';
     public $error;
     public $save_path = '';

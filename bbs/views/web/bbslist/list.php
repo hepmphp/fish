@@ -94,7 +94,7 @@
 <script>
     $('.pagination-outline').html(multi(<?=$data['total']?>, <?=$data['per_page']?>,  <?=$data['page']?>, 100));
     function ajax_list(param){
-        window.location.href = "<?=\bbs\helpers\Uri::bbs_list_href($_get['id'])?>&"+$.param(param);
+        window.location.href = "<?=\bbs\helpers\Uri::bbs_list_href(0)?>&"+$.param(param);
     }
 </script>
 <script>

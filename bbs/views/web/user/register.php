@@ -2,17 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>注册新用户</title>
     <link href="<?=STATIC_URL?>css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="<?=STATIC_URL?>css/commom.css" rel="stylesheet" type="text/css" />
     <link href="<?=STATIC_URL?>css/register.css" rel="stylesheet" type="text/css" />
     <link href="<?=STATIC_URL?>js/image-select/ImageSelect.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="<?=STATIC_URL?>js/jquery.min.js"></script>
     <script type="text/javascript" src="<?=STATIC_URL?>js/layer/layer.js"></script>
-    <script type="text/javascript" src="<?=STATIC_URL?>js/image-select/chosen.jquery.js"></script>
-    <script type="text/javascript" src="<?=STATIC_URL?>js/image-select/ImageSelect.jquery.js"></script>
-    <link  href="<?=STATIC_URL?>js/image-select/chosen.css" rel="stylesheet" type="text/css" >
-    <link  href="<?=STATIC_URL?>js/image-select/ImageSelect.css" rel="stylesheet" type="text/css" >
+
 </head>
 <body>
 <div class="aw-register-box">
