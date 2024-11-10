@@ -5,7 +5,7 @@
  *  author: hepm<ok_fish@qq.com>$
  */
 $config['master'] = [
-    'host' => '127.0.0.1',
+    'host' => 'mysql',
     'dbname' => 'fish_admin',
     'username' => 'root',
     'password' => '123456',
@@ -13,7 +13,7 @@ $config['master'] = [
     'charset' => 'utf8',
 ];
 $config['cms'] = [
-    'host' => '127.0.0.1',
+    'host' => 'mysql',
     'dbname' => 'fish_cms',
     'username' => 'root',
     'password' => '123456',
@@ -21,7 +21,7 @@ $config['cms'] = [
     'charset' => 'utf8',
 ];
 $config['bbs'] = [
-    'host' => '127.0.0.1',
+    'host' => 'mysql',
     'dbname' => 'fish_bbs',
     'username' => 'root',
     'password' => '123456',

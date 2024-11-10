@@ -73,8 +73,9 @@ class App
     public function dispatch(){
         $url = new Url(self::$config['routers']);
         list($path,$class,$method) = $url->parse_path_class_method();
-        $class_file = WEB_PATH."\\..".$class.'.php';
 
+        $class_file = WEB_PATH."\\..".$class.'.php';
+        $class_file = str_replace('\\','/',$class_file);
         if(file_exists($class_file)){
             $controller = new $class;
             if(method_exists($controller,$method)){
@@ -85,6 +86,7 @@ class App
                 $this->middleware = new Middleware(self::$instance);
                 $this->middleware->register_middleware([SessionMiddleware::class,AuthMiddleware::class,CsrfMiddleware::class],[LogMiddleware::class]);
                 $this->middleware->run_middleware($next);
+
                 $controller->$method();
 //                if (function_exists('fastcgi_finish_request')) {
 //                    fastcgi_finish_request();//主动flush数据给nginx

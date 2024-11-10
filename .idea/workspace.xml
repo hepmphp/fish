@@ -2,38 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70599de6-1c42-4819-9704-773d568c4494" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/fish.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fish.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/bbs/Forum.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/bbs/Forum.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/cms/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/cms/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/AppAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/AppAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/FileUpload.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/FileUpload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/curd/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/curd/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/root/upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/root/upload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/bbs/forum/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bbs/forum/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/bbs/forum/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/bbs/forum/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cms/article/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/article/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cms/article/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/article/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cms/file/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/file/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cms/file/folder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/file/folder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cms/file/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/file/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/base/exception/LogicException.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/base/exception/LogicException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/controllers/web/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/controllers/web/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/ask/ajax_ask.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/ask/ajax_ask.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/ask/ajax_create.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/ask/ajax_create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/ask/ajax_reply_create.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/ask/ajax_reply_create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/ask/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/ask/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/ask/see_reply_list.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/ask/see_reply_list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/bbslist/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/bbslist/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/bbslist/list.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/bbslist/list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/common/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/common/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/common/upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/common/upload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/question/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/question/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bbs/views/web/user/bbslist.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/user/bbslist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/user/find_password.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/user/find_password.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bbs/views/web/user/register.php" beforeDir="false" afterPath="$PROJECT_DIR$/bbs/views/web/user/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/admin/js/ztree/css/demo.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/admin/js/ztree/css/demo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/admin/js/ztree/css/metroStyle/metroStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/admin/js/ztree/css/metroStyle/metroStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/autoload.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/autoload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/ClassLoader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/InstalledVersions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_real.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_real.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,22 +41,34 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/app/base/Loader.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bbs/views/web/bbslist/list.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/password.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bbs/views/web/common/header.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/register.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/bbslist.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/find_password.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/helpers/Handler.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bbs/controllers/web/User.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bbs/views/web/ask/see_reply_list.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bbs/controllers/web/Ask.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/bbs/views/web/ask/ajax_reply_create.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/base/middleware/SessionMiddleware.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/base/middleware/CsrfMiddleware.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/base/middleware/AuthMiddleware.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/models/curd/Posts.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/helpers/Debuger.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/password.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/base/Model.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/app/helpers/Timer.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/register.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/bbslist.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/find_password.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/plugin/verifycode" />
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/plugin/ckfinder" />
+      <path value="$PROJECT_DIR$/vendor/workerman/workerman" />
+      <path value="$PROJECT_DIR$/vendor/workerman/gateway-worker" />
+      <path value="$PROJECT_DIR$/vendor/workerman/gatewayclient" />
     </include_path>
   </component>
   <component name="ProjectId" id="2oQtXz3q1AU4KNrd1gE2InRSFJb" />
@@ -83,17 +80,17 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../web-demo/web-socket" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\data\www\fish\im\controllers\layim" />
+      <recent name="E:\data\www\fish" />
       <recent name="E:\data\www\fish\web\static\admin\js" />
       <recent name="E:\data\www\fish\bbs\controllers\web" />
       <recent name="E:\data\www\fish\bbs\views\web\common" />
-      <recent name="E:\data\www\fish\web\static\bbs\js" />
-      <recent name="E:\data\www\fish\bbs\helpers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\data\www\fish\bbs\views\web\index" />
@@ -127,7 +124,10 @@
       <workItem from="1731148060698" duration="26000" />
       <workItem from="1731148273507" duration="14285000" />
       <workItem from="1731162692802" duration="58000" />
-      <workItem from="1731163149713" duration="4802000" />
+      <workItem from="1731163149713" duration="7309000" />
+      <workItem from="1731173844136" duration="12000" />
+      <workItem from="1731173859002" duration="20000" />
+      <workItem from="1731230046358" duration="3813000" />
     </task>
     <servers />
   </component>

@@ -73,6 +73,7 @@ class CmsApp
         $url = new Url(self::$config['routers']);
         list($path,$class,$method) = $url->parse_path_class_method();
         $class_file = WEB_PATH."\\..".$class.'.php';
+        $class_file = str_replace('\\','/',$class_file);
         if(file_exists($class_file)){
             $controller = new $class;
             if(method_exists($controller,$method)){

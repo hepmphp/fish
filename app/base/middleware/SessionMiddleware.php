@@ -27,7 +27,7 @@ class SessionMiddleware{
         if(isset($_SESSION['admin_user_id']) && $_SESSION['admin_user_id']){
             $admin_user_model = new AdminUser();
             $admin_user = $admin_user_model->info(['id'=>$_SESSION['admin_user_id']]);
-            if($admin_user['status']!==0){
+            if($admin_user['status']!=0){
                 if(Input::is_ajax()){
                     throw new LogicException(-100,'您的账号已经锁定,请联系管理员处理');
                 }else{

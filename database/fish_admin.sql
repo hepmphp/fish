@@ -6,7 +6,7 @@ SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 DROP DATABASE IF EXISTS `fish_admin`;
-CREATE DATABASE `fish_admin` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_uca1400_ai_ci */;
+CREATE DATABASE `fish_admin`;
 USE `fish_admin`;
 
 DROP TABLE IF EXISTS `admin_group`;
@@ -18,7 +18,7 @@ CREATE TABLE `admin_group` (
   `allow_mutil_login` tinyint(4) NOT NULL DEFAULT 1 COMMENT '允许多人登录 0否 1是',
   `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='用户分组';
+) ENGINE=InnoDB  COMMENT='用户分组';
 
 TRUNCATE `admin_group`;
 INSERT INTO `admin_group` (`id`, `name`, `comment`, `mids`, `allow_mutil_login`, `addtime`) VALUES
@@ -52,7 +52,7 @@ CREATE TABLE `admin_log` (
   `status` tinyint(3) NOT NULL DEFAULT 0 COMMENT '登录状态 1成功0失败',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='管理员操作日志';
+) ENGINE=InnoDB  COMMENT='管理员操作日志';
 
 TRUNCATE `admin_log`;
 
@@ -73,7 +73,7 @@ CREATE TABLE `admin_menu` (
   KEY `status` (`status`),
   KEY `parentid` (`parentid`),
   KEY `model` (`model`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='后台菜单';
+) ENGINE=InnoDB  COMMENT='后台菜单';
 
 TRUNCATE `admin_menu`;
 INSERT INTO `admin_menu` (`id`, `parentid`, `top_menu_id`, `model`, `action`, `data`, `status`, `name`, `remark`, `listorder`, `level`) VALUES
@@ -215,7 +215,7 @@ CREATE TABLE `admin_user` (
   `last_session_id` varchar(32) NOT NULL DEFAULT '' COMMENT '上一次登录的session_id',
   `last_login_time` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '最后登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='后台用户表';
+) ENGINE=InnoDB  COMMENT='后台用户表';
 
 TRUNCATE `admin_user`;
 INSERT INTO `admin_user` (`id`, `username`, `realname`, `email`, `password`, `salt`, `create_time`, `update_time`, `status`, `mids`, `platform_id`, `group_id`, `last_session_id`, `last_login_time`) VALUES
@@ -250,7 +250,7 @@ CREATE TABLE `platform` (
   `name` varchar(20) NOT NULL DEFAULT '' COMMENT '平台名称',
   `ip_list` varchar(10000) NOT NULL DEFAULT '' COMMENT 'ip列表 用,分隔',
   `domain` varchar(255) NOT NULL DEFAULT '' COMMENT '域名'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='平台';
+) ENGINE=InnoDB  COMMENT='平台';
 
 TRUNCATE `platform`;
 INSERT INTO `platform` (`id`, `sign`, `name`, `ip_list`, `domain`) VALUES

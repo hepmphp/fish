@@ -6,7 +6,7 @@ SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 DROP DATABASE IF EXISTS `fish_bbs`;
-CREATE DATABASE `fish_bbs` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_uca1400_ai_ci */;
+CREATE DATABASE `fish_bbs`;
 USE `fish_bbs`;
 
 DROP TABLE IF EXISTS `bbs_attachs`;
@@ -19,7 +19,7 @@ CREATE TABLE `bbs_attachs` (
   `created_userid` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '上传人用户id',
   `created_time` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '上传时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='附件表';
+) ENGINE=InnoDB  COMMENT='附件表';
 
 TRUNCATE `bbs_attachs`;
 
@@ -33,7 +33,7 @@ CREATE TABLE `bbs_forum` (
   `created_time` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '创建时间',
   `status` int(10) NOT NULL DEFAULT 0 COMMENT '状态|0:正常,-1:隐藏',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='版块基本信息表';
+) ENGINE=InnoDB  COMMENT='版块基本信息表';
 
 TRUNCATE `bbs_forum`;
 INSERT INTO `bbs_forum` (`id`, `parentid`, `level`, `name`, `logo`, `created_time`, `status`) VALUES
@@ -70,7 +70,7 @@ CREATE TABLE `bbs_posts` (
   `total_reply` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '帖子回复数',
   `status` int(10) NOT NULL DEFAULT 0 COMMENT '帖子状态|0:正常,-1:删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='帖子表';
+) ENGINE=InnoDB  COMMENT='帖子表';
 
 TRUNCATE `bbs_posts`;
 
@@ -89,7 +89,7 @@ CREATE TABLE `bbs_user` (
   `last_login_time` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '最近一次登录时间',
   `groups` varchar(255) NOT NULL DEFAULT '' COMMENT '用户附加组的ID缓存字段',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci;
+) ENGINE=InnoDB ;
 
 TRUNCATE `bbs_user`;
 INSERT INTO `bbs_user` (`id`, `username`, `email`, `password`, `salt`, `status`, `avator`, `group_id`, `addtime`, `update_time`, `last_login_time`, `groups`) VALUES

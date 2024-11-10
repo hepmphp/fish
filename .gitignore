@@ -5,3 +5,4 @@
 /web/tool/*.log
 /web/html
 /web/upload
+/web/web-socket

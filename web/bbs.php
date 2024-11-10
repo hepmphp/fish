@@ -6,9 +6,9 @@
  */
 use bbs\base\BbsApp;
 define('DEBUG',TRUE);
-define('SITE_URL','http://127.0.0.1:2222/bbs.php');
+define('SITE_URL','http://127.0.0.1/bbs.php');
 define('WEB_PATH',__DIR__);
-define('STATIC_URL','http://127.0.0.1:2222/static/bbs/');
+define('STATIC_URL','http://127.0.0.1/static/bbs/');
 define('APP_PATH',WEB_PATH.'/../app/');
 define('BBS_PATH',WEB_PATH.'/../bbs/');
 include BBS_PATH.'/base/Loader.php';

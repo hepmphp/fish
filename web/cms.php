@@ -6,9 +6,9 @@
  */
 use cms\base\CmsApp;
 define('DEBUG',TRUE);
-define('SITE_URL','http://127.0.0.1:2222/cms.php');
+define('SITE_URL','http://127.0.0.1/cms.php');
 define('WEB_PATH',__DIR__);
-define('STATIC_URL','http://127.0.0.1:2222/static/cms/');
+define('STATIC_URL','http://127.0.0.1/static/cms/');
 define('APP_PATH',WEB_PATH.'/../app/');
 define('CMS_PATH',WEB_PATH.'/../cms/');
 include CMS_PATH.'/base/Loader.php';

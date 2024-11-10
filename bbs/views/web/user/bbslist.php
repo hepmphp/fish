@@ -31,11 +31,12 @@
         <div class="row">
             <div class="aw-content-wrap clearfix">
                 <div class="col-sm-12 col-md-12 aw-main-content">
-                    <div class="aw-mod aw-topic-detail-title">
+                    <div class="aw-mod aw-topic-detail-title" style="background: url('http://127.0.0.1:2222/static/bbs/image/background/user_level_1_bgimg.jpeg') no-repeat; background-size: cover; background-size: 100% 100%;">
                         <div class="mod-body" style="width:300px;margin: 0 auto;">
                             <h2 class="pull-left">用户帖子</h2>
                         </div>
                     </div>
+
 
                     <div class="aw-mod aw-topic-list-mod">
                         <div class="mod-head">

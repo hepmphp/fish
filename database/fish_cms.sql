@@ -6,7 +6,7 @@ SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 DROP DATABASE IF EXISTS `fish_cms`;
-CREATE DATABASE `fish_cms` /*!40100 DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_uca1400_ai_ci */;
+CREATE DATABASE `fish_cms`;
 USE `fish_cms`;
 
 DROP TABLE IF EXISTS `cms_ad`;
@@ -24,7 +24,7 @@ CREATE TABLE `cms_ad` (
   `is_mobile` tinyint(4) NOT NULL DEFAULT 0 COMMENT '是否是m版',
   PRIMARY KEY (`id`),
   KEY `block_id` (`id`,`block_id`,`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='平台广告';
+) ENGINE=InnoDB  COMMENT='平台广告';
 
 TRUNCATE `cms_ad`;
 
@@ -60,7 +60,7 @@ CREATE TABLE `cms_article` (
   `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '状态 0正常 -1 删除',
   PRIMARY KEY (`id`),
   KEY `cate_id` (`id`,`cate_id`,`is_top`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='平台文章';
+) ENGINE=InnoDB  COMMENT='平台文章';
 
 TRUNCATE `cms_article`;
 
@@ -74,7 +74,7 @@ CREATE TABLE `cms_article_category` (
   `status` tinyint(10) DEFAULT 0 COMMENT '状态|0:正常,-1:删除',
   `addtime` int(10) unsigned DEFAULT 0 COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='文章分类';
+) ENGINE=InnoDB  COMMENT='文章分类';
 
 TRUNCATE `cms_article_category`;
 INSERT INTO `cms_article_category` (`id`, `name`, `parentid`, `level`, `description`, `status`, `addtime`) VALUES
@@ -170,7 +170,7 @@ CREATE TABLE `cms_attach` (
   `size` varchar(255) NOT NULL DEFAULT '' COMMENT '文件大小',
   `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='附件';
+) ENGINE=InnoDB  COMMENT='附件';
 
 TRUNCATE `cms_attach`;
 INSERT INTO `cms_attach` (`id`, `cate_id`, `tag_ids`, `name`, `file`, `width`, `height`, `ext`, `size`, `addtime`) VALUES
@@ -201,7 +201,7 @@ CREATE TABLE `cms_attach_cate` (
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '附件分类名称',
   `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='附件分类';
+) ENGINE=InnoDB  COMMENT='附件分类';
 
 TRUNCATE `cms_attach_cate`;
 INSERT INTO `cms_attach_cate` (`id`, `pid`, `name`, `addtime`) VALUES
@@ -217,7 +217,7 @@ CREATE TABLE `cms_banner` (
   `image_url` varchar(512) NOT NULL DEFAULT '' COMMENT '图片地址',
   `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '状态|0:显示,-1:不显示',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='banner表';
+) ENGINE=InnoDB  COMMENT='banner表';
 
 TRUNCATE `cms_banner`;
 INSERT INTO `cms_banner` (`id`, `name`, `domain`, `image_url`, `status`) VALUES
@@ -251,7 +251,7 @@ CREATE TABLE `cms_file` (
   `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
   `status` int(10) NOT NULL DEFAULT 0 COMMENT '状态|0:正常,-1:删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='文件';
+) ENGINE=InnoDB  COMMENT='文件';
 
 TRUNCATE `cms_file`;
 
@@ -264,7 +264,7 @@ CREATE TABLE `cms_folder` (
   `user_id` int(10) NOT NULL DEFAULT 0 COMMENT '管理员id',
   `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '状态|0:正常,-1:',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='目录';
+) ENGINE=InnoDB  COMMENT='目录';
 
 TRUNCATE `cms_folder`;
 
@@ -275,7 +275,7 @@ CREATE TABLE `cms_friend_link` (
   `link_address` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
   `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '状态|0:显示,1:不显示',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_uca1400_ai_ci COMMENT='友情链接';
+) ENGINE=InnoDB  COMMENT='友情链接';
 
 TRUNCATE `cms_friend_link`;
 INSERT INTO `cms_friend_link` (`id`, `name`, `link_address`, `status`) VALUES
