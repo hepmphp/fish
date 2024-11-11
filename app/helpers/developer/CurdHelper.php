@@ -29,9 +29,11 @@ class CurdHelper {
                 $from_data_str[] = "\t\t\t\t\t{$v['COLUMN_NAME']}:body.find('#{$v['COLUMN_NAME']}').val()";
             }
         }
+        $table_arr = explode('_',$table);
+        $_talbe = end($table_arr);
         $from_data .= PHP_EOL.implode(','.PHP_EOL,$from_data_str);
         $from_data .= PHP_EOL;
-        $template_content = str_replace(array('[path]','[table]','[form_data]'),array($database,$table,$from_data),$template_content);
+        $template_content = str_replace(array('[path]','[table]','[form_data]'),array($database,$_talbe,$from_data),$template_content);
         return $template_content;
     }
 
@@ -81,6 +83,14 @@ class CurdHelper {
         }
             \n
 EOT;
+        //搜索条件替换
+        $where_num_tpl = <<<EOT
+        \$[field] = Input::get_post('[field]','','trim');
+        if(is_numeric(\$[field])){
+           \$where['[field]'] = \$[field];
+        }
+            \n
+EOT;
         $where_time_range = <<<EOT
         \$start_time = Input::get_post('start_time','','trim');
         \$end_time = Input::get_post('end_time','','trim');
@@ -89,13 +99,13 @@ EOT;
             if(!Validate::required('start_time')){
                    throw  new  LogicException(-1,'请输入开始时间');
             }
-            \$where['addtime > '] =strtotime(\$start_time);
+            \$where['start_time > '] =strtotime(\$start_time);
         }
         if(!empty(\$end_time)){
             if(!Validate::required('end_time')){
                    throw  new  LogicException(-1,'请输入结束时间');
             }
-            \$where['addtime < '] = strtotime(\$end_time);
+            \$where['end_time < '] = strtotime(\$end_time);
         }
            \n
 EOT;
@@ -108,6 +118,8 @@ EOT;
             $searc_builder_type = $search_builder_types[$k];
             if($searc_builder_type=='search_text'){
                 $where_str .= str_replace('[field]',$field,$where_tpl);
+            }else if($searc_builder_type=='search_num'){
+                $where_str .= str_replace('[field]',$field,$where_num_tpl);
             }else if($searc_builder_type=='search_time'){
                 $where_str .= str_replace('[field]',$field,$where_time_range);
             }else{
@@ -124,16 +136,21 @@ EOT;
             return ucwords($val);
         },$tbname);
         $tbname = implode('',$tbname);
-
+        /**
+         * $[config_status] = get_[config_status]();
+             $this->view->assign(' [config_status]', $[config_status]);
+         */
         foreach($select as $k=>$s){
-            $config_str[] ="\t\t\t'config_{$k}'=>". sprintf("%s::get_config_%s()",$tbname,$k).",\n";
+            $config_str[] ="\t\t \$config_{$k} = ". sprintf("\$this->%s->get_config_%s()",$table,$k).";\n";
+            $config_str[] ="\t\t \$this->view->assign('config_{$k}'=>$"."config_{$k});\n";
         }
-      //  var_dump($config_str);
+        $config_str = implode("",$config_str);
+
         $database = str_replace('fish_','',$database);
         $table = str_replace(array('cms_','admin_','bbs_'),['','',''],$table);
         $content = str_replace(
-            array('[database]','[table]','[model]','[search_where]'),
-            array($database,$table,$tbname,$where_str),
+            array('[database]','[table]','[model]','[search_where]','[config_status]'),
+            array($database,$table,$tbname,$where_str,$config_str),
             $content);
         return $content;
     }
@@ -158,7 +175,7 @@ EOT;
             return ucwords($val);
         },$tbname);
         $tbname = implode('',$tbname);
-        $template = str_replace(array('[Users]','[t]','[p]'),array(str_replace('/','',$tbname),$table,''),$model_template);
+        $template = str_replace(array('[database]','[Users]','[t]','[p]'),array( str_replace('fish_','',$database),str_replace('/','',$tbname),$table,''),$model_template);
         $config_tpl = <<<EOT
     public static function get_config_[field](){
             return [
@@ -215,19 +232,34 @@ EOT;
         $table_header = "\n";
         $td_template = "\n";
         $td_data = "\n";
+        $search_param = "\n";
         foreach($db_fields as $k=>$v){
             if(in_array($k,$fields)){
                 $table_header = $table_header."<th>{$v}</th>\n";
                 $td_template = $td_template."'<td>[{$k}]</td>'+\n";
-                $td_data = $td_data."replace('[{$k}]', d.{$k}).\n";
+                if($k=='id'){
+                    $td_data = $td_data."replace(/\[{$k}\]/g, d.{$k}).\n";
+                }else{
+                    $td_data = $td_data."replace('[{$k}]', d.{$k}).\n";
+                }
+                $search_param = $search_param."\t\t\t\t\t\t{$k}: \$('#{$k}').val(),\n";
+
                 $td_data = "\t\t\t".$td_data;
             }
         }
+        $search_param_tpl = <<<TPL
+            var search_param= {
+                        page: 1,
+                        per_page :100,
+                    [search_param]
+            };
+TPL;
 
+        $search_param = str_replace('[search_param]',$search_param,$search_param_tpl);
         //列表
         $template_content = str_replace(
-            array('[search_field]','[table_header]','[td_template]','[td_data]','[table]'),
-            array($form_search,$table_header,$td_template,$td_data,$table),
+            array('[search_field]','[table_header]','[td_template]','[search_param]','[td_data]','[table]'),
+            array($form_search,$table_header,$td_template,$search_param,$td_data,$table),
             $template_content);
         return $template_content;
 

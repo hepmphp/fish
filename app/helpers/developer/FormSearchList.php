@@ -57,7 +57,7 @@ EOT;
           <?php
               foreach(\$config_[field] as \$k=>\$vo){
                   ?>
-                  <option value="<?=\$vo['id']?>" <?php  if(\$vo['id']==\$form['[field]']){ echo "selected";}?>><?=\$vo['name']?></option>
+                  <option value="<?=\$vo['id']?>" <?php  if(\$vo['id']==\$form['[field]'] &&is_numeric(\$form['[field])){ echo "selected";}?>><?=\$vo['name']?></option>
               <?php }?>
         </select>
 	    </div>

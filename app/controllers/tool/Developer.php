@@ -89,9 +89,24 @@ class Developer extends BaseController{
             $config_fied_builder_types[$field] = $get_form_builder_types[$k];
         }
         $html = FormBuilder::get_form_html($database,$table,$config_fied_builder_types,$get_form_builder_types);
-        highlight_string($html);exit();
+        //chat_friend_group
+        //im database: fish_im
+        $table = str_replace(array('chat_'),array(''),$table);
+        $database = str_replace('fish_','',$database);
+        $create_file_path = APP_PATH."views/{$database}/{$table}";
+        $create_file_name = $create_file_path.'/create.php';
 
-
+        if($create_file==1 && !file_exists($create_file_name)){
+            if(!is_dir($create_file_path)){
+                mkdir($create_file_path,0755,true);
+            }
+            file_put_contents($create_file_name,$html);
+            Input::ajax_return(0,'文件创建成功',['file_name'=>$create_file_name]);
+        }else if($create_file==1  && file_exists($create_file_name)){
+            Input::ajax_return(-1,'文件已经存在,请手动处理',['file_name'=>$create_file_name]);
+        }else{
+            highlight_string($html);exit();
+        }
     }
 
     public function create_js(){
@@ -106,6 +121,7 @@ class Developer extends BaseController{
 
     public function create_list(){
 
+        $create_file = Input::get_post('create_file','0','intval');
         $database =  Input::get_post('database','','trim');
         $table = Input::get_post('table','','trim');
         $fields = Input::get_post('fields');
@@ -114,31 +130,111 @@ class Developer extends BaseController{
         foreach($fields as $k=>$field){
             $config_search_list_types[$field] = $search_list_types[$k];
         }
-        $template_content = CurdHelper::get_search_list($database,$table,$fields,$config_search_list_types);
-        highlight_string($template_content);
-        exit();
+        $html = CurdHelper::get_search_list($database,$table,$fields,$config_search_list_types);
+
+
+        $get_form_builder_types  = Input::get_post("form_builder_types");
+        $js = "<script>\n\n".CurdHelper::get_js($database,$table,$fields,$get_form_builder_types)."\n\n</script>";
+
+        $html = str_replace('</html>',$js."\n\n</html>",$html);
+
+        $database = str_replace('fish_','',$database);
+        $table = str_replace(array('chat_'),array(''),$table);
+
+        //chat_friend_group
+        $create_file_path = APP_PATH."views/{$database}/{$table}/";
+        $create_file_name = $create_file_path."index.php";
+
+        if($create_file==1 && !file_exists($create_file_name)){
+            if(!is_dir($create_file_path)){
+                mkdir($create_file_path,0755,true);
+            }
+            file_put_contents($create_file_name,$html);
+            Input::ajax_return(0,'列表文件创建成功',['file_name'=>$create_file_name]);
+        }else if($create_file==1  && file_exists($create_file_name)){
+            Input::ajax_return(-1,'文件已经存在,请手动处理'.$create_file_name,['file_name'=>$create_file_name]);
+        }else{
+            highlight_string($html);
+            exit();
+        }
+
     }
 
     public function create_controller(){
+        $create_file = Input::get_post('create_file','0','intval');
         $database = Input::get_post('database','','trim');
         $table =Input::get_post('table','','trim');
         $fields = Input::get_post('fields');
         $search_builder_types = Input::get_post('search_builder_types');
         $form_builder_types = Input::get_post('form_builder_types');
         $is_api = Input::get_post('is_api',0,'intval');
-        $content = CurdHelper::get_controller($database,$table,$fields,$search_builder_types,$form_builder_types,$is_api);
-        highlight_string($content);exit();
+        $html = CurdHelper::get_controller($database,$table,$fields,$search_builder_types,$form_builder_types,$is_api);
 
+        $database = str_replace('fish_','',$database);
+        $tbname = explode('_',$table);
+        unset($tbname[0]);
+        $tbname = array_map(function ($val){
+            return ucwords($val);
+        },$tbname);
+        $tbname = implode('',$tbname);
+        if($is_api==0){
+            $create_file_path = APP_PATH."controllers/{$database}/";
+            $create_file_name = $create_file_path."{$tbname}.php";
+        }else{
+
+            $create_file_path = APP_PATH."controllers/api/{$database}/";
+            $create_file_name = $create_file_path."{$tbname}.php";
+        }
+
+        if($create_file==1 && !file_exists($create_file_name)){
+            if(!is_dir($create_file_path)){
+                mkdir($create_file_path,0755,true);
+            }
+            file_put_contents($create_file_name,$html);
+            Input::ajax_return(0,'控制器文件创建成功'.$create_file_name,['file_name'=>$create_file_name]);
+        }else if($create_file==1  && file_exists($create_file_name)){
+            Input::ajax_return(-1,'控制器文件已经存在,请手动处理'.$create_file_name,['file_name'=>$create_file_name]);
+        }else{
+            highlight_string($html);exit();
+            exit();
+        }
     }
 
     public function create_model(){
+        $create_file = Input::get_post('create_file','0','intval');
         $database = Input::get_post('database','','trim');
         $table =  Input::get_post('table','','trim');
         $fields = Input::get_post('fields');
         $form_validator_types =  Input::get_post('form_validator_types');
-        $content = CurdHelper::get_model($database,$table,$fields,$form_validator_types);
-        highlight_string($content);
-        exit();
+        $html = CurdHelper::get_model($database,$table,$fields,$form_validator_types);
+
+        $database = str_replace('fish_','',$database);
+
+        $tbname = explode('_',$table);
+        unset($tbname[0]);
+        $tbname = array_map(function ($val){
+            return ucwords($val);
+        },$tbname);
+        $tbname = implode('',$tbname);
+        //chat_friend_group
+        $create_file_path = APP_PATH."models/curd/{$database}/";
+        $create_file_name = $create_file_path."{$tbname}.php";
+
+        if($create_file==1 && !file_exists($create_file_name)){
+            if(!is_dir($create_file_path)){
+                mkdir($create_file_path,0755,true);
+            }
+            file_put_contents($create_file_name,$html);
+            Input::ajax_return(0,'模型文件创建成功',['file_name'=>$create_file_name]);
+        }else if($create_file==1  && file_exists($create_file_name)){
+            Input::ajax_return(-1,'文件已经存在,请手动处理',['file_name'=>$create_file_name]);
+        }else{
+            highlight_string($html);
+            exit();
+        }
+
+
+
     }
 
     public function create_menu(){

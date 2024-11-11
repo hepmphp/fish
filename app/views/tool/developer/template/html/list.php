@@ -61,16 +61,7 @@
     };
 
     function search_list(){
-        var search_param= {
-            page: 1,
-            per_page : $("#admin").val().length==0?100:1,
-            admin: $("#admin").val(),
-            title:$('#title').val(),
-            start_time:$('#start_time').val(),
-            end_time:$('#end_time').val(),
-            status:$('#status').val(),
-        };
-
+        [search_param]
         console.log(search_param);
         ajax_list(search_param);
     }
@@ -80,7 +71,7 @@
 
         var template = '<tr>' +
             [td_template]
-            '<td><a onclick="edit(\'[id]\')" class="">[编辑]</a>|<a onclick="del(\'[id]\')" class="">[删除]</a></td></tr>';
+            '<td><a onclick="edit([id])" class="">[编辑]</a>|<a onclick="del([id])" class="">[删除]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/[table]/get_list/?' + $.param(param), function (data) {
             layer.closeAll();

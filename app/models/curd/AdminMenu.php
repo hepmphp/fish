@@ -73,6 +73,16 @@ class AdminMenu extends Model
             'bbs/bbs_user',
         ];
 
+        $im = [
+            'im/member',
+            'im/friend',
+            'im/friend_group',
+            'im/group',
+            'im/group_member',
+            'im/msgbox',
+            'im/record',
+        ];
+
         foreach ($menu as $k=>$v){
                 if($cate=='admin' && !in_array($v['model'],$admin)){
                     continue;
@@ -84,6 +94,9 @@ class AdminMenu extends Model
                     continue;
                 }
                 if($cate=='bbs' && !in_array($v['model'],$bbs)){
+                    continue;
+                }
+                if($cate=='im' && !in_array($v['model'],$im)){
                     continue;
                 }
 

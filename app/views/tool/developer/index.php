@@ -165,58 +165,46 @@
         ajax_list(search_param);
     }
 
-    function delete_freind(id){
-        var param =  {id:id};
-        layer.confirm('确定删除友情链接?',{
-                btn: ['确定','取消'], //按钮
-                icon: 3,
-                title:'提示'
-            }, function(){
-                layer.load(2);
-                $.ajax({
-                    type:"POST",
-                    url: '/api/friend/delete',
-                    data: param,
-                    timeout:"4000",
-                    dataType:'json',
-                    success: function(data){
-                        if (data.status == 0) {
-                            alert_success(data.msg);
-                        }else {
-                            alert_fail(data.msg);
-                        }
-                    },
-                });
-            }
-        );
-    }
-    function friend_layer_form(url,action=1){
-        var title = action==1?'添加':'修改';
-        var btn =  action==1?['确认添加','取消']:['确认修改','取消'];
-        var layer_index = layer.open({
-            type: 2, //iframe
-            area: ['500px', '400px'],
-            title: title,
-            btn: btn,
-            shade: 0.3, //遮罩透明度
-            content:url,
-            yes: function(index, layero){
-                var body = layer.getChildFrame('body', index);
-                var param ={
-                    id:body.find('#id').val(),
-                    name:body.find('#name').val(),
-                    link_address:body.find('#link_address').val(),
-                    status:body.find('#status').val(),
+    /***
+     * ajax通用请求封装
+     * @param url
+     * @param param
+     */
+    function ajax_get_alert_success(url,param){
+        layer.load(2);
+        $.ajax({
+            type:"GET",
+            url: url,
+            data:  param,
+            timeout:"4000",
+            dataType:'json',
+            success: function(data){
+                if (data.status == 0) {
+                    layer.closeAll('loading');
+                    layer.alert(data.msg, {icon:1});
                 }
-                console.log(param);
-                var url = action==1?'/api/friend/create':'/api/friend/update';
-                ajax_post(url,param);
-            },btn2: function(index, layero){
-
+                else {
+                    layer.closeAll('loading');
+                    alert_fail(data.msg);
+                }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.status);
+                console.log(XMLHttpRequest.readyState);
+                console.log(textStatus);
+                console.log(errorThrown);
+                console.log(XMLHttpRequest.responseText);
+                var result = jQuery.parseJSON(XMLHttpRequest.responseText);
+                console.log(result);
+                layer.closeAll('loading');
+                alert_fail(result.msg);
+            },
+            complete: function(XMLHttpRequest, textStatus) {
+                // console.log(textStatus);
+                //this; // 调用本次AJAX请求时传递的options参数
             }
         });
     }
-
 
 
 
@@ -284,7 +272,7 @@
             content:list_url,
             btn: ['生成','取消'],
             yes: function(index, layero){
-                // ajax_get_alert_success(list_url,{create_file:1});
+                ajax_get_alert_success(list_url,{create_file:1});
             },btn2: function(index, layero){
 
             }
@@ -361,13 +349,13 @@
             type: 2, //iframe
             area: ['1200px', '750px'],
             title: '预览',
-            btn: [],
             shade: 0.3, //遮罩透明度
             shadeClose: true,
             content:model_url,
             btn: ['生成','取消'],
             yes: function(index, layero){
-                // ajax_get_alert_success(model_url,{create_file:1});
+                console.log(model_url);
+                ajax_get_alert_success(model_url,{create_file:1});
             },btn2: function(index, layero){
 
             }

@@ -1,13 +1,12 @@
 <?php
 
-namespace app\controllers\api;
+namespace app\controllers\api\[database];
 
 use app\base\BaseController;
 use app\base\exception\LogicException;
 use app\helpers\Input;
 use app\helpers\Validate;
-
-use app\models\curd\[model] as M_[model];
+use app\models\curd\[database]\[model] as M_[model];
 
 class [model] extends BaseController{
 

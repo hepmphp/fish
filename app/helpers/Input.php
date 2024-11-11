@@ -152,7 +152,7 @@ class Input {
          }
     }
 
-    static function ajax_return($status,$msg,$data){
+    static function ajax_return($status,$msg,$data=[]){
             $json_data = [
                 'status'=>$status,
                 'msg'=>$msg,

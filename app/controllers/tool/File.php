@@ -13,6 +13,7 @@ use app\base\BaseController;
 class File extends BaseController {
 
     public function index(){
-        $this->view->display('tool/file/index');
+        echo "file";
+//        $this->view->display('tool/file/index');
     }
 }

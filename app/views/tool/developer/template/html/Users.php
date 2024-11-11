@@ -6,7 +6,7 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 
-namespace app\models\curd;
+namespace app\models\curd\[database];
 use app\base\Model;
 use app\base\exception\LogicException;
 class [Users] extends Model

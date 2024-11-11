@@ -44,6 +44,7 @@ $(".fa-database").click(function() {
 /*iframe 链接*/
 $(".J_menuItem").on('click',function(){
 var url = $(this).attr('href');
+console.log(url);
 $("#J_iframe").attr('src',url);
 $(this).parent('li').addClass('on').siblings('li').removeClass('on');
 $(this).parents('.nav-toggle').siblings().find('li').removeClass('on');

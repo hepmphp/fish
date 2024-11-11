@@ -85,7 +85,7 @@ class Url
         $method = '';
         if (count($path_info)==4){
             list($path_index,$path_detail,$class,$method) = $path_info;
-            $path = $path_detail;
+            $path = $path_index.'\\'.$path_detail;
         }else if(count($path_info)==3){
             list($path,$class,$method) = $path_info;
         }else if(count($path_info)==2){
@@ -94,7 +94,7 @@ class Url
             $class = is_array($path_info)&&empty($path_info)?'':$path_info[0];
             $method = 'login';
         }
-        $class=!empty($class)?$class:'user';
+        $class=!empty($class)?$class:'User';
         if(empty($path)){
             $class = '\\app\\controllers\\admin\User';
             $method = 'login';

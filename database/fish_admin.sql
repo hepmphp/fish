@@ -1,24 +1,26 @@
--- Adminer 4.8.1 MySQL 11.6.1-MariaDB-log dump
+-- Adminer 4.8.1 MySQL 8.0.34 dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
+SET NAMES utf8mb4;
+
 DROP DATABASE IF EXISTS `fish_admin`;
-CREATE DATABASE `fish_admin`;
+CREATE DATABASE `fish_admin` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `fish_admin`;
 
 DROP TABLE IF EXISTS `admin_group`;
 CREATE TABLE `admin_group` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '分组名称',
   `comment` varchar(255) NOT NULL DEFAULT '' COMMENT '分组说明',
-  `mids` text DEFAULT NULL COMMENT '用户组权限id',
-  `allow_mutil_login` tinyint(4) NOT NULL DEFAULT 1 COMMENT '允许多人登录 0否 1是',
-  `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
+  `mids` text COMMENT '用户组权限id',
+  `allow_mutil_login` tinyint NOT NULL DEFAULT '1' COMMENT '允许多人登录 0否 1是',
+  `addtime` int NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  COMMENT='用户分组';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='用户分组';
 
 TRUNCATE `admin_group`;
 INSERT INTO `admin_group` (`id`, `name`, `comment`, `mids`, `allow_mutil_login`, `addtime`) VALUES
@@ -39,41 +41,41 @@ INSERT INTO `admin_group` (`id`, `name`, `comment`, `mids`, `allow_mutil_login`,
 
 DROP TABLE IF EXISTS `admin_log`;
 CREATE TABLE `admin_log` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `user_id` int(10) NOT NULL DEFAULT 0 COMMENT '用户id',
-  `platform_id` int(10) NOT NULL DEFAULT 0 COMMENT '平台id',
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL DEFAULT '0' COMMENT '用户id',
+  `platform_id` int NOT NULL DEFAULT '0' COMMENT '平台id',
   `username` varchar(50) NOT NULL DEFAULT '' COMMENT '用户名',
   `ip` varchar(16) NOT NULL DEFAULT '' COMMENT 'ip地址',
   `m` varchar(50) NOT NULL DEFAULT '' COMMENT '控制器',
   `a` varchar(50) NOT NULL DEFAULT '' COMMENT '方法',
-  `addtime` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '添加时间',
-  `log_type` tinyint(3) NOT NULL DEFAULT 1 COMMENT '日志类型 1添加2修改3删除4登录成功5登录失败',
-  `info` text NOT NULL DEFAULT '' COMMENT '操作说明',
-  `status` tinyint(3) NOT NULL DEFAULT 0 COMMENT '登录状态 1成功0失败',
+  `addtime` int unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `log_type` tinyint NOT NULL DEFAULT '1' COMMENT '日志类型 1添加2修改3删除4登录成功5登录失败',
+  `info` text NOT NULL COMMENT '操作说明',
+  `status` tinyint NOT NULL DEFAULT '0' COMMENT '登录状态 1成功0失败',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  COMMENT='管理员操作日志';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='管理员操作日志';
 
 TRUNCATE `admin_log`;
 
 DROP TABLE IF EXISTS `admin_menu`;
 CREATE TABLE `admin_menu` (
-  `id` int(6) unsigned NOT NULL AUTO_INCREMENT,
-  `parentid` int(6) unsigned DEFAULT 0 COMMENT '菜单上一级id',
-  `top_menu_id` int(11) unsigned DEFAULT 0,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `parentid` int unsigned DEFAULT '0' COMMENT '菜单上一级id',
+  `top_menu_id` int unsigned DEFAULT '0',
   `model` varchar(255) DEFAULT '0' COMMENT '控制器',
   `action` varchar(255) DEFAULT '0' COMMENT '方法',
   `data` char(50) DEFAULT '0' COMMENT '业务数据',
-  `status` tinyint(1) DEFAULT 0 COMMENT '菜单状态 -1 隐藏  0正常',
+  `status` tinyint(1) DEFAULT '0' COMMENT '菜单状态 -1 隐藏  0正常',
   `name` varchar(50) DEFAULT '0' COMMENT '菜单名称',
   `remark` varchar(255) DEFAULT '0' COMMENT '备注',
-  `listorder` smallint(6) unsigned DEFAULT 0 COMMENT '排序ID',
-  `level` tinyint(4) DEFAULT 0 COMMENT '菜单级别 0 1 2 3 4 依次递增',
+  `listorder` smallint unsigned DEFAULT '0' COMMENT '排序ID',
+  `level` tinyint DEFAULT '0' COMMENT '菜单级别 0 1 2 3 4 依次递增',
   PRIMARY KEY (`id`),
   KEY `status` (`status`),
   KEY `parentid` (`parentid`),
   KEY `model` (`model`)
-) ENGINE=InnoDB  COMMENT='后台菜单';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='后台菜单';
 
 TRUNCATE `admin_menu`;
 INSERT INTO `admin_menu` (`id`, `parentid`, `top_menu_id`, `model`, `action`, `data`, `status`, `name`, `remark`, `listorder`, `level`) VALUES
@@ -196,26 +198,62 @@ INSERT INTO `admin_menu` (`id`, `parentid`, `top_menu_id`, `model`, `action`, `d
 (121,	118,	121,	'cms/folder',	'delete',	'0',	0,	'目录删除',	'0',	3,	2),
 (122,	118,	122,	'cms/folder',	'index',	'0',	0,	'文件夹管理',	'0',	0,	2),
 (126,	113,	28,	'cms/file',	'folder',	'',	0,	'文件目录',	'',	0,	2),
-(127,	113,	113,	'cms/file',	'detail',	'',	0,	'文件详情',	'',	0,	2);
+(127,	113,	113,	'cms/file',	'detail',	'',	0,	'文件详情',	'',	0,	2),
+(128,	0,	128,	'im/member',	'index',	'',	0,	'聊天后台',	'',	0,	0),
+(129,	128,	129,	'im/member',	'index',	'',	0,	'用户管理',	'',	0,	1),
+(130,	129,	0,	'im/member',	'index',	'0',	0,	'用户列表',	'0',	0,	2),
+(131,	129,	0,	'im/member',	'create',	'0',	0,	'用户添加',	'0',	1,	2),
+(132,	129,	0,	'im/member',	'update',	'0',	0,	'用户修改',	'0',	2,	2),
+(133,	129,	0,	'im/member',	'delete',	'0',	0,	'用户删除',	'0',	3,	2),
+(134,	128,	NULL,	'im/group',	'index',	'',	0,	'聊天群管理',	'',	0,	1),
+(135,	134,	0,	'im/group',	'index',	'0',	0,	'聊天群列表',	'0',	0,	2),
+(136,	134,	0,	'im/group',	'create',	'0',	0,	'聊天群添加',	'0',	1,	2),
+(137,	134,	0,	'im/group',	'update',	'0',	0,	'聊天群修改',	'0',	2,	2),
+(138,	134,	0,	'im/group',	'delete',	'0',	0,	'聊天群删除',	'0',	3,	2),
+(139,	128,	NULL,	'im/group_member',	'index',	'',	0,	'群员管理',	'',	0,	1),
+(140,	139,	0,	'im/group_member',	'index',	'0',	0,	'群员列表',	'0',	0,	2),
+(141,	139,	0,	'im/group_member',	'create',	'0',	0,	'群员添加',	'0',	1,	2),
+(142,	139,	0,	'im/group_member',	'update',	'0',	0,	'群员修改',	'0',	2,	2),
+(143,	139,	0,	'im/group_member',	'delete',	'0',	0,	'群员删除',	'0',	3,	2),
+(144,	128,	NULL,	'im/friend',	'index',	'',	0,	'好友列表',	'',	0,	1),
+(145,	144,	0,	'im/friend',	'index',	'0',	0,	'好友列表',	'0',	0,	2),
+(146,	144,	0,	'im/friend',	'create',	'0',	0,	'好友添加',	'0',	1,	2),
+(147,	144,	0,	'im/friend',	'update',	'0',	0,	'好友修改',	'0',	2,	2),
+(148,	144,	0,	'im/friend',	'delete',	'0',	0,	'好友删除',	'0',	3,	2),
+(149,	128,	NULL,	'im/friend_group',	'index',	'',	0,	'好友分组',	'',	0,	1),
+(150,	149,	0,	'im/friend_group',	'index',	'0',	0,	'好友分组列表',	'0',	0,	2),
+(151,	149,	0,	'im/friend_group',	'create',	'0',	0,	'好友分组添加',	'0',	1,	2),
+(152,	149,	0,	'im/friend_group',	'update',	'0',	0,	'好友分组修改',	'0',	2,	2),
+(153,	149,	0,	'im/friend_group',	'delete',	'0',	0,	'好友分组删除',	'0',	3,	2),
+(154,	128,	NULL,	'im/record',	'index',	'',	0,	'聊天记录管理',	'',	0,	1),
+(155,	154,	0,	'im/record',	'index',	'0',	0,	'聊天记录列表',	'0',	0,	2),
+(156,	154,	0,	'im/record',	'create',	'0',	0,	'聊天记录添加',	'0',	1,	2),
+(157,	154,	0,	'im/record',	'update',	'0',	0,	'聊天记录修改',	'0',	2,	2),
+(158,	154,	0,	'im/record',	'delete',	'0',	0,	'聊天记录删除',	'0',	3,	2),
+(159,	128,	NULL,	'im/msgbox',	'index',	'',	0,	'消息',	'',	0,	1),
+(160,	159,	0,	'im/msgbox',	'index',	'0',	0,	'消息列表',	'0',	0,	2),
+(161,	159,	0,	'im/msgbox',	'create',	'0',	0,	'消息添加',	'0',	1,	2),
+(162,	159,	0,	'im/msgbox',	'update',	'0',	0,	'消息修改',	'0',	2,	2),
+(163,	159,	0,	'im/msgbox',	'delete',	'0',	0,	'消息删除',	'0',	3,	2);
 
 DROP TABLE IF EXISTS `admin_user`;
 CREATE TABLE `admin_user` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(64) NOT NULL COMMENT '用户名',
   `realname` varchar(255) NOT NULL DEFAULT '' COMMENT '真实姓名',
   `email` varchar(255) NOT NULL DEFAULT '' COMMENT '电子邮箱',
   `password` varchar(32) NOT NULL COMMENT '密码',
   `salt` varchar(6) NOT NULL COMMENT '密码盐',
-  `create_time` int(11) unsigned NOT NULL DEFAULT 0 COMMENT '创建时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT 0,
-  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '状态|0:正常,1:删除',
+  `create_time` int unsigned NOT NULL DEFAULT '0' COMMENT '创建时间',
+  `update_time` int unsigned NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT '状态|0:正常,1:删除',
   `mids` text NOT NULL COMMENT '用户菜单权限',
-  `platform_id` int(10) NOT NULL DEFAULT 0 COMMENT '平台id',
-  `group_id` int(10) NOT NULL DEFAULT 0 COMMENT '分组id',
+  `platform_id` int NOT NULL DEFAULT '0' COMMENT '平台id',
+  `group_id` int NOT NULL DEFAULT '0' COMMENT '分组id',
   `last_session_id` varchar(32) NOT NULL DEFAULT '' COMMENT '上一次登录的session_id',
-  `last_login_time` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '最后登录时间',
+  `last_login_time` int unsigned NOT NULL DEFAULT '0' COMMENT '最后登录时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  COMMENT='后台用户表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='后台用户表';
 
 TRUNCATE `admin_user`;
 INSERT INTO `admin_user` (`id`, `username`, `realname`, `email`, `password`, `salt`, `create_time`, `update_time`, `status`, `mids`, `platform_id`, `group_id`, `last_session_id`, `last_login_time`) VALUES
@@ -236,7 +274,7 @@ INSERT INTO `admin_user` (`id`, `username`, `realname`, `email`, `password`, `sa
 (16,	'test201801',	'test201801',	'',	'3fc4c7da26591658aedd935684f82da8',	'yJKwOy',	1515578711,	0,	0,	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61',	61000,	1,	'',	0),
 (17,	'test201801',	'test201801',	'',	'be5e214206d7c34589524ca824a397b6',	'X0eLAL',	1515578975,	0,	0,	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61',	61000,	1,	'',	0),
 (18,	'test201801',	'test20180',	'',	'',	'cQgx5D',	1515579064,	0,	0,	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61',	61000,	1,	'',	0),
-(20,	'hepm',	'hepm',	'',	'f2160f0825c0a19f406941d818f141a3',	'oA862F',	1729344040,	1731074934,	0,	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,67,68,70,71,22,23,24,25,26,27,66,65,83,84,85,86,87,62,63,64,89,90,91,92,93,94,95,96,28,29,30,31,32,33,34,35,36,38,39,40,41,37,42,43,44,45,46,47,48,49,50,53,58,59,60,61,52,54,55,56,57,72,73,75,76,77,78,79,80,81,82,113,114,115,116,117,126,127,118,119,120,121,122,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112',	0,	0,	'hm79q4a3eplp0bm50n8q5q7vbo',	1731166544),
+(20,	'hepm',	'hepm',	'',	'f2160f0825c0a19f406941d818f141a3',	'oA862F',	1729344040,	1731320796,	0,	'1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,67,68,70,71,22,23,24,25,26,27,66,65,83,84,85,86,87,62,63,64,89,90,91,92,93,94,95,96,28,29,30,31,32,33,34,35,36,38,39,40,41,37,42,43,44,45,46,47,48,49,50,53,58,59,60,61,52,54,55,56,57,72,73,75,76,77,78,79,80,81,82,113,114,115,116,117,126,127,118,119,120,121,122,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163',	0,	0,	'doqf1ih2e2skrr0oljq22pujq5',	1731322242),
 (21,	'root',	'root',	'',	'30b37d634a6eb95bd32b885bfd46a7c0',	'BxBaZd',	1729782466,	0,	0,	'1',	0,	1,	'',	0),
 (22,	'fishpm',	'fishpm',	'',	'd8afc59991b441aef2321ff5664f63e4',	'K2xYVk',	1730299517,	1730302445,	0,	'1,67,68',	0,	1,	'f0nks4vau20f5gvqkm4e7rblgb',	1730306418),
 (23,	'zs',	'zs',	'',	'1f84fe923d84205563e27928963f6d06',	'l1GEaY',	1730509912,	0,	0,	'1',	0,	1,	'',	0),
@@ -250,7 +288,7 @@ CREATE TABLE `platform` (
   `name` varchar(20) NOT NULL DEFAULT '' COMMENT '平台名称',
   `ip_list` varchar(10000) NOT NULL DEFAULT '' COMMENT 'ip列表 用,分隔',
   `domain` varchar(255) NOT NULL DEFAULT '' COMMENT '域名'
-) ENGINE=InnoDB  COMMENT='平台';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='平台';
 
 TRUNCATE `platform`;
 INSERT INTO `platform` (`id`, `sign`, `name`, `ip_list`, `domain`) VALUES
@@ -258,4 +296,4 @@ INSERT INTO `platform` (`id`, `sign`, `name`, `ip_list`, `domain`) VALUES
 ('1000',	'全部平台',	'全部平台',	'',	''),
 ('61000',	'sogou',	'搜狗',	'',	'');
 
--- 2024-11-09 16:09:35
+-- 2024-11-11 17:45:02

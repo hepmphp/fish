@@ -85,7 +85,7 @@ class Url
         $method = '';
         if (count($path_info)==4){
             list($path_index,$path_detail,$class,$method) = $path_info;
-            $path = $path_detail;
+            $path = $path_index.'\\'.$path_detail;
         }else if(count($path_info)==3){
             list($path,$class,$method) = $path_info;
         }else if(count($path_info)==2){

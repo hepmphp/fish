@@ -4,7 +4,7 @@ namespace app\controllers\[database];
 
 use app\base\BaseController;
 use app\helpers\Input;
-use app\models\curd\[model] as M_[model];
+use app\models\curd\[database]\[model] as M_[model];
 use app\helpers\Validate;
  class [model] extends BaseController{
 
@@ -28,12 +28,15 @@ use app\helpers\Validate;
 
      public function create(){
          $form = $this->get_search_where();
+[config_status]
          $this->view->assign('form',$form);
          $this->view->display('[database]/[table]/create');
      }
 
      public function update(){
          $form = $this->get_search_where();
+         $form = $this->[table]->info(['id'=>$form['id']]);
+[config_status]
          $this->view->assign('form',$form);
          $this->view->display('[database]/[table]/create');
      }

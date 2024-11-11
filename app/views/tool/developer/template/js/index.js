@@ -1,9 +1,9 @@
 
 var urls = {
-    create_url:'/[path]/[table]/create',
-    update_url:'/[path]/[table]/update',
-    delete_url:'/[path]/[table]/delete',
-    info_url:'/[path]/[table]/info'
+    create_url:'/api/[table]/create',
+    update_url:'/api/[table]/update',
+    delete_url:'/api/[table]/delete',
+    info_url:'/api/[table]/info'
 };
 
 /***
@@ -31,7 +31,7 @@ function del(id) {
             icon: 3,
             title:'提示'
         }, function(){
-            ajax_post(urls.delete_url,{ids:id})
+            ajax_post(urls.delete_url,{id:id})
         },
         function(){
 
