@@ -8,7 +8,7 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 SET NAMES utf8mb4;
 
 DROP DATABASE IF EXISTS `fish_im`;
-CREATE DATABASE `fish_im` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE `fish_im`;
 USE `fish_im`;
 
 DROP TABLE IF EXISTS `chat_friend`;

@@ -34,7 +34,7 @@ CREATE TABLE `cms_ad_block` (
   `name` varchar(60) NOT NULL DEFAULT '' COMMENT '区块名称',
   `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci COMMENT='区块名称';
+) ENGINE=InnoDB COMMENT='区块名称';
 
 TRUNCATE `cms_ad_block`;
 
@@ -296,10 +296,10 @@ INSERT INTO `cms_friend_link` (`id`, `name`, `link_address`, `status`) VALUES
 DROP TABLE IF EXISTS `cms_tag`;
 CREATE TABLE `cms_tag` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_uca1400_ai_ci NOT NULL DEFAULT '' COMMENT '标签名称',
+  `name` varchar(60)  NOT NULL DEFAULT '' COMMENT '标签名称',
   `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci COMMENT='文章标签';
+) ENGINE=InnoDB  COMMENT='文章标签';
 
 TRUNCATE `cms_tag`;
 INSERT INTO `cms_tag` (`id`, `name`, `addtime`) VALUES
