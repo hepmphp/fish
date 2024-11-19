@@ -83,6 +83,12 @@ class AdminMenu extends Model
             'im/record',
         ];
 
+        $publish = [
+            'publish/project',
+            'publish/task',
+            'publish/project_member',
+        ];
+
         foreach ($menu as $k=>$v){
                 if($cate=='admin' && !in_array($v['model'],$admin)){
                     continue;
@@ -100,6 +106,9 @@ class AdminMenu extends Model
                     continue;
                 }
 
+                if($cate=='publish' && !in_array($v['model'],$publish)){
+                    continue;
+                }
                 if($v['level']==2){
                     $children[] =array(
                         'name'=>$v['name'],

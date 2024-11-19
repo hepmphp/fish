@@ -1,8 +1,9 @@
 <?php
-# docker run -d -p 9502:9502 -v e:/data/www/dnmp/www/swoole:/www  --network=dnmp_default --name swoole dnmp-php80
+
+# docker run -d -p 9501:9501 -v e:/data/www/dnmp/fish/web/swoole:/www  --network=dnmp_default --name swoole dnmp-php80
 use Swoole\Websocket\Server;
 include 'mysql.php';
-$server = new Server('0.0.0.0', 9502);
+$server = new Server('0.0.0.0', 9501);
 $server->set(array(
     'worker_num' => 4,   //一般设置为服务器CPU数的1-4倍
     'daemonize' => 1,  //以守护进程执行

@@ -81,9 +81,7 @@ class User extends BbsController{
             if(!Validate::required($form['password'])){
                 throw new LogicException(-1,'密码不能为空');
             }
-
             $this->user->login($form);
-
         }else{
             $this->view->display('web/user/login');
         }

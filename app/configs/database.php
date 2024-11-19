@@ -37,5 +37,12 @@ $config['im'] = [
     'port' => 3306,
     'charset' => 'utf8',
 ];
-
+$config['publish'] = [
+    'host' => 'mysql',
+    'dbname' => 'fish_publish',
+    'username' => 'root',
+    'password' => '123456',
+    'port' => 3306,
+    'charset' => 'utf8',
+];
 return $config;

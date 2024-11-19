@@ -1,4 +1,5 @@
 <?php
+/**搜索引擎算法**/
 var_dump($argv[1]); 
 $a = 'awk简明教程 左耳朵耗子 engliish china';
 preg_match_all('/[a-zA-Z]+/',$a,$m);
@@ -31,6 +32,5 @@ foreach($ka as $k=>$v){
 	$d[$k]['count'] = $ct;
 	$c = $c+$ct;
 }
-
 print_r($d);
 print_r($c);

@@ -85,7 +85,9 @@ class Url
         $method = '';
         if (count($path_info)==4){
             list($path_index,$path_detail,$class,$method) = $path_info;
-            $path = $path_index.'\\'.$path_detail;
+
+            $path = $path_detail;
+         //   var_dump($path_index,$path_detail,$class,$method);exit();
         }else if(count($path_info)==3){
             list($path,$class,$method) = $path_info;
         }else if(count($path_info)==2){
@@ -94,6 +96,7 @@ class Url
             $class = is_array($path_info)&&empty($path_info)?'':$path_info[0];
             $method = 'index';
         }
+
        $class=!empty($class)?$class:'Index';
         if(empty($path)){
             $class = '\\bbs\\controllers\\web\Index';
@@ -105,6 +108,7 @@ class Url
             }
             $class = "\\bbs\\controllers\\{$path}\\".$class;
         }
+
         return [$path,$class,$method];
     }
 }

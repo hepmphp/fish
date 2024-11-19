@@ -44,7 +44,7 @@ class Posts extends Model
     }
     public function save($form){
         $reply = $this->info(['id'=>$form['id']]);
-        $form['pid'] = $reply['pid'];
+        $form['pid'] = empty($reply['pid'])?0:$reply['pid'];
         $res = $this->update($form,['id'=>$form['id']],1);
         if($res){
             throw new LogicException(0,'修改成功');

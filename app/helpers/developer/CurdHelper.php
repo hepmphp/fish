@@ -142,7 +142,7 @@ EOT;
          */
         foreach($select as $k=>$s){
             $config_str[] ="\t\t \$config_{$k} = ". sprintf("\$this->%s->get_config_%s()",$table,$k).";\n";
-            $config_str[] ="\t\t \$this->view->assign('config_{$k}'=>$"."config_{$k});\n";
+            $config_str[] ="\t\t \$this->view->assign('config_{$k}',$"."config_{$k});\n";
         }
         $config_str = implode("",$config_str);
 

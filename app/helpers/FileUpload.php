@@ -13,7 +13,7 @@ class FileUpload
     public $error;
     public $save_path = '';
     public $upload_root = WEB_PATH . '/upload/';
-    public $upload_url = 'http://127.0.0.1:2222/upload/';
+    public $upload_url = 'http://127.0.0.1/upload/';
     public $upload_dir = '';
 
     function __construct($upload_dir = '')

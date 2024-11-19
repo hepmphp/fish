@@ -50,10 +50,9 @@ class Handler {
         $referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
 
         $log_message_format = $time."|".sprintf($log_message,$errcode,$errstr,$errfile,$errline,$url,$referer);
-
         Event::$subject->set_data($log_message_format);
         Event::trigger();
-       // error_log($log_message_format.PHP_EOL,3,WEB_PATH.self::LOG_PATH);
+//        error_log($log_message_format.PHP_EOL,3,WEB_PATH.self::LOG_PATH);
     }
 
     /**

@@ -1,6 +1,6 @@
-<link href="http://127.0.0.1:2222/static/admin/js/umeditor/themes/default/css/umeditor.css" rel="stylesheet">
-<script src="http://127.0.0.1:2222/static/admin/js/umeditor/umeditor.config.js"></script>
-<script src="http://127.0.0.1:2222/static/admin/js/umeditor/umeditor.js"></script>
+<link href="http://127.0.0.1/static/admin/js/umeditor/themes/default/css/umeditor.css" rel="stylesheet">
+<script src="http://127.0.0.1/static/admin/js/umeditor/umeditor.config.js"></script>
+<script src="http://127.0.0.1/static/admin/js/umeditor/umeditor.js"></script>
 <style>
     /*设置按扭样式*/
     .edui-icon-test {

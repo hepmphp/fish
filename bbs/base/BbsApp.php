@@ -44,7 +44,6 @@ class BbsApp
         $this->handle_error_and_exception();
         $this->init_dependences();
         $this->dispatch();
-
     }
 
     public function init_dependences(){

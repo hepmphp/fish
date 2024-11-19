@@ -67,11 +67,11 @@
         <!-- 发起 -->
         <div class="aw-publish-btn">
 
-            <a id="header_publish" class="btn-primary" href="<?=\bbs\helpers\Uri::ask_href(\app\helpers\Input::get_post('id'))?>"><i class="icon icon-ask"></i>发起</a>
+            <a id="header_publish" class="btn-primary" href="<?=\bbs\helpers\Uri::ask_href(0)?>"><i class="icon icon-ask"></i>发起</a>
             <div class="dropdown-list pull-right">
                 <ul>
                     <li>
-                        <a href="<?=\bbs\helpers\Uri::ask_href(\app\helpers\Input::get_post('id'))?>">问题</a>
+                        <a href="<?=\bbs\helpers\Uri::ask_href(0)?>">问题</a>
                     </li>
                     <li>
                         <a href="<?=\bbs\helpers\Uri::bbs_list_href(\app\helpers\Input::get_post('id'))?>">分类列表</a>
