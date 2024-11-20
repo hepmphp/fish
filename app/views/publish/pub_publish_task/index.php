@@ -28,6 +28,7 @@
         <li  ><a href="/publish/task/apply?iframe=1">发布申请</a><em></em></li>
         <li ><a href="/publish/task/publish?iframe=1">任务发布</a><em></em></li>
         <li ><a href="/publish/task/rollback?iframe=1">任务回滚</a><em></em></li>
+        <li ><a href="//127.0.0.1:3000" target="_blank">git仓库</a><em></em></li>
     </ul>
     <div class="form-item">
         <form class="form-inline clearfix" role="form"  action="#" method="get">
@@ -144,7 +145,7 @@
 '<td>[rollback_comment]</td>'+
 '<td>[addtime]</td>'+
 
-            '<td><a onclick="publish([id])" class="">[发布]</a>|<a onclick="rollback([id])" class="">[回滚]</a>|<a onclick="edit([id])" class="">[编辑]</a>|<a onclick="del([id])" class="">[删除]</a></td></tr>';
+            '<td><a onclick="publish([id])" class="">[发布]</a>|<a onclick="rollback([id])" class="">[回滚]</a>|<a onclick="edit([id])" class="">[编辑]</a>|<a onclick="log([id])" class="">[查看日志]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/publish/task/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
@@ -216,18 +217,16 @@ function rollback(id){
 /***
  * * @param id
  */
-function del(id) {
-    layer.confirm('确定要删除?',{
-            btn: ['确定','取消'], //按钮
-            icon: 3,
-            title:'提示'
-        }, function(){
-            ajax_post(urls.delete_url,{id:id})
-        },
-        function(){
-
-        }
-    );
+function log(id) {
+    var url = "/publish/task/info?id="+id;
+    layer.open({
+        type: 2,
+        title: 'rsync日志查看',
+        shadeClose: true,
+        shade: 0.8,
+        area: ['800px', '600px'],
+        content: url //iframe的url
+    });
 }
 
 function info($id){

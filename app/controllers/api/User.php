@@ -67,6 +67,7 @@ class User extends BaseController{
         $form['password'] = Input::get_post('password','','trim');
         $form['re_password'] =  Input::get_post('re_password','','trim');
         $form['mids'] = Input::get_post('mids','','trim');
+        $form['admin_url'] = Input::get_post('admin_url','','trim');
         if(!Validate::min_length($form['password'],6)){
             throw new LogicException(200,'管理员密码不能小于6位数');
         }
@@ -107,10 +108,8 @@ class User extends BaseController{
         if(!$verify_code->check($code)){
             throw new LogicException(-1,'验证码输入错误');
         }
-
-        $this->admin_user->login($form);
         $res = array();
-        $res['admin_url'] = '/admin/user/welcome?iframe=0';
+        $res = $this->admin_user->login($form);
         if($res){
             Input::ajax_return(0,'登录成功',$res);
         }else{

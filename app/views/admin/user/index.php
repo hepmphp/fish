@@ -177,7 +177,7 @@
             title: '修改密码',
             shadeClose: true,
             btn: ['确认', '关闭'],
-            area: ['600px', '500px'],
+            area: ['600px', '580px'],
             content: '/admin/user/update?'+$.param(username_param),
             yes: function (index, layero) {
 
@@ -185,11 +185,13 @@
                 var id = body.find('#id').val();
                 var password = body.find('#password').val();
                 var re_password = body.find('#re_password').val();
+                var admin_url = body.find('#admin_url').val();
                 console.log(password);
                 var param = {
                     id:id,
                     password: password,
-                    re_password: re_password
+                    re_password: re_password,
+                    admin_url:admin_url,
                 };
                 layer.load(2);
                 $.ajax({

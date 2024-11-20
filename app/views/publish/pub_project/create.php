@@ -168,29 +168,6 @@
             ajax_post('/api/publish/project/create',param);
         }
     });
-    function ajax_post(url,param,is_reload=false){
-        layer.load(2);
-        $.ajax({
-            type:"POST",
-            url: url,
-            data:  param,
-            timeout:"4000",
-            dataType:'json',
-            success: function(data){
-                layer.closeAll('loading');
-                if (data.status == 0) {
-                    layer.alert(data.msg,{icon:1});
-                }
-                else {
-                    layer.alert(data.msg,{icon:2});
-                }
-                if(is_reload==true){
-                    setTimeout(function(){
-                        window.location.reload();
-                    },2000);
-                }
-            }
-        });
-    }
+
 </script>
 </html>

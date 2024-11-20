@@ -68,6 +68,7 @@ class AdminUser extends Model
         $user['password'] = $this->genrate_password($data['password'],$user['salt']);
         $user['update_time'] = time();
         $user['status'] = 0 ;
+        $user['admin_url'] = $data['admin_url'];
         $res = $this->update($user,['id'=>$data['id']],1);
         if($res){
             throw new LogicException(0,'管理员修改成功');
@@ -107,7 +108,7 @@ class AdminUser extends Model
 
     public function login($data){
         $data['password'] = trim($data['password']);
-        $user= $this->find(['username'=>$data['username']],'id,username,group_id,mids,password,salt');
+        $user= $this->find(['username'=>$data['username']],'id,username,group_id,mids,password,salt,admin_url');
         if(empty($user)){
             throw  new  LogicException(-1,'管理员不存在');
         }
@@ -118,7 +119,7 @@ class AdminUser extends Model
         $group = $this->admin_group->info(['id'=>$user['group_id']]);
         $user['last_login_time'] = time();
         $user['last_session_id'] = session_id();
-        $return['id'] = $user['id'];
+        $return = $user;
         //登录 保存session
         $_SESSION['admin_user_id'] = $user['id'];
         $_SESSION['admin_user_username'] = $user['username'];

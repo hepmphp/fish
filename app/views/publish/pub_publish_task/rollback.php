@@ -28,11 +28,13 @@
         <li  ><a href="/publish/task/apply?iframe=1">发布申请</a><em></em></li>
         <li ><a href="/publish/task/publish?iframe=1">任务发布</a><em></em></li>
         <li  class="cur"><a href="/publish/task/rollback?iframe=1">任务回滚</a><em></em></li>
+        <li ><a href="//127.0.0.1:3000" target="_blank">git仓库</a><em></em></li>
     </ul>
     <div class="form-item">
         <div class="form-main">
             <div class="row">
                 <div class="col" style="float:left">
+                    <input type="hidden" id="id" value="<?=$form['id']?>">
                     <div class="form-inline">
                         <div class="form-group">
                             <label class="control-label">项目：</label>
@@ -67,7 +69,7 @@
                     <div class="form-inline">
                         <div class="form-group">
                             <label class="control-label">备注：</label>
-                            <textarea class="form-control" placeholder="发布备注" id="comment"></textarea>
+                            <textarea class="form-control" placeholder="发布备注" id="rollback_comment"></textarea>
                         </div>
                     </div>
 
@@ -99,4 +101,65 @@
 
 </div>
 </body>
+<script>
+    $('#rollback_type').change(function(){
+        console.log($(this).val());
+        var rollback_type = $(this).val();
+        console.log(rollback_type);
+        var param = {
+            publish_id:$('#id').val()
+        };
+        if(rollback_type==1){
+            $.ajax({
+                type:"GET",
+                url: '/api/publish/task/get_backup_dirs',
+                data:  param,
+                timeout:"4000",
+                dataType:'json',
+                async:false,
+                success: function(data){
+                    var opt_tags = '';
+                    $.each(data.data,function(i,d){
+                        opt_tags += '<option value="[id]">[name]</option>'.replace('[id]',d.name).replace('[name]',d.name);
+                    });
+                    $('#tags').html(opt_tags);
+                }
+            });
+        }else if(rollback_type==2){
+            $.ajax({
+                type:"GET",
+                url: '/api/publish/task/get_git_tags',
+                data:param,
+                timeout:"4000",
+                dataType:'json',
+                async:false,
+                success: function(data){
+                    var opt_tags = '';
+                    $.each(data.data,function(i,d){
+                        opt_tags += '<option value="[id]">[name]</option>'.replace('[id]',d.name).replace('[name]',d.name);
+                    });
+                    $('#tags').html(opt_tags);
+                }
+            });
+        }
+    });
+    $('#btn_rollback').click(function(){
+
+        if($('#rollback_type').val()==1){//目录还原
+            var param = {
+                publish_id:$('#id').val(),
+                backup_dir:$('#tags').val(),
+                rollback_comment:$('#rollback_comment').val()
+            };
+            ajax_post('/api/publish/task/rollback',param);
+        }else if($('#rollback_type').val()==2){//git还原
+            var param = {
+                publish_id:$('#id').val(),
+                git_tag:$("#tags").val(),
+                rollback_comment:$('#rollback_comment').val()
+            };
+            ajax_post('/api/publish/task/rollback_from_git',param);
+        }
+    });
+</script>
 </html>

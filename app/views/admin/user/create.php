@@ -63,6 +63,13 @@
                 </select>
             </div>
         </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label" for="action">用户默认进入页面</label>
+            <div class="col-md-4">
+                <input id="admin_url" name="admin_url"  value="" type="text" placeholder="" class="form-control input-md" value="<?=$form['admin_url']?>">
+
+            </div>
+        </div>
 
 
     </form>

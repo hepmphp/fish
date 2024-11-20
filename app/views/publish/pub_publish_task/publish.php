@@ -28,6 +28,7 @@
         <li  ><a href="/publish/task/apply?iframe=1">发布申请</a><em></em></li>
         <li  class="cur"><a href="/publish/task/publish?iframe=1">任务发布</a><em></em></li>
         <li ><a href="/publish/task/rollback?iframe=1">任务回滚</a><em></em></li>
+        <li ><a href="//127.0.0.1:3000" target="_blank">git仓库</a><em></em></li>
     </ul>
     <div class="form-item">
             <div class="form-main">

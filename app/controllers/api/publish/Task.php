@@ -132,37 +132,36 @@ class Task extends BaseController{
         $task = $this->pub_publish_task->info(['id'=>$publish_id]);
         $project = $this->project->info(['id'=>$task['project_id']]);
         if($task['status']!=1){
-            Input::ajax_return(0,'只有待同步的状态才可以发布','',true);
+            Input::ajax_return(-1,'只有待同步的状态才可以发布','',true);
             exit();
         }
         //先执行备份操作
         $back_status = $this->add_www_backup($task['id'],$project['rsync_local_www'],$project['keep_version_num']);
         if($back_status){
             if($task['file_list']=='*'){
-                list($rsync_log,$rsync_status) = $this->rsync_all($project['rsync_local_www'],$project['rsync_user'],$project['rsync_remote_hosts'],$project['rsync_remote_www']);
+                list($rsync_log,$rsync_log_file,$rsync_status) = $this->rsync_all($project['rsync_local_www'],$project['rsync_user'],$project['rsync_remote_hosts'],$project['rsync_remote_www']);
             }else{
-                // $local_www.'/rsync_files_from.txt'
-                file_put_contents("/data/logs/publish/rsync_files_from.{$publish_id}.txt",$task['file_list']);
-                list($rsync_log,$rsync_status) = $this->rsync($publish_id,$project['rsync_local_www'],$project['rsync_user'],$project['rsync_remote_hosts'],$project['rsync_remote_www']);
+                list($rsync_log,$rsync_log_file,$rsync_status) = $this->rsync($publish_id,$project['rsync_local_www'],$project['rsync_user'],$project['rsync_remote_hosts'],$project['rsync_remote_www']);
             }
-            $rsync_log = implode(PHP_EOL,$rsync_log);
             if($rsync_status==0){
                 $publish_data['id'] = $publish_id;
                 $publish_data['rsync_log'] =$rsync_log;
+                $publish_data['rsync_log_file'] = $rsync_log_file;
                 $publish_data['status'] = 0;
                 $publish_data['deploy_admin_id'] = $_SESSION['admin_user_id'];
                 $this->pub_publish_task->save_result($publish_data);
-                Input::ajax_return(1,'发布成功');
+                Input::ajax_return(0,'发布成功');
             }else{
                 $publish_data['id'] = $publish_id;
                 $publish_data['rsync_log'] =$rsync_log;
+                $publish_data['rsync_log_file'] = $rsync_log_file;
                 $publish_data['status'] = 2;
                 $publish_data['deploy_admin_id'] = $_SESSION['admin_user_id'];
                 $this->pub_publish_task->save_result($publish_data);
-                Input::ajax_return(0,'发布失败');
+                Input::ajax_return(-1,'发布失败');
             }
         }else{
-            Input::ajax_return(0,'备份失败');
+            Input::ajax_return(-1,'备份失败');
         }
     }
 
@@ -208,6 +207,162 @@ class Task extends BaseController{
             return false;
         }
     }
+
+
+    /**
+     * 获取备份目录
+     */
+    function get_backup_dirs(){
+        $publish_id = Input::get_post('publish_id','0','intval');//发布id
+        $task = $this->pub_publish_task->info(['id'=>$publish_id]);
+        $project = $this->project->info(['id'=>$task['project_id']]);
+        $backup_dir = $project['rsync_back_www'];
+        //scandir
+        $backup_dir_list = scandir($backup_dir);
+        $dir_list = array();
+        natcasesort($backup_dir_list);
+        foreach($backup_dir_list as $k=>$v){
+            if($v=='.'||$v=='..'){
+                continue;
+            }
+            $dir_list[] = array(
+                'id'=>$v,
+                'name'=>$v,
+            );
+
+        }
+        Input::ajax_return(0,'',$dir_list);
+    }
+
+    /**
+     * 从备份目录直接还原
+     */
+    function rollback(){
+        $publish_id = Input::get_post('publish_id',0,'intval,trim');//发布id
+        $backup_dir = Input::get_post('backup_dir','','trim');//备份的目录
+        $rollback_comment = Input::get_post('rollback_comment','','trim');//还原备注
+        $task = $this->pub_publish_task->info(['id'=>$publish_id]);
+        $project = $this->project->info(['id'=>$task['project_id']]);
+
+        $rollback_dir = $project['rsync_back_www']."/$backup_dir";
+        //检查备份是否存在
+        if(!file_exists($rollback_dir)){
+            Input::ajax_return(0,"备份{$backup_dir}不存在");
+        }
+        $publish_data = [
+            'id'=>$publish_id,
+            'rollback_comment'=>$rollback_comment,
+            'status'=>3
+        ];
+        $this->pub_publish_task->save_result($publish_data);
+        list($rsync_log,$rsync_status) = $this->rsync_all($rollback_dir,$project['rsync_user'],$project['rsync_remote_hosts'],$project['rsync_remote_www'],$rollback_dir);
+        if($rsync_status==0){
+            $publish_data = [
+                'id'=>$publish_id,
+                'rsync_log'=>$rsync_log,
+                'status'=>4
+            ];
+            $this->pub_publish_task->save_result($publish_data);
+            Input::ajax_return(0,'还原成功');
+        }else{
+            $publish_data = [
+                'id'=>$publish_id,
+                'rsync_log'=>$rsync_log,
+                'status'=>5
+            ];
+            $this->pub_publish_task->save_result($publish_data);
+            Input::ajax_return(-1,'还原失败');
+        }
+    }
+
+    /**
+     * 获取git标签
+     */
+    function get_git_tags(){
+        $publish_id = Input::get_post('publish_id',0,'intval');//发布id
+        $task = $this->pub_publish_task->info(['id'=>$publish_id]);
+        $project = $this->project->info(['id'=>$task['project_id']]);
+        $backup_git_dir = $project['rsync_local_www'].".backup.git/";
+        if(!is_dir($backup_git_dir)){
+            mkdir($backup_git_dir,0755,true);
+            chown($backup_git_dir,'www');
+        }
+        /*
+          1.检测git目录是否存在
+          2.不存在git目录执行 git clone
+          3.执行git tag -l 获取git标签
+        */
+        $backup_git_dir_repo = $backup_git_dir.'/'.basename($project['repo_url'],'.git');
+        if(!is_dir($backup_git_dir_repo)){
+            chdir($backup_git_dir);
+            $git_cmd[] = "/usr/bin/git clone {$project['repo_url']}";
+        }else{
+            chdir($backup_git_dir_repo);
+        }
+        $git_cmd[] = "/usr/bin/git fetch --all";
+        $git_cmd[] = "/usr/bin/git reset --hard origin/master";
+        $git_cmd[] = "/usr/bin/git fetch --tags";
+        foreach($git_cmd as $cmd){
+            exec($cmd,$cmd_log,$cmd_return);
+        }
+        $git_tag = "/usr/bin/git tag -l";
+        exec($git_tag,$tag_log,$tag_return);
+        if($tag_return==0){
+            natcasesort($tag_log);
+            $tags = array();
+            foreach($tag_log as $log){
+                $tags[] = array(
+                    'id'=>$log,
+                    'name'=>$log,
+                );
+            }
+            Input::ajax_return(0,'',$tags);
+        }else{
+            Input::ajax_return(1,'获取标签失败');
+        }
+
+    }
+
+    /**
+     * 直接从git上面下载 rsync出去
+     */
+    function rollback_from_git(){
+        $publish_id =Input::get_post('publish_id',0,'intval');//发布id
+        $git_tag = Input::get_post('git_tag','','trim');//git标签
+        $rollback_comment = Input::get_post('rollback_comment','','trim');//还原备注
+        $publish_data = [
+            'id'=>$publish_id,
+            'rollback_comment'=>"git 标签：".$git_tag."备注：".$rollback_comment,
+            'status'=>3
+        ];
+        $this->pub_publish_task->save_result($publish_data);
+
+        $task = $this->pub_publish_task->info(['id'=>$publish_id]);
+        $project = $this->project->info(['id'=>$task['project_id']]);
+        $backup_git_dir = $project['rsync_local_www'].'.backup.git/'.basename($project['repo_url'],'.git');
+        //切换到对应的标签分支
+        chdir($backup_git_dir);
+        error_log(date("Y-m-d H:i:s")."dir:{$backup_git_dir}".PHP_EOL,3,'/data/logs/rsync/rollback_from_git.log');
+        $git_checkout = "/usr/bin/git checkout %s";
+        $git_checkout = sprintf($git_checkout,$git_tag);
+        error_log(date("Y-m-d H:i:s")."git checkout:{$git_checkout}".PHP_EOL,3,'/data/logs/rsync/rollback_from_git.log');
+        exec($git_checkout,$check_log,$check_return);
+        if(is_numeric($check_return) && $check_return==0){
+            list($rsync_log,$rsync_status) = $this->rsync_all($project['rsync_local_www'],$project['rsync_user'],$project['rsync_remote_hosts'],$project['rsync_remote_www'],$backup_git_dir);
+            if($rsync_status==0){
+                $publish_data = ['id'=>$publish_id,'rsync_log'=>$rsync_log,'status'=>4];
+                $this->pub_publish_task->save_result($publish_data);
+                Input::ajax_return(0,'还原成功');
+            }else{
+                $publish_data = ['id'=>$publish_id,'rsync_log'=>$rsync_log,'status'=>5];
+                $this->pub_publish_task->save_result($publish_data);
+                Input::ajax_return(-1,'还原失败');
+            }
+        }else{
+            Input::ajax_return(-1,'git 切换到标签'.$git_tag."失败");
+        }
+    }
+
     /**
      * 发布所有文件
      * @param $local_www    本地的路
@@ -218,15 +373,15 @@ class Task extends BaseController{
         $remote_www = pathinfo($remote_www)['basename'];
         $local_www_final = pathinfo($local_www)['basename'];
         $rsync_command = "rsync -avH --port=873 --progress --delete --exclude-from=%s --log-file=%s %s %s@%s::%s --password-file=/data/logs/rsync/passwd_rsync.txt";
+        $rsync_log_file = '/data/logs/rsync/rsync_log_file.txt';
         if($rollback_dir){
-
-            $rsync_command = sprintf($rsync_command, '/data/logs/rsync/'.$local_www_final.'/rsync_exclude_from.txt', '/data/logs/rsync/rsync_log_file.txt', $rollback_dir.'/',$rsync_user,$host,$remote_www);
+            $rsync_command = sprintf($rsync_command, '/data/logs/rsync/'.$local_www_final.'/rsync_exclude_from.txt', $rsync_log_file, $rollback_dir,$rsync_user,$host,$remote_www);
         }else{
-            $rsync_command = sprintf($rsync_command, '/data/logs/rsync/'.$local_www_final.'/rsync_exclude_from.txt', '/data/logs/rsync/rsync_log_file.txt', $local_www.'/',$rsync_user,$host,$remote_www);
+            $rsync_command = sprintf($rsync_command, '/data/logs/rsync/'.$local_www_final.'/rsync_exclude_from.txt', $rsync_log_file, $local_www,$rsync_user,$host,$remote_www);
         }
         error_log(date("Y-m-d H:i:s")."\t".$rsync_command.PHP_EOL,3,'/data/logs/rsync/rsync_all.log');
         exec($rsync_command,$rsync_log,$rsync_return);
-        return array($rsync_log,$rsync_return);
+        return array($rsync_command,$rsync_log_file,$rsync_return);
         //todo update dp_site_deploy  rsync_log//更新站点的rsync日志
     }
 
@@ -235,14 +390,14 @@ class Task extends BaseController{
         $remote_www = pathinfo($remote_www)['basename'];
         $local_www_final = pathinfo($local_www)['basename'];
         $exclude_from =  '/data/logs/rsync/'.$local_www_final.'/rsync_exclude_from.txt';
-        $log_file = '/data/logs/rsync/rsync_log_file.txt';
+        $rsync_log_file = '/data/logs/rsync/rsync_log_file.txt';
         $from_file = "/data/logs/publish/rsync_files_from.{$publish_id}.txt";
 
         $rsync_command = "rsync -avH --port=873 --progress  --exclude-from=%s --log-file=%s --files-from=%s %s %s@%s::%s --password-file=/data/logs/rsync/passwd_rsync.txt";
-        $rsync_command = sprintf($rsync_command,$exclude_from,$log_file,$from_file, $local_www,$rsync_user,$host,$remote_www);
+        $rsync_command = sprintf($rsync_command,$exclude_from,$rsync_log_file,$from_file, $local_www,$rsync_user,$host,$remote_www);
         error_log(date("Y-m-d H:i:s")."\t".$rsync_command.PHP_EOL,3,'/data/logs/rsync/rsync.log');
         exec($rsync_command,$rsync_log,$rsync_return);
         //todo update dp_site_deploy  rsync_log//更新站点的rsync日志
-        return array($rsync_log,$rsync_return);
+        return array($rsync_command,$rsync_log_file,$rsync_return);
     }
 }

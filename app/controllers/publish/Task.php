@@ -147,7 +147,12 @@ use app\helpers\Validate;
      }
      public function info(){
          $form = $this->get_search_where();
+         $form = $this->pub_publish_task->info(['id'=>$form['id']]);
+         if(file_exists($form['rsync_log_file'])){
+             $form['rsync_log_file'] = file_get_contents($form['rsync_log_file']);
+         }
          $this->view->assign('form',$form);
          $this->view->display('publish/pub_publish_task/info');
      }
+
  }
