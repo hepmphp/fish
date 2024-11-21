@@ -58,6 +58,7 @@ class AdminMenu extends Model
             'cms/friend',
             'cms/file',
             'cms/folder',
+            'cms/collect',
         ];
         $tool = [
             'tool/developer',

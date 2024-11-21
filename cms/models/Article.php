@@ -43,7 +43,7 @@ class Article extends Model
         if(empty($sub_cate_ids)){
             $where_sql = " cate_id={$where['cate_id']} or   FIND_IN_SET({$where['cate_id']},'cate_bids')  ";
         }else{
-            $where_sql = " cate_id in(".implode(',',$sub_cate_ids) . ")or   FIND_IN_SET({$where['cate_id']},'cate_bids')  ";
+            $where_sql = " cate_id in({$where['cate_id']},".implode(',',$sub_cate_ids) . ")or   FIND_IN_SET({$where['cate_id']},'cate_bids')  ";
         }
 
 

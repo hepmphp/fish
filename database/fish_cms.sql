@@ -1,51 +1,53 @@
--- Adminer 4.8.1 MySQL 11.6.1-MariaDB-log dump
+-- Adminer 4.8.1 MySQL 8.0.34 dump
 
 SET NAMES utf8;
 SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
+SET NAMES utf8mb4;
+
 DROP DATABASE IF EXISTS `fish_cms`;
-CREATE DATABASE `fish_cms`;
+CREATE DATABASE `fish_cms` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `fish_cms`;
 
 DROP TABLE IF EXISTS `cms_ad`;
 CREATE TABLE `cms_ad` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '广告id',
-  `block_id` int(11) NOT NULL DEFAULT 0 COMMENT '广告位置',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '广告id',
+  `block_id` int NOT NULL DEFAULT '0' COMMENT '广告位置',
   `title` varchar(50) NOT NULL DEFAULT '' COMMENT '广告标题',
   `pic_url` varchar(255) NOT NULL DEFAULT '' COMMENT '图片链接',
   `link_address` varchar(512) NOT NULL DEFAULT '' COMMENT '广告地址',
-  `addtime` int(11) unsigned NOT NULL DEFAULT 0 COMMENT '添加时间',
-  `start_time` int(11) unsigned NOT NULL DEFAULT 0 COMMENT '开始时间',
-  `end_time` int(11) unsigned NOT NULL DEFAULT 0 COMMENT '结束时间',
-  `listorder` smallint(6) NOT NULL DEFAULT 0 COMMENT '排序',
-  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '状态|0:显示,1:不显示',
-  `is_mobile` tinyint(4) NOT NULL DEFAULT 0 COMMENT '是否是m版',
+  `addtime` int unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `start_time` int unsigned NOT NULL DEFAULT '0' COMMENT '开始时间',
+  `end_time` int unsigned NOT NULL DEFAULT '0' COMMENT '结束时间',
+  `listorder` smallint NOT NULL DEFAULT '0' COMMENT '排序',
+  `status` tinyint NOT NULL DEFAULT '0' COMMENT '状态|0:显示,1:不显示',
+  `is_mobile` tinyint NOT NULL DEFAULT '0' COMMENT '是否是m版',
   PRIMARY KEY (`id`),
   KEY `block_id` (`id`,`block_id`,`status`)
-) ENGINE=InnoDB  COMMENT='平台广告';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='平台广告';
 
 TRUNCATE `cms_ad`;
 
 DROP TABLE IF EXISTS `cms_ad_block`;
 CREATE TABLE `cms_ad_block` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '自增id',
   `name` varchar(60) NOT NULL DEFAULT '' COMMENT '区块名称',
-  `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
+  `addtime` int NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB COMMENT='区块名称';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='区块名称';
 
 TRUNCATE `cms_ad_block`;
 
 DROP TABLE IF EXISTS `cms_article`;
 CREATE TABLE `cms_article` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `cate_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '分类',
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `cate_id` int unsigned NOT NULL DEFAULT '0' COMMENT '分类',
   `cate_bids` varchar(1024) NOT NULL DEFAULT '0' COMMENT '所有相关的分类',
   `cate_name` varchar(255) NOT NULL DEFAULT '' COMMENT '分类名称',
   `tag_ids` varchar(255) NOT NULL DEFAULT '0' COMMENT '标签id  ',
-  `admin_id` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '管理员id',
+  `admin_id` int unsigned NOT NULL DEFAULT '0' COMMENT '管理员id',
   `admin` varchar(255) NOT NULL DEFAULT '' COMMENT '用户名',
   `title` varchar(255) NOT NULL DEFAULT '' COMMENT '标题',
   `keywords` varchar(255) NOT NULL DEFAULT '' COMMENT '关键词',
@@ -53,28 +55,28 @@ CREATE TABLE `cms_article` (
   `author` varchar(255) NOT NULL DEFAULT '' COMMENT '作者',
   `description` varchar(255) NOT NULL DEFAULT '' COMMENT '描述',
   `content` longtext NOT NULL COMMENT '内容',
-  `addtime` int(11) unsigned NOT NULL DEFAULT 0 COMMENT '添加时间',
-  `update_time` int(11) unsigned NOT NULL DEFAULT 0 COMMENT '更新时间',
-  `is_top` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否置顶 0普通 1置顶 2头条',
+  `addtime` int unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `update_time` int unsigned NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `is_top` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否置顶 0普通 1置顶 2头条',
   `list_image_url` varchar(255) NOT NULL DEFAULT '' COMMENT '列表显示图片',
-  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '状态 0正常 -1 删除',
+  `status` tinyint NOT NULL DEFAULT '0' COMMENT '状态 0正常 -1 删除',
   PRIMARY KEY (`id`),
   KEY `cate_id` (`id`,`cate_id`,`is_top`)
-) ENGINE=InnoDB  COMMENT='平台文章';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='平台文章';
 
 TRUNCATE `cms_article`;
 
 DROP TABLE IF EXISTS `cms_article_category`;
 CREATE TABLE `cms_article_category` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int unsigned NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` varchar(30) NOT NULL DEFAULT '' COMMENT '名称',
-  `parentid` int(10) unsigned NOT NULL DEFAULT 0 COMMENT '父id',
-  `level` int(10) unsigned NOT NULL COMMENT '层级0,1,2',
+  `parentid` int unsigned NOT NULL DEFAULT '0' COMMENT '父id',
+  `level` int unsigned NOT NULL COMMENT '层级0,1,2',
   `description` varchar(50) NOT NULL DEFAULT '' COMMENT '描述',
-  `status` tinyint(10) DEFAULT 0 COMMENT '状态|0:正常,-1:删除',
-  `addtime` int(10) unsigned DEFAULT 0 COMMENT '添加时间',
+  `status` tinyint DEFAULT '0' COMMENT '状态|0:正常,-1:删除',
+  `addtime` int unsigned DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  COMMENT='文章分类';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='文章分类';
 
 TRUNCATE `cms_article_category`;
 INSERT INTO `cms_article_category` (`id`, `name`, `parentid`, `level`, `description`, `status`, `addtime`) VALUES
@@ -159,18 +161,18 @@ INSERT INTO `cms_article_category` (`id`, `name`, `parentid`, `level`, `descript
 
 DROP TABLE IF EXISTS `cms_attach`;
 CREATE TABLE `cms_attach` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `cate_id` int(11) NOT NULL DEFAULT 0 COMMENT '所属分类',
+  `id` int NOT NULL AUTO_INCREMENT,
+  `cate_id` int NOT NULL DEFAULT '0' COMMENT '所属分类',
   `tag_ids` varchar(255) NOT NULL DEFAULT '0' COMMENT '标签id',
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '附件名称',
   `file` varchar(255) NOT NULL DEFAULT '' COMMENT '文件路径',
-  `width` int(10) NOT NULL DEFAULT 0 COMMENT '宽度',
-  `height` int(10) NOT NULL DEFAULT 0 COMMENT '高度',
+  `width` int NOT NULL DEFAULT '0' COMMENT '宽度',
+  `height` int NOT NULL DEFAULT '0' COMMENT '高度',
   `ext` varchar(255) NOT NULL DEFAULT '' COMMENT '文件类型',
   `size` varchar(255) NOT NULL DEFAULT '' COMMENT '文件大小',
-  `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
+  `addtime` int NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  COMMENT='附件';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='附件';
 
 TRUNCATE `cms_attach`;
 INSERT INTO `cms_attach` (`id`, `cate_id`, `tag_ids`, `name`, `file`, `width`, `height`, `ext`, `size`, `addtime`) VALUES
@@ -196,12 +198,12 @@ INSERT INTO `cms_attach` (`id`, `cate_id`, `tag_ids`, `name`, `file`, `width`, `
 
 DROP TABLE IF EXISTS `cms_attach_cate`;
 CREATE TABLE `cms_attach_cate` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `pid` int(10) NOT NULL DEFAULT 0 COMMENT '父类id',
+  `id` int NOT NULL AUTO_INCREMENT,
+  `pid` int NOT NULL DEFAULT '0' COMMENT '父类id',
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '附件分类名称',
-  `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
+  `addtime` int NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  COMMENT='附件分类';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='附件分类';
 
 TRUNCATE `cms_attach_cate`;
 INSERT INTO `cms_attach_cate` (`id`, `pid`, `name`, `addtime`) VALUES
@@ -211,13 +213,13 @@ INSERT INTO `cms_attach_cate` (`id`, `pid`, `name`, `addtime`) VALUES
 
 DROP TABLE IF EXISTS `cms_banner`;
 CREATE TABLE `cms_banner` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` varchar(50) NOT NULL DEFAULT '' COMMENT '轮播图名称',
   `domain` varchar(255) NOT NULL DEFAULT '' COMMENT '域名',
   `image_url` varchar(512) NOT NULL DEFAULT '' COMMENT '图片地址',
-  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '状态|0:显示,-1:不显示',
+  `status` tinyint NOT NULL DEFAULT '0' COMMENT '状态|0:显示,-1:不显示',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  COMMENT='banner表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='banner表';
 
 TRUNCATE `cms_banner`;
 INSERT INTO `cms_banner` (`id`, `name`, `domain`, `image_url`, `status`) VALUES
@@ -235,47 +237,76 @@ INSERT INTO `cms_banner` (`id`, `name`, `domain`, `image_url`, `status`) VALUES
 (12,	'森林',	'森林',	'2024/11/07/d0096ec6c83575373e3a21d129ff8fef.jpg',	-1),
 (13,	'飞机',	'飞机',	'2024/11/07/d0096ec6c83575373e3a21d129ff8fef.jpg',	0);
 
+DROP TABLE IF EXISTS `cms_collect`;
+CREATE TABLE `cms_collect` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `site` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '站点名称',
+  `site_url` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '站点首页',
+  `cate` varchar(225) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '' COMMENT '文章分类',
+  `list` varchar(255) NOT NULL DEFAULT '' COMMENT '站点列表页',
+  `detail` varchar(255) NOT NULL DEFAULT '' COMMENT '站点详情页',
+  `preg_list` varchar(255) NOT NULL DEFAULT '' COMMENT '站点列表正则',
+  `preg_page` varchar(255) NOT NULL DEFAULT '' COMMENT '站点分页正则',
+  `preg_detail` varchar(255) NOT NULL DEFAULT '' COMMENT '站点详情页正则',
+  `preg_title` varchar(255) NOT NULL DEFAULT '' COMMENT '详情页标题正则',
+  `preg_author` varchar(255) NOT NULL DEFAULT '' COMMENT '详情页作者正则',
+  `preg_time` varchar(255) NOT NULL DEFAULT '' COMMENT '详情页时间正则',
+  `preg_media` varchar(255) NOT NULL DEFAULT '' COMMENT '详情页来源正则',
+  `preg_content` varchar(255) NOT NULL DEFAULT '' COMMENT '详情页内容正则',
+  `addtime` int NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `updatetime` int NOT NULL DEFAULT '0' COMMENT '修改时间',
+  `deltime` int NOT NULL DEFAULT '0' COMMENT '删除时间',
+  `status` int NOT NULL DEFAULT '0' COMMENT '状态|0:正常,-1:删除',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='站点采集';
+
+TRUNCATE `cms_collect`;
+INSERT INTO `cms_collect` (`id`, `site`, `site_url`, `cate`, `list`, `detail`, `preg_list`, `preg_page`, `preg_detail`, `preg_title`, `preg_author`, `preg_time`, `preg_media`, `preg_content`, `addtime`, `updatetime`, `deltime`, `status`) VALUES
+(1,	'国防部',	'http://www.mod.gov.cn/',	'2',	'http://www.mod.gov.cn/gfbw/xwfyr/yzxwfb/index.html',	'http://www.mod.gov.cn/gfbw/xwfyr/lxjzh_246940/16348727.html',	'id=\"main-news-list\">(.*?)<div id=\"displaypagenum\"',	'',	'<div class=\"container m-t\">(.*?) <\\/div>',	'<h1>(.* ?)<\\/h1>',	'<span>责任编辑：(.*?)<\\/span> ',	'<span>(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2})<\\/span>',	'<span>来源：(.*?)<\\/span>',	'id=\"article-content\">(.*?)<div id=\"loadNextPageBtn\" ',	0,	1732195813,	1732182577,	0);
+
 DROP TABLE IF EXISTS `cms_file`;
 CREATE TABLE `cms_file` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL DEFAULT 0 COMMENT '用户id',
-  `folder_id` int(11) NOT NULL DEFAULT 0 COMMENT '所属分类',
-  `folder_parentid` int(11) NOT NULL DEFAULT 0 COMMENT '分类父id',
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL DEFAULT '0' COMMENT '用户id',
+  `folder_id` int NOT NULL DEFAULT '0' COMMENT '所属分类',
+  `folder_parentid` int NOT NULL DEFAULT '0' COMMENT '分类父id',
   `folder_name` varchar(255) NOT NULL DEFAULT '' COMMENT '分类名称',
-  `width` int(10) NOT NULL DEFAULT 0 COMMENT '宽度',
-  `height` int(10) NOT NULL DEFAULT 0 COMMENT '高度',
+  `width` int NOT NULL DEFAULT '0' COMMENT '宽度',
+  `height` int NOT NULL DEFAULT '0' COMMENT '高度',
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '文件名称',
   `file` varchar(255) NOT NULL DEFAULT '' COMMENT '文件路径',
   `ext` varchar(255) NOT NULL DEFAULT '' COMMENT '文件类型',
   `size` varchar(255) NOT NULL DEFAULT '' COMMENT '文件大小',
-  `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
-  `status` int(10) NOT NULL DEFAULT 0 COMMENT '状态|0:正常,-1:删除',
+  `addtime` int NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `status` int NOT NULL DEFAULT '0' COMMENT '状态|0:正常,-1:删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  COMMENT='文件';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='文件';
 
 TRUNCATE `cms_file`;
 
 DROP TABLE IF EXISTS `cms_folder`;
 CREATE TABLE `cms_folder` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` varchar(50) NOT NULL DEFAULT '' COMMENT '目录名称',
-  `parentid` int(10) NOT NULL DEFAULT 0 COMMENT '父类id',
-  `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
-  `user_id` int(10) NOT NULL DEFAULT 0 COMMENT '管理员id',
-  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '状态|0:正常,-1:',
+  `parentid` int NOT NULL DEFAULT '0' COMMENT '父类id',
+  `addtime` int NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `user_id` int NOT NULL DEFAULT '0' COMMENT '管理员id',
+  `status` tinyint NOT NULL DEFAULT '0' COMMENT '状态|0:正常,-1:',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  COMMENT='目录';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='目录';
 
 TRUNCATE `cms_folder`;
+INSERT INTO `cms_folder` (`id`, `name`, `parentid`, `addtime`, `user_id`, `status`) VALUES
+(1,	'电商',	0,	0,	20,	0);
 
 DROP TABLE IF EXISTS `cms_friend_link`;
 CREATE TABLE `cms_friend_link` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
   `name` varchar(50) NOT NULL DEFAULT '' COMMENT '链接名称',
   `link_address` varchar(255) NOT NULL DEFAULT '' COMMENT '链接地址',
-  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '状态|0:显示,1:不显示',
+  `status` tinyint NOT NULL DEFAULT '0' COMMENT '状态|0:显示,1:不显示',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  COMMENT='友情链接';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='友情链接';
 
 TRUNCATE `cms_friend_link`;
 INSERT INTO `cms_friend_link` (`id`, `name`, `link_address`, `status`) VALUES
@@ -295,14 +326,14 @@ INSERT INTO `cms_friend_link` (`id`, `name`, `link_address`, `status`) VALUES
 
 DROP TABLE IF EXISTS `cms_tag`;
 CREATE TABLE `cms_tag` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(60)  NOT NULL DEFAULT '' COMMENT '标签名称',
-  `addtime` int(10) NOT NULL DEFAULT 0 COMMENT '添加时间',
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(60) NOT NULL DEFAULT '' COMMENT '标签名称',
+  `addtime` int NOT NULL DEFAULT '0' COMMENT '添加时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  COMMENT='文章标签';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='文章标签';
 
 TRUNCATE `cms_tag`;
 INSERT INTO `cms_tag` (`id`, `name`, `addtime`) VALUES
 (1,	'神',	1729242937);
 
--- 2024-11-09 16:10:02
+-- 2024-11-21 17:38:39

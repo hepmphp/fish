@@ -8,7 +8,12 @@ namespace app\helpers;
 
 class  SiteUrl{
     static function get_image_url($file){
-        return SITE_URL."upload/".$file;
+        if(strpos($file,'http')!==-1){
+            return  $file;
+        }else{
+            return SITE_URL."upload/".$file;
+        }
+
     }
 
     static function get_stamp_url($stamp){

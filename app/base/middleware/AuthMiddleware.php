@@ -12,7 +12,7 @@ class AuthMiddleware{
     public function handle($handler,$next){
         $welcome_url = "http://{$_SERVER['HTTP_HOST']}/admin/user/welcome";
         $has_session_logined = Session::get('admin_user_id');
-        $is_in_login_url = $_SERVER['PATH_INFO']=='/admin/user/login'?true:false;
+        $is_in_login_url = $_SERVER['PATH_INFO']=='/admin/user/login'||$_SERVER['PATH_INFO']=='/'?true:false;
         if($has_session_logined && $is_in_login_url){
             header("Location:{$welcome_url} ");
             exit();

@@ -50,6 +50,9 @@ class Article extends BaseController{
         $form['title'] = Input::get_post('title');
         $form['keywords'] = Input::get_post('keywords');
         $form['description'] = Input::get_post('description');
+        $form['author'] = Input::get_post('author','','trim');
+        $form['media'] = Input::get_post('media','','trim');
+        $form['addtime'] = Input::get_post('time','','trim');
         $form['content'] = Input::get_post('content','','htmlentities');
         $form['is_top'] = Input::get_post('is_top');
         $form['list_image_url'] = Input::get_post('list_image_url');

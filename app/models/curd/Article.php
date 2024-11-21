@@ -38,6 +38,10 @@ class Article extends Model
             $form['cate_bids'] = implode(',',$cate_parent);
 
         }
+        $article = $this->find(['title'=>$form['title']],'*');
+        if(isset($article['id'])){
+            throw new LogicException(-1,'文章标题重复 分类id：'.$article['cate_id'].'=>标题：'.$article['title']);
+        }
         $res = $this->insert($form);
         if($res){
             throw new LogicException(0,'文章添加成功');

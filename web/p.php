@@ -1,4 +1,5 @@
 <?php
+phpinfo();
 $chat_record_data['from_id'] = 1;
 $chat_record_data['to_id'] = 2;
 $chat_record_data['from_username'] = 'hepm';

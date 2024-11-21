@@ -81,7 +81,7 @@
         </div>
         <script>
             var images_list = <?php echo json_encode([$form['file']]); ?>;
-            var image_list_url = <?php echo json_encode([$form['file_url']]); ?>;
+            var image_list_url = <?php echo json_encode([$form['list_image_url']]); ?>;
         </script>
         <?php include APP_PATH.'/views/admin/root/upload.php';?>
         <!-- Select Basic -->
