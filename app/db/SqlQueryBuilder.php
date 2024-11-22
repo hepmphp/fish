@@ -54,6 +54,9 @@ class SqlQueryBuilder
      */
     public function order_by($orderby)
     {
+        if(empty($orderby)){
+            return  $this;
+        }
         $this->orderby_sql = " ORDER BY " . $orderby;
         return $this;
     }
@@ -64,6 +67,9 @@ class SqlQueryBuilder
      */
     public function group_by($groupby)
     {
+        if(empty($groupby)){
+            return  $this;
+        }
         $this->groupby_sql = " GROUP BY " . $groupby;
         return $this;
     }

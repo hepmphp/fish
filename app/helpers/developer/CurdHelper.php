@@ -190,9 +190,9 @@ EOT;
             foreach($s as $k2=>$s2){
                 if(!is_array($s2)){continue;}
                 foreach ($s2 as $k3=>$s3){
-                    $formart_arr[] = "{$s3['id']}=>['id'=>{$s3['id']},'name'=>'{$s3['name']}'],\n";
+                    $formart_arr[$k2][] = "{$s3['id']}=>['id'=>{$s3['id']},'name'=>'{$s3['name']}'],\n";
                 }
-                $config_data[] = str_replace(array('[field]','tpl'),array($k2,implode("\t\t\t\t",$formart_arr)),$config_tpl)."\n";
+                $config_data[] = str_replace(array('[field]','tpl'),array($k2,implode("\t\t\t\t",$formart_arr[$k2])),$config_tpl)."\n";
             }
         }
         $config_str = implode("\n\t",$config_data);

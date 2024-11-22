@@ -1,9 +1,9 @@
 
 var urls = {
-    create_url:'/api/[table]/create',
-    update_url:'/api/[table]/update',
-    delete_url:'/api/[table]/delete',
-    info_url:'/api/[table]/info'
+    create_url:'/api/[table]/[table]/create',
+    update_url:'/api/[table]/[table]/update',
+    delete_url:'/api/[table]/[table]/delete',
+    info_url:'/api/[table]/[table]/info'
 };
 
 /***

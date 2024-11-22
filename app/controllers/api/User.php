@@ -47,6 +47,7 @@ class User extends BaseController{
         $data['password'] = Input::get_post('password','','trim');
         $data['re_password'] = Input::get_post('re_password','','trim');
         $data['group_id'] = Input::get_post('group_id',0,'intval');
+        $data['admin_url'] = Input::get_post('admin_url','','trim');
        // var_dump($data);exit();
          if(!Validate::required($data['username'])){
              throw  new LogicException(100,'管理员不能为空');

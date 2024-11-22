@@ -27,7 +27,7 @@
     <ul class="list-inline page-tab clearfix">
         <li class="cur"><a href="/publish/project/index?iframe=1">项目列表</a><em></em></li>
         <li><a href="/publish/project/create">添加项目</a><em></em></li>
-        <li><a href="/publish/project/create_user">项目用户</a><em></em></li>
+        <li><a href="/publish/project_member/index">项目用户</a><em></em></li>
     </ul>
     <div class="form-item">
         <form class="form-inline clearfix" role="form"  action="#" method="get">

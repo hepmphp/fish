@@ -119,6 +119,7 @@ class Model
     public function get_list($where = array(), $limit = 1, $offset = 100, $fields = '*',$order_by='id asc')
     {
         $sql = $this->sql_query_builder->table($this->table)->field($fields)->where($where)->limit($limit, $offset)->order_by($order_by)->fetch_all();
+      //  echo $sql;
         $this->debug_start($sql);
         $res = $this->db->fetch_all($sql);
         $this->debug_end($res);
@@ -136,6 +137,12 @@ class Model
         $this->debug_start($sql);
         $res = $this->db->count($sql);
         $this->debug_end($res);
+        return $res;
+    }
+
+    public function exec_fetch_all($fields='*',$where='',$order_by='id desc',$group_by=''){
+        $sql = $this->sql_query_builder->table($this->table)->field($fields)->where($where)->limit(0, 1)->order_by($order_by)->group_by($group_by)->fetch_all();
+        $res = $this->db->fetch_all($sql);
         return $res;
     }
 

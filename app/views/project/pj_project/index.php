@@ -12,6 +12,7 @@
     <script src="<?= STATIC_URL ?>js/html5shiv.min.js"></script>
     <script src="<?= STATIC_URL ?>js/respond.min.js"></script>
     <![endif]-->
+    <link href="<?= STATIC_URL ?>css/number.css" rel="stylesheet">
     <?php \app\helpers\AppAsset::run()?>
     <script >
         layer.config({
@@ -21,40 +22,13 @@
     </script>
 
 </head>
-<div class="form-wrapper" style="padding-top: 0px;">
-    <ul class="list-inline page-tab clearfix">
-        <li ><a href="/publish/project/index?iframe=1">项目列表</a><em></em></li>
-        <li><a href="/publish/project/create">添加项目</a><em></em></li>
-        <li class="cur"><a href="/publish/project_member/index">项目用户</a><em></em></li>
-    </ul>
+<div class="form-wrapper">
     <div class="form-item">
         <form class="form-inline clearfix" role="form"  action="#" method="get">
-                    <div class="form-group">
-        <label class="control-label">管理员id：</label>
-        <select id="admin_id" name="admin_id" class="form-control">
-        <option value="">请选择</option>
-          <?php
-              foreach($config_admin_id as $k=>$vo){
-                  ?>
-                  <option value="<?=$vo['id']?>" <?php  if($vo['id']==$form['admin_id'] &&is_numeric($form['admin_id'])){ echo "selected";}?>><?=$vo['username']?></option>
-              <?php }?>
-        </select>
-	    </div>        <div class="form-group">
-        <label class="control-label">项目id：</label>
-        <select id="project_id" name="project_id" class="form-control">
-        <option value="">请选择</option>
-          <?php
-              foreach($config_project_id as $k=>$vo){
-                  ?>
-                  <option value="<?=$vo['id']?>" <?php  if($vo['id']==$form['project_id'] &&is_numeric($form['project_id'])){ echo "selected";}?>><?=$vo['name']?></option>
-              <?php }?>
-        </select>
-	    </div>
-            <input class="btn btn-info m-l" value="添加" name="search" type="button" style="width:60px;" onclick="add()">
             <div class="form-group">
-            <label class="control-label">项目名称：</label>
-            <input placeholder="文本" class="form-control" name="project_name" id="project_name" value="<?=$form['project_name']?>" type="text">
-        </div>
+                <label class="control-label">标题：</label>
+                <input placeholder="文本" class="form-control" name="title" id="title" value="<?=$form['title']?>" type="text">
+            </div>
             <div class="form-group">
                 <label class="control-label">状态：</label>
                 <select id="status" name="status" class="form-control">
@@ -65,9 +39,19 @@
                         <option value="<?=$vo['id']?>" <?php  if($vo['id']==$form['status'] &&is_numeric($form['status'])){ echo "selected";}?>><?=$vo['name']?></option>
                     <?php }?>
                 </select>
+            </div>        <div class="form-group">
+                <label class="control-label">管理员：</label>
+                <input placeholder="文本" class="form-control" name="admin_user" id="admin_user" value="<?=$form['admin_user']?>" type="text">
+            </div>
+            <div class="form-group">
+                <label class="control-label">添加时间：</label>
+                <span class="date-range">
+            <input placeholder="开始时间" class="form-control date-range00 date-ico"  id="begin_addtime" name="begin_addtime" type="text" value="<?=$form['begin_addtime']?>">
+            <input placeholder="结束时间" class="form-control date-range01 date-ico"  id="end_addtime" name="end_addtime" type="text" value="<?=$form['end_addtime']?>">
+            </span>
             </div>
             <a class="btn btn-info m-l" onclick="search_list()" > 查询</a>
-
+            <input class="btn btn-info m-l" value="添加" name="search" type="button" style="width:60px;" onclick="add()">
         </form>
     </div>
     <div class="table-wrap">
@@ -76,12 +60,20 @@
             <tr>
                 
 <th>id</th>
+<th>标题</th>
+<th>描述</th>
+<th>优先级</th>
+<th>状态</th>
 <th>管理员id</th>
-<th>管理员名称</th>
-<th>项目id</th>
-<th>项目名称</th>
+<th>管理员</th>
+<th>指派的用户id</th>
+<th>指派的用户</th>
+<th>计划工时</th>
+<th>开始日期</th>
+<th>截止日期</th>
 <th>添加时间</th>
-                <th>状态</th>
+<th>修改时间</th>
+
                 <th>操作</th>
             </tr>
             </thead>
@@ -98,7 +90,36 @@
     </div>
     <?php \app\helpers\PageWidget::run();?>
 </div>
+<script >
+    $('.date-range').dateRangePicker(
+        {
+            separator: ' to ',
+            format: 'YYYY-MM-DD',
+            endDate: moment(),
+            getValue: function () {
 
+                if ($('#begin_addtime').val() && $('#end_addtime').val())
+                    return $('#begin_addtime').val() + ' 至 ' + $('#end_addtime').val();
+                else
+                    return '';
+            },
+            setValue: function (s, s1, s2) {
+                $('#begin_addtime').val(s1);
+                $('#end_addtime').val(s2);
+            },
+            time: {
+                enabled: true
+            },
+            defaultTime: moment().subtract(1, 'month').startOf('month').startOf('day').toDate(),
+            defaultEndTime: moment().endOf('day').toDate()
+        });
+    $(function () {
+        $(".popover-options a").popover({
+            html: true
+        });
+    });
+
+</script>
 <script src="<?= STATIC_URL ?>/js/logic/admin/ajax.js?<?=rand()?>"></script>
 
 <script>
@@ -114,11 +135,19 @@
                         per_page :100,
                     
 						id: $('#id').val(),
-						admin_id: $('#admin_id').val(),
-						username: $('#username').val(),
-						project_id: $('#project_id').val(),
-						project_name: $('#project_name').val(),
+						title: $('#title').val(),
+						descption: $('#descption').val(),
+						priority: $('#priority').val(),
 						status: $('#status').val(),
+						admin_id: $('#admin_id').val(),
+						admin_user: $('#admin_user').val(),
+						owner_user_id: $('#owner_user_id').val(),
+						owner_user: $('#owner_user').val(),
+						hours: $('#hours').val(),
+						start_date: $('#start_date').val(),
+						end_date: $('#end_date').val(),
+						addtime: $('#addtime').val(),
+						updatetime: $('#updatetime').val(),
 
             };
         console.log(search_param);
@@ -131,26 +160,41 @@
         var template = '<tr>' +
             
 '<td>[id]</td>'+
-'<td>[admin_id]</td>'+
-'<td>[username]</td>'+
-'<td>[project_id]</td>'+
-'<td>[project_name]</td>'+
-'<td>[addtime]</td>'+
+'<td>[title]</td>'+
+'<td>[descption]</td>'+
+'<td>[priority]</td>'+
 '<td>[status]</td>'+
+'<td>[admin_id]</td>'+
+'<td>[admin_user]</td>'+
+'<td>[owner_user_id]</td>'+
+'<td>[owner_user]</td>'+
+'<td>[hours]</td>'+
+'<td>[start_date]</td>'+
+'<td>[end_date]</td>'+
+'<td>[addtime]</td>'+
+'<td>[updatetime]</td>'+
+
             '<td><a onclick="edit([id])" class="">[编辑]</a>|<a onclick="del([id])" class="">[删除]</a></td></tr>';
         var list_html = '';
-        $.getJSON('/api/publish/project_member/get_list/?' + $.param(param), function (data) {
+        $.getJSON('/api/project/project/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
             if (data.status == 0) {
                 $.each(data.data.list, function (i, d) {
-                    list_html += template.																		
+                    list_html += template.																																										
 replace(/\[id\]/g, d.id).
+replace('[title]', d.title).
+replace('[descption]', d.descption).
+replace('[priority]', d.priority).
+replace('[status]', d.status).
 replace('[admin_id]', d.admin_id).
-replace('[username]', d.username).
-replace('[project_id]', d.project_id).
-replace('[project_name]', d.project_name).
+replace('[admin_user]', d.admin_user).
+replace('[owner_user_id]', d.owner_user_id).
+replace('[owner_user]', d.owner_user).
+replace('[hours]', d.hours).
+replace('[start_date]', d.start_date).
+replace('[end_date]', d.end_date).
 replace('[addtime]', d.addtime).
-replace('[status]', d.status)
+replace('[updatetime]', d.updatetime)
                 });
                 $('table tbody').html(list_html);
                 var total_num = data.data.total;
@@ -172,33 +216,26 @@ replace('[status]', d.status)
 
 
 var urls = {
-    create_url:'/api/publish/project_member/create',
-    update_url:'/api/publish/project_member/update',
-    delete_url:'/api/publish/project_member/delete',
-    info_url:'/api/publish/project_member/info'
+    create_url:'/api/project/project/create',
+    update_url:'/api/project/project/update',
+    delete_url:'/api/project/project/delete',
+    info_url:'/api/project/project/info'
 };
 
 /***
  * 添加
  */
 function add(){
-    var url = '/api/publish/project_member/create';
-    var param ={
-        admin_id: $('#admin_id').val(),
-        username: $('#admin_id').find(":selected").text(),
-        project_id: $('#project_id').val(),
-        project_name:$('#project_id').find(":selected").text(),
-    };
-    ajax_post(url,param);
-
+    var url = '/project/project/create';
+    layer_form(url,1,['900px', '600px']);
 }
 /**
  * 修改
  * @param id
  */
 function edit(id) {
-    var url = "/publish/project_member/update?id="+id;
-    layer_form(url,2,['300px', '300px']);
+    var url = "/project/project/update?id="+id;
+    layer_form(url,2,['900px', '600px']);
 }
 
 /***
@@ -217,10 +254,15 @@ function del(id) {
         }
     );
 }
+
+function info($id){
+    var url = urls.info_url+"?id="+id;
+    layer_form(url,1,['900px', '600px']);
+}
 //表单
 function layer_form(url,action,area){
     var content = url;
-    var title = action==2?'修改':'添加';
+    var title = action==2?'修改项目':'添加项目';
     var btn =  action==2?['确认修改','取消']:['确认添加','取消'];
     layer.open({
         type: 2, //iframe
@@ -234,11 +276,19 @@ function layer_form(url,action,area){
         yes: function(index, layero){
             var body = layer.getChildFrame('body', index);
             var param ={
-                id:body.find('#id').val(),
-                admin_id:body.find('#admin_id').val(),
-                username:body.find('#admin_id').find(":selected").text(),
-                project_id:body.find('#project_id').val(),
-                project_name:body.find('#project_id').find(":selected").text(),
+                
+					id:body.find('#id').val(),
+					title:body.find('#title').val(),
+					descption:body.find('#descption').val(),
+					priority:body.find('#priority').val(),
+					status:body.find('#status').val(),
+					admin_id:body.find('#admin_id').val(),
+					admin_user:body.find('#admin_id').find("option:selected").text(),
+					owner_user_id:body.find('#owner_user_id').val(),
+					owner_user:body.find('#owner_user_id').find("option:selected").text(),
+					hours:body.find('#hours').val(),
+					start_date:body.find('#start_date').val(),
+					end_date:body.find('#end_date').val(),
             };
             //todo生成js验证
             if(param.id){
@@ -254,7 +304,6 @@ function layer_form(url,action,area){
 
     });
 }
-
 
 </script>
 

@@ -9,7 +9,7 @@ class SearchController {
 
     public static function get_config_search_builder_type(){
         $config = array(
-            'search_none'=>'0.请选择',
+//            'search_none'=>'0.请选择',
             'search_text'=>'1.文本搜索',
             'search_num'=>'2.数字搜索',
             'search_select'=>'3.下拉框搜索',

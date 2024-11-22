@@ -45,4 +45,12 @@ $config['publish'] = [
     'port' => 3306,
     'charset' => 'utf8',
 ];
+$config['project'] = [
+    'host' => 'mysql',
+    'dbname' => 'fish_project',
+    'username' => 'root',
+    'password' => '123456',
+    'port' => 3306,
+    'charset' => 'utf8',
+];
 return $config;

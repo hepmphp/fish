@@ -90,6 +90,12 @@ class AdminMenu extends Model
             'publish/project_member',
         ];
 
+        $project = [
+            'project/project',
+            'project/task',
+            'project/bug',
+            'project/statics',
+        ];
         foreach ($menu as $k=>$v){
                 if($cate=='admin' && !in_array($v['model'],$admin)){
                     continue;
@@ -108,6 +114,10 @@ class AdminMenu extends Model
                 }
 
                 if($cate=='publish' && !in_array($v['model'],$publish)){
+                    continue;
+                }
+
+                if($cate=='project' && !in_array($v['model'],$project)){
                     continue;
                 }
                 if($v['level']==2){
