@@ -12,7 +12,9 @@
 <body>
 <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
 <div style="width: 900px;height:600px;margin: 0 auto;">
-    <div class="table-wrap" style="margin-top: 30px;">
+    <div id="main_2" style="width:900px;height:300px;margin-top: 30px;"></div>
+
+    <div class="table-wrap">
         <table  data-toggle="table" class="table-item table" style="border: 1px solid #1278f6;">
             <thead>
             <tr>
@@ -36,14 +38,13 @@
     </div>
     <div id="main" style="width: 900px;height:300px;"></div>
     <div id="main_1" style="width:900px;height:300px;"></div>
-
 </div>
 
 <script type="text/javascript">
   //  test1();
   projecct_statics_line();
   project_statics();
-
+  project_statics_bing();
 
     function projecct_statics_line(){
         var myChart = echarts.init(document.getElementById('main'));
@@ -92,7 +93,46 @@
     }
 
 
+    function project_statics_bing() {
+      var myChart_2 = echarts.init(document.getElementById('main_2'));
 
+        option = {
+            title: {
+                text: '统计信息',
+                subtext: '',
+                left: 'center'
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            legend: {
+                orient: 'vertical',
+                left: 'left'
+            },
+            series: [
+                {
+                    name: 'Access From',
+                    type: 'pie',
+                    radius: '80%',
+                    label: {
+                        show: true, // 显示标签
+                        position: 'inside', // 在饼图内部显示标签
+                        formatter: '{b}：{d}%'
+                    },
+                    data:<?=json_encode($static_data_bing);?>,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+
+      myChart_2.setOption(option);
+  }
 </script>
 </body>
 </html>

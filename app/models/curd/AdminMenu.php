@@ -96,6 +96,10 @@ class AdminMenu extends Model
             'project/bug',
             'project/statics',
         ];
+
+        $cloud = [
+            'cloud/server_manager'
+        ];
         foreach ($menu as $k=>$v){
                 if($cate=='admin' && !in_array($v['model'],$admin)){
                     continue;
@@ -118,6 +122,9 @@ class AdminMenu extends Model
                 }
 
                 if($cate=='project' && !in_array($v['model'],$project)){
+                    continue;
+                }
+                if($cate=='cloud' && !in_array($v['model'],$cloud)){
                     continue;
                 }
                 if($v['level']==2){

@@ -41,6 +41,10 @@ class Statics extends BaseController{
         $static_data_line[] = $tasks[0]['total'];
         $static_data_line[] = $bugs[0]['total'];
 
+        $static_data_bing[] = ['value'=>$projects[0]['total'],'name'=>'项目'];
+        $static_data_bing[] =  ['value'=>$tasks[0]['total'],'name'=>'任务'];
+        $static_data_bing[] =  ['value'=>$bugs[0]['total'],'name'=>'BUG'];
+
         $static_data_group['projects_group'] = $projects_group;
         $static_data_group['tasks_group'] = $tasks_group;
         $static_data_group['bugs_group'] = $bugs_group;
@@ -49,6 +53,7 @@ class Statics extends BaseController{
         $this->view->assign('static_data',$static_data);
         $this->view->assign('static_data_line',$static_data_line);
         $this->view->assign('static_data_group',$static_data_group);
+        $this->view->assign('static_data_bing',$static_data_bing);
         if (isset($_GET['iframe']) && $_GET['iframe'] == 1) {
             $this->view->display('project/statics/index');
         } else {

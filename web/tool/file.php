@@ -22,7 +22,7 @@ $highlightjs_style = 'vs';
 $default_timezone = 'Europe/Minsk'; // UTC+3
 
 // Root path for file manager
-$root_path = "../../";
+$root_path = $_SERVER['DOCUMENT_ROOT'];
 
 // Root url for links in file manager.Relative to $http_host. Variants: '', 'path/to/subfolder'
 // Will not working if $root_path will be outside of server document root
@@ -75,7 +75,7 @@ if (!@is_dir($root_path)) {
     exit;
 }
 
-
+// clean $root_url
 $root_url = fm_clean_path($root_url);
 
 // abs path for site
@@ -84,9 +84,50 @@ defined('FM_ROOT_URL') || define('FM_ROOT_URL', ($is_https ? 'https' : 'http') .
 defined('FM_SELF_URL') || define('FM_SELF_URL', ($is_https ? 'https' : 'http') . '://' . $http_host . $_SERVER['PHP_SELF']);
 
 // logout
+if (isset($_GET['logout'])) {
+    unset($_SESSION['logged']);
+    fm_redirect(FM_SELF_URL);
+}
 
+// Show image here
+if (isset($_GET['img'])) {
+    fm_show_image($_GET['img']);
+}
 
-
+// Auth
+if ($use_auth) {
+    if (isset($_SESSION['logged'], $auth_users[$_SESSION['logged']])) {
+        // Logged
+    } elseif (isset($_POST['fm_usr'], $_POST['fm_pwd'])) {
+        // Logging In
+        sleep(1);
+        if (isset($auth_users[$_POST['fm_usr']]) && $_POST['fm_pwd'] === $auth_users[$_POST['fm_usr']]) {
+            $_SESSION['logged'] = $_POST['fm_usr'];
+            fm_set_msg('You are logged in');
+            fm_redirect(FM_SELF_URL . '?p=');
+        } else {
+            unset($_SESSION['logged']);
+            fm_set_msg('Wrong password', 'error');
+            fm_redirect(FM_SELF_URL);
+        }
+    } else {
+        // Form
+        unset($_SESSION['logged']);
+        fm_show_header();
+        fm_show_message();
+        ?>
+        <div class="path">
+            <form action="" method="post" style="margin:10px;text-align:center">
+                <input name="fm_usr" value="" placeholder="Username" required>
+                <input type="password" name="fm_pwd" value="" placeholder="Password" required>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <?php
+        fm_show_footer();
+        exit;
+    }
+}
 
 define('FM_IS_WIN', DIRECTORY_SEPARATOR == '\\');
 
@@ -656,12 +697,12 @@ if (isset($_GET['copy']) && !isset($_GET['finish'])) {
             if ($parent !== false) {
                 ?>
                 <li><a href="?p=<?php echo urlencode($parent) ?>&amp;copy=<?php echo urlencode($copy) ?>"><i class="icon-arrow_up"></i> ..</a></li>
-                <?php
+            <?php
             }
             foreach ($folders as $f) {
                 ?>
                 <li><a href="?p=<?php echo urlencode(trim(FM_PATH . '/' . $f, '/')) ?>&amp;copy=<?php echo urlencode($copy) ?>"><i class="icon-folder"></i> <?php echo fm_enc(fm_convert_win($f)) ?></a></li>
-                <?php
+            <?php
             }
             ?>
         </ul>
@@ -773,7 +814,7 @@ if (isset($_GET['view'])) {
                 ?>
                 <b><a href="?p=<?php echo urlencode(FM_PATH) ?>&amp;unzip=<?php echo urlencode($file) ?>"><i class="icon-apply"></i> Unpack</a></b> &nbsp;
                 <b><a href="?p=<?php echo urlencode(FM_PATH) ?>&amp;unzip=<?php echo urlencode($file) ?>&amp;tofolder=1" title="Unpack to <?php echo fm_enc($zip_name) ?>"><i class="icon-apply"></i>
-                        Unpack to folder</a></b> &nbsp;
+                    Unpack to folder</a></b> &nbsp;
                 <?php
             }
             ?>
@@ -915,112 +956,112 @@ $num_files = count($files);
 $num_folders = count($folders);
 $all_files_size = 0;
 ?>
-    <form action="" method="post">
-        <input type="hidden" name="p" value="<?php echo fm_enc(FM_PATH) ?>">
-        <input type="hidden" name="group" value="1">
-        <table><tr>
-                <th style="width:3%"><label><input type="checkbox" title="Invert selection" onclick="checkbox_toggle()"></label></th>
-                <th>Name</th><th style="width:10%">Size</th>
-                <th style="width:12%">Modified</th>
-                <?php if (!FM_IS_WIN): ?><th style="width:6%">Perms</th><th style="width:10%">Owner</th><?php endif; ?>
-                <th style="width:13%"></th></tr>
-            <?php
-            // link to parent folder
-            if ($parent !== false) {
-                ?>
-                <tr><td></td><td colspan="<?php echo !FM_IS_WIN ? '6' : '4' ?>"><a href="?p=<?php echo urlencode($parent) ?>"><i class="icon-arrow_up"></i> ..</a></td></tr>
-                <?php
-            }
-            foreach ($folders as $f) {
-                $is_link = is_link($path . '/' . $f);
-                $img = $is_link ? 'icon-link_folder' : 'icon-folder';
-                $modif = date(FM_DATETIME_FORMAT, filemtime($path . '/' . $f));
-                $perms = substr(decoct(fileperms($path . '/' . $f)), -4);
-                if (function_exists('posix_getpwuid') && function_exists('posix_getgrgid')) {
-                    $owner = posix_getpwuid(fileowner($path . '/' . $f));
-                    $group = posix_getgrgid(filegroup($path . '/' . $f));
-                } else {
-                    $owner = array('name' => '?');
-                    $group = array('name' => '?');
-                }
-                ?>
-                <tr>
-                    <td><label><input type="checkbox" name="file[]" value="<?php echo fm_enc($f) ?>"></label></td>
-                    <td><div class="filename"><a href="?p=<?php echo urlencode(trim(FM_PATH . '/' . $f, '/')) ?>"><i class="<?php echo $img ?>"></i> <?php echo fm_enc(fm_convert_win($f)) ?></a><?php echo ($is_link ? ' &rarr; <i>' . fm_enc(readlink($path . '/' . $f)) . '</i>' : '') ?></div></td>
-                    <td>Folder</td><td><?php echo $modif ?></td>
-                    <?php if (!FM_IS_WIN): ?>
-                        <td><a title="Change Permissions" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;chmod=<?php echo urlencode($f) ?>"><?php echo $perms ?></a></td>
-                        <td><?php echo fm_enc($owner['name'] . ':' . $group['name']) ?></td>
-                    <?php endif; ?>
-                    <td>
-                        <a title="Delete" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;del=<?php echo urlencode($f) ?>" onclick="return confirm('Delete folder?');"><i class="icon-cross"></i></a>
-                        <a title="Rename" href="#" onclick="rename('<?php echo fm_enc(FM_PATH) ?>', '<?php echo fm_enc($f) ?>');return false;"><i class="icon-rename"></i></a>
-                        <a title="Copy to..." href="?p=&amp;copy=<?php echo urlencode(trim(FM_PATH . '/' . $f, '/')) ?>"><i class="icon-copy"></i></a>
-                        <a title="Direct link" href="<?php echo fm_enc(FM_ROOT_URL . (FM_PATH != '' ? '/' . FM_PATH : '') . '/' . $f . '/') ?>" target="_blank"><i class="icon-chain"></i></a>
-                    </td></tr>
-                <?php
-                flush();
-            }
+<form action="" method="post">
+<input type="hidden" name="p" value="<?php echo fm_enc(FM_PATH) ?>">
+<input type="hidden" name="group" value="1">
+<table><tr>
+<th style="width:3%"><label><input type="checkbox" title="Invert selection" onclick="checkbox_toggle()"></label></th>
+<th>Name</th><th style="width:10%">Size</th>
+<th style="width:12%">Modified</th>
+<?php if (!FM_IS_WIN): ?><th style="width:6%">Perms</th><th style="width:10%">Owner</th><?php endif; ?>
+<th style="width:13%"></th></tr>
+<?php
+// link to parent folder
+if ($parent !== false) {
+    ?>
+<tr><td></td><td colspan="<?php echo !FM_IS_WIN ? '6' : '4' ?>"><a href="?p=<?php echo urlencode($parent) ?>"><i class="icon-arrow_up"></i> ..</a></td></tr>
+<?php
+}
+foreach ($folders as $f) {
+    $is_link = is_link($path . '/' . $f);
+    $img = $is_link ? 'icon-link_folder' : 'icon-folder';
+    $modif = date(FM_DATETIME_FORMAT, filemtime($path . '/' . $f));
+    $perms = substr(decoct(fileperms($path . '/' . $f)), -4);
+    if (function_exists('posix_getpwuid') && function_exists('posix_getgrgid')) {
+        $owner = posix_getpwuid(fileowner($path . '/' . $f));
+        $group = posix_getgrgid(filegroup($path . '/' . $f));
+    } else {
+        $owner = array('name' => '?');
+        $group = array('name' => '?');
+    }
+    ?>
+<tr>
+<td><label><input type="checkbox" name="file[]" value="<?php echo fm_enc($f) ?>"></label></td>
+<td><div class="filename"><a href="?p=<?php echo urlencode(trim(FM_PATH . '/' . $f, '/')) ?>"><i class="<?php echo $img ?>"></i> <?php echo fm_enc(fm_convert_win($f)) ?></a><?php echo ($is_link ? ' &rarr; <i>' . fm_enc(readlink($path . '/' . $f)) . '</i>' : '') ?></div></td>
+<td>Folder</td><td><?php echo $modif ?></td>
+<?php if (!FM_IS_WIN): ?>
+<td><a title="Change Permissions" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;chmod=<?php echo urlencode($f) ?>"><?php echo $perms ?></a></td>
+<td><?php echo fm_enc($owner['name'] . ':' . $group['name']) ?></td>
+<?php endif; ?>
+<td>
+<a title="Delete" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;del=<?php echo urlencode($f) ?>" onclick="return confirm('Delete folder?');"><i class="icon-cross"></i></a>
+<a title="Rename" href="#" onclick="rename('<?php echo fm_enc(FM_PATH) ?>', '<?php echo fm_enc($f) ?>');return false;"><i class="icon-rename"></i></a>
+<a title="Copy to..." href="?p=&amp;copy=<?php echo urlencode(trim(FM_PATH . '/' . $f, '/')) ?>"><i class="icon-copy"></i></a>
+<a title="Direct link" href="<?php echo fm_enc(FM_ROOT_URL . (FM_PATH != '' ? '/' . FM_PATH : '') . '/' . $f . '/') ?>" target="_blank"><i class="icon-chain"></i></a>
+</td></tr>
+    <?php
+    flush();
+}
 
-            foreach ($files as $f) {
-                $is_link = is_link($path . '/' . $f);
-                $img = $is_link ? 'icon-link_file' : fm_get_file_icon_class($path . '/' . $f);
-                $modif = date(FM_DATETIME_FORMAT, filemtime($path . '/' . $f));
-                $filesize_raw = filesize($path . '/' . $f);
-                $filesize = fm_get_filesize($filesize_raw);
-                $filelink = '?p=' . urlencode(FM_PATH) . '&view=' . urlencode($f);
-                $all_files_size += $filesize_raw;
-                $perms = substr(decoct(fileperms($path . '/' . $f)), -4);
-                if (function_exists('posix_getpwuid') && function_exists('posix_getgrgid')) {
-                    $owner = posix_getpwuid(fileowner($path . '/' . $f));
-                    $group = posix_getgrgid(filegroup($path . '/' . $f));
-                } else {
-                    $owner = array('name' => '?');
-                    $group = array('name' => '?');
-                }
-                ?>
-                <tr>
-                    <td><label><input type="checkbox" name="file[]" value="<?php echo fm_enc($f) ?>"></label></td>
-                    <td><div class="filename"><a href="<?php echo fm_enc($filelink) ?>" title="File info"><i class="<?php echo $img ?>"></i> <?php echo fm_enc(fm_convert_win($f)) ?></a><?php echo ($is_link ? ' &rarr; <i>' . fm_enc(readlink($path . '/' . $f)) . '</i>' : '') ?></div></td>
-                    <td><span class="gray" title="<?php printf('%s bytes', $filesize_raw) ?>"><?php echo $filesize ?></span></td>
-                    <td><?php echo $modif ?></td>
-                    <?php if (!FM_IS_WIN): ?>
-                        <td><a title="Change Permissions" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;chmod=<?php echo urlencode($f) ?>"><?php echo $perms ?></a></td>
-                        <td><?php echo fm_enc($owner['name'] . ':' . $group['name']) ?></td>
-                    <?php endif; ?>
-                    <td>
-                        <a title="Delete" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;del=<?php echo urlencode($f) ?>" onclick="return confirm('Delete file?');"><i class="icon-cross"></i></a>
-                        <a title="Rename" href="#" onclick="rename('<?php echo fm_enc(FM_PATH) ?>', '<?php echo fm_enc($f) ?>');return false;"><i class="icon-rename"></i></a>
-                        <a title="Copy to..." href="?p=<?php echo urlencode(FM_PATH) ?>&amp;copy=<?php echo urlencode(trim(FM_PATH . '/' . $f, '/')) ?>"><i class="icon-copy"></i></a>
-                        <a title="Direct link" href="<?php echo fm_enc(FM_ROOT_URL . (FM_PATH != '' ? '/' . FM_PATH : '') . '/' . $f) ?>" target="_blank"><i class="icon-chain"></i></a>
-                        <a title="Download" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;dl=<?php echo urlencode($f) ?>"><i class="icon-download"></i></a>
-                    </td></tr>
-                <?php
-                flush();
-            }
+foreach ($files as $f) {
+    $is_link = is_link($path . '/' . $f);
+    $img = $is_link ? 'icon-link_file' : fm_get_file_icon_class($path . '/' . $f);
+    $modif = date(FM_DATETIME_FORMAT, filemtime($path . '/' . $f));
+    $filesize_raw = filesize($path . '/' . $f);
+    $filesize = fm_get_filesize($filesize_raw);
+    $filelink = '?p=' . urlencode(FM_PATH) . '&view=' . urlencode($f);
+    $all_files_size += $filesize_raw;
+    $perms = substr(decoct(fileperms($path . '/' . $f)), -4);
+    if (function_exists('posix_getpwuid') && function_exists('posix_getgrgid')) {
+        $owner = posix_getpwuid(fileowner($path . '/' . $f));
+        $group = posix_getgrgid(filegroup($path . '/' . $f));
+    } else {
+        $owner = array('name' => '?');
+        $group = array('name' => '?');
+    }
+    ?>
+<tr>
+<td><label><input type="checkbox" name="file[]" value="<?php echo fm_enc($f) ?>"></label></td>
+<td><div class="filename"><a href="<?php echo fm_enc($filelink) ?>" title="File info"><i class="<?php echo $img ?>"></i> <?php echo fm_enc(fm_convert_win($f)) ?></a><?php echo ($is_link ? ' &rarr; <i>' . fm_enc(readlink($path . '/' . $f)) . '</i>' : '') ?></div></td>
+<td><span class="gray" title="<?php printf('%s bytes', $filesize_raw) ?>"><?php echo $filesize ?></span></td>
+<td><?php echo $modif ?></td>
+<?php if (!FM_IS_WIN): ?>
+<td><a title="Change Permissions" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;chmod=<?php echo urlencode($f) ?>"><?php echo $perms ?></a></td>
+<td><?php echo fm_enc($owner['name'] . ':' . $group['name']) ?></td>
+<?php endif; ?>
+<td>
+<a title="Delete" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;del=<?php echo urlencode($f) ?>" onclick="return confirm('Delete file?');"><i class="icon-cross"></i></a>
+<a title="Rename" href="#" onclick="rename('<?php echo fm_enc(FM_PATH) ?>', '<?php echo fm_enc($f) ?>');return false;"><i class="icon-rename"></i></a>
+<a title="Copy to..." href="?p=<?php echo urlencode(FM_PATH) ?>&amp;copy=<?php echo urlencode(trim(FM_PATH . '/' . $f, '/')) ?>"><i class="icon-copy"></i></a>
+<a title="Direct link" href="<?php echo fm_enc(FM_ROOT_URL . (FM_PATH != '' ? '/' . FM_PATH : '') . '/' . $f) ?>" target="_blank"><i class="icon-chain"></i></a>
+<a title="Download" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;dl=<?php echo urlencode($f) ?>"><i class="icon-download"></i></a>
+</td></tr>
+    <?php
+    flush();
+}
 
-            if (empty($folders) && empty($files)) {
-                ?>
-                <tr><td></td><td colspan="<?php echo !FM_IS_WIN ? '6' : '4' ?>"><em>Folder is empty</em></td></tr>
-                <?php
-            } else {
-                ?>
-                <tr><td class="gray"></td><td class="gray" colspan="<?php echo !FM_IS_WIN ? '6' : '4' ?>">
-                        Full size: <span title="<?php printf('%s bytes', $all_files_size) ?>"><?php echo fm_get_filesize($all_files_size) ?></span>,
-                        files: <?php echo $num_files ?>,
-                        folders: <?php echo $num_folders ?>
-                    </td></tr>
-                <?php
-            }
-            ?>
-        </table>
-        <p class="path"><a href="#" onclick="select_all();return false;"><i class="icon-checkbox"></i> Select all</a> &nbsp;
-            <a href="#" onclick="unselect_all();return false;"><i class="icon-checkbox_uncheck"></i> Unselect all</a> &nbsp;
-            <a href="#" onclick="invert_all();return false;"><i class="icon-checkbox_invert"></i> Invert selection</a></p>
-        <p><input type="submit" name="delete" value="Delete" onclick="return confirm('Delete selected files and folders?')">
-            <input type="submit" name="zip" value="Pack" onclick="return confirm('Create archive?')">
-            <input type="submit" name="copy" value="Copy"></p>
-    </form>
+if (empty($folders) && empty($files)) {
+    ?>
+<tr><td></td><td colspan="<?php echo !FM_IS_WIN ? '6' : '4' ?>"><em>Folder is empty</em></td></tr>
+<?php
+} else {
+    ?>
+<tr><td class="gray"></td><td class="gray" colspan="<?php echo !FM_IS_WIN ? '6' : '4' ?>">
+Full size: <span title="<?php printf('%s bytes', $all_files_size) ?>"><?php echo fm_get_filesize($all_files_size) ?></span>,
+files: <?php echo $num_files ?>,
+folders: <?php echo $num_folders ?>
+</td></tr>
+<?php
+}
+?>
+</table>
+<p class="path"><a href="#" onclick="select_all();return false;"><i class="icon-checkbox"></i> Select all</a> &nbsp;
+<a href="#" onclick="unselect_all();return false;"><i class="icon-checkbox_uncheck"></i> Unselect all</a> &nbsp;
+<a href="#" onclick="invert_all();return false;"><i class="icon-checkbox_invert"></i> Invert selection</a></p>
+<p><input type="submit" name="delete" value="Delete" onclick="return confirm('Delete selected files and folders?')">
+<input type="submit" name="zip" value="Pack" onclick="return confirm('Create archive?')">
+<input type="submit" name="copy" value="Copy"></p>
+</form>
 
 <?php
 fm_show_footer();
@@ -1358,50 +1399,50 @@ function fm_get_file_icon_class($path)
         case 'config': case 'twig': case 'tpl': case 'md': case 'gitignore':
         case 'less': case 'sass': case 'scss': case 'c': case 'cpp': case 'cs': case 'py':
         case 'map': case 'lock': case 'dtd':
-        $img = 'icon-file_text';
-        break;
+            $img = 'icon-file_text';
+            break;
         case 'zip': case 'rar': case 'gz': case 'tar': case '7z':
-        $img = 'icon-file_zip';
-        break;
+            $img = 'icon-file_zip';
+            break;
         case 'php': case 'php4': case 'php5': case 'phps': case 'phtml':
-        $img = 'icon-file_php';
-        break;
+            $img = 'icon-file_php';
+            break;
         case 'htm': case 'html': case 'shtml': case 'xhtml':
-        $img = 'icon-file_html';
-        break;
+            $img = 'icon-file_html';
+            break;
         case 'xml': case 'xsl': case 'svg':
-        $img = 'icon-file_code';
-        break;
+            $img = 'icon-file_code';
+            break;
         case 'wav': case 'mp3': case 'mp2': case 'm4a': case 'aac': case 'ogg':
         case 'oga': case 'wma': case 'mka': case 'flac': case 'ac3': case 'tds':
-        $img = 'icon-file_music';
-        break;
+            $img = 'icon-file_music';
+            break;
         case 'm3u': case 'm3u8': case 'pls': case 'cue':
-        $img = 'icon-file_playlist';
-        break;
+            $img = 'icon-file_playlist';
+            break;
         case 'avi': case 'mpg': case 'mpeg': case 'mp4': case 'm4v': case 'flv':
         case 'f4v': case 'ogm': case 'ogv': case 'mov': case 'mkv': case '3gp':
         case 'asf': case 'wmv':
-        $img = 'icon-file_film';
-        break;
+            $img = 'icon-file_film';
+            break;
         case 'eml': case 'msg':
-        $img = 'icon-file_outlook';
-        break;
+            $img = 'icon-file_outlook';
+            break;
         case 'xls': case 'xlsx':
-        $img = 'icon-file_excel';
-        break;
+            $img = 'icon-file_excel';
+            break;
         case 'csv':
             $img = 'icon-file_csv';
             break;
         case 'doc': case 'docx':
-        $img = 'icon-file_word';
-        break;
+            $img = 'icon-file_word';
+            break;
         case 'ppt': case 'pptx':
-        $img = 'icon-file_powerpoint';
-        break;
+            $img = 'icon-file_powerpoint';
+            break;
         case 'ttf': case 'ttc': case 'otf': case 'woff':case 'woff2': case 'eot': case 'fon':
-        $img = 'icon-file_font';
-        break;
+            $img = 'icon-file_font';
+            break;
         case 'pdf':
             $img = 'icon-file_pdf';
             break;
@@ -1409,8 +1450,8 @@ function fm_get_file_icon_class($path)
             $img = 'icon-file_photoshop';
             break;
         case 'ai': case 'eps':
-        $img = 'icon-file_illustrator';
-        break;
+            $img = 'icon-file_illustrator';
+            break;
         case 'fla':
             $img = 'icon-file_flash';
             break;
@@ -1418,8 +1459,8 @@ function fm_get_file_icon_class($path)
             $img = 'icon-file_swf';
             break;
         case 'exe': case 'msi':
-        $img = 'icon-file_application';
-        break;
+            $img = 'icon-file_application';
+            break;
         case 'bat':
             $img = 'icon-file_terminal';
             break;
@@ -1617,12 +1658,12 @@ class FM_Zipper
 function fm_show_nav_path($path)
 {
     ?>
-    <div class="path">
-        <div class="float-right">
-            <a title="Upload files" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;upload"><i class="icon-upload"></i></a>
-            <a title="New folder" href="#" onclick="newfolder('<?php echo fm_enc(FM_PATH) ?>');return false;"><i class="icon-folder_add"></i></a>
-            <?php if (FM_USE_AUTH): ?><a title="Logout" href="?logout=1"><i class="icon-logout"></i></a><?php endif; ?>
-        </div>
+<div class="path">
+<div class="float-right">
+<a title="Upload files" href="?p=<?php echo urlencode(FM_PATH) ?>&amp;upload"><i class="icon-upload"></i></a>
+<a title="New folder" href="#" onclick="newfolder('<?php echo fm_enc(FM_PATH) ?>');return false;"><i class="icon-folder_add"></i></a>
+<?php if (FM_USE_AUTH): ?><a title="Logout" href="?logout=1"><i class="icon-logout"></i></a><?php endif; ?>
+</div>
         <?php
         $path = fm_clean_path($path);
         $root_url = "<a href='?p='><i class='icon-home' title='" . FM_ROOT_PATH . "'></i></a>";
@@ -1641,8 +1682,8 @@ function fm_show_nav_path($path)
         }
         echo '<div class="break-word">' . $root_url . '</div>';
         ?>
-    </div>
-    <?php
+</div>
+<?php
 }
 
 /**
@@ -1669,72 +1710,72 @@ function fm_show_header()
     header("Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0");
     header("Pragma: no-cache");
     ?>
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <title>PHP File Manager</title>
-        <style>
-            html,body,div,span,p,pre,a,code,em,img,small,strong,ol,ul,li,form,label,table,tr,th,td{margin:0;padding:0;vertical-align:baseline;outline:none;font-size:100%;background:transparent;border:none;text-decoration:none}
-            html{overflow-y:scroll}body{padding:0;color:#222;background:#efefef}
-            input,select,textarea,button{font-size:inherit;font-family:inherit}
-            a{color:#296ea3;text-decoration:none}a:hover{color:#b00}img{vertical-align:middle;border:none}
-            a img{border:none}span.gray{color:#777}small{font-size:11px;color:#999}p{margin-bottom:10px}
-            ul{margin-left:2em;margin-bottom:10px}ul{list-style-type:none;margin-left:0}ul li{padding:3px 0}
-            table{border-collapse:collapse;border-spacing:0;margin-bottom:10px;width:100%}
-            th,td{padding:4px 7px;text-align:left;vertical-align:top;border:1px solid #ddd;background:#fff;white-space:nowrap}
-            th,td.gray{background-color:#eee}td.gray span{color:#222}
-            tr:hover td{background-color:#f5f5f5}tr:hover td.gray{background-color:#eee}
-            code,pre{display:block;margin-bottom:10px;font:13px/16px Consolas,'Courier New',Courier,monospace;border:1px dashed #ccc;padding:5px;overflow:auto}
-            pre.with-hljs{padding:0}
-            pre.with-hljs code{margin:0;border:0;overflow:visible}
-            code.maxheight,pre.maxheight{max-height:512px}input[type="checkbox"]{margin:0;padding:0}
-            #wrapper{min-width:400px;margin:10px auto}
-            .path{padding:4px 7px;border:1px solid #ddd;background-color:#fff;margin-bottom:10px}
-            .right{text-align:right}.center{text-align:center}.float-right{float:right}
-            .message{padding:4px 7px;border:1px solid #ddd;background-color:#fff}
-            .message.ok{border-color:green;color:green}
-            .message.error{border-color:red;color:red}
-            .message.alert{border-color:orange;color:orange}
-            .btn{border:0;background:none;padding:0;margin:0;font-weight:bold;color:#296ea3;cursor:pointer}.btn:hover{color:#b00}
-            .preview-img{max-width:100%;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAKklEQVR42mL5//8/Azbw+PFjrOJMDCSCUQ3EABZc4S0rKzsaSvTTABBgAMyfCMsY4B9iAAAAAElFTkSuQmCC") repeat 0 0}
-            .preview-video{position:relative;max-width:100%;height:0;padding-bottom:62.5%;margin-bottom:10px}.preview-video video{position:absolute;width:100%;height:100%;left:0;top:0;background:#000}
-            [class*="icon-"]{display:inline-block;width:16px;height:16px;background:url("<?php echo FM_SELF_URL ?>?img=sprites&amp;t=<?php echo $sprites_ver ?>") no-repeat 0 0;vertical-align:bottom}
-            .icon-document{background-position:-16px 0}.icon-folder{background-position:-32px 0}
-            .icon-folder_add{background-position:-48px 0}.icon-upload{background-position:-64px 0}
-            .icon-arrow_up{background-position:-80px 0}.icon-home{background-position:-96px 0}
-            .icon-separator{background-position:-112px 0}.icon-cross{background-position:-128px 0}
-            .icon-copy{background-position:-144px 0}.icon-apply{background-position:-160px 0}
-            .icon-cancel{background-position:-176px 0}.icon-rename{background-position:-192px 0}
-            .icon-checkbox{background-position:-208px 0}.icon-checkbox_invert{background-position:-224px 0}
-            .icon-checkbox_uncheck{background-position:-240px 0}.icon-download{background-position:-256px 0}
-            .icon-goback{background-position:-272px 0}.icon-folder_open{background-position:-288px 0}
-            .icon-file_application{background-position:0 -16px}.icon-file_code{background-position:-16px -16px}
-            .icon-file_csv{background-position:-32px -16px}.icon-file_excel{background-position:-48px -16px}
-            .icon-file_film{background-position:-64px -16px}.icon-file_flash{background-position:-80px -16px}
-            .icon-file_font{background-position:-96px -16px}.icon-file_html{background-position:-112px -16px}
-            .icon-file_illustrator{background-position:-128px -16px}.icon-file_image{background-position:-144px -16px}
-            .icon-file_music{background-position:-160px -16px}.icon-file_outlook{background-position:-176px -16px}
-            .icon-file_pdf{background-position:-192px -16px}.icon-file_photoshop{background-position:-208px -16px}
-            .icon-file_php{background-position:-224px -16px}.icon-file_playlist{background-position:-240px -16px}
-            .icon-file_powerpoint{background-position:-256px -16px}.icon-file_swf{background-position:-272px -16px}
-            .icon-file_terminal{background-position:-288px -16px}.icon-file_text{background-position:-304px -16px}
-            .icon-file_word{background-position:-320px -16px}.icon-file_zip{background-position:-336px -16px}
-            .icon-logout{background-position:-304px 0}.icon-chain{background-position:-320px 0}
-            .icon-link_folder{background-position:-352px -16px}.icon-link_file{background-position:-368px -16px}
-            .compact-table{border:0;width:auto}.compact-table td,.compact-table th{width:100px;border:0;text-align:center}.compact-table tr:hover td{background-color:#fff}
-            .filename{max-width:420px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-            .break-word{word-wrap:break-word}
-        </style>
-        <link rel="icon" href="<?php echo FM_SELF_URL ?>?img=favicon" type="image/png">
-        <link rel="shortcut icon" href="<?php echo FM_SELF_URL ?>?img=favicon" type="image/png">
-        <?php if (isset($_GET['view']) && FM_USE_HIGHLIGHTJS): ?>
-            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/<?php echo FM_HIGHLIGHTJS_STYLE ?>.min.css">
-        <?php endif; ?>
-    </head>
-    <body>
-    <div id="wrapper">
-    <?php
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PHP File Manager</title>
+<style>
+html,body,div,span,p,pre,a,code,em,img,small,strong,ol,ul,li,form,label,table,tr,th,td{margin:0;padding:0;vertical-align:baseline;outline:none;font-size:100%;background:transparent;border:none;text-decoration:none}
+html{overflow-y:scroll}body{padding:0;font:13px/16px Tahoma,Arial,sans-serif;color:#222;background:#efefef}
+input,select,textarea,button{font-size:inherit;font-family:inherit}
+a{color:#296ea3;text-decoration:none}a:hover{color:#b00}img{vertical-align:middle;border:none}
+a img{border:none}span.gray{color:#777}small{font-size:11px;color:#999}p{margin-bottom:10px}
+ul{margin-left:2em;margin-bottom:10px}ul{list-style-type:none;margin-left:0}ul li{padding:3px 0}
+table{border-collapse:collapse;border-spacing:0;margin-bottom:10px;width:100%}
+th,td{padding:4px 7px;text-align:left;vertical-align:top;border:1px solid #ddd;background:#fff;white-space:nowrap}
+th,td.gray{background-color:#eee}td.gray span{color:#222}
+tr:hover td{background-color:#f5f5f5}tr:hover td.gray{background-color:#eee}
+code,pre{display:block;margin-bottom:10px;font:13px/16px Consolas,'Courier New',Courier,monospace;border:1px dashed #ccc;padding:5px;overflow:auto}
+pre.with-hljs{padding:0}
+pre.with-hljs code{margin:0;border:0;overflow:visible}
+code.maxheight,pre.maxheight{max-height:512px}input[type="checkbox"]{margin:0;padding:0}
+#wrapper{width:100%;min-width:400px;margin:10px auto;font-size: 16px;background-color: #FFFFFF!important;}
+.path{padding:4px 7px;border:1px solid #ddd;background-color:#fff;margin-bottom:10px}
+.right{text-align:right}.center{text-align:center}.float-right{float:right}
+.message{padding:4px 7px;border:1px solid #ddd;background-color:#fff}
+.message.ok{border-color:green;color:green}
+.message.error{border-color:red;color:red}
+.message.alert{border-color:orange;color:orange}
+.btn{border:0;background:none;padding:0;margin:0;font-weight:bold;color:#296ea3;cursor:pointer}.btn:hover{color:#b00}
+.preview-img{max-width:100%;background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAKklEQVR42mL5//8/Azbw+PFjrOJMDCSCUQ3EABZc4S0rKzsaSvTTABBgAMyfCMsY4B9iAAAAAElFTkSuQmCC") repeat 0 0}
+.preview-video{position:relative;max-width:100%;height:0;padding-bottom:62.5%;margin-bottom:10px}.preview-video video{position:absolute;width:100%;height:100%;left:0;top:0;background:#000}
+[class*="icon-"]{display:inline-block;width:16px;height:16px;background:url("<?php echo FM_SELF_URL ?>?img=sprites&amp;t=<?php echo $sprites_ver ?>") no-repeat 0 0;vertical-align:bottom}
+.icon-document{background-position:-16px 0}.icon-folder{background-position:-32px 0}
+.icon-folder_add{background-position:-48px 0}.icon-upload{background-position:-64px 0}
+.icon-arrow_up{background-position:-80px 0}.icon-home{background-position:-96px 0}
+.icon-separator{background-position:-112px 0}.icon-cross{background-position:-128px 0}
+.icon-copy{background-position:-144px 0}.icon-apply{background-position:-160px 0}
+.icon-cancel{background-position:-176px 0}.icon-rename{background-position:-192px 0}
+.icon-checkbox{background-position:-208px 0}.icon-checkbox_invert{background-position:-224px 0}
+.icon-checkbox_uncheck{background-position:-240px 0}.icon-download{background-position:-256px 0}
+.icon-goback{background-position:-272px 0}.icon-folder_open{background-position:-288px 0}
+.icon-file_application{background-position:0 -16px}.icon-file_code{background-position:-16px -16px}
+.icon-file_csv{background-position:-32px -16px}.icon-file_excel{background-position:-48px -16px}
+.icon-file_film{background-position:-64px -16px}.icon-file_flash{background-position:-80px -16px}
+.icon-file_font{background-position:-96px -16px}.icon-file_html{background-position:-112px -16px}
+.icon-file_illustrator{background-position:-128px -16px}.icon-file_image{background-position:-144px -16px}
+.icon-file_music{background-position:-160px -16px}.icon-file_outlook{background-position:-176px -16px}
+.icon-file_pdf{background-position:-192px -16px}.icon-file_photoshop{background-position:-208px -16px}
+.icon-file_php{background-position:-224px -16px}.icon-file_playlist{background-position:-240px -16px}
+.icon-file_powerpoint{background-position:-256px -16px}.icon-file_swf{background-position:-272px -16px}
+.icon-file_terminal{background-position:-288px -16px}.icon-file_text{background-position:-304px -16px}
+.icon-file_word{background-position:-320px -16px}.icon-file_zip{background-position:-336px -16px}
+.icon-logout{background-position:-304px 0}.icon-chain{background-position:-320px 0}
+.icon-link_folder{background-position:-352px -16px}.icon-link_file{background-position:-368px -16px}
+.compact-table{border:0;width:auto}.compact-table td,.compact-table th{width:100px;border:0;text-align:center}.compact-table tr:hover td{background-color:#fff}
+.filename{max-width:420px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.break-word{word-wrap:break-word}
+</style>
+<link rel="icon" href="<?php echo FM_SELF_URL ?>?img=favicon" type="image/png">
+<link rel="shortcut icon" href="<?php echo FM_SELF_URL ?>?img=favicon" type="image/png">
+<?php if (isset($_GET['view']) && FM_USE_HIGHLIGHTJS): ?>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/<?php echo FM_HIGHLIGHTJS_STYLE ?>.min.css">
+<?php endif; ?>
+</head>
+<body>
+<div id="wrapper">
+<?php
 }
 
 /**
@@ -1743,25 +1784,25 @@ function fm_show_header()
 function fm_show_footer()
 {
     ?>
-    <p class="center"><small><a href="https://github.com/alexantr/filemanager" target="_blank">PHP File Manager</a></small></p>
-    </div>
-    <script>
-        function newfolder(p){var n=prompt('New folder name','folder');if(n!==null&&n!==''){window.location.search='p='+encodeURIComponent(p)+'&new='+encodeURIComponent(n);}}
-        function rename(p,f){var n=prompt('New name',f);if(n!==null&&n!==''&&n!=f){window.location.search='p='+encodeURIComponent(p)+'&ren='+encodeURIComponent(f)+'&to='+encodeURIComponent(n);}}
-        function change_checkboxes(l,v){for(var i=l.length-1;i>=0;i--){l[i].checked=(typeof v==='boolean')?v:!l[i].checked;}}
-        function get_checkboxes(){var i=document.getElementsByName('file[]'),a=[];for(var j=i.length-1;j>=0;j--){if(i[j].type='checkbox'){a.push(i[j]);}}return a;}
-        function select_all(){var l=get_checkboxes();change_checkboxes(l,true);}
-        function unselect_all(){var l=get_checkboxes();change_checkboxes(l,false);}
-        function invert_all(){var l=get_checkboxes();change_checkboxes(l);}
-        function checkbox_toggle(){var l=get_checkboxes();l.push(this);change_checkboxes(l);}
-    </script>
+<p class="center"><small><a href="https://github.com/alexantr/filemanager" target="_blank">PHP File Manager</a></small></p>
+</div>
+<script>
+function newfolder(p){var n=prompt('New folder name','folder');if(n!==null&&n!==''){window.location.search='p='+encodeURIComponent(p)+'&new='+encodeURIComponent(n);}}
+function rename(p,f){var n=prompt('New name',f);if(n!==null&&n!==''&&n!=f){window.location.search='p='+encodeURIComponent(p)+'&ren='+encodeURIComponent(f)+'&to='+encodeURIComponent(n);}}
+function change_checkboxes(l,v){for(var i=l.length-1;i>=0;i--){l[i].checked=(typeof v==='boolean')?v:!l[i].checked;}}
+function get_checkboxes(){var i=document.getElementsByName('file[]'),a=[];for(var j=i.length-1;j>=0;j--){if(i[j].type='checkbox'){a.push(i[j]);}}return a;}
+function select_all(){var l=get_checkboxes();change_checkboxes(l,true);}
+function unselect_all(){var l=get_checkboxes();change_checkboxes(l,false);}
+function invert_all(){var l=get_checkboxes();change_checkboxes(l);}
+function checkbox_toggle(){var l=get_checkboxes();l.push(this);change_checkboxes(l);}
+</script>
 <?php if (isset($_GET['view']) && FM_USE_HIGHLIGHTJS): ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 <?php endif; ?>
-    </body>
-    </html>
-    <?php
+</body>
+</html>
+<?php
 }
 
 /**

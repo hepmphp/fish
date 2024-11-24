@@ -1,0 +1,25 @@
+*{
+    padding: 0;
+    margin: 0;
+    /* margin: 0 !important; */
+}
+body{
+    /* border: 1px solid red; */
+}
+.borderred{
+    border: 1px solid black;
+}
+/* 输入区域 */
+.inputarea{
+    min-width: 500px;
+}
+.row{
+    padding: 10px;
+}
+.messageNot{
+    height: 400px;
+    max-height: 480px;
+    /* overflow: hidden; */
+    overflow-y: scroll;
+    line-height: 25px;
+}
