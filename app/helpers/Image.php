@@ -162,7 +162,7 @@ class Image {
 			}
 		} else {		
 			$ifwaterimage = 0;
-			$temp = imagettfbbox(ceil($w_font*2.5), 0, WEB_PATH.'../vendor/plugin/verifycode/arial.ttf', $w_text);
+			$temp = imagettfbbox(ceil($w_font*2.5), 0, WEB_PATH . '/static/admin/fonts/arial.ttf', $w_text);
 			$width = $temp[2] - $temp[6];
 			$height = $temp[3] - $temp[7];
 			unset($temp);

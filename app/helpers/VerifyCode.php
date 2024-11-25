@@ -56,8 +56,9 @@ class VerifyCode{
             imagesetpixel($image, rand(0, $width), rand(0, $height), $gray);
         }
         // 添加文本
+       // var_dump( WEB_PATH . '/static/admin/fonts/');
         $font_size = 14;
-        $font = WEB_PATH . '/../vendor/plugin/verifycode/arial.ttf'; // 确保你有这个字体文件，或者使用其他路径
+        $font = WEB_PATH . '/static/admin/fonts/arial.ttf'; // 确保你有这个字体文件，或者使用其他路径
         imagettftext($image, $font_size, 0, 10, 30, $black, $font, $captcha_text);
         // 输出图片
         header('Content-type: image/png');

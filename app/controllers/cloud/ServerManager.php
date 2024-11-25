@@ -171,4 +171,75 @@ use app\helpers\Validate;
          $this->view->display('cloud_server/cs_server_manager/mysql');
 
      }
+
+     public function redis(){
+         $host = isset($_GET["host"]) ? $_GET["host"] : '172.18.0.1';
+         $db = isset($_GET["db"]) ? $_GET["db"] : 0;
+         $port = isset($_GET["port"]) ? $_GET["port"] : 6379;
+         $reids = new \Redis();
+         $reids->connect($host, $port, 5);
+         try {
+             $reids->ping();
+         } catch (Exception $e) {
+             die("Couldn't connect to server [tcp://{$host}:{$port}]. " . $e->getMessage());
+         }
+         $reids->select($db);
+         $all_keys = $reids->keys('*');
+         $this->view->assign('all_keys',$all_keys);
+         $this->view->display('cloud_server/cs_server_manager/redis');
+     }
+     public function redis_info(){
+         $host = Input::get_post('host','','trim');
+         $port = Input::get_post('port','','trim');
+         $reids = new \Redis();
+         $reids->connect($host, $port, 5);
+         $info = $reids->info();
+         $this->view->assign('info',$info);
+         $this->view->display('cloud_server/cs_server_manager/redis_info');
+     }
+
+     public function redis_edit(){
+         $form['host'] = Input::get_post('host','','trim');
+         $form['port']= Input::get_post('port','','trim');
+         $form['db'] = Input::get_post('db','','trim');
+         $form['data_type'] = Input::get_post('data_type','','trim');
+         $form['redis_key'] = Input::get_post('redis_key','','trim');
+         $redis = new \Redis();
+         $redis->connect( $form['host'] ,   $form['port'], 5);
+         $redis->select($form['db']);
+         $form['redis_value'] = $redis->get($form['redis_key']);
+         $this->view->assign('form',$form);
+         $this->view->display('cloud_server/cs_server_manager/redis_edit');
+     }
+
+
+
+     public function redis_update(){
+         $form['host'] = Input::get_post('host','','trim');
+         $form['port']= Input::get_post('port','','trim');
+         $form['db'] = Input::get_post('db','','trim');
+         $form['data_type'] = Input::get_post('data_type','','trim');
+         $form['redis_key'] = Input::get_post('redis_key','','trim');
+         $form['redis_value'] = Input::get_post('redis_value','','trim');
+         $redis = new \Redis();
+         $redis->connect( $form['host'] ,   $form['port'], 5);
+         $redis->select($form['db']);
+         $redis->del($form['redis_key']);
+         if($form['data_type']=='zset'){
+             $redis->zAdd($form['redis_key'],$form['redis_value']);
+         }elseif($form['data_type']=='list'){
+             $redis->lPush($form['redis_key'], $form['redis_value']);
+         }elseif($form['data_type']=='set'){
+             $redis->sAdd($form['redis_key'], $form['redis_value']);
+         }elseif($form['data_type']=='hash'){
+             $redis->hMSet($form['redis_key'],$form['redis_value']);
+         }else{
+             $redis->set($form['redis_key'],$form['redis_value'],864000);
+         }
+         Input::ajax_return(0,'数据更改成功',$form);
+     }
+
+     public function ftp(){
+         $this->view->display('cloud_server/cs_server_manager/ftp');
+     }
  }

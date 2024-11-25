@@ -123,7 +123,7 @@
 '<td>[deltime]</td>'+
 '<td>[status]</td>'+
 
-            '<td><a onclick="login_server([id])" class="">[连接服务器]</a>|<a onclick="status_server([id])" class="">[服务器状态]</a>|<a onclick="sql_server([id])" class="">[数据库管理]</a>|<a onclick="edit([id])" class="">[编辑]</a>|<a onclick="del([id])" class="">[删除]</a></td></tr>';
+            '<td><a onclick="login_server([id])" class="">[连接服务器]</a>|<a onclick="status_server([id])" class="">[服务器状态]</a>|<a onclick="sql_server([id])" class="">[数据库管理]</a>|<a onclick="redis_server([id])" class="">[redis]</a>|<a onclick="edit([id])" class="">[编辑]</a>|<a onclick="del([id])" class="">[删除]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/cloud/server_manager/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
@@ -294,6 +294,21 @@ function layer_form(url,action,area){
 
 function sql_server(){
     var url = '/cloud/server_manager/mysql';
+    var layer_index = layer.open({
+        type: 2, //iframe
+        maxmin: true,
+        area:['900px', '600px'] ,
+        title: '数据库服务器管理',
+        btn: [],
+        shade: 0.3, //遮罩透明度
+        shadeClose: true,
+        content:url,
+    });
+    layer.full(layer_index);
+}
+
+function redis_server(){
+    var url = '/cloud/server_manager/redis';
     var layer_index = layer.open({
         type: 2, //iframe
         maxmin: true,

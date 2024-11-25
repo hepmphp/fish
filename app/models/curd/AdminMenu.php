@@ -61,11 +61,13 @@ class AdminMenu extends Model
             'cms/collect',
         ];
         $tool = [
+            'tool/http',
             'tool/developer',
             'tool/file',
             'tool/mysql',
             'tool/log',
             'tool/redis'
+
         ];
 
         $bbs = [

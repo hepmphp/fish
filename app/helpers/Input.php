@@ -157,10 +157,31 @@ class Input {
                 'status'=>$status,
                 'msg'=>$msg,
                 'data'=>$data,
+                'request_data'=>Input::get_request()
             ];
             echo( json_encode($json_data,JSON_UNESCAPED_UNICODE));
 
     }
+
+    static function get_request(){
+        $headers = [];
+        // 获取请求头信息
+        foreach ($_SERVER as $key => $value) {
+            if (substr($key, 0, 5) == 'HTTP_') {
+                $headerKey = str_replace(' ', '-', ucwords(str_replace('_', ' ', strtolower(substr($key, 5)))));
+                $headers[$headerKey] = $value;
+            }
+        }
+        // 获取GET参数
+
+        // 获取POST参数
+
+        $data['headers'] = $headers;
+        $data['get_params'] = $_GET;
+        $data['post_params'] = $_POST;
+        return $data;
+    }
+
     static function ajax_debug(){
 
         $console_log       = file_get_contents(WEB_PATH . '/log/console_log.log');
