@@ -54,6 +54,7 @@
                 <th  class="col-5">创建时间</th>
                 <th  class="col-5">修改时间</th>
                 <th  class="col-5">会话id</th>
+                <th  class="col-5">邮箱是否激活</th>
                 <th  class="col-5">操作</th>
             </tr>
             </thead>
@@ -135,6 +136,7 @@
             '<td>[create_time]</td>' +
             '<td>[update_time]</td>' +
             '<td>[last_session_id]</td>' +
+            '<td>[email_status]</td>' +
             '<td><a onclick="edit_user(\'[id]\')" class="" data-id="[id]">[修改]</a>' +
             '<a onclick="group_permission(\'[id]\')" class="">[分配权限]</a>' +
             '<a  onclick="lock_user(\'[id]\')" style="color: red">[锁定]</a></td></tr>';
@@ -150,6 +152,7 @@
                     replace('[group_name]', d.group_name).
                     replace('[create_time]', d.create_time).
                     replace('[update_time]', d.update_time).
+                    replace('[email_status]', d.email_status).
                     replace('[last_session_id]', d.last_session_id);
                 });
 

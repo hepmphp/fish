@@ -14,6 +14,11 @@ use app\helpers\Session;
 class CsrfMiddleware{
     public function handle($handler,$next){
 
+        if($_SERVER['REQUEST_URI']=='/admin/user/ding_login'||$_SERVER['REQUEST_URI']=='/admin/user/ding_login_return'
+        ||strpos("/admin/user/ding_login_return?exert=test&code=4b3b66c2c7003cb9836f887ce2472e6c&state=STATE","ding")!=false
+        ){
+            return $next($handler);
+        }
         $csrf_token = Cookie::get('_csrf_token');
         $session_csrf_token = Session::get('_csrf_token');
         if($csrf_token !=$session_csrf_token){

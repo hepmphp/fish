@@ -39,7 +39,9 @@
         <div class="nav-right">
             Hi! <span class="user-item" id="admin_username"><?=$_SESSION['admin_user_username']?><i class="fa fa-angle-down" aria-hidden="true"></i></span>
 	<span class="user-con">
-		<a href="#" class="a1" onclick="user_info('<?=$_SESSION['admin_user_id']?>')"  id="username">账号修改</a>
+		<a href="#" class="a1" onclick="user_info('<?=$_SESSION['admin_user_id']?>')"  id="username">密码修改</a>
+        <a href="#" class="a1" onclick="bind_email('<?=$_SESSION['admin_user_id']?>')"  id="mail_bind_btn">邮箱绑定</a>
+            <a href="#" class="a1" onclick="bind_ding('<?=$_SESSION['admin_user_id']?>')"  id="mail_bind_btn">钉钉绑定</a>
 		<a href="#" class="a2" onclick="user_logout()">安全退出</a>
 	</span>
 </span>
@@ -113,6 +115,8 @@
             }
         });
     }
+    
+
 
 
     function user_info(id) {
@@ -145,6 +149,62 @@
                             layer.close(index);
                             layer.closeAll();
                         }
+                        );
+                    }
+                });
+
+            },btn2: function(index, layero){
+                console.log('no');
+            }
+        });
+    }
+    function bind_ding(id) {
+        layer.open({
+            type: 2,
+            title: '管理后台钉钉绑定',
+            shadeClose: true,
+            btn: ['确认','关闭'],
+            area: ['500px', '500px'],
+            content: '/admin/user/ding_login?id='+id,
+            yes: function(index, layero){
+
+
+            },btn2: function(index, layero){
+                console.log('no');
+            }
+        });
+    }
+    function bind_email(id) {
+        layer.open({
+            type: 2,
+            title: '管理后台绑定邮箱',
+            shadeClose: true,
+            btn: ['确认','关闭'],
+            area: ['500px', '350px'],
+            content: '/admin/user/email?id='+id,
+            yes: function(index, layero){
+                var body = layer.getChildFrame('body', index);
+                var id = body.find('#id').val();
+                var email = body.find('#email').val();
+                var email_code = body.find('#email_code').val();
+                var param ={
+                    id:id,
+                    email:email,
+                    email_code:email_code
+                };
+                console.log(param)
+                layer.load(2);
+                $.ajax({
+                    type:'POST',
+                    url:'/admin/user/bind_email',
+                    data:param,
+                    dataType:'json',
+                    success:function(data){
+                        layer.close(2);
+                        layer.alert(data.msg, {icon: 1},function(index){
+                                layer.close(index);
+                                layer.closeAll();
+                            }
                         );
                     }
                 });

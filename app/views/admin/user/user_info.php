@@ -26,13 +26,13 @@
         <div class="form-inline">
             <div class="form-group">
                 <label class="control-label">密码：</label>
-                <input type="password" id="password" style="width: 150px" class="form-control">
+                <input type="password" id="password" style="width: 250px" class="form-control">
             </div>
         </div>
         <div class="form-inline">
             <div class="form-group">
                 <label class="control-label">再次输入：</label>
-                <input type="password" id="re_password" style="width: 150px" class="form-control">
+                <input type="password" id="re_password" style="width: 250px" class="form-control">
             </div>
         </div>
     </div>

@@ -14,6 +14,7 @@ use app\helpers\Debuger;
 use app\helpers\VerifyCode;
 use app\models\curd\AdminUser;
 use app\base\BaseController;
+use app\helpers\qrcode\TekinQR;
 class User extends BaseController{
     
     public $admin_user;
@@ -118,6 +119,23 @@ class User extends BaseController{
         }
     }
 
+    public function login_email(){
+        $form['username'] = Input::get_post('email','','trim');
+        $form['email'] = Input::get_post('email');
+        $form_email_code = Input::get_post('email_code','','trim');
+        $user = $this->admin_user->find(['email'=>$form['username']],'id,email');
+        $calc_email_code = $this->admin_user->email_code($user['id']);
+        if($form_email_code!=$calc_email_code){
+            throw new LogicException(-1,'邮箱验证码输入错误');
+        }
+        $res = array();
+        $res = $this->admin_user->login($form,1);
+        if($res){
+            Input::ajax_return(0,'登录成功',$res);
+        }else{
+            Input::ajax_return(-100,'管理员登录失败',$form);
+        }
+    }
     public function logout(){
         Session::session_destroy();
         Cookie::clear();
@@ -149,6 +167,13 @@ class User extends BaseController{
         }else{
             throw new LogicException(100,'没有数据');
         }
+    }
+
+    public function login_weinxin(){
+        // 生成带loog的二维码并直接输出到浏览器
+        $qr = TekinQR::getQRImg("fish", 10, "http://tekin.cn/logo.png", 0);
+        echo $qr;
+
     }
 
 

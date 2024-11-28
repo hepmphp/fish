@@ -61,7 +61,8 @@ class AdminUser extends Model
 
     public function save($data)
     {
-        $user= $this->find(['id'=>$data['id']],'id,username,password,salt');
+        $user= $this->find(['id'=>$data['id']],'id,username,email,password,salt');
+
         if(!$user){
             throw  new  LogicException(-2,'管理员不存在');
         }
@@ -106,16 +107,23 @@ class AdminUser extends Model
         }
     }
 
-    public function login($data){
+    public function login($data,$login_email_code=0){
         $data['password'] = trim($data['password']);
-        $user= $this->find(['username'=>$data['username']],'id,username,group_id,mids,password,salt,admin_url');
+        if(strpos($data['username'],'@')!=false){
+            $user= $this->find(['email'=>$data['username']],'id,username,group_id,mids,password,salt,admin_url');
+        }else{
+            $user= $this->find(['username'=>$data['username']],'id,username,group_id,mids,password,salt,admin_url');
+        }
         if(empty($user)){
             throw  new  LogicException(-1,'管理员不存在');
         }
-       // var_dump($user['password'],$this->genrate_password($data['password'],$user['salt']));
-        if($user['password'] != $this->genrate_password($data['password'],$user['salt'])){
-            throw  new  LogicException(-2,'管理员密码不正确');
+        if($login_email_code==0){//密码验证登录
+            if($user['password'] != $this->genrate_password($data['password'],$user['salt'])){
+                throw  new  LogicException(-2,'管理员密码不正确');
+            }
         }
+
+
         $group = $this->admin_group->info(['id'=>$user['group_id']]);
         $user['last_login_time'] = time();
         $user['last_session_id'] = session_id();
@@ -130,8 +138,13 @@ class AdminUser extends Model
         $_SESSION['admin_user_group_id'] = $user['group_id'];
         $_SESSION['admin_user_allow_mutil_login'] = isset($group['allow_mutil_login'])?$group['allow_mutil_login']:0;//是否启用账号踢出功能
         Cookie::set('admin_cookie',"{$_SESSION['admin_user_id']}|{$_SESSION['admin_user_session_id']}|{$_SESSION['admin_user_username']}|{$_SESSION['admin_user_group_id']}|{$_SESSION['admin_user_allow_mutil_login']}");
-        unset($user['id']);
-        $res = $this->update($user,['username'=>$data['username']],1);
+        if(empty($user['admin_url'])){
+            $user['admin_url'] = '/admin/user/welcome';
+            $return['admin_url'] = '/admin/user/welcome';
+        }
+        unset($return['password']);
+        unset($return['salt']);
+        $res = $this->update($user,['id'=>$user['id']],1);
         if(!$res){
             throw new LogicException(0,'管理员信息修改失败');
         }
@@ -161,9 +174,15 @@ class AdminUser extends Model
             }else{
                 $users[$k]['status_name'] = '<span class="label btn-success" style="background-color: green;" >正常</span>';
             }
+            $users[$k]['email_status'] = $v['email_status']==1?'激活':'未激活';
         }
         $total = $this->get_total($where);
         return [$users,$total['total']];
+    }
+
+    public function email_code($id){
+        $email_code = md5('fish_ok_'.$id);
+        return $email_code;
     }
 
 

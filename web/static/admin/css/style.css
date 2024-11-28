@@ -4636,8 +4636,7 @@ body.modal-open {
     cursor: pointer;
 }
 .logo-bg{
-
-    width: 440px;
+    width: 600px;
     border-radius: 10px;
     position: relative
 }

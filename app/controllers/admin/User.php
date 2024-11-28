@@ -7,11 +7,15 @@
 namespace app\controllers\admin;
 use app\base\exception\LogicException;
 use app\helpers\Input;
+use app\helpers\Msg;
 use app\helpers\Session;
 use app\models\curd\AdminGroup;
 use app\models\curd\AdminMenu;
 use app\models\curd\AdminUser;
 use app\base\BaseController;
+use  app\helpers\Email;
+use app\helpers\Ding;
+
 class  User extends BaseController{
 
     public $admin_user;
@@ -84,7 +88,7 @@ class  User extends BaseController{
     }
 
     public function login(){
-        $this->view->display('admin/user/login');
+        $this->view->display('admin/user/login/login');
     }
 
 
@@ -123,6 +127,101 @@ class  User extends BaseController{
         $form = $user;
         $this->view->assign('form',$form);
         $this->view->display('admin/user/user_info');
+    }
+    public function ding_login(){
+        $this->view->display('admin/user/ding/ding_login');
+    }
+    public function ding_admin_login(){
+        $this->view->display('admin/user/ding/ding_admin_login');
+    }
+    public function ding_login_return(){
+         $ding_data = (new Ding())->login_return($_GET);
+         if(isset($ding_data['errcode']) && $ding_data['errcode']==0){
+             $s_user_id = $_SESSION['admin_user_id'];
+             $user = $this->admin_user->info(['id'=>$s_user_id]);
+             $data['ding_nick'] = $ding_data['user_info']['nick'];
+             $data['ding_staus'] = 1;
+             $where['id'] = $user['id'];
+             $res = $this->admin_user->update($data,$where,1);
+             $this->view->display('admin/user/ding/ding_success');
+
+
+         }else{
+             $this->view->display('admin/user/ding/ding_fail');
+         }
+    }
+
+    public function ding_login_admin_return(){
+        $ding_data = (new Ding())->login_return($_GET);
+        if(isset($ding_data['errcode']) && $ding_data['errcode']==0){
+            $s_user_id = $_SESSION['admin_user_id'];
+            $user = $this->admin_user->find(['ding_nick'=>$ding_data['user_info']['nick']]);
+            $form['username'] = $user['email'];
+            $res = array();
+            $res = $this->admin_user->login($form,1);
+            $this->view->assign('form',$res);
+            $this->view->display('admin/user/ding/ding_admin_success');
+        }else{
+
+        }
+    }
+
+
+    public function email(){
+        $form['id'] = Input::get_post('id','','intval');
+        $form = $this->admin_user->info(['id'=>$form['id']]);
+        $this->view->assign('form',$form);
+        $this->view->display('admin/user/email/mail');
+    }
+
+    public function send_mail(){
+        $form['id'] = Input::get_post('id','','intval');
+        $email = Input::get_post('email');
+        if(empty($email)){
+            throw new LogicException(-100,'管理后台用户邮箱错误');
+        }
+
+        $user = $this->admin_user->find(['email'=>$email],'id,username,email');
+        $email_code = $this->admin_user->email_code($user['id']);
+        if(empty($form['id'])){
+            $message = file_get_contents(APP_PATH.'views/admin/user/email/mail_login_template.php');
+        }else{
+            $message = file_get_contents(APP_PATH.'views/admin/user/email/mail_template.php');
+        }
+        $message = str_replace(['[email]','[email_code]'],[$email,$email_code],$message);
+
+
+
+        $phpmail = new Email();
+        $phpmail->addTo($email);
+        $phpmail->Subject('管理后台用户邮箱绑定验证码');
+        $phpmail->Body($message);
+        if($phpmail->Send()){
+            Input::ajax_return(0,'邮件发送成功,请查收邮件',$form);
+        }else{
+            Input::ajax_return(-100,'邮箱绑定失败',$form);
+        }
+
+
+
+
+    }
+    public function bind_email(){
+        $form['id'] = Input::get_post('id','','intval');
+        $form['email'] = Input::get_post('email','','trim');
+        $form_email_code = Input::get_post('email_code','','trim');
+        $email_code = $this->admin_user->email_code($form['id']);
+        if($form_email_code!=$email_code){
+            throw new LogicException(-100,'管理后台绑定验证码错误');
+        }
+        $form['email_status'] = 1;
+        $form['admin_url'] = '';
+        $res = $this->admin_user->update($form,['id'=>$form['id']]);
+        if($res){
+            Input::ajax_return(0,'管理后台用户绑定邮箱成功',$form);
+        }else{
+            Input::ajax_return(-100,'邮箱绑定失败',$form);
+        }
     }
 
 }
