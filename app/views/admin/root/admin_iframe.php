@@ -41,7 +41,8 @@
 	<span class="user-con">
 		<a href="#" class="a1" onclick="user_info('<?=$_SESSION['admin_user_id']?>')"  id="username">密码修改</a>
         <a href="#" class="a1" onclick="bind_email('<?=$_SESSION['admin_user_id']?>')"  id="mail_bind_btn">邮箱绑定</a>
-            <a href="#" class="a1" onclick="bind_ding('<?=$_SESSION['admin_user_id']?>')"  id="mail_bind_btn">钉钉绑定</a>
+        <a href="#" class="a1" onclick="bind_ding('<?=$_SESSION['admin_user_id']?>')"  id="mail_bind_btn">钉钉绑定</a>
+         <a href="#" class="a1" onclick="bind_wexin('<?=$_SESSION['admin_user_id']?>')"  id="mail_bind_btn">微信绑定</a>
 		<a href="#" class="a2" onclick="user_logout()">安全退出</a>
 	</span>
 </span>
@@ -166,6 +167,22 @@
             btn: ['确认','关闭'],
             area: ['500px', '500px'],
             content: '/admin/user/ding_login?id='+id,
+            yes: function(index, layero){
+
+
+            },btn2: function(index, layero){
+                console.log('no');
+            }
+        });
+    }
+    function bind_wexin() {
+        layer.open({
+            type: 2,
+            title: '管理后台支付宝绑定',
+            shadeClose: true,
+            btn: ['确认','关闭'],
+            area: ['500px', '500px'],
+            content: '/admin/user/login_weixin',
             yes: function(index, layero){
 
 

@@ -35,100 +35,107 @@ class AdminMenu extends Model
     }
 
     public function get_left_menu($cate){
-        $where = " level in(1,2) and (action='index' OR action='welcome' OR action='detail') and status=0 ";
-        $limit =1;
-        $offset=100;
-        $fields ='*';
-        $menu = $this->get_list($where,$limit,$offset,$fields,'listorder asc');
-        $data  = array();
-        $children = array();
+        //        $where = " level in(1,2) and (action='index' OR action='welcome' OR action='detail') and status=0 ";
+//        $limit =1;
+//        $offset=10000;
+//        $fields ='*';
+//        $menu = $this->get_list($where,$limit,$offset,$fields,'listorder asc');
+        $where = " instr(model,'".$cate."')>0 and  level in(1,2) and (action='index' OR action='welcome' OR action='detail')  and status=0 ";
+        $menu = $this->get_list($where,0,1000,"*",'listorder asc');
+//        $admin = [
+//            'admin/menu',
+//            'admin/user',
+//            'admin/group',
+//        ];
+//
+//        $cms = [
+//            'cms/article_category',
+//            'cms/article',
+//            'cms/tag',
+//            'cms/attach',
+//            'cms/banner',
+//            'cms/friend',
+//            'cms/file',
+//            'cms/folder',
+//            'cms/collect',
+//        ];
+//        $tool = [
+//            'tool/http',
+//            'tool/developer',
+//            'tool/file',
+//            'tool/mysql',
+//            'tool/log',
+//            'tool/redis'
+//
+//        ];
+//
+//        $bbs = [
+//            'bbs/forum',
+//            'bbs/cate_list',
+//            'bbs/bbs_user',
+//        ];
+//
+//        $im = [
+//            'im/member',
+//            'im/friend',
+//            'im/friend_group',
+//            'im/group',
+//            'im/group_member',
+//            'im/msgbox',
+//            'im/record',
+//        ];
+//
+//        $publish = [
+//            'publish/project',
+//            'publish/task',
+//            'publish/project_member',
+//        ];
+//
+//        $project = [
+//            'project/project',
+//            'project/task',
+//            'project/bug',
+//            'project/statics',
+//        ];
+//
+//        $cloud = [
+//            'cloud/server_manager'
+//        ];
+//
+//        $email = [
+//            'email/mail'
+//        ];
 
-        $admin = [
-            'admin/menu',
-            'admin/user',
-            'admin/group',
-        ];
-
-        $cms = [
-            'cms/article_category',
-            'cms/article',
-            'cms/tag',
-            'cms/attach',
-            'cms/banner',
-            'cms/friend',
-            'cms/file',
-            'cms/folder',
-            'cms/collect',
-        ];
-        $tool = [
-            'tool/http',
-            'tool/developer',
-            'tool/file',
-            'tool/mysql',
-            'tool/log',
-            'tool/redis'
-
-        ];
-
-        $bbs = [
-            'bbs/forum',
-            'bbs/cate_list',
-            'bbs/bbs_user',
-        ];
-
-        $im = [
-            'im/member',
-            'im/friend',
-            'im/friend_group',
-            'im/group',
-            'im/group_member',
-            'im/msgbox',
-            'im/record',
-        ];
-
-        $publish = [
-            'publish/project',
-            'publish/task',
-            'publish/project_member',
-        ];
-
-        $project = [
-            'project/project',
-            'project/task',
-            'project/bug',
-            'project/statics',
-        ];
-
-        $cloud = [
-            'cloud/server_manager'
-        ];
         foreach ($menu as $k=>$v){
-                if($cate=='admin' && !in_array($v['model'],$admin)){
-                    continue;
-                }
-                if($cate=='cms' && !in_array($v['model'],$cms)){
-                    continue;
-                }
-                if($cate=='tool' && !in_array($v['model'],$tool)){
-                    continue;
-                }
-                if($cate=='bbs' && !in_array($v['model'],$bbs)){
-                    continue;
-                }
-                if($cate=='im' && !in_array($v['model'],$im)){
-                    continue;
-                }
-
-                if($cate=='publish' && !in_array($v['model'],$publish)){
-                    continue;
-                }
-
-                if($cate=='project' && !in_array($v['model'],$project)){
-                    continue;
-                }
-                if($cate=='cloud' && !in_array($v['model'],$cloud)){
-                    continue;
-                }
+//                if($cate=='admin' && !in_array($v['model'],$admin)){
+//                    continue;
+//                }
+//                if($cate=='cms' && !in_array($v['model'],$cms)){
+//                    continue;
+//                }
+//                if($cate=='tool' && !in_array($v['model'],$tool)){
+//                    continue;
+//                }
+//                if($cate=='bbs' && !in_array($v['model'],$bbs)){
+//                    continue;
+//                }
+//                if($cate=='im' && !in_array($v['model'],$im)){
+//                    continue;
+//                }
+//
+//                if($cate=='publish' && !in_array($v['model'],$publish)){
+//                    continue;
+//                }
+//
+//                if($cate=='project' && !in_array($v['model'],$project)){
+//                    continue;
+//                }
+//                if($cate=='cloud' && !in_array($v['model'],$cloud)){
+//                    continue;
+//                }
+//                if($cate=='email' && !in_array($v['model'],$email)){
+//                    continue;
+//                }
                 if($v['level']==2){
                     $children[] =array(
                         'name'=>$v['name'],
@@ -149,6 +156,7 @@ class AdminMenu extends Model
                     );
                 }
         }
+
         return [$data,$children];
     }
 

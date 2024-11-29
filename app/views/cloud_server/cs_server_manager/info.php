@@ -55,8 +55,6 @@
 <div id="terminal-container"></div>
 </body>
 <script>
-
-    console.log(param);
     function socket_connect() {
         var host = "<?=$form['host']?>";
         var port = "<?=$form['port']?>";

@@ -1,5 +1,7 @@
 <?php
-namespace app\helpers;
+namespace app\helpers\email;
+
+use app\base\exception\LogicException;
 
 Class Email
 {
@@ -108,6 +110,8 @@ Class Email
     // Display current log file
     public function ShowLog()
     {
+//        echo "<pre>";
+//        throw new LogicException(-100,print_r($this->log,true));
         echo '<pre>';
         echo '<b>SMTP Mail Transaction Log</b><br>';
         print_r($this->log);
@@ -124,6 +128,12 @@ Class Email
     // Send the SMTP Mail
     public function Send()
     {
+        $this->hostname =   $_SESSION['stmp_server'];
+        $this->server =   $_SESSION['stmp_server'];
+        $this->local =   $_SESSION['stmp_server'];
+        $this->port =    $_SESSION['stmp_port'];
+        $this->username =   $_SESSION['username'];
+        $this->password  = $_SESSION['password'];
         // Prepare data for sending
         $this->headers = $this->doHeaders();
         $user64 = base64_encode($this->username);
@@ -190,7 +200,7 @@ Class Email
             fclose($this->sock);
             $this->log[] = '<b>Was a timeout in Server response</b>';
             $this->ShowLog();
-            print_r($meta);
+          //  print_r($meta);
             exit();
         }
         $this->log[] = $result;
@@ -351,5 +361,104 @@ Class Email
             $this->local
         );
     }
+
+    public function mail_suject_lists(){
+        $hostname = '{imap.139.com:993/imap/ssl}INBOX';
+        /* try to connect to IMAP */
+        $inbox = imap_open($hostname,$this->username,$this->password);
+        if(!$inbox){
+            exit('Cannot connect to Gmail: ' . imap_last_error());
+        }
+        /* grab emails */
+        $emails = imap_search($inbox,'ALL');
+        /* if emails are returned, cycle through each... */
+        if ($emails) {
+            /* begin output var */
+            $output = '';
+            /* put the newest emails on top */
+            rsort($emails);
+            /* for every email... */
+            foreach($emails as $email_number) {
+                /* get information about this email */
+                $overview = imap_fetchheader($inbox,$email_number,0);
+                $mail_data = $this->match_mail_head($overview);
+                var_dump($mail_data);
+//                /* output the email header information */
+//                $output.= '<div class="toggler '.($overview[0]->seen ? 'read' : 'unread').'">';
+//                $output.= '<span class="subject">'.$overview[0]->subject.'</span> ';
+                $output.= '</div>';
+                /* output the email body */
+            }
+        }
+        else {
+            $output = "No new emails!";
+        }
+        /* close the connection */
+        imap_close($inbox);
+        return $output;
+    }
+
+    /**
+     *
+     * 匹配提取信件头部信息
+     * @param String $str
+     */
+    function match_mail_head($str){
+        $head_list= array();
+        $head_arr = array(
+            'from',
+            'to',
+            'date',
+            'subject'
+        );
+
+        foreach ($head_arr as $key){
+            if(preg_match('/'.$key.':(.*?)[\n\r]/is', $str,$m)){
+                $match = trim($m[1]);
+                $head_list[$key] = $key=='date'?date('Y-m-d H:i:s',strtotime($match)):$match;
+            }
+        }
+        return $head_list;
+    }
+
+    public function mail_lists(){
+        $hostname = '{imap.139.com:993/imap/ssl}INBOX';
+        /* try to connect to IMAP */
+        $inbox = imap_open($hostname,$this->username,$this->password);
+        if(!$inbox){
+           exit('Cannot connect to Gmail: ' . imap_last_error());
+        }
+        /* grab emails */
+        $emails = imap_search($inbox,'ALL');
+        /* if emails are returned, cycle through each... */
+        if ($emails) {
+            /* begin output var */
+            $output = '';
+            /* put the newest emails on top */
+            rsort($emails);
+            /* for every email... */
+            foreach($emails as $email_number) {
+                /* get information about this email */
+                $overview = imap_fetch_overview($inbox,$email_number,0);
+                $message = imap_fetchbody($inbox,$email_number,2);
+                /* output the email header information */
+                $output.= '<div class="toggler '.($overview[0]->seen ? 'read' : 'unread').'">';
+                $output.= '<span class="subject">'.$overview[0]->subject.'</span> ';
+                $output.= '<span class="from">'.$overview[0]->from.'</span>';
+                $output.= '</div>';
+                /* output the email body */
+                $output.= '<div class="body">'.$message.'</div>';
+            }
+        }
+        else {
+            $output = "No new emails!";
+        }
+        /* close the connection */
+        imap_close($inbox);
+        return $output;
+    }
+
+
+
 
 }

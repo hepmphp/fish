@@ -20,7 +20,9 @@ class SessionMiddleware{
             return true;
         }
         if($_SERVER['PATH_INFO']=='/api/captcha/get'||$_SERVER['PATH_INFO']=='/favicon.ico'||$_SERVER['REQUEST_URI']=='/admin/user/ding_login'
-            ||strpos("/admin/user/ding_login_return?exert=test&code=4b3b66c2c7003cb9836f887ce2472e6c&state=STATE","ding")!=false
+            ||strpos($_SERVER['REQUEST_URI'],"ding")!=false
+            ||strpos($_SERVER['REQUEST_URI'],"debug")!=false
+            ||strpos($_SERVER['REQUEST_URI'],"login")!=false
         ){
             return $next($handler);
             exit();

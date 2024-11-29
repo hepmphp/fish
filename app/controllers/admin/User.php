@@ -8,7 +8,9 @@ namespace app\controllers\admin;
 use app\base\exception\LogicException;
 use app\helpers\Input;
 use app\helpers\Msg;
+use app\helpers\qrcode\TekinQR;
 use app\helpers\Session;
+use app\helpers\WeixinLogin;
 use app\models\curd\AdminGroup;
 use app\models\curd\AdminMenu;
 use app\models\curd\AdminUser;
@@ -162,7 +164,7 @@ class  User extends BaseController{
             $this->view->assign('form',$res);
             $this->view->display('admin/user/ding/ding_admin_success');
         }else{
-
+            $this->view->display('admin/user/ding/ding_fail');
         }
     }
 
@@ -222,6 +224,34 @@ class  User extends BaseController{
         }else{
             Input::ajax_return(-100,'邮箱绑定失败',$form);
         }
+    }
+
+    public function login_weixin()
+    {
+        $callback_url = "http://mail.okfish.asia/user/login_weixin_return";
+        $qrcode_url = (new WeixinLogin())->getKFLoginUrl($callback_url);
+        echo $qrcode_url;
+       // header("Location:".$qrcode_url);
+        exit();
+
+    }
+
+
+    public function login_wexin_return(){
+        $postStr = file_get_contents('php://input'); // 获取请求体
+
+        //写入文件
+        // file_put_contents('./uploads/weixin.log', $postStr."\r\n", FILE_APPEND); // 将信息追加到文件末尾
+        $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+        var_dump($postObj);
+        $scene_id = $postObj->EventKey;
+
+        $openid = $postObj->FromUserName;   //openid
+
+        $ToUserName = $postObj->ToUserName;  //公众号
+
+        $Event = strtolower($postObj->Event);   //事件类型
+
     }
 
 }

@@ -5,139 +5,101 @@
  *  author: hepm<ok_fish@qq.com>$🐘
  */
 namespace app\helpers;
-//session_start();
-//if ($_SESSION['openid']) {
-//    exit('已经授权登录过了。。。');
-//
-//}
-//{
-//    $wx_login = new Wxlogin();
-//    $userinfo = $wx_login->getUserInfo();
-//    if ($userinfo['openid']) {
-//
-//        $_SESSION['openid'] = $userinfo['openid'];
-//
-//        var_dump($userinfo);
-//
-//    } else {
-//        exit('授权失败');
-//    }
-//}
-
-
-/*
-*
-开发平台 授权回调域  www.xxx.com
-*/
-
 
 class WeixinLogin
 {
 
-    private $login_page_url = "https://open.weixin.qq.com/connect/qrconnect?";//微信登录界面
-    private $get_accessToken_url = "https://api.weixin.qq.com/sns/oauth2/access_token?";//后去token的url
-    //private $get_openId_url = 'https://graph.qq.com/oauth2.0/me';//获取openid的url
-    private $get_user_info = "https://api.weixin.qq.com/sns/userinfo?";//获取用户信息的url
-    private $app_id = 'wxabd4205731293882';
-    private $app_key = '6f9961c4911c877689a33559887b709e';
-    public $redirect_url = 'http://www.dianjiuwan.com/weixinpc.php';
-    private $access_token;
+    /**
+     * 微信开放平台appid
+     * @var string
+     */
+    protected static $kF_AppId = 'wxabd4205731293882';
 
-    //微信登录页面
-    private function get_wx_login_page()
+    /**
+     * 微信开放平台app secret
+     * @var string
+     */
+    protected static $KF_AppSecret = '6f9961c4911c877689a33559887b709e';
+
+
+    /**
+     * 通过开放平台key获取微信登录页面
+     * 可通过回调获取code参数
+     * @param $callback_url:回调地址
+     * @return string
+     */
+    public function getKFLoginUrl($callback_url)
     {
-        $state = md5(rand(1, 1000));
-        $query = [
-            'appid' => $this->app_id,
-            'redirect_uri' => $this->redirect_url,
-            'response_type' => 'code',
-            'scope' => 'snsapi_login',
-            'state' => $state,
-        ];
-        $_SESSION['state'] = $state;//保存state验证
-
-        $url = $this->login_page_url . http_build_query($query) . '#wechat_redirect';
-        header("Location:$url");
-        exit;
+        $callback = urlencode($callback_url);
+        $AppId = self::$kF_AppId;
+        $get_code_url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid={$AppId}&redirect_uri={$callback}&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+        return $get_code_url;
     }
 
-    //获取access_token
-    private function get_code()
+    /**
+     * 通过开放平台key
+     * 获取用户openId access_token
+     * @param $code
+     * @return bool|string
+     */
+    public function getKFOpenId($code)
     {
-        //获取code
-        @$code = $_GET['code'];
-        if (!$code) {
-            $this->get_wx_login_page();
+        $AppId = self::$kF_AppId;
+        $AppSecret = self::$KF_AppSecret;
+        $get_openid_url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid={$AppId}&secret={$AppSecret}&code={$code}&grant_type=authorization_code";
+        $res = file_get_contents($get_openid_url);
+        $res = json_decode($res, true);
+        return $res;
+    }
+
+    /**
+     * 获取微信用户信息
+     * @param $access_token
+     * @param $openId
+     * @return bool|mixed
+     */
+    public function getUserInfo($access_token, $openId)
+    {
+        $url = "https://api.weixin.qq.com/sns/userinfo?access_token={$access_token}&openid={$openId}&lang=zh_CN";
+        $res = $this->linkCurl($url, 'GET');
+        $res = json_decode($res, true);
+        return $res;
+    }
+
+    /**
+     * 请求接口返回内容
+     * @param $url :请求的URL地址
+     * @param $method :请求方式POST|GET
+     * @param $params :请求的参数
+     * @param $header : 请求头
+     * @return bool|string
+     */
+    protected function linkCurl($url, $method, $params = array(), $header = array())
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($ch, CURLOPT_FAILONERROR, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        if (strpos("$" . $url, "https://") == 1) {
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
         }
-        $state = $_GET['state'];
-        /*
-        if($state != $_SESSION['state']){
-            echo "state is wrong!";
-            exit;
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        if ($method == "POST") {
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+        } else if ($params) {
+            curl_setopt($ch, CURLOPT_URL, $url . '?' . http_build_query($params));
         }
-        */
-        $_SESSION['state'] = null;
-        $query = [
-            'grant_type' => 'authorization_code',
-            'code' => $code,
-            'secret' => $this->app_key,
-            'appid' => $this->app_id,
-        ];
-
-        return $this->get_curl($this->get_accessToken_url, http_build_query($query));
-
-    }
-
-    //获取token
-    private function get_token_info()
-    {
-        //获取access_token
-        /* {
-            "access_token":"ACCESS_TOKEN",
-            "expires_in":7200,
-            "refresh_token":"REFRESH_TOKEN",
-            "openid":"OPENID",
-            "scope":"SCOPE"
-        } */
-        $data = json_decode($this->get_code(), true);
-        //参数组装数组
-        $this->access_token = $data["access_token"];
-
-        $array = array(
-            'access_token' => $data["access_token"],
-            'openid' => $data['openid'],
-        );
-
-        return $this->get_curl($this->get_user_info, http_build_query($array));
-    }
-
-    //获取openid&&获取用户信息
-    public function getUserInfo()
-    {
-        $data = $this->get_token_info();
-        $data = json_decode($data, true);
-        $data['access_token'] = $this->access_token;
-        return $data;
-    }
-
-    //curl GET请求
-    private function get_curl($url, $query)
-    {
-        $url_request = $url . $query;
-        $curl = curl_init();
-
-        //设置抓取的url
-        curl_setopt($curl, CURLOPT_URL, $url_request);
-        //设置头文件的信息作为数据流输出
-        curl_setopt($curl, CURLOPT_HEADER, 0);
-        //设置获取的信息以文件流的形式返回,而不是直接输出.
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        //执行命令
-        $data = curl_exec($curl);
-        //关闭URL请求
-        curl_close($curl);
-        return $data;
-
+        $response = curl_exec($ch);
+        if ($response === false) {
+            return false;
+        }
+        curl_close($ch);
+        return $response;
     }
 }
-
