@@ -263,6 +263,41 @@ SQL;
         highlight_string($sql);
     }
 
+    function awk(){
+        $create_file = Input::get_post('create_file','0','intval');
+        $database = Input::get_post('database','','trim');
+        $table =  Input::get_post('table','','trim');
+        $fields = Input::get_post('fields');
+        $info_schema = new InfoSchema($database);
+        $data = $info_schema->get_all_fields($table);
+        $tpl =   file_get_contents(APP_PATH."views/tool/developer/template/html/awk.php");
+        $log = array();
+        $log_tpl = "\$log[] = array(\n";
+        $i = 0;
+        foreach ($data[0] as $k=>$v) {
+            $log[$k] = $v;
+            $log_tpl = $log_tpl . "\t\t'{$k}'=>\$log_arr[{$i}],//{$v}\n";
+            $i++;
+        }
+        $log_tpl =   $log_tpl.");";
+        $tpl = str_replace('[log_data_fields]',$log_tpl,$tpl);
+        $where_tpl = <<<SQL
+    if(isset(\$param['[field]']) && \$param['[field]']){
+        \$where[] = "\$[field_key]=={\$param['[field]']}";
+    }
+SQL;
+        $where_tpl_arr = [];
+        foreach ($fields as $k=>$field) {
+            $where_tpl_arr[] =  str_replace('[field]',$field,$where_tpl);
+            $where_tpl_arr[] =  str_replace('[field_key]',$k,$where_tpl);
+        }
+
+        $tpl = str_replace('[where_field]',implode("\n",$where_tpl_arr),$tpl);
+        $tpl = str_replace('[database]',$database,$tpl);
+        $tpl = str_replace('[table]',$table,$tpl);
+        highlight_string($tpl);
+    }
+
 
 
 }

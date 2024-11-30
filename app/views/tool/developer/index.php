@@ -58,6 +58,7 @@
             <button class="btn" type="button" id="btn_list">预览列表</button>
             <button class="btn" type="button" id="btn_controller">预览控制器</button>
             <button class="btn" type="button" id="btn_controller_api">预览控制器API</button>
+            <button class="btn" type="button" id="btn_controller_awk">预览awk</button>
             &nbsp;&nbsp;&nbsp;&nbsp;
 
             <div class="form-group">
@@ -356,6 +357,41 @@
             yes: function(index, layero){
                 console.log(model_url);
                 ajax_get_alert_success(model_url,{create_file:1});
+            },btn2: function(index, layero){
+
+            }
+        });
+    });
+    $('#btn_controller_awk').click(function () {
+        var fields = new Array();
+        var form_validator_types = new Array();
+        var database = $('#database').val();
+        var table = $('#table').val();
+        $("input[name='ids[]']").each(function(){
+            if(this.checked){
+                var form_validator_type =  $(this).parent().parent().find('.form_validator_type').val();//查找对应的生成类型
+                fields.push($(this).val());
+                form_validator_types.push(form_validator_type);
+            }
+        });
+        var param = {
+            fields:fields,
+            form_validator_types:form_validator_types,
+            table:table,
+            database:database
+        };
+        var awk_url = "/tool/developer/awk?="+ $.param(param);
+        layer.open({
+            type: 2, //iframe
+            area: ['1200px', '750px'],
+            title: '预览',
+            shade: 0.3, //遮罩透明度
+            shadeClose: true,
+            content:awk_url,
+            btn: ['生成','取消'],
+            yes: function(index, layero){
+                console.log(awk_url);
+               // ajax_get_alert_success(model_url,{create_file:1});
             },btn2: function(index, layero){
 
             }
