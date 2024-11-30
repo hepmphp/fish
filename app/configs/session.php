@@ -14,7 +14,7 @@ $config['session'] = array(
     'SESSION_OPTIONS' => array(
         //'id'=>'fish',
         //'name'=>'fish',
-        'path'=>WEB_PATH.'/log/cache/',
+        'path'=>WEB_PATH.'/logs/cache/',
         #::todo 配置session redis
         //'path'=>'127.0.0.1:6379',
         'expire' => '3600',//过期时间

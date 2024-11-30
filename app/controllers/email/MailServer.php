@@ -112,7 +112,14 @@ use app\helpers\Validate;
     }
 
      public function index(){
-         $this->view->display('email/mail_server/index');
+         $data['admin_url'] = '/email/mail_server/index?iframe=1';
+         $this->view->assign('data',$data);
+         if(isset($_GET['iframe']) && $_GET['iframe']==1){
+             $this->view->display('email/mail_server/index');
+         }else{
+             $this->view->display('admin/root/admin_iframe');
+         }
+
      }
 
      public function create(){

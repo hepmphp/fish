@@ -158,9 +158,9 @@ class MailTool{
             }
         }
         $data_list['body'] = $mail_bdoy;
-        if($this->is_base64_encoded($mail_bdoy)){
-            $data_list['body'] =$this->charset(base64_decode($mail_bdoy));
-        }
+
+        $data_list['body'] =$this->charset(base64_decode($mail_bdoy));
+
 
         $data_list['attach'] = '';
         if(!empty($attach[1])){
@@ -194,19 +194,16 @@ class MailTool{
         $is_attach = $this->is_attach($inbox,$mail_id);
         $attach = '';
         if($is_attach[$mail_id]){
-
             $headers = imap_headerinfo($inbox, $mail_id); //获取信件标头
             $mail_bdoy = imap_fetchbody($inbox, $mail_id,1.1); //获取信件正文
             $attach = $this->get_attach($inbox,$mail_id);
         }else{
             $headers = imap_headerinfo($inbox, $mail_id); //获取信件标头
             $mail_bdoy = imap_fetchbody($inbox, $mail_id,1); //获取信件正
-            if($this->is_base64_encoded($mail_bdoy)){
+            if(!$this->is_base64_encoded($mail_bdoy)){
                 $mail_bdoy = imap_fetchbody($inbox, $mail_id,2); //获取信件正文
             }
         }
-
-
         $mail_data =  $this->parse_header($headers,$mail_bdoy,$attach);
         return $mail_data;
     }

@@ -1,10 +1,1 @@
-/web/cache/
-/web/log/
-/web/ckfinder/
-/web/*.log
-/web/tool/*.log
-/web/html
-/web/upload
-/web/web-socket
-/web/collect
-/web/images
+/vendor/

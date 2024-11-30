@@ -50,8 +50,8 @@ class Handler {
         $referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
 
         $log_message_format = $time."|".sprintf($log_message,$errcode,$errstr,$errfile,$errline,$url,$referer);
-        Event::$subject->set_data($log_message_format);
-        Event::trigger();
+//        Event::$subject->set_data($log_message_format);
+//        Event::trigger();
 //        error_log($log_message_format.PHP_EOL,3,WEB_PATH.self::LOG_PATH);
     }
 
@@ -72,8 +72,8 @@ class Handler {
             $email_content[] = "Time:".$time;
             $email_content[] = "Request: ".print_r($GLOBALS,true);
             $email_content_msg = "<pre>".$email_msg.PHP_EOL.implode(PHP_EOL,$email_content);
-            Event::$subject->set_data($email_content_msg);
-            Event::trigger();
+//            Event::$subject->set_data($email_content_msg);
+//            Event::trigger();
         }
     }
 

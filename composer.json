@@ -1,2 +1,9 @@
 {
+    "name": "hepm/fish",
+    "autoload": {
+        "psr-4": {
+            "Hepm\\Fish\\": "src/"
+        }
+    },
+    "require": {}
 }

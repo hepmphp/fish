@@ -14,50 +14,58 @@
     <![endif]-->
     <?=\app\helpers\AppAsset::run()?>
 </head>
+<style>
+    .bd_line{
+        border: 3px solid #1278f6;
+    }
+    .bd_line_l{
+        border-right: 3px solid #1278f6;
+    }
+</style>
 <body>
 <div class="container col-sm-12" style="margin-top: 10px;background:url('<?=STATIC_URL?>images/mail_bg.gif') no-repeat;background-size: cover;">
     <div class="form-horizontal" style="margin-top: 200px;line-height:20px;margin-left: 50px;">
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="title">收件人</label>
+        <div class="form-group bd_line">
+            <label class="col-sm-2 control-label bd_line_l" for="title">收件人</label>
             <div class="col-sm-4">
                 <p><?=$form['to']?></p>
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="title">标题</label>
+        <div class="form-group bd_line">
+            <label class="col-sm-2 control-label bd_line_l" for="title">标题</label>
             <div class="col-sm-4">
                 <p><?=$form['subject']?></p>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="title">发件人</label>
+        <div class="form-group bd_line">
+            <label class="col-sm-2 control-label bd_line_l " for="title">发件人</label>
             <div class="col-sm-4">
                 <p><?=$form['from']?></p>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="tag_ids">邮件日期</label>
+        <div class="form-group bd_line">
+            <label class="col-sm-2 control-label bd_line_l" for="tag_ids">邮件日期</label>
             <div class="col-sm-4">
                 <p><?=$form['MailDate']?></p>
             </div>
         </div>
 
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="keywords">邮件大小</label>
+        <div class="form-group bd_line">
+            <label class="col-sm-2 control-label bd_line_l" for="keywords">邮件大小</label>
             <div class="col-sm-4">
                 <p><?=$form['Size']?></p>
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="keywords">附件</label>
+        <div class="form-group bd_line">
+            <label class="col-sm-2 control-label bd_line_l" for="keywords">附件</label>
             <div class="col-sm-4">
                 <?=$form['attach']?>
             </div>
         </div>
         <!-- Textarea -->
-        <div class="form-group">
-            <label class="col-sm-2 control-label" for="tag_ids">邮件内容</label>
+        <div class="form-group bd_line">
+            <label class="col-sm-2 control-label bd_line_l" for="tag_ids">邮件内容</label>
             <?php if(strpos($form['body'],'>')!=false){ ?>
                 <?=$form['body']?>
             <?php }else{ ?>
