@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70599de6-1c42-4819-9704-773d568c4494" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/fish.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fish.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/admin/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/admin/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/developer/CurdHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/developer/CurdHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/developer/FormBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/developer/FormBuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/root/admin_iframe.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/root/admin_iframe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/user/email/mail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/user/email/mail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/user/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/user/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/cms/article/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/cms/article/create.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/tool/developer/template/html/list.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/tool/developer/template/html/list.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/fish_admin.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/fish_admin.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/fish_cloud_server.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/fish_cloud_server.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/logs/cache/sess_61qioa4je54cm1rejl5t70cgjs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/cms/Collect.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/cms/Collect.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/tool/Developer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tool/Developer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/logs/cache/sess_i810ce1q13tpmrktulr74r0ash" beforeDir="false" afterPath="$PROJECT_DIR$/web/logs/cache/sess_i810ce1q13tpmrktulr74r0ash" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/logs/cache/sess_krfrio7njt004lc3v98sr3friv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/tool/awk/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/tool/awk/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,16 +73,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/static/doc" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\data\www\fish\im\controllers\layim" />
-      <recent name="E:\data\www\fish" />
-      <recent name="E:\data\www\fish\web\static\admin\js" />
-      <recent name="E:\data\www\fish\bbs\controllers\web" />
-      <recent name="E:\data\www\fish\bbs\views\web\common" />
+      <recent name="E:\data\www\dnmp\www\fish\web\static\doc" />
+      <recent name="E:\data\www\dnmp\www\fish\doc\controllers\web" />
+      <recent name="E:\data\www\dnmp\www\fish\doc\helpers" />
+      <recent name="E:\data\www\dnmp\www\fish\web\tool\jfu\js" />
+      <recent name="E:\data\www\dnmp\www\fish" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\data\www\fish\bbs\views\web\index" />
@@ -127,7 +120,8 @@
       <workItem from="1731173844136" duration="12000" />
       <workItem from="1731173859002" duration="20000" />
       <workItem from="1731230046358" duration="3813000" />
-      <workItem from="1733042264622" duration="7016000" />
+      <workItem from="1733042264622" duration="14216000" />
+      <workItem from="1733062652174" duration="8890000" />
     </task>
     <servers />
   </component>

@@ -273,17 +273,36 @@ JS;
          echo date("Y-m-d H:i:s")."<br/>";
          $tag = rand();
          echo <<<JS
+<style>
+ .notification {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    text-align: center;
+  }
+</style>
 <script>console.log('采集结束...')</script>
 <script>
 // 兼容处理
 let Notification = window.Notification || window.webkitNotifications
-
+Notification.requestPermission().then(function (permission) {
+   if (permission === 'granted') {
+    	console.log('用户同意授权');
+     	// 随时可以显示通知
+  	} else if (permission === 'default') {
+    	console.log('用户关闭授权,可以再次请求授权');
+  	} else {
+    	console.log('用户拒绝授权,不能显示通知');
+  	}
+});
 // 创建实例 new Notification(title, options)
 var notify =new Notification('管理后台采集通知', {
     // 文字方向，auto / ltr / rtl
     dir: 'auto',     
     // 赋予通知一个ID，以便在必要的时候对通知进行刷新、替换或移除           
-    tag: {$tag}   ,    
+    tag: '{$tag}'  ,    
     // 一个图片的URL，将被用于显示通知的图标    
     icon: 'http://127.0.0.1/static/admin/images/10001.jpg',  
     // image: 'http://127.0.0.1/static/admin/images/10001.jpg',  

@@ -1,1 +1,6 @@
 /vendor/
+/web/collect
+/web/images
+/web/log
+/web/logs
+/web/upload

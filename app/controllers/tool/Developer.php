@@ -282,16 +282,15 @@ SQL;
         $log_tpl =   $log_tpl.");";
         $tpl = str_replace('[log_data_fields]',$log_tpl,$tpl);
         $where_tpl = <<<SQL
-    if(isset(\$param['[field]']) && \$param['[field]']){
+    if(isset(\$param['[field]']) ){
         \$where[] = "\$[field_key]=={\$param['[field]']}";
     }
 SQL;
         $where_tpl_arr = [];
         foreach ($fields as $k=>$field) {
-            $where_tpl_arr[] =  str_replace('[field]',$field,$where_tpl);
-            $where_tpl_arr[] =  str_replace('[field_key]',$k,$where_tpl);
+            //$where_tpl_arr[] =  str_replace('[field]',$field,$where_tpl);
+            $where_tpl_arr[] =  str_replace(['[field_key]','[field]'],[$k,$field],$where_tpl);
         }
-
         $tpl = str_replace('[where_field]',implode("\n",$where_tpl_arr),$tpl);
         $tpl = str_replace('[database]',$database,$tpl);
         $tpl = str_replace('[table]',$table,$tpl);

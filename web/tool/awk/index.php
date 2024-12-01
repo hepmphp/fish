@@ -3,10 +3,14 @@
 error_reporting(E_ALL);
 ini_set('memory_limit', '1024M');
 
-$action = $_GET['a'];
+$method = isset($_GET['m'])?$_GET['m']:'';
+$action = isset($_GET['a'])?$_GET['a']:'';
+
+$debug = isset($_GET['debug'])?$_GET['debug']:'';
+
 $param = $_GET;
- 
-define('LOGPATH','/data/logs/');
+
+define('LOGPATH',__DIR__."/../../logs/");
  
 /*通用的参数*/
 /*
@@ -37,61 +41,32 @@ if(isset($param['end_time']) && !empty($param['end_time'])){
     $log_time =  strtotime(date("Y-m-d 23:59:59"));
 }
 
-$log_path = LOGPATH."/".date("Y/m",$log_time)."/*/";
+$log_path = LOGPATH.date("Y/m",$log_time)."/";
 $param['log_path'] = $log_path;
 $param['log_time'] = $log_time;
 
-$config_api_num = array(
-	1=>'recharge',
-	2=>'ingot_other',
-	3=>'ingot_expend',
-	4=>'ingot_expend_other',
-	5=>'binding_ingot',
-	6=>'binding_ingot_expend',
-	7=>'bingding_ingot_expend_other',
-	8=>'sliver_gain',
-	9=>'silver_cost',
-	10=>'currency_other_gain',
-	11=>'currency_other_cost',
-	12=>'game_enter',
-	13=>'create_role',
-	14=>'login',
-	15=>'logout',
-	16=>'online',
-	17=>'task_progress',
-	18=>'map_switch',
-	19=>'death',
-	20=>'upgrade',
-	21=>'transcript',
-	22=>'activity',
-	23=>'boss_kill',
-	24=>'achievement',
-	25=>'shop_buy',
-	26=>'shop_sell',
-	27=>'store',
-	28=>'tradding',
-	29=>'item_specail',
-	30=>'item_normal',
-	31=>'item_use',
-	32=>'clearing_history',
-	33=>'client',
+ 
+$file = __DIR__."/function/{$method}.php";
 
-    100=>'coin_expend_total',//货币消耗汇总
-	101=>'server_ingot_daily_total',
-);
+if($debug){
 
-$file = array_search(str_replace(array('get_','_log'),array('',''),$action),$config_api_num)."/{$action}.php";
+    var_dump($file,file_exists($file));
+    var_dump($action);
+    var_dump($param);
+}
 if(!file_exists($file)){
 	  $response = array(
             'status'=>-1,
             'msg'=>'file not exists'
         );
 		
+}else{
+    require $file;
+    /**通用的参数*/
+ 
+    $action($param);
 }
-include __DIR__.'/'.$file;
 
-/**通用的参数*/
-call_user_func($action,$param);
 
 
 /***
