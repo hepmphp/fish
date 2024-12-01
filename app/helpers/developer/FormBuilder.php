@@ -22,20 +22,12 @@ class FormBuilder {
             'password_input'=>'2.密码',
             'textarea_input'=>'3.文本框',
             'select_input'=>'4.下拉框',
-            'multi_radio'=>'5.单选框',
-            'mutil_checkbox'=>'6.复选框',
-            'date_time'=>'7.时间',
-            'date'=>'8.日期',
-            'image'=>'9.单图上传',
-            'image_mutil'=>'10.多图上传',
-            'text_rich'=>'11.富文本',
-            'text_multi_select'=>'12.文本多选',
-            'text_search'=>'13.下拉搜索',
-            'select_tree'=>'14.树形菜单',
-            'image_priview'=>'15.单图预览上传',
-            'image_mutil_priview'=>'16.多图预览上传',
-
-
+            'date_time'=>'5.时间',
+            'date'=>'6.日期',
+            'text_rich'=>'7.富文本',
+            'text_search'=>'8.下拉搜索',
+            'select_tree'=>'9.树形菜单',
+            'image_priview'=>'10.多图预览上传',
         );
         return $config;
     }
@@ -316,82 +308,85 @@ EOT;
      */
     public static function text_rich($field,$name){
         $input = <<<EOT
-      <div class="form-group">
-     <label class="col-sm-4 control-label">[name]：</label>
-       <div class="col-sm-4">
-        <script type="text/plain" name="[field]" id="[field]" value="" style="width:100%;height: 400px;"></script>
-
+ <div class="container col-sm-12" style="margin-top: 10px;">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-1 control-label">内容：</label>
+                    <div class="col-sm-11">
+                        <div type="text/plain" name="content" id="content"   style="width:1000px;height: 500px;"><?=html_entity_decode(\$form['content'])?></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <style>
-        /*设置按扭样式*/
-        .edui-icon-test{
-            background-position: -380px 0;
-        }
+            /*设置按扭样式*/
+            .edui-icon-test {
+                background-position: -380px 0;
+            }
         </style>
-        <script>
-            var um = UM.getEditor('content',{
-                toolbar: [
-                    'source | undo redo | bold italic underline strikethrough | superscript subscript | forecolor backcolor | removeformat |',
-                    'insertorderedlist insertunorderedlist | selectall cleardoc paragraph | fontfamily fontsize' ,
-                    '| justifyleft justifycenter justifyright justifyjustify |',
-                    'link unlink | emotion image video  | map',
-                    '| horizontal print preview fullscreen', 'drafts', 'formula','test'
-                ]
-            });
-            um.ready(function() {
-                //设置编辑器的内容
-                um.setContent("<?=addslashes(\$form['content'])?>");
-                $('.edui-container').width("900px");
-                $('.edui-body-container').width("900px");
-            });
-            UM.registerUI('test',
-                function(name) {
-                    var me = this;
-                    var \$btn = $.eduibutton({
-                        icon : name,
-                        click : function(){
-
-                            layer.open({
-                                type: 2, //iframe
-                                area: ['900px', '560px'],
-                                title: '选择图片',
-                                btn: ['确认','取消'],
-                                shade: 0.3, //遮罩透明度
-                                content:'http://yiiadmin.local/?r=cms/attach/index&iframe=1',
-                                yes: function(index, layero){
-
-                                    var body = layer.getChildFrame('body', index);
-
-                                    var image_list = '<p><img src="[src]" _src="[src]" ></p>'+"\n";
-                                    var html_image_list = '';
-                                    body.find('.image_border').each(function(){
-                                        html_image_list = html_image_list+image_list.replace('[src]',$(this).attr('src')).replace('[_src]',$(this).attr('_src'));
-                                        //attach_urls.push($(this).attr('src'));
-                                    });
-
-                                    $('#content').append(html_image_list);
-                                    layero.close();
-                                    console.log("checked...");
-//                                            ajax_post(url,param);
-                                },btn2: function(index, layero){
-
-                                }
-                                // content:"{:U('Serverpolicy/add')}" //iframe的url
+     <link href="<?=STATIC_URL?>js/umeditor/themes/default/css/umeditor.css" rel="stylesheet">
+<script src="<?=STATIC_URL?>js/umeditor/umeditor.config.js"></script>
+<script src="<?=STATIC_URL?>js/umeditor/umeditor.js"></script>
+<script>
+    var um = UM.getEditor('content', {
+        toolbar: [
+            'source | undo redo | bold italic underline strikethrough | superscript subscript | forecolor backcolor | removeformat |',
+            'insertorderedlist insertunorderedlist | selectall cleardoc paragraph | fontfamily fontsize',
+            '| justifyleft justifycenter justifyright justifyjustify |',
+            'link unlink | emotion  video  | map',
+            '| horizontal print preview fullscreen', 'drafts', 'formula', 'test'
+        ]
+    });
+    um.ready(function () {
+        //设置编辑器的内容
+        //um.setContent(html_content);
+        $('.edui-container').width("1000px");
+        $('.edui-body-container').width("1000px");
+    });
+    UM.registerUI('test',
+        function (name) {
+            var me = this;
+            var $btn = $.eduibutton({
+                icon: name,
+                click: function () {
+                    layer.open({
+                        type: 2, //iframe
+                        area: ['1100px', '800px'],
+                        title: '选择图片',
+                        btn: ['确认', '取消'],
+                        shadeClose: true,
+                        shade: 0.3, //遮罩透明度
+                        content: '/cms/file/index?iframe=1',
+                        yes: function (index, layero) {
+                            var body = window.layer.getChildFrame('body', index);
+                            var image_list = '<p><img src="[src]" _src="[src]" ></p>' + "\n";
+                            var html_image_list = '';
+                            $.each(body.find('.image_border>a>img'),function (i,v) {
+                                console.log('aaaaaaaaaaaaaaaaaaaaa');
+                                html_image_list = html_image_list + image_list.replace('[src]', $(this).attr('src')).replace('[_src]', $(this).attr('src'));
+                                //attach_urls.push($(this).attr('src'));
                             });
-                        },
-                        title: '相册插入图片'
-                    });
+                            $('#content').append(html_image_list);
+                            layer.closeAll();
+                            console.log("checked...");
+                        }, btn2: function (index, layero) {
 
-                    this.addListener('selectionchange',function(){
-                        //切换为不可编辑时，把自己变灰
-                        var state = this.queryCommandState(name);
-                       \$btn.edui().disabled(state == -1).active(state == 1)
+                        }
+                        // content:"{:U('Serverpolicy/add')}" //iframe的url
                     });
-                    return \$btn;
-                }
-            );
-        </script>
-      </div>
-     </div>
+                },
+                title: '相册插入图片'
+            });
+
+            this.addListener('selectionchange', function () {
+                //切换为不可编辑时，把自己变灰
+                var state = this.queryCommandState(name);
+                $btn.edui().disabled(state == -1).active(state == 1)
+            });
+            return $btn;
+        }
+    );
+</script>
 EOT;
         $input = str_replace(array('[name]','[field]'),array($name,$field),$input);
         return $input;
@@ -407,79 +402,11 @@ EOT;
      */
     public static function image_priview($field,$name){
         $input = <<<EOT
-         <div class="form-group">
-            <label class="col-sm-4 control-label">[name]：</label>
-            <div class="col-sm-8">
-                <div class="clear-float">
-                    <form class="upload-win clear-float" enctype="multipart/form-data">
-                        <div class="upload-img upload-img-one left">
-                            <input value="<?=\$form['[field]']?>" type="hidden" class="image-item" type="text" id="[field]">
-                            <img src="<?=Yii::\$app->controller->getStaticUrl()?><?=\$form['[field]']?>" alt=""  class="pic_url">
-                            <input type="file" name="images" style="opacity:0" accept="image/*" capture="camera">
-                            <i class="iconfont icon-lajitong"></i>
-                            <i class="iconfont icon-tianjia"></i>
-                            <div class="over-cover"></div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+<?php include APP_PATH.'/views/admin/root/upload.php';?>
 EOT;
-        $input = str_replace(array('[name]','[field]'),array($name,$field),$input);
        return $input;
     }
 
-    /***
-     * 多图预览上传
-     * @param $field
-     * @param $name
-     * @return mixed
-     */
-    public static function image_mutil_priview($field,$name){
-
-        $input = <<<EOT
-   <div class="form-group">
-            <label class="col-sm-4 control-label">[name]：</label>
-            <input value="<?=\$form['[field]']?>" type="hidden" id="images">
-            <div class="col-sm-8">
-                <div class="clear-float">
-                    <form class="upload-win clear-float" enctype="multipart/form-data">
-                        <input type="hidden" class="group_name" value="admin">
-                        <?php
-                            \$form['images'] = explode(',',\$form['[field]']);
-                            if(!empty(\$form['[field]'])){
-                                foreach(\$form['[field]'] as \$image){
-
-                        ?>
-                        <div class="upload-img upload-img-one left">
-                            <img src="<?=Yii::\$app->controller->getStaticUrl()?><?=\$image?>" alt=""  class="pic_url">
-                            <span class="image-item" src="<?=\$image?>"></span>
-                            <input type="file" name="images" style="opacity:0" accept="image/*" capture="camera">
-                            <i class="iconfont icon-lajitong"></i>
-                            <i class="iconfont icon-tianjia"></i>
-                            <div class="over-cover"></div>
-                        </div>
-                        <?php }?>
-                        <?php }?>
-
-                        <div class="upload-img upload-img-mutil left">
-                            <img src="" alt=""  class="pic_url">
-                           <span class="image-item" src=""></span>
-                            <input type="file" name="images" style="opacity:0" accept="image/*" capture="camera">
-                            <i class="iconfont icon-lajitong"></i>
-                            <i class="iconfont icon-tianjia"></i>
-                            <div class="over-cover"></div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-EOT;
-        $input = str_replace(array('[name]','[field]'),array($name,$field),$input);
-        return $input;
-
-    }
 
 
     public static function get_form_html($database,$table,$config_fied_builder_types,$get_form_builder_types){

@@ -21,7 +21,12 @@
     </script>
 </head>
 <body class="form-body">
-<div class="form-wrapper">
+<div class="form-wrapper" style="padding-top: 0px;">
+    <ul class="list-inline page-tab clearfix">
+        <li class="cur"><a href="/admin/user/index?iframe=1">用户列表</a><em></em></li>
+        <li><a href="/admin/user/update_info?iframe=1">修改用户密码</a><em></em></li>
+        <li ><a href="/admin/user/user_bind?iframe=1">用户信息绑定</a><em></em></li>
+    </ul>
     <div class="form-item">
         <form class="form-inline clearfix" role="form">
             <div class="form-group">

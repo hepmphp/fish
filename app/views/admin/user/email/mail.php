@@ -21,17 +21,30 @@
     </script>
 </head>
 <body>
-<div class="form-wrapper">
-    <div class="form-item min-pop" style="width: 300px;margin:10px auto;">
+<div class="form-horizontal">
+    <div class="" style="width: 600px;margin:60px auto;margin-top: 100px;margin-left:200px; ">
+        <?php if(!empty($_SESSION['admin_user_id'])){
+            $form['id'] = $_SESSION['admin_user_id'];
+            $form['username'] = $_SESSION['admin_user_username'];
+
+        }?>
         <input type="hidden" id="id" value="<?=$form['id']?>">
         <div class="form-inline">
-            <div class="form-group">
-                <label class="control-label">邮箱：</label>
-                <input type="text" id="email" class="form-control" style="width: 300px !important;" >
+            <div class="form-inline">
+                <div class="form-group">
+                    <label class="control-label">用户名：&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <span><?=$form['username']?></span>
+                </div>
             </div>
-            <a class="btn btn-info m-l" id="btn_send_mail" style="background-color: #0071ce;color:#FFFFFF;"> 获取邮箱验证码</a>
         </div>
-        <div class="form-inline">
+        <div class="form-inline" style="margin-top: 10px;">
+            <div class="form-group">
+                <label class="control-label">邮箱： &nbsp;&nbsp;&nbsp; </label>
+                <input type="text" id="email" class="form-control" style="width: 300px !important;" >
+                <a class="btn btn-info m-l" id="btn_send_mail" style="background-color: #0071ce;color:#FFFFFF;"> 获取验证码</a>
+            </div>
+        </div>
+        <div class="form-inline" style="margin-top: 10px;">
             <div class="form-group">
                 <label class="control-label">验证码：</label>
                 <input type="text" id="email_code" class="form-control" style="width: 300px !important;" >

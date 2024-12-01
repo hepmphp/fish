@@ -13,7 +13,7 @@
     <script src="<?=STATIC_URL?>js/respond.min.js"></script>
     <![endif]-->
     <?=\app\helpers\AppAsset::run()?>
-    <link href="<?=STATIC_URL?>js/umeditor/themes/default/css/umeditor.css" rel="stylesheet">
+
 </head>
 
 <div class="container col-sm-12" style="margin-top: 10px;">
@@ -123,7 +123,7 @@
 <!--        </div>-->
     </div>
 </div>
-
+<link href="<?=STATIC_URL?>js/umeditor/themes/default/css/umeditor.css" rel="stylesheet">
 <script src="<?=STATIC_URL?>js/umeditor/umeditor.config.js"></script>
 <script src="<?=STATIC_URL?>js/umeditor/umeditor.js"></script>
 <script>

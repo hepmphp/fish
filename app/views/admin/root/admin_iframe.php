@@ -28,7 +28,7 @@
 <body class="gray-bg">
 <div class="wrapper">
     <div class="navtop clearfix">
-        <h1 class="nav-title">禅意花园<b></b></h1>
+        <h1 class="nav-title">fish<b></b></h1>
         <div class="navmenu"  id='cssmenu'>
             <ul class="navmenu-item">
                  <?php foreach ($top_menu as $k=>$m){?>
@@ -40,9 +40,7 @@
             Hi! <span class="user-item" id="admin_username"><?=$_SESSION['admin_user_username']?><i class="fa fa-angle-down" aria-hidden="true"></i></span>
 	<span class="user-con">
 		<a href="#" class="a1" onclick="user_info('<?=$_SESSION['admin_user_id']?>')"  id="username">密码修改</a>
-        <a href="#" class="a1" onclick="bind_email('<?=$_SESSION['admin_user_id']?>')"  id="mail_bind_btn">邮箱绑定</a>
-        <a href="#" class="a1" onclick="bind_ding('<?=$_SESSION['admin_user_id']?>')"  id="mail_bind_btn">钉钉绑定</a>
-         <a href="#" class="a1" onclick="bind_wexin('<?=$_SESSION['admin_user_id']?>')"  id="mail_bind_btn">微信绑定</a>
+
 		<a href="#" class="a2" onclick="user_logout()">安全退出</a>
 	</span>
 </span>
@@ -121,116 +119,9 @@
 
 
     function user_info(id) {
-        layer.open({
-            type: 2,
-            title: '修改密码',
-            shadeClose: true,
-            btn: ['确认','关闭'],
-            area: ['300px', '300px'],
-            content: '/admin/user/user_info?id='+id,
-            yes: function(index, layero){
-                var body = layer.getChildFrame('body', index);
-                var password = body.find('#password').val();
-                var re_password = body.find('#re_password').val();
-                console.log(password);
-                var param ={
-                    id:id,
-                    password:password,
-                    re_password:re_password
-                };
-                layer.load(2);
-                $.ajax({
-                    type:'POST',
-                    url:'/api/user/update',
-                    data:param,
-                    dataType:'json',
-                    success:function(data){
-                        layer.close(2);
-                        layer.alert(data.msg, {icon: 1},function(index){
-                            layer.close(index);
-                            layer.closeAll();
-                        }
-                        );
-                    }
-                });
-
-            },btn2: function(index, layero){
-                console.log('no');
-            }
-        });
+        window.location.href = '/admin/user/update_info?iframe=0&id='+id;
     }
-    function bind_ding(id) {
-        layer.open({
-            type: 2,
-            title: '管理后台钉钉绑定',
-            shadeClose: true,
-            btn: ['确认','关闭'],
-            area: ['500px', '500px'],
-            content: '/admin/user/ding_login?id='+id,
-            yes: function(index, layero){
 
-
-            },btn2: function(index, layero){
-                console.log('no');
-            }
-        });
-    }
-    function bind_wexin() {
-        layer.open({
-            type: 2,
-            title: '管理后台支付宝绑定',
-            shadeClose: true,
-            btn: ['确认','关闭'],
-            area: ['500px', '500px'],
-            content: '/admin/user/login_weixin',
-            yes: function(index, layero){
-
-
-            },btn2: function(index, layero){
-                console.log('no');
-            }
-        });
-    }
-    function bind_email(id) {
-        layer.open({
-            type: 2,
-            title: '管理后台绑定邮箱',
-            shadeClose: true,
-            btn: ['确认','关闭'],
-            area: ['500px', '350px'],
-            content: '/admin/user/email?id='+id,
-            yes: function(index, layero){
-                var body = layer.getChildFrame('body', index);
-                var id = body.find('#id').val();
-                var email = body.find('#email').val();
-                var email_code = body.find('#email_code').val();
-                var param ={
-                    id:id,
-                    email:email,
-                    email_code:email_code
-                };
-                console.log(param)
-                layer.load(2);
-                $.ajax({
-                    type:'POST',
-                    url:'/admin/user/bind_email',
-                    data:param,
-                    dataType:'json',
-                    success:function(data){
-                        layer.close(2);
-                        layer.alert(data.msg, {icon: 1},function(index){
-                                layer.close(index);
-                                layer.closeAll();
-                            }
-                        );
-                    }
-                });
-
-            },btn2: function(index, layero){
-                console.log('no');
-            }
-        });
-    }
 </script>
 </body>
 <?php include_once WEB_PATH.'/../app/views/admin/user/debug.php'?>

@@ -229,30 +229,38 @@ EOT;
             }
         }
 
-        $table_header = "\n";
-        $td_template = "\n";
+        $table_header = "";
+        $td_template = "";
         $td_data = "\n";
         $search_param = "\n";
+        $i = 1;
+        $total_filelds = count($db_fields);
+
         foreach($db_fields as $k=>$v){
             if(in_array($k,$fields)){
-                $table_header = $table_header."<th>{$v}</th>\n";
-                $td_template = $td_template."'<td>[{$k}]</td>'+\n";
+                $table_header = $table_header."\t\t\t\t<th>{$v}</th>\n";
+                $td_template = $td_template."\t\t'<td>[{$k}]</td>'+\n";
                 if($k=='id'){
-                    $td_data = $td_data."replace(/\[{$k}\]/g, d.{$k}).\n";
+                    $td_data = $td_data."\t\t\t\t\treplace(/\[{$k}\]/g, d.{$k}).\n";
                 }else{
-                    $td_data = $td_data."replace('[{$k}]', d.{$k}).\n";
+                    if($total_filelds==$i){
+                        $td_data = $td_data."\t\t\t\t\treplace('[{$k}]', d.{$k}); \n";
+                    }else{
+                        $td_data = $td_data."\t\t\t\t\treplace('[{$k}]', d.{$k}).\n";
+                    }
+
                 }
-                $search_param = $search_param."\t\t\t\t\t\t{$k}: \$('#{$k}').val(),\n";
+                $search_param = $search_param."\t\t\t{$k}:\$('#{$k}').val(),\n";
 
                 $td_data = "\t\t\t".$td_data;
+                $i++;
             }
         }
         $search_param_tpl = <<<TPL
-            var search_param= {
-                        page: 1,
-                        per_page :100,
-                    [search_param]
-            };
+        var search_param= {
+            page: 1,
+            per_page :100,[search_param]
+        };
 TPL;
 
         $search_param = str_replace('[search_param]',$search_param,$search_param_tpl);

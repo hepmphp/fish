@@ -56,12 +56,12 @@
 <script>
     var per_page = $('#per_page').val();
     var param = {
-        page: 1,
-        per_page: per_page,
+        page:1,
+        per_page:per_page,
     };
 
     function search_list(){
-        [search_param]
+[search_param]
         console.log(search_param);
         ajax_list(search_param);
     }

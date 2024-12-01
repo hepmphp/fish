@@ -89,6 +89,33 @@ class  User extends BaseController{
         $this->view->display('admin/user/create');
     }
 
+    public function update_info(){
+        $form['id'] = Input::get_post('id');
+        $user_group = $this->admin_group->find_all_group([]);
+        $user = $this->admin_user->info(['id'=>$form['id']]);
+        $data['admin_url'] = '/admin/user/update_info?iframe=1&id='.$form['id'];
+        $this->view->assign('data',$data);
+        $this->view->assign('form',$user);
+        if(isset($_GET['iframe']) && $_GET['iframe']==1){
+            $this->view->assign('user_group',$user_group);
+            $this->view->display('admin/user/update_info');
+        }else{
+            $this->view->display('admin/root/admin_iframe');
+        }
+
+
+    }
+
+    public function user_bind(){
+        $form['id'] = Input::get_post('id');
+        $user_group = $this->admin_group->find_all_group([]);
+        $user = $this->admin_user->info(['id'=>$form['id']]);
+        $form = $user;
+        $this->view->assign('form',$form);
+        $this->view->assign('user_group',$user_group);
+        $this->view->display('admin/user/user_bind');
+    }
+
     public function login(){
         $this->view->display('admin/user/login/login');
     }
