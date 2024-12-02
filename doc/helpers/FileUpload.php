@@ -8,12 +8,12 @@ class FileUpload
 {
 
     public $field;
-    public $alowexts = array('gif', 'jpg', 'jpeg', 'png', 'bmp','txt','pdf','mp3','mp4');
+    public $alowexts = array('gif', 'jpg', 'jpeg', 'png', 'bmp','txt','pdf','mp3','mp4','doc','docx','xls','xlsx');
     public $upload_maxsize = '1000000000';
     public $error;
     public $save_path = '';
     public $upload_root = WEB_PATH . '/upload/';
-    public $upload_url = 'http://127.0.0.1/upload/';
+    public $upload_url = 'http://192.168.2.103/upload/';
     public $upload_dir = '';
 
     function __construct($upload_dir = '')

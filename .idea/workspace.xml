@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70599de6-1c42-4819-9704-773d568c4494" name="变更" comment="">
+      <change afterPath="$PROJECT_DIR$/doc/views/doc/web/index/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/cms/Collect.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/cms/Collect.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/tool/Developer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/tool/Developer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/logs/cache/sess_i810ce1q13tpmrktulr74r0ash" beforeDir="false" afterPath="$PROJECT_DIR$/web/logs/cache/sess_i810ce1q13tpmrktulr74r0ash" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/logs/cache/sess_krfrio7njt004lc3v98sr3friv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tool/awk/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/tool/awk/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/base/Model.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/base/Model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/configs/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/configs/database.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/controllers/web/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/controllers/web/File.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/helpers/FileUpload.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/helpers/FileUpload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/helpers/SiteUrl.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/helpers/SiteUrl.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/views/web/index/index.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/views/web/index/upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/views/doc/web/index/upload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/views/widget/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/views/widget/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/static/doc/esay_upload/easyUpload.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/doc/esay_upload/easyUpload.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/tool/h5/demo.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,23 +79,24 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/web/static/doc" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\data\www\dnmp\www\fish\doc\models\doc" />
+      <recent name="E:\data\www\dnmp\www\fish\doc\controllers\api" />
       <recent name="E:\data\www\dnmp\www\fish\web\static\doc" />
       <recent name="E:\data\www\dnmp\www\fish\doc\controllers\web" />
       <recent name="E:\data\www\dnmp\www\fish\doc\helpers" />
-      <recent name="E:\data\www\dnmp\www\fish\web\tool\jfu\js" />
-      <recent name="E:\data\www\dnmp\www\fish" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\data\www\fish\bbs\views\web\index" />
-      <recent name="E:\data\www\fish\web\static\admin\js\upload" />
-      <recent name="E:\data\www\fish\web\static\admin\js\upload\css" />
-      <recent name="E:\data\www\fish\bbs\views\web\ask" />
-      <recent name="E:\data\www\fish\bbs\views\web\question" />
+      <recent name="E:\data\www\dnmp\www\fish\doc\views\doc\web" />
+      <recent name="E:\data\www\dnmp\www\fish\doc\views\doc" />
+      <recent name="E:\data\www\dnmp\www\fish\doc\views" />
+      <recent name="E:\data\www\dnmp\www\fish\doc\views\web" />
+      <recent name="E:\data\www\dnmp\www\fish\doc\views\web\doc" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -122,6 +129,13 @@
       <workItem from="1731230046358" duration="3813000" />
       <workItem from="1733042264622" duration="14216000" />
       <workItem from="1733062652174" duration="8890000" />
+      <workItem from="1733095749356" duration="6940000" />
+      <workItem from="1733102958845" duration="165000" />
+      <workItem from="1733112811797" duration="5104000" />
+      <workItem from="1733127043231" duration="604000" />
+      <workItem from="1733128271808" duration="70000" />
+      <workItem from="1733128884695" duration="5000" />
+      <workItem from="1733137718324" duration="15701000" />
     </task>
     <servers />
   </component>

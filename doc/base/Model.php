@@ -28,7 +28,6 @@ class Model
 
     public function __construct()
     {
-
         $this->db = DocApp::get_db($this->db);
         $this->sql_query_builder = new SqlQueryBuilder();
     }

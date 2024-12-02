@@ -29,7 +29,7 @@ $config['bbs'] = [
     'charset' => 'utf8',
 ];
 $config['doc'] = [
-    'host' => '127.0.0.1',
+    'host' => 'mysql',
     'dbname' => 'fish_doc',
     'username' => 'root',
     'password' => '123456',
