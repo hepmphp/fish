@@ -6,7 +6,8 @@ import sys
 import collections.abc
 from pydocx import PyDocX
 import pandas as pd
-
+import aspose.slides as slides
+# cd /www/fish/web/tool/python && sudo python3 doc.py xlsx /www/fish/web/upload/2024/12/03/0a140033c440278b257ed6d00c11a33f.xlsx
 def main():
     """
      通过sys模块来识别参数demo, http://blog.csdn.net/ouyang_peng/
@@ -18,8 +19,10 @@ def main():
     print("文档路径为",sys.argv[1]+".docx")
     if sys.argv[1]=="docx":
        docx(sys.argv[1])
-    else:
+    elif sys.argv[1]=="excel":
        excel(sys.argv[1])
+    else:
+       ppt(sys.argv[1])
 
 
 def docx(source):
@@ -41,6 +44,17 @@ def excel(source):
     print("保存文件为：",source+".html")
     f.write(html)
     f.close()
+
+
+def ppt(source):
+    # 读取Excel文件
+    # 加载演示文件
+    pres = slides.Presentation(source)
+    # 另存为 HTML
+    pres.save(source+".html", slides.export.SaveFormat.HTML)
+
+
+
 
 if __name__ == "__main__":
     main()

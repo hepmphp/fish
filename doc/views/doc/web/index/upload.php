@@ -79,8 +79,9 @@
 
     var easy = new EasyUpload('#easy', {
         url: '/doc.php/web/uploader/index',
-        naxSize: 5,
+        naxSize: 100,
         maxCount: 1,
+        accept: '*', // 允许导入文件类型
         progress: function(e, data) {
             console.log("progress.....".data);
             if (e.lengthComputable) {

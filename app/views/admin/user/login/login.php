@@ -37,15 +37,21 @@
         }
     </style>
 </head>
+<?php
+    $i = mt_rand(1,2);
+    if($i==1){
+?>
+<body style="background: url('http://127.0.0.1/static/admin/images/bg_1.jpg') no-repeat;  background-size:cover;">
+<?php }else{?>
+<body style="background: url('http://127.0.0.1/static/admin/images/bg_2.jpg') no-repeat;  background-size:cover;">
+<?php }?>
 
-<body>
-<div id="particles-js"></div>
 <div class="middle-box text-center loginscreen  animated fadeInDown">
     <div class="logo-bg">
 <!--        <h1 class="logo-name"><img src="--><?//=STATIC_URL?><!--/images/logo.png" alt="服务器信息管理系统" width="234" height="234">服务器信息管理系统</h1>-->
         <form class="m-t" role="form" id="form">
             <div class="form-group">
-                <h1 style="font-weight: bold;font-size: 30px;color: #0C0C0C">管理后台</h1>
+                <h1 style="font-weight: bold;font-size: 30px;color: #FFFFFF">管理后台</h1>
             </div>
             <div class="http-option" id="httpOptionBox" style="margin-top: 30px;">
                 <ul class="nav nav-tabs ">
@@ -99,6 +105,7 @@
 <script src="<?=STATIC_URL?>js/jquery.min.js"></script>
 <script src="<?=STATIC_URL?>js/bootstrap.min.js"></script>
 <script  src="<?=STATIC_URL?>js/layer/layer.js"></script>
+
 <script >
     $('.yzm-img').click(function(){
         var captcha_url = '/api/captcha/get?'+Date.parse(new Date());

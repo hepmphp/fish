@@ -131,20 +131,31 @@ class File extends DocController{
         $form['file'] = Input::get_post('file');
 
 
-        if(strpos($form['url'],'.doc')!==false ||strpos($form['url'],'.xls')!==false){
+        if(strpos($form['url'],'.doc')!==false ||strpos($form['url'],'.xls')!==false ||strpos($form['url'],'.ppt')!==false){
             $this->view->assign('form',$form);
             if(strpos($form['file'],'.docx')!=false){
                 exec("cd /www/fish/web/tool/python && sudo python3 doc.py docx {$form['file']}",$output,$return);
                 $form['real_file'] = str_replace('.docx','.docx.html',$form['file']);
                 $form['html'] = file_get_contents($form['real_file']);
-            }else{
+            }elseif(strpos($form['file'],'.xls')!=false){
                 exec("cd /www/fish/web/tool/python && sudo python3 doc.py xlsx {$form['file']}",$output,$return);
                 echo "cd /www/fish/web/tool/python && sudo python3 doc.py xlsx {$form['file']}";
                 $form['real_file'] = str_replace('.xlsx','.xlsx.html',$form['file']);
                 $form['html'] = file_get_contents($form['real_file']);
+            }else{
+                exec("cd /www/fish/web/tool/python && sudo python3 doc.py ppt {$form['file']}",$output,$return);
+                echo "cd /www/fish/web/tool/python && sudo python3 doc.py xlsx {$form['file']}";
+                $form['real_file'] = str_replace('.ppt','.ppt.html',$form['file']);
+                $form['html'] = file_get_contents($form['real_file']);
             }
             $this->view->assign('form',$form);
             $this->view->display('doc/web/index/doc');
+        }elseif(strpos($form['url'],'.mp3')!==false){
+            $this->view->assign('form',$form);
+            $this->view->display('doc/web/index/mp3');
+        }elseif(strpos($form['url'],'.mp4')!==false){
+            $this->view->assign('form',$form);
+            $this->view->display('doc/web/index/mp4');
         }else{
             $this->view->assign('form',$form);
             $this->view->display('doc/web/index/file');

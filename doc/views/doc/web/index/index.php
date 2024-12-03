@@ -293,12 +293,15 @@
         layer.open({
             type: 2, //iframe
             maxmin: true,
-            area:['1400px', '800px'] ,
+            area:['1300px', '800px'] ,
             title: title,
             btn: btn,
             shade: 0.3, //遮罩透明度
             shadeClose: true,
             content:content,
+            success:function (index, layero) {
+
+            },
             yes: function(index, layero){
 
             },btn2: function(index, layero){
