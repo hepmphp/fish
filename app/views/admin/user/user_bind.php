@@ -53,6 +53,11 @@
                         <button type="button" class="btn btn-info " onclick="bind_email(<?=$form['ids']?>)" style="background-color: #0071ce;margin-left: 10px;margin-top: 8px;margin-left: 5px;">邮箱绑定登录</button>
                     </div>
 
+                    <div class="form-inline" style="width: 260px;">
+                        <img src="<?=STATIC_URL?>images/bind_email.png" width="50px" height="50px" style="margin-left: -5px;">
+                        <button type="button" class="btn btn-info " onclick="bind_wexin(<?=$form['ids']?>)" style="background-color: #0071ce;margin-left: 10px;margin-top: 8px;margin-left: 5px;">微信绑定</button>
+                    </div>
+
         </div>
 
         </div>

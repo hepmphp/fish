@@ -255,11 +255,7 @@ class  User extends BaseController{
 
     public function login_weixin()
     {
-        $callback_url = "http://mail.okfish.asia/user/login_weixin_return";
-        $qrcode_url = (new WeixinLogin())->getKFLoginUrl($callback_url);
-        echo $qrcode_url;
-       // header("Location:".$qrcode_url);
-        exit();
+        $this->view->display('admin/user/login/weixin');
 
     }
 

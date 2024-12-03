@@ -6,13 +6,151 @@
     <link rel="stylesheet" href="<?=STATIC_URL?>me_player/meplayer.css">
     <link rel="stylesheet" href="<?=STATIC_URL?>me_player/main.css">
 </head>
-<body onclick="body_click()" style="width: 100%;height: 100%;">
-<div class="container">
-    <div class="music"></div>
+<style >
+    .body_container{
+       width: 100%;
+        height: 100%;
+    }
+    .body_bg .body_bg_img{
+        position: fixed;
+        float: left;
+        margin-top: -80px;
+        margin-left: 480px;
+        transform: rotate(35deg);
+        z-index: 9999999;
+    }
+    .meplayer-info-cover{
 
-    <table id="word_list" style="width: 100%;border: 2px dotted rgba(22, 155, 213, 1);background: url('<?=STATIC_URL?>image/cd.gif') no-repeat;background-position:100% -150%;">
+    }
+    .meplayer-container .meplayer-info-cover{
+        padding-right:0;
+        margin-top: 630px;
+        margin-left:374px;
+        width: 150px;
+        height: 150px;
+        border: 10px solid #989898;
+        background-color: transparent;
+        border-radius: 90px;
+        z-index: 999999;
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
 
-    </table>
+
+    .meplayer-container .meplayer-info-cover img{
+        width: 140px;
+        height: 140px;
+        z-index: 999999;
+    }
+
+    .container{
+        width:750px ;
+        margin: 0 auto;
+
+    }
+    .container-bg{
+        background: url('<?=STATIC_URL?>image/voice.gif');z-index: 9999!important;
+    }
+    .music_box{
+        width: 100%;
+        background: url('<?=STATIC_URL?>image/music.gif');
+        z-index: 9999;
+    }
+    .word_list{
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        border: 2px dotted rgba(22, 155, 213, 1);
+        background: url('<?=STATIC_URL?>image/cd.gif') no-repeat;
+        background-size: 170%;
+        background-position:-262px -300px;
+        z-index: 9999;
+    }
+    .c_left{
+       position: fixed;
+       margin-left:-150px;
+    }
+    .c_left .img_item{
+        width: 134px;
+        height: 134px;
+        background: url('<?=STATIC_URL?>image/round.png') repeat;
+
+    }
+    .c_right{
+        position: fixed;
+        margin-left:780px;
+    }
+    .c_right .img_item{
+        width: 134px;
+        height: 134px;
+        background: url('<?=STATIC_URL?>image/round.png');
+
+    }
+</style>
+<script>
+    let angle = 0;
+    let angle_img = 35;
+    let roop_back = 0;
+    setInterval(() => {
+        angle += 4; // 每次旋转4度
+        if(angle_img>75||roop_back==1){
+           angle_img=angle_img-1;
+            roop_back = 1;
+            if(angle_img==36){
+                roop_back =0;
+            }
+           console.log(angle_img);
+        }else{
+            angle_img=angle_img+1;
+            console.log(angle_img);
+        }
+        $('.meplayer-info-cover').css({"transform":`translate(-50%, -50%) rotate(${angle}deg)`});
+        $(".body_bg .body_bg_img").css({"transform":`rotate(${angle_img}deg)`});
+    }, 50); // 每0.02秒旋转一次
+    $(".meplayer-container").addClass('meplayer-haslrc').removeClass('meplayer-isplaying');
+</script>
+<body onclick="body_click()" class="body_container">
+<div class="music_box">
+<div class="body_bg">
+<img src="<?=STATIC_URL?>image/guitar.png" class="body_bg_img">
+
+<div class="container-bg">
+    <div class="container">
+    <div class="c_left">
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+    </div>
+    <div class="c_right">
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+        <div class="img_item"></div>
+    </div>
+    <div>
+        <div class="music" ></div>
+        <table id="word_list" class="word_list">
+
+        </table>
+    </div>
+    </div>
+    </div>
+
+
+</div>
+
 </div>
 <script src="<?=STATIC_URL?>me_player/meplayer.js"></script>
 <script src="<?=STATIC_URL?>/jquery.min.js"></script>

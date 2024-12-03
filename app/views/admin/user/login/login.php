@@ -38,20 +38,20 @@
     </style>
 </head>
 <?php
-    $i = mt_rand(1,2);
-    if($i==1){
-?>
-<body style="background: url('http://127.0.0.1/static/admin/images/bg_1.jpg') no-repeat;  background-size:cover;">
-<?php }else{?>
-<body style="background: url('http://127.0.0.1/static/admin/images/bg_2.jpg') no-repeat;  background-size:cover;">
-<?php }?>
+    $i = mt_rand(1,5);
 
-<div class="middle-box text-center loginscreen  animated fadeInDown">
+?>
+<body style="background: url('http://127.0.0.1/static/admin/images/login_bg/<?=$i?>.gif') no-repeat;background-position:55% -50px; ">
+
+<?php
+?>
+
+<div class="middle-box text-center loginscreen  animated fadeInDown" style="z-index: 9999">
     <div class="logo-bg">
 <!--        <h1 class="logo-name"><img src="--><?//=STATIC_URL?><!--/images/logo.png" alt="服务器信息管理系统" width="234" height="234">服务器信息管理系统</h1>-->
         <form class="m-t" role="form" id="form">
             <div class="form-group">
-                <h1 style="font-weight: bold;font-size: 30px;color: #FFFFFF">管理后台</h1>
+                <h1 style="font-weight: bold;font-size: 30px;color: black">管理后台</h1>
             </div>
             <div class="http-option" id="httpOptionBox" style="margin-top: 30px;">
                 <ul class="nav nav-tabs ">

@@ -19,7 +19,7 @@
         self_redirect: false,    //默认为false(保留当前二维码)  true(当前二维码所在的地方通过iframe 内跳转到 redirect_uri)
         id: "login_container",  //容器的id
         appid: "wxabd4205731293882",  //应用唯一标识，在微信开放平台提交应用审核通过后获得
-        scope: "snsapi_userinfo",   //应用授权作用域，拥有多个作用域用逗号（,）分隔，网页应用目前仅填写snsapi_login即可
+        scope: "snsapi_login",   //应用授权作用域，拥有多个作用域用逗号（,）分隔，网页应用目前仅填写snsapi_login即可
         redirect_uri: "http://mail.okfish.asia/user/login_weixin_return",    //扫完码授权成功跳转到的路径
         // state: "",    //用于保持请求和回调的状态，授权请求后原样带回给第三方。该参数可用于防止 csrf 攻击（跨站请求伪造攻击），建议第三方带上该参数，可设置为简单的随机数加 session 进行校验
         style: "white",   //提供"black"、"white"可选，默认为黑色文字描述

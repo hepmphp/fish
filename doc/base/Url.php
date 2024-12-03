@@ -99,7 +99,7 @@ class Url
 
        $class=!empty($class)?$class:'Index';
         if(empty($path)){
-            $class = '\\doc\\controllers\\web\Index';
+            $class = '\\doc\\controllers\\web\file';
             $path = "web";
         }else{
             $class = ucwords($class,'_,-');
