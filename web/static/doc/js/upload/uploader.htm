@@ -1,0 +1,186 @@
+<link rel="stylesheet" href="./css/iconfont.css">
+
+<style>
+.clear-float:after{
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.upload-win {
+    width: 80%;
+    height: 80px;
+}
+.upload-img {
+    width: 60px;
+    height: 60px;
+    border: 1.2px solid #F2F2F2;
+    margin-left: 5px;
+    position: relative;
+}
+.left {
+    float: left;
+}
+.upload-img img, .upload-img input {
+    width: 60px;
+    height: 60px;
+}
+.upload-img input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 6;
+}
+.iconfont.icon-lajitong {
+    position: absolute;
+    top: 25%;
+    left: 35%;
+    z-index: 5;
+    font-size: 20px;
+    display: none;
+    color: #fff;
+}
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.icon-tianjia {
+    position: absolute;
+    top: 50%;
+    margin-left: -8px;
+    left: 50%;
+    margin-top: -10px;
+    z-index: 5;
+}
+.over-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: none;
+}
+</style>
+<!--单图-->
+<div class="form-group">
+    <label class="col-sm-4 control-label">图片链接：</label>
+    <div class="col-sm-8">
+        <div class="clear-float">
+            <form class="upload-win clear-float" enctype="multipart/form-data">
+                <div class="upload-img upload-img-one left">
+                    <img src="" alt=""  class="pic_url">
+                    <input type="file" name="images" style="opacity:0" accept="image/*" capture="camera">
+                    <i class="iconfont icon-lajitong"></i>
+                    <i class="iconfont icon-tianjia"></i>
+                    <div class="over-cover"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--多图-->
+<div class="form-group">
+    <label class="col-sm-4 control-label">图片链接：</label>
+    <div class="col-sm-8">
+        <div class="clear-float">
+            <form class="upload-win clear-float" enctype="multipart/form-data">
+                <div class="upload-img upload-img-mutil left">
+                    <img src="" alt=""  class="pic_url">
+                    <input type="file" name="images" style="opacity:0" accept="image/*" capture="camera">
+                    <i class="iconfont icon-lajitong"></i>
+                    <i class="iconfont icon-tianjia"></i>
+                    <div class="over-cover"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="col-sm-4 control-label">图片链接：</label>
+    <div class="col-sm-8">
+        <div class="clear-float">
+            <form class="upload-win clear-float" enctype="multipart/form-data">
+                <div class="upload-img upload-img-one left">
+                    <img src="" alt=""  class="pic_url">
+                    <input type="file" name="images" style="opacity:0" accept="image/*" capture="camera">
+                    <i class="iconfont icon-lajitong"></i>
+                    <i class="iconfont icon-tianjia"></i>
+                    <div class="over-cover"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://www.xinglinjie.com/mac/js/jquery.js"></script>
+
+	
+	
+<script>
+  // 上传图片
+  var imgNum=0
+  var offsBooL=true
+  uploadImg()
+function uploadImg(){
+  $(".upload-img input").eq(imgNum).change(function() {
+    var that=$(this)
+    console.log(imgNum)
+      var formdata=new FormData()
+      formdata.append('image',this.files[0])
+        var str='<div class="upload-img left"><img src="" alt=""><input type="file" name="images" style="opacity:0" accept="image/*" capture="camera"/><i class="iconfont icon-lajitong"></i><i class="iconfont icon-tianjia"></i><div class="over-cover"></div></div>'
+        $.ajax({
+          type: 'POST',
+          url: "http://localhost:20080/upload/uploader.php",
+          data: formdata,
+          async: false,
+          processData: false,
+          contentType: false,
+          dataType: 'json',
+         // headers: { 'X-CSRF-TOKEN': dataType },
+          success: function (result) {
+            that.data('name',result.data.name);
+            that.css({'z-index':'0'});
+            $(".upload-win .icon-tianjia").hide();
+            $(".upload-win img").eq(imgNum).attr({'src':result.data.url});
+            imgNum ++;
+            $(".upload-win").append(str);
+            uploadImg()
+          }
+        })
+        $('.upload-img').mouseover(function(){
+          if($(this).children('img').attr('src') !==''){
+            $(this).children('.icon-lajitong').show();
+            $(this).children('.over-cover').show();
+          }
+          $('.icon-lajitong').click(function(){
+            $(this).parent().remove();
+            if(offsBooL){
+              offsBooL=false;
+              setTimeout(function(){
+                offsBooL=true;
+                imgNum --;
+              }, 50);
+            }
+          })
+        })
+        $('.upload-img').mouseout(function(){
+          $('.icon-lajitong').hide();
+          $('.over-cover').hide();
+        })
+  })
+}
+// 上传图片   
+ 
+  
+  
+</script>

@@ -139,12 +139,12 @@ class File extends DocController{
                 $form['html'] = file_get_contents($form['real_file']);
             }elseif(strpos($form['file'],'.xls')!=false){
                 exec("cd /www/fish/web/tool/python && sudo python3 doc.py xlsx {$form['file']}",$output,$return);
-                echo "cd /www/fish/web/tool/python && sudo python3 doc.py xlsx {$form['file']}";
+               // echo "cd /www/fish/web/tool/python && sudo python3 doc.py xlsx {$form['file']}";
                 $form['real_file'] = str_replace('.xlsx','.xlsx.html',$form['file']);
                 $form['html'] = file_get_contents($form['real_file']);
             }else{
                 exec("cd /www/fish/web/tool/python && sudo python3 doc.py ppt {$form['file']}",$output,$return);
-                echo "cd /www/fish/web/tool/python && sudo python3 doc.py xlsx {$form['file']}";
+              //  echo "cd /www/fish/web/tool/python && sudo python3 doc.py xlsx {$form['file']}";
                 $form['real_file'] = str_replace('.ppt','.ppt.html',$form['file']);
                 $form['html'] = file_get_contents($form['real_file']);
             }

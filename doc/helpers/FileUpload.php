@@ -33,7 +33,7 @@ class FileUpload
      */
     function upload($file)
     {
-//        $file = $_FILES['file'];
+      //  $file = $_FILES['file'];
         if (!isset($file)) {
             throw new LogicException(-100, '请选择上传文件');
         }

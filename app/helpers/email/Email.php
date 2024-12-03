@@ -128,12 +128,14 @@ Class Email
     // Send the SMTP Mail
     public function Send()
     {
-        $this->hostname =   $_SESSION['stmp_server'];
-        $this->server =   $_SESSION['stmp_server'];
-        $this->local =   $_SESSION['stmp_server'];
-        $this->port =    $_SESSION['stmp_port'];
-        $this->username =   $_SESSION['username'];
-        $this->password  = $_SESSION['password'];
+        if(isset($_SESSION['stmp_server'])){
+            $this->hostname =   $_SESSION['stmp_server'];
+            $this->server =   $_SESSION['stmp_server'];
+            $this->local =   $_SESSION['stmp_server'];
+            $this->port =    $_SESSION['stmp_port'];
+            $this->username =   $_SESSION['username'];
+            $this->password  = $_SESSION['password'];
+        }
         // Prepare data for sending
         $this->headers = $this->doHeaders();
         $user64 = base64_encode($this->username);
@@ -356,8 +358,8 @@ Class Email
     {
         return sprintf(
             "<%s.%s@%s>",
-            base_convert(microtime(), 10, 36),
-            base_convert(bin2hex(openssl_random_pseudo_bytes(8)), 16, 36),
+            rand(0,1000),
+            md5("fish"),
             $this->local
         );
     }

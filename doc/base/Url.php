@@ -94,12 +94,12 @@ class Url
             list($class,$method) = $path_info;
         }else{
             $class = is_array($path_info)&&empty($path_info)?'':$path_info[0];
-            $method = 'index';
+            $method = 'login';
         }
 
        $class=!empty($class)?$class:'Index';
         if(empty($path)){
-            $class = '\\doc\\controllers\\web\file';
+            $class = '\\doc\\controllers\\web\user';
             $path = "web";
         }else{
             $class = ucwords($class,'_,-');

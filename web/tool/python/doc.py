@@ -6,7 +6,7 @@ import sys
 import collections.abc
 from pydocx import PyDocX
 import pandas as pd
-import aspose.slides as slides
+#import aspose.slides as slides
 # cd /www/fish/web/tool/python && sudo python3 doc.py xlsx /www/fish/web/upload/2024/12/03/0a140033c440278b257ed6d00c11a33f.xlsx
 def main():
     """
@@ -16,13 +16,13 @@ def main():
     print('参数列表:', str(sys.argv))
     print('脚本名为：', sys.argv[0])
     print("参数为",sys.argv[1])
-    print("文档路径为",sys.argv[1]+".docx")
+    print("文档路径为",sys.argv[2]+".docx")
     if sys.argv[1]=="docx":
-       docx(sys.argv[1])
-    elif sys.argv[1]=="excel":
-       excel(sys.argv[1])
+       docx(sys.argv[2])
+    elif sys.argv[1]=="xlsx":
+       excel(sys.argv[2])
     else:
-       ppt(sys.argv[1])
+       ppt(sys.argv[2])
 
 
 def docx(source):
@@ -34,6 +34,7 @@ def docx(source):
     f.close()
 
 def excel(source):
+    print("xlsx path:"+source)
     # 读取Excel文件
     df = pd.read_excel(source)
     # 转换为HTML
@@ -47,11 +48,12 @@ def excel(source):
 
 
 def ppt(source):
-    # 读取Excel文件
-    # 加载演示文件
-    pres = slides.Presentation(source)
-    # 另存为 HTML
-    pres.save(source+".html", slides.export.SaveFormat.HTML)
+     print("功能待完善"+source)
+#     # 读取Excel文件
+#     # 加载演示文件
+#     pres = slides.Presentation(source)
+#     # 另存为 HTML
+#     pres.save(source+".html", slides.export.SaveFormat.HTML)
 
 
 

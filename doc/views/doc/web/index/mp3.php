@@ -153,7 +153,7 @@
 
 </div>
 <script src="<?=STATIC_URL?>me_player/meplayer.js"></script>
-<script src="<?=STATIC_URL?>/jquery.min.js"></script>
+<script src="<?=STATIC_URL?>/js/jquery.min.js"></script>
 <script >
     var lrc = `
 [00:00.80]情人

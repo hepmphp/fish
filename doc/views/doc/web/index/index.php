@@ -8,11 +8,81 @@
 
 </head>
 <body>
+<script  src="http://127.0.0.1/static/admin/js/jquery.min.js?1008518258"></script>
+<script  src="http://127.0.0.1/static/admin/js/jquery.cookie.js?2079846296"></script>
+<script  src="http://127.0.0.1/static/admin/js/page.js?699784068"></script>
+<script  src="http://127.0.0.1/static/admin/js/bootstrap.min.js?1322867740"></script>
+<script  src="http://127.0.0.1/static/admin/js/date/moment.min.js?259657693"></script>
+<script  src="http://127.0.0.1/static/admin/js/date/jquery.daterangepicker.js?1848431855"></script>
+<script  src="http://127.0.0.1/static/admin/js/layer/layer.js?1448383258"></script>
+<script  src="http://127.0.0.1/static/admin/js/logic/admin/ajax.js?324998102"></script>
+<link href="http://127.0.0.1/static/admin/css/bootstrap.min.css?1608542455" rel="stylesheet">
+<link href="http://127.0.0.1/static/admin/css/style.css?2146112489" rel="stylesheet">
+<link href="http://127.0.0.1/static/admin/css/font-awesome.min.css?1237282833" rel="stylesheet">
+<link href="http://127.0.0.1/static/admin/js/bootstrap-table/bootstrap-table.min.css?395317088" rel="stylesheet">
+<link href="http://127.0.0.1/static/admin/css/form.css?2145105919" rel="stylesheet">
+<link href="http://127.0.0.1/static/admin/js/date/daterangepicker.css?1924278693" rel="stylesheet">
+<link href="http://127.0.0.1/static/admin/css/mobile.css?775036387" rel="stylesheet">
+<link href="http://127.0.0.1/static/admin/js/layer/layui/layui.css?1025435458" rel="stylesheet">
+<script >
+    layer.config({
+        skin: 'layer-ext-moon',
+        extend: 'moon/style.css'
+    });
+</script>
+<style>
+    .btn-info{
+        background: #0256FF;
+    }
+    .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
+        color: #ffffff !important;
+        background: #0256FF;
+        border-color: #189ec8;
+    }
 
+    .my-gallery {
+        /*width: 100%;*/
+        height:75%;
+        /*float: left;*/
+    }
+
+    .image_border{
+        border: 2px solid rgb(2, 86, 255);
+
+    }
+    .my-gallery img {
+        width: 80px;
+        height: 80px;
+        margin-top:10px;
+        margin-left: 10px;
+    }
+    .my-gallery figure {
+        display: block;
+        float: left;
+    }
+
+    .my-gallery figcaption {
+        text-align: center;
+        margin-top:15px;
+        /*display: none;*/
+    }
+    .image_box {
+        width: 100px;
+        height: 100px;
+        background-color: #f8f8f8;
+        margin-left: 10px;
+        margin-top: 20px;
+        /*border: 10px solid #FFFFFF;*/
+    }
+    .page-list{
+        float: left;
+    }
+    .page-bottom{
+        width: 900px;
+    }
+</style>
+<?php include DOC_PATH . 'views/doc/web/common/header.php' ?>
 <div class="Business-back">
-    <div class="Business-top clearfix">
-        <a class="file_title" href="/doc.php/web/file/index">文件管理</a>
-    </div>
     <div class="Business-top-header clearfix">
     </div>
     <div class="Business-left clearfix">
@@ -34,79 +104,8 @@
 
     <!--左边 end-->
     <div class="Business-right clearfix">
-        <script  src="http://127.0.0.1/static/admin/js/jquery.min.js?1008518258"></script>
-        <script  src="http://127.0.0.1/static/admin/js/jquery.cookie.js?2079846296"></script>
-        <script  src="http://127.0.0.1/static/admin/js/page.js?699784068"></script>
-        <script  src="http://127.0.0.1/static/admin/js/bootstrap.min.js?1322867740"></script>
-        <script  src="http://127.0.0.1/static/admin/js/date/moment.min.js?259657693"></script>
-        <script  src="http://127.0.0.1/static/admin/js/date/jquery.daterangepicker.js?1848431855"></script>
-        <script  src="http://127.0.0.1/static/admin/js/layer/layer.js?1448383258"></script>
-        <script  src="http://127.0.0.1/static/admin/js/logic/admin/ajax.js?324998102"></script>
-        <link href="http://127.0.0.1/static/admin/css/bootstrap.min.css?1608542455" rel="stylesheet">
-        <link href="http://127.0.0.1/static/admin/css/style.css?2146112489" rel="stylesheet">
-        <link href="http://127.0.0.1/static/admin/css/font-awesome.min.css?1237282833" rel="stylesheet">
-        <link href="http://127.0.0.1/static/admin/js/bootstrap-table/bootstrap-table.min.css?395317088" rel="stylesheet">
-        <link href="http://127.0.0.1/static/admin/css/form.css?2145105919" rel="stylesheet">
-        <link href="http://127.0.0.1/static/admin/js/date/daterangepicker.css?1924278693" rel="stylesheet">
-        <link href="http://127.0.0.1/static/admin/css/mobile.css?775036387" rel="stylesheet">
-        <link href="http://127.0.0.1/static/admin/js/layer/layui/layui.css?1025435458" rel="stylesheet">
-        <script >
-            layer.config({
-                skin: 'layer-ext-moon',
-                extend: 'moon/style.css'
-            });
-        </script>
-        <style>
-            .btn-info{
-                background: #0256FF;
-            }
-            .btn-info:hover, .btn-info:focus, .btn-info:active, .btn-info.active, .open .dropdown-toggle.btn-info {
-                color: #ffffff !important;
-                background: #0256FF;
-                border-color: #189ec8;
-            }
 
-            .my-gallery {
-                /*width: 100%;*/
-                height:75%;
-                /*float: left;*/
-            }
 
-            .image_border{
-                border: 2px solid rgb(2, 86, 255);
-
-            }
-            .my-gallery img {
-                width: 80px;
-                height: 80px;
-                margin-top:10px;
-                margin-left: 10px;
-            }
-            .my-gallery figure {
-                display: block;
-                float: left;
-            }
-
-            .my-gallery figcaption {
-                text-align: center;
-                margin-top:15px;
-                /*display: none;*/
-            }
-            .image_box {
-                width: 100px;
-                height: 100px;
-                background-color: #f8f8f8;
-                margin-left: 10px;
-                margin-top: 20px;
-                /*border: 10px solid #FFFFFF;*/
-            }
-            .page-list{
-                float: left;
-            }
-            .page-bottom{
-                width: 900px;
-            }
-        </style>
 <div class="form-wrapper">
     <div class="form-item">
         <div class="form-item">
@@ -198,13 +197,12 @@
 
             <ul class="pagination pagination-outline">
                 <li class="page-pre"><a href="javascript:void(0)" data-page="1">&laquo;</a></li>
-                <?php   for ($i=1;$i<=$data['total_page'];$i++){?>
+                <?php   for ($i=1;$i<=$data['total_page'];$i++){
+                        if($i<=10){
+                    ?>
                 <li class="page-number  <?php if($i==$data['page']){echo 'active';}?>" ><a href="javascript:void(0)"  data-page="<?=$i?>"><?=$i?></a></li>
-                <?php if($i==$data['total_page']){?>
-                <li class="page-next"><a href="javascript:void(0)"  data-page="<?=$i?>">&raquo;</a></li>
-                    <?php }?>
-                <?php }?>
-
+                <?php }}?>
+                <li class="page-next"><a href="javascript:void(0)"  data-page="<?=($data['page']+1)?>">&raquo;</a></li>
             </ul>
             <input class="form-control jump-page" id="jump_page" size="2" maxlength="7" type="text"
                    style="width: 40px;margin-left: -200px;">

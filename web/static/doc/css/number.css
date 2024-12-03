@@ -1,0 +1,44 @@
+.number{
+    display:inline-block;
+    border-radius:30px;
+    width:20px;
+    height:20px;
+    line-height:20px;
+    vertical-align:middle;
+    color: #000;
+
+}
+.number_block{
+    display:inline-block;
+    width:100px;
+    height:20px;
+    line-height:20px;
+    vertical-align:middle;
+    color: #000;
+
+}
+.red{
+    border: 2px dotted  red;
+    color:red;
+}
+
+.blue_see{
+    border: 2px dotted #4682B4;
+    color:  #4682B4;
+}
+.indigo{
+    border: 2px dotted #4B0082;
+    color:#4B0082;
+}
+.green{
+    border: 2px dotted  green;
+    color:green;
+}
+.qing{
+     border: 2px dotted  #00FFFF;
+    color:#00FFFF;
+}
+.blue{
+    border: 2px dotted  blue;
+    color:blue;
+}

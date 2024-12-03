@@ -73,12 +73,12 @@
 <div id="easy"></div>
 
 </body>
-<script src="<?=STATIC_URL?>jquery.min.js"></script>
+<script src="<?=STATIC_URL?>js/jquery.min.js"></script>
 <script src="<?=STATIC_URL?>esay_upload/easyUpload.min.js"></script>
 <script>
 
     var easy = new EasyUpload('#easy', {
-        url: '/doc.php/web/uploader/index',
+        url: '/doc.php/api/uploader/index?is_mutil=1',
         naxSize: 100,
         maxCount: 1,
         accept: '*', // 允许导入文件类型

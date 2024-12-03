@@ -11,6 +11,7 @@ use app\base\PhpView;
 use app\base\SmartyView;
 use app\helpers\Input;
 use doc\base\DocApp;
+use doc\helpers\Msg;
 
 
 class DocController{
@@ -19,7 +20,9 @@ class DocController{
     public $view;
 
     public function __construct() {
-
+        if(empty($_SESSION['doc_user_id']) && strpos($_SERVER['REQUEST_URI'],'login')==false){
+            Msg::show_msg("用户未登录","/doc.php/web/user/login");
+        }
         $this->app = DocApp::get_instance(DOC_PATH);
         $this->make_view();
     }
