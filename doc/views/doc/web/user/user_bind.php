@@ -23,7 +23,6 @@
 </head>
 
 <body class="form-body">
-<?php include DOC_PATH . 'views/doc/web/common/header.php' ?>
 <div class="form-wrapper" style="padding-top: 0;margin-top: 5px;">
     <ul class="list-inline page-tab clearfix">
         <li><a href="/doc.php/web/user/info?iframe=1">修改用户信息</a><em></em></li>

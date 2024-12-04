@@ -163,7 +163,9 @@ class Tree {
             foreach ($child as $id => $value) {
                 @extract($value);
                 $retarray[$value['id']] = $value;
-                $retarray[$value['id']]["children"] = $this->get_tree_array($id, '');
+                if(!empty($this->get_tree_array($id, ''))){
+                    $retarray[$value['id']]["children"] = $this->get_tree_array($id, '');
+                }
             }
         }
         return $retarray;

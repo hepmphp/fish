@@ -28,7 +28,7 @@ class User extends DocController {
     }
 
     public function index(){
-        $this->view->display('web/user/index');
+        $this->view->display('doc/web/user/index');
     }
 
     public function register(){
@@ -119,7 +119,13 @@ class User extends DocController {
             $form['id'] = $_SESSION['doc_user_id'];
             $form = $this->user->info(['id'=>$form['id']]);
             $this->view->assign('form',$form);
-            $this->view->display('doc/web/user/info');
+            $form['admin_url'] = '/doc.php/web/user/info?iframe=1';
+            $this->view->assign('form',$form);
+            if(isset($_GET['iframe']) && $_GET['iframe']==1){
+                $this->view->display('doc/web/user/info');
+            }else{
+                $this->view->display('doc/web/user_structure/index_iframe');
+            }
         }
     }
 

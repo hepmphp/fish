@@ -7,7 +7,7 @@
         <div class="upload-win">
             <div class="upload-img upload-img-mutil left">
                 <img src="" alt=""  class="pic_url">
-                <span class="image-item" src=""></span>
+                <span class="image-item" src="http://127.0.0.1/static/admin/images/upload_image.png"></span>
                 <input type="file" name="images" class="images" style="opacity:0" accept="image/*" capture="camera">
                 <i class="iconfont icon-lajitong"></i>
                 <i class="iconfont icon-tianjia"></i>

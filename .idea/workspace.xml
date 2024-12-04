@@ -5,13 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="70599de6-1c42-4819-9704-773d568c4494" name="变更" comment="">
-      <change beforePath="$PROJECT_DIR$/app/views/admin/user/login/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/user/login/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/base/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/base/App.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/api/Uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/Uploader.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/Tree.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/Tree.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/admin/root/upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/root/upload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/base/DocController.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/base/DocController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/controllers/web/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/controllers/web/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/helpers/FileUpload.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/helpers/FileUpload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/views/doc/web/index/file.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/views/doc/web/index/file.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/controllers/web/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/controllers/web/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/views/doc/web/index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/views/doc/web/index/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/views/doc/web/index/upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/views/doc/web/index/upload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/tool/python/doc.py" beforeDir="false" afterPath="$PROJECT_DIR$/web/tool/python/doc.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/static/admin/js/upload/js/uploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/admin/js/upload/js/uploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/static/doc/js/upload/js/uploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/doc/js/upload/js/uploader.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,40 +71,31 @@
       <path value="$PROJECT_DIR$/vendor/workerman/gatewayclient" />
     </include_path>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
   <component name="ProjectId" id="2oQtXz3q1AU4KNrd1gE2InRSFJb" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/data/www/java/webview"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/doc/views/doc/web/index" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\data\www\dnmp\www\fish\doc\views\doc\web\index" />
+      <recent name="E:\data\www\dnmp\www\fish\doc\views\doc\web\tree_node" />
+      <recent name="E:\data\www\dnmp\www\fish\doc\views\doc\web\common" />
       <recent name="E:\data\www\dnmp\www\fish\doc\models\doc" />
       <recent name="E:\data\www\dnmp\www\fish\doc\controllers\api" />
-      <recent name="E:\data\www\dnmp\www\fish\web\static\doc" />
-      <recent name="E:\data\www\dnmp\www\fish\doc\controllers\web" />
-      <recent name="E:\data\www\dnmp\www\fish\doc\helpers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\data\www\dnmp\www\fish\doc\views\doc\web\user_structure" />
       <recent name="E:\data\www\dnmp\www\fish\doc\views\doc\web" />
       <recent name="E:\data\www\dnmp\www\fish\doc\views\doc" />
       <recent name="E:\data\www\dnmp\www\fish\doc\views" />
       <recent name="E:\data\www\dnmp\www\fish\doc\views\web" />
-      <recent name="E:\data\www\dnmp\www\fish\doc\views\web\doc" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -140,6 +135,7 @@
       <workItem from="1733128271808" duration="70000" />
       <workItem from="1733128884695" duration="5000" />
       <workItem from="1733137718324" duration="15701000" />
+      <workItem from="1733310396425" duration="19403000" />
     </task>
     <servers />
   </component>
@@ -156,5 +152,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

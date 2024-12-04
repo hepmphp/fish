@@ -6,11 +6,11 @@
  */
 namespace app\controllers\api;
 
-use doc\base\DocController;
+use app\base\BaseController;
 use app\helpers\FileUpload;
 use app\helpers\Input;
 
-class Uploader extends DocController{
+class Uploader extends BaseController {
     public function index(){
         if(Input::is_ajax() && isset($_FILES['file'])){
             $folder = Input::get_post('folder','','trim,strip_tags');

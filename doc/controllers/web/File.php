@@ -118,7 +118,14 @@ class File extends DocController{
         $this->view->assign('folders',$folders);
         $this->view->assign('form',$form);
         $this->view->assign('data',$data);
-        $this->view->display('doc/web/index/index');
+        $form['admin_url'] = '/doc.php/web/file/index?iframe=1';
+        $this->view->assign('form',$form);
+        if(isset($_GET['iframe']) && $_GET['iframe']==1){
+            $this->view->display('doc/web/index/index');
+        }else{
+            $this->view->display('doc/web/index/index_iframe');
+        }
+
     }
 
     public function upload(){

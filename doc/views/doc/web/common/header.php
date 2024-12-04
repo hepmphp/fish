@@ -50,7 +50,7 @@
 
 </script>
 <div class="navtop clearfix" style="height: 60px;">
-    <a href="/doc.php">   <h1 class="nav-title" style="margin-top: 0;"> 文件管理</h1></a>
+    <a href="/doc.php/web/file/index">   <h1 class="nav-title" style="margin-top: 0;"> 文件管理</h1></a>
     <div class="nav-right">
         尊敬的用户 <span class="user-item" id="admin_username"><?=$_SESSION['doc_user_username']?><i class="fa fa-angle-down" aria-hidden="true"></i></span>
         <span class="user-con">
