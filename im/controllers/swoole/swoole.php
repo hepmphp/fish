@@ -11,7 +11,7 @@ $server = new Server('0.0.0.0', 9501);
 $chat_member= new ChatMember([]);
 $chat_record = new ChatRecord([]);
 $chat_msgbox = new ChatMsgbox([]);
-
+$chat_group = new ChatGroup([]);
 
 set_error_handler('error_handler',E_ALL);
 set_exception_handler('exception_handler');
@@ -70,11 +70,11 @@ $server->on('open', function($server, $req) {
     echo "connection open: {$req->fd}\n";
 });
 
-$server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$chat_record) {
+$server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$chat_record,$chat_group) {
     echo "received message: {$frame->data}\n";
     $frame_data = json_decode($frame->data,true);
     error_log(date('Y-m-d H:i:s')."'\t".$frame->fd."\t".var_export($frame_data,true).PHP_EOL,3,'./swoole.log');
-    $chat_member_data['username'] =$frame_data['from_username'];
+
     if(isset($frame_data['is_heart_beat']) && $frame_data['is_heart_beat']==1){
 
         $server->push($frame->fd, json_encode($frame_data));
@@ -86,6 +86,9 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
 //        $to_user = $chat_member->info(['username'=>$frame_data['to_username']]);
         $server->push($frame->fd, json_encode($frame_data));
     }elseif (isset($frame_data['type']) && $frame_data['type']=='chatMsgbox'){
+
+         var_dump($frame_data);
+
         //{"type":"","data":{"action":"add_friend","from_id":1,"friend_id":"1","friend_username":"用户6011","groupId":"5","remark":"11111"}}
         /**
          *
@@ -108,64 +111,122 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
         delete_time	int unsigned NULL [0]	删除时间
          */
 
-        $chat_msgbox_data['from_id'] = $frame_data['data']['from_id'];
-        $chat_msgbox_data['to_id'] = $frame_data['data']['friend_id'];
-        $chat_msgbox_data['from_username'] = $frame_data['data']['from_username'];
-        $chat_msgbox_data['to_username'] = $frame_data['data']['friend_username'];
-        $chat_msgbox_data['type'] = 0;
-        $chat_msgbox_data['status'] = 0;
-        $chat_msgbox_data['remark'] = $frame_data['data']['remark'];
-        $chat_msgbox_data['content'] = isset($frame_data['data']['content'])&&!empty($frame_data['data']['content'])?$frame_data['data']['content']:'';
-        $chat_msgbox_data['group_id'] = $frame_data['data']['group_id'];
-        $chat_msgbox_data['send_time'] =time();
-        $chat_msgbox_data['create_time'] = time();
-        $chat_msgbox_data['update_time'] = 0;
-        $chat_msgbox_data['delete_time'] = 0;
+        if($frame_data['data']['action']=='add_group'){
+            $chat_msgbox_data['from_id'] = $frame_data['data']['from_id'];
+            $chat_msgbox_data['to_id'] = 0;
+            $chat_msgbox_data['from_username'] = $frame_data['data']['from_username'];
+            $chat_msgbox_data['to_username'] = 0;
+            $chat_msgbox_data['type'] = 2;
+            $chat_msgbox_data['status'] = 0;
+            $chat_msgbox_data['remark'] = $frame_data['data']['remark'];
+            $chat_msgbox_data['content'] = '';
+            $chat_msgbox_data['group_id'] = $frame_data['data']['group_id'];
+            $chat_msgbox_data['send_time'] =time();
+            $chat_msgbox_data['create_time'] = time();
+            $chat_msgbox_data['update_time'] = 0;
+            $chat_msgbox_data['delete_time'] = 0;
 
-        $chat_msgbox->create($chat_msgbox_data);
+            $chat_msgbox->create($chat_msgbox_data);
 
+            $to_group =  $chat_group->info(['id'=>$frame_data['data']['group_id']]);
 
-        $chat_member_data['socket_id'] = $frame->fd;
-        $chat_member_data['status'] = 0;
-        $chat_member->save($chat_member_data);
-        $to_user = $chat_member->info(['id'=>$frame_data['data']['friend_id']]);
-
-
-        $chat_record_data['from_id'] = $frame_data['data']['from_id'];
-        $chat_record_data['to_id'] = $to_user['id'];
-        $chat_record_data['from_username'] = $frame_data['data']['from_username'];
-        $chat_record_data['to_username'] = $to_user['username'];
-        $chat_record_data['type'] = 0;
-        $chat_record_data['status'] = 0;
-        $chat_record_data['content'] =  isset($frame_data['data']['content'])&&!empty($frame_data['data']['content'])?$frame_data['data']['content']:'';
-        $chat_record_data['send_time'] = time();
-        $chat_record_data['create_time'] = time();
-        $chat_record->create($chat_record_data);
-
-        $chat_member_data['socket_id'] = $frame->fd;
+            $chat_member_data['id'] = $to_group['belong_id'];
+            $chat_member_data['socket_id'] = $frame->fd;
+            $chat_member_data['status'] = 0;
+            $chat_member->save($chat_member_data);
+            $to_user = $chat_member->info(['id'=>$to_group['belong_id']]);
 
 
-        $frame_to_data['from_id'] = $frame_data['data']['friend_id'];
-        $frame_to_data['to_id'] = $frame_data['data']['from_id'];
-        $frame_to_data['from_username'] = $frame_data['data']['friend_username'];
-        $frame_to_data['to_username'] = $frame_data['data']['from_username'];
-        $frame_to_data['type'] = 0;
-        $frame_to_data['status'] = 0;
-        $frame_to_data['content'] = 'hahaha add friend......';
-        $frame_to_data['send_time'] =time();
-        $frame_to_data['create_time'] = time();
-        $frame_to_data['update_time'] = 0;
-        $frame_to_data['delete_time'] = 0;
+            $chat_record_data['from_id'] = $frame_data['data']['from_id'];
+            $chat_record_data['to_id'] = $to_user['id'];
+            $chat_record_data['from_username'] = $frame_data['data']['from_username'];
+            $chat_record_data['to_username'] = $to_user['username'];
+            $chat_record_data['type'] = 0;
+            $chat_record_data['status'] = 0;
+            $chat_record_data['content'] =  isset($frame_data['data']['content'])&&!empty($frame_data['data']['content'])?$frame_data['data']['content']:'';
+            $chat_record_data['send_time'] = time();
+            $chat_record_data['create_time'] = time();
+            $chat_record->create($chat_record_data);
+
+            $chat_member_data['socket_id'] = $frame->fd;
+
+
+            $frame_to_data['from_id'] = 0;
+            $frame_to_data['to_id'] = $frame_data['data']['from_id'];
+            $frame_to_data['from_username'] = 0;
+            $frame_to_data['to_username'] = $frame_data['data']['from_username'];
+            $frame_to_data['type'] = 'group';
+            $frame_to_data['status'] = 0;
+            $frame_to_data['content'] = 'hahaha add group......';
+            $frame_to_data['send_time'] =time();
+            $frame_to_data['create_time'] = time();
+            $frame_to_data['update_time'] = 0;
+            $frame_to_data['delete_time'] = 0;
+            var_dump('to_user',$to_user,'socket_id:', $frame->fd);
+//        $to_user = $chat_member->info(['username'=>$frame_data['to_username']]);
+            $server->push($to_user['socket_id'], json_encode($frame_to_data));
+        }else{
+            $chat_msgbox_data['from_id'] = $frame_data['data']['from_id'];
+            $chat_msgbox_data['to_id'] = $frame_data['data']['friend_id'];
+            $chat_msgbox_data['from_username'] = $frame_data['data']['from_username'];
+            $chat_msgbox_data['to_username'] = $frame_data['data']['friend_username'];
+            $chat_msgbox_data['type'] = 0;
+            $chat_msgbox_data['status'] = 0;
+            $chat_msgbox_data['remark'] = $frame_data['data']['remark'];
+            $chat_msgbox_data['content'] = isset($frame_data['data']['content'])&&!empty($frame_data['data']['content'])?$frame_data['data']['content']:'';
+            $chat_msgbox_data['group_id'] = $frame_data['data']['group_id'];
+            $chat_msgbox_data['send_time'] =time();
+            $chat_msgbox_data['create_time'] = time();
+            $chat_msgbox_data['update_time'] = 0;
+            $chat_msgbox_data['delete_time'] = 0;
+
+            $chat_msgbox->create($chat_msgbox_data);
+
+
+            $chat_member_data['socket_id'] = $frame->fd;
+            $chat_member_data['status'] = 0;
+            $chat_member->save($chat_member_data);
+            $to_user = $chat_member->info(['id'=>$frame_data['data']['friend_id']]);
+
+
+            $chat_record_data['from_id'] = $frame_data['data']['from_id'];
+            $chat_record_data['to_id'] = $to_user['id'];
+            $chat_record_data['from_username'] = $frame_data['data']['from_username'];
+            $chat_record_data['to_username'] = $to_user['username'];
+            $chat_record_data['type'] = 0;
+            $chat_record_data['status'] = 0;
+            $chat_record_data['content'] =  isset($frame_data['data']['content'])&&!empty($frame_data['data']['content'])?$frame_data['data']['content']:'';
+            $chat_record_data['send_time'] = time();
+            $chat_record_data['create_time'] = time();
+            $chat_record->create($chat_record_data);
+
+            $chat_member_data['socket_id'] = $frame->fd;
+
+
+            $frame_to_data['from_id'] = $frame_data['data']['friend_id'];
+            $frame_to_data['to_id'] = $frame_data['data']['from_id'];
+            $frame_to_data['from_username'] = $frame_data['data']['friend_username'];
+            $frame_to_data['to_username'] = $frame_data['data']['from_username'];
+            $frame_to_data['type'] = 0;
+            $frame_to_data['status'] = 0;
+            $frame_to_data['content'] = 'hahaha add friend......';
+            $frame_to_data['send_time'] =time();
+            $frame_to_data['create_time'] = time();
+            $frame_to_data['update_time'] = 0;
+            $frame_to_data['delete_time'] = 0;
 
 //        $to_user = $chat_member->info(['username'=>$frame_data['to_username']]);
-        $server->push($to_user['socket_id'], json_encode($frame_to_data));
+            $server->push($to_user['socket_id'], json_encode($frame_to_data));
+        }
+
+
         echo "send firend msg....1";
     }else{
         if(empty($frame_data)){
             $server->push($frame->fd, json_encode(['code'=>-100,'msg'=>'传递的数据为空']) );
             return 0;
         }
-
+        $chat_member_data['username'] =$frame_data['from_username'];
         /**
         socket_id	int unsigned [0]	socket连接id
         username	varchar(32)	账号

@@ -28,7 +28,7 @@ class ImApp
     }
     static function get_db($instance='master'){
 
-       $master = new PdoHelper(self::$config['database'][$instance]);
+        $master = new PdoHelper(self::$config['database'][$instance]);
         if(empty(self::$db[$instance])){
             self::$db[$instance] = $master;
         }
@@ -53,21 +53,21 @@ class ImApp
 
     public function handle_error_and_exception(){
 
-            set_error_handler(function ($errno,$errstr,$errfile='',$errline='',$errcontext=array()){
-                $time = date("Y-m-d H:i:s");
+        set_error_handler(function ($errno,$errstr,$errfile='',$errline='',$errcontext=array()){
+            $time = date("Y-m-d H:i:s");
 
-                $log_message = "错误代码:[%s],错误信息:[%s],文件:[%s],行号:[%d],地址:[%s],来源:[%s]";
-                $url     = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-                $referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
-                $log_message_format = $time."|".sprintf($log_message,-100,$errstr,$errfile,$errline,$url,$referer);
+            $log_message = "错误代码:[%s],错误信息:[%s],文件:[%s],行号:[%d],地址:[%s],来源:[%s]";
+            $url     = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+            $referer = isset($_SERVER['HTTP_REFERER'])?$_SERVER['HTTP_REFERER']:'';
+            $log_message_format = $time."|".sprintf($log_message,-100,$errstr,$errfile,$errline,$url,$referer);
 
-                print_r($log_message_format);
-                exit();
+            print_r($log_message_format);
+            exit();
 
-            });
-            set_exception_handler(function ($exception){
-                echo( json_encode( array('status' =>$exception->getCode(),'msg'  =>$exception->getMessage()),JSON_UNESCAPED_UNICODE));
-            });
+        });
+        set_exception_handler(function ($exception){
+            echo( json_encode( array('status' =>$exception->getCode(),'msg'  =>$exception->getMessage()),JSON_UNESCAPED_UNICODE));
+        });
     }
 
     public function dispatch()

@@ -2,12 +2,7 @@
 <project version="4">
   <component name="PhpIncludePathManager">
     <include_path>
-      <path value="$PROJECT_DIR$/vendor/plugin/verifycode" />
       <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/plugin/ckfinder" />
-      <path value="$PROJECT_DIR$/vendor/workerman/workerman" />
-      <path value="$PROJECT_DIR$/vendor/workerman/gateway-worker" />
-      <path value="$PROJECT_DIR$/vendor/workerman/gatewayclient" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1">

@@ -59,6 +59,9 @@
         .addFriend{
             background-color: #7ADDD4;
         }
+        .friendList{
+            margin-top: -40px;
+        }
     </style>
 </head>
 
@@ -100,7 +103,7 @@
                     <div class="layui-form">
                         <div class="search">
                             <div class="layui-col-md4">
-                                <input type="text" id="searchKey2" placeholder="请输入群名称搜索" autocomplete="off" class="layui-input">
+                                <input type="text" id="search_filed_group" placeholder="请输入群名称搜索" autocomplete="off" class="layui-input">
                             </div>
                             <div class="layui-col-md2 ml_10">
                                 <button class="findGroup layui-btn">查找</button>
@@ -183,8 +186,8 @@
          */
         $(document).on('click', '.addFriend', function() {
             var myBut = $(this);
-            var userId = myBut.attr("userId");
-            var userName = myBut.attr("userName");
+            var userid = myBut.data("userid");
+            var username = myBut.data("username");
 
             // 修改按钮
             myBut.parent().html('<span class="c_red">已经提交申请</span>');
@@ -201,12 +204,12 @@
                         action: "add_friend",
                         from_id: 1,
                         from_username:'hepm',
-                        friend_id: userId,
-                        friend_username:userName,
+                        friend_id: userid,
+                        friend_username:username,
                         group_id: group,
                         remark: remark
                     };
-                    console.log(msg);
+                    console.log(msg);return;
                     layer.msg('好友申请已发送，请等待对方确认', { icon: 1 });
                     parent.window.Gsocket.send(JSON.stringify({
                          type: 'chatMsgbox' // 随便定义，用于在服务端区分消息类型
@@ -222,9 +225,8 @@
          */
         $(document).on('click', '.addGroup', function() {
             var myBut = $(this);
-            var groupId = myBut.attr("groupId");
-
-
+            var groupid = myBut.data("groupid");
+            console.log($(this));
             // 修改按钮
             myBut.parent().html('<span class="c_red">已经提交申请</span>');
 
@@ -233,18 +235,20 @@
                 type: 'group'
                 ,username: 'fish'
                 ,avatar: 'aaa'
-                ,submit: function(a, remark, index){
+                ,submit: function(group, remark, index){
                     // 推送一个消息
+                    //请求添加用户
                     var msg = {
-                        type: "addMsgbox",
-                        sendType: 2,
-                        fromId: 1,
-                        toId: '1',
-                        groupId: '1',
+                        action: "add_group",
+                        from_id: 1,
+                        from_username:'hepm',
+                        friend_id: '',
+                        friend_username:'',
+                        group_id: groupid,
                         remark: remark
                     };
-                    layer.msg('申请已发送，请等待管理员确认', { icon: 1 });
-                    websocket.send(JSON.stringify({
+                    layer.msg('好友申请已发送，请等待对方确认', { icon: 1 });
+                    parent.window.Gsocket.send(JSON.stringify({
                         type: 'chatMsgbox' // 随便定义，用于在服务端区分消息类型
                         ,data: msg
                     }));
@@ -259,14 +263,29 @@
             var param = {name:search_filed};
             $.ajax({
                 type: "POST",
-                url: '/im.php/api/friend/get_list',
+                url: '/im.php/api/member/get_list',
                 data: param,
                 timeout: "4000",
                 dataType: 'json',
                 success: function (data) {
                     layer.closeAll('loading');
-                    if (data.status == 0) {
 
+                    if (data.status == 0) {
+                        var friend_list = '';
+                        $.each(data.data.list,function (i,friend) {
+                            console.log(friend);
+                             friend_list = friend_list+`
+                             <div class="layui-col-sm4 layui-col-md4 layui-col-lg2">
+                            <div class="layui-card">
+                            <div class="avatar">
+                            <img class="layadmin-homepage-pad-img" src="${friend.avatar_url}"> </div>
+                            <div class="units"> <p>${friend.id}</p> <p>${friend.nickname}</p> <p>  <button data-userid="${friend.id}" data-username="${friend.nickname}" class="addFriend layui-btn layui-btn-xs" style="background-color:#7ADDD4;">
+                            <strong>+</strong> 好友 </button>  </p>
+                            </div> </div>
+                            </div>
+                        `;
+                        })
+                        $('#friendList').html(friend_list);
                     } else {
 
                     }
@@ -278,12 +297,45 @@
          * 查找群聊按钮点击事件
          */
         $(document).on('click', '.findGroup', function() {
-            bindingGroup();
+            var search_filed = $('#search_filed_group').val();
+            //bindingGroup();
+            var param = {name:search_filed};
+            $.ajax({
+                type: "POST",
+                url: '/im.php/api/group/get_list',
+                data: param,
+                timeout: "4000",
+                dataType: 'json',
+                success: function (data) {
+                    layer.closeAll('loading');
+                    console.log(data);
+                    if (data.code == 0) {
+                        var group_list = '';
+                        $.each(data.data.list,function (i,group) {
+                            console.log(group);
+
+                            group_list = group_list+`
+                             <div class="layui-col-sm4 layui-col-md4 layui-col-lg2"> <div class="layui-card">
+                                <div class="avatar">
+                                    <img class="layadmin-homepage-pad-img" src="${group.avatar_url}"> </div>
+                                <div class="units">
+                                    <p style="font-size: 14px;">${group.group_name}</p>
+                                    <p><i class="layui-icon layui-icon-group icons"></i> 15<span class="line">|</span>
+                                    <i class="layui-icon layui-icon-friends icons"></i>${group.belong}</p> <p>
+                                <button data-groupid="${group.id}" data-group_name="${group.group_name}" class="addGroup layui-btn layui-btn-xs" style="background-color:#7ADDD4;"> <strong>+</strong> 加群 </button>  </p>
+                                </div>
+                                </div>
+                            </div>
+                        `;
+                        })
+                        $('#groupList').html(group_list);
+                    } else {
+
+                    }
+                },
+            });
         });
 
-        // 初始化用户群聊信息
-        bindingFriend();
-        bindingGroup();
     });
 
     /**

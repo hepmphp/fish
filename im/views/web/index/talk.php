@@ -217,9 +217,17 @@
                 ,content: message_form_talk.content
                 ,timestamp: message_form_talk.send_time
             };
-            window.message_form = message_form;
-            console.log('message_form:',message_form);
-            layim.getMessage(message_form);
+            if(message_form_talk.type=='group'){
+                 layer.alert('有添加群消息,请及时处理',{icon:1},function () {
+                     parent.layer.close(parent.layer.index);
+                     parent.layer.close( layer.getFrameIndex('layui-layer-iframe3'));
+                 });
+            }else{
+                window.message_form = message_form;
+                console.log('message_form:',message_form);
+                layim.getMessage(message_form);
+            }
+
         };
 
 

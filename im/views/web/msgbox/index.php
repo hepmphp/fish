@@ -26,6 +26,7 @@
 <script src="<?= STATIC_URL ?>/layim2/dist/lay/modules/layer.js"></script> //im/
 <ul class="layim-msgbox" id="LAY_view">
     <?php foreach ($data['list'] as $k=>$v){?>
+            <?php if($v['type']==2){?>
     <li data-uid="<?=$v['from_id']?>" data-fromgroup="0">
         <a href="" target="_blank">
             <img src="http://127.0.0.1/upload/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg" class="layui-circle layim-msgbox-avatar"> </a>
@@ -34,6 +35,16 @@
         <p class="layim-msgbox-content"> 申请添加你为好友 <span>附言: <?=$v['remark']?></span> </p> <p class="layim-msgbox-btn">
             <button class="layui-btn layui-btn-small" data-type="agree" data-group_id="<?=$v['group_id']?>"  data-from_id="<?=$v['from_id']?>" data-from_username="<?=$v['from_username']?>" data-to_id="<?=$v['to_id']?>"  data-to_username="<?=$v['to_username']?>">同意</button>
             <button class="layui-btn layui-btn-small layui-btn-primary" data-type="refuse" data-group_id="<?=$v['group_id']?>"  data-from_id="<?=$v['from_id']?>" data-from_username="<?=$v['from_username']?>" data-to_id="<?=$v['to_id']?>"  data-to_username="<?=$v['to_username']?>">拒绝</button> </p> </li>
+        <?php }else{?>
+            <li data-uid="<?=$v['from_id']?>" data-fromgroup="0">
+                <a href="" target="_blank">
+                    <img src="http://127.0.0.1/upload/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg" class="layui-circle layim-msgbox-avatar"> </a>
+                <p class="layim-msgbox-group">
+                    <a href="#" target="_blank" data-to_id="<?=$v['from_id']?>"><?=$v['from_username']?></a> <span>刚刚</span> </p>
+                <p class="layim-msgbox-content"> 申请加群 <span>附言: <?=$v['remark']?></span> </p> <p class="layim-msgbox-btn">
+                    <button class="layui-btn layui-btn-small" data-type="agree" data-group_id="<?=$v['group_id']?>"  data-from_id="<?=$v['from_id']?>" data-from_username="<?=$v['from_username']?>" data-to_id="<?=$v['to_id']?>"  data-to_username="<?=$v['to_username']?>">同意</button>
+                    <button class="layui-btn layui-btn-small layui-btn-primary" data-type="refuse" data-group_id="<?=$v['group_id']?>"  data-from_id="<?=$v['from_id']?>" data-from_username="<?=$v['from_username']?>" data-to_id="<?=$v['to_id']?>"  data-to_username="<?=$v['to_username']?>">拒绝</button> </p> </li>
+        <?php }?>
     <?php }?>
 <!--    <li class="layim-msgbox-system"> <p><em>系统：</em>雷军 拒绝了你的好友申请<span>10天前</span></p> </li>-->
 <!--    </li>< div class="layui-flow-more"><li class="layim-msgbox-tips">暂无更多新消息</li></div>-->

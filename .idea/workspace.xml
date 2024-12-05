@@ -1,157 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="NONE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="70599de6-1c42-4819-9704-773d568c4494" name="变更" comment="">
+    <list default="true" id="0703e359-cca9-44b6-91dd-9392c44eb4d8" name="变更" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/fish.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/fish.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/base/App.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/base/App.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/api/Uploader.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/api/Uploader.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/Tree.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/Tree.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/root/upload.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/root/upload.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/base/DocController.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/base/DocController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/controllers/web/File.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/controllers/web/File.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/controllers/web/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/controllers/web/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/views/doc/web/index/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/doc/views/doc/web/index/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/admin/js/upload/js/uploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/admin/js/upload/js/uploader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/doc/js/upload/js/uploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/doc/js/upload/js/uploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/base/ImApp.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/base/ImApp.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/controllers/api/Freind.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/controllers/api/Group.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/controllers/api/Group.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/controllers/swoole/error_handler.log" beforeDir="false" afterPath="$PROJECT_DIR$/im/controllers/swoole/error_handler.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/controllers/swoole/mysql.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/controllers/swoole/mysql.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/controllers/swoole/swoole.log" beforeDir="false" afterPath="$PROJECT_DIR$/im/controllers/swoole/swoole.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/controllers/swoole/swoole.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/controllers/swoole/swoole.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/models/im/Group.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/models/im/Group.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/views/web/friend/find.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/views/web/friend/find.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/views/web/index/talk.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/views/web/index/talk.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/views/web/index/talk_to.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/views/web/index/talk_to.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/views/web/msgbox/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/views/web/msgbox/index.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ClangdSettings">
-    <option name="formatViaClangd" value="false" />
-  </component>
-  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/bbs/views/web/ask/see_reply_list.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/views/web/ask/ajax_reply_create.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/helpers/Debuger.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/base/middleware/SessionMiddleware.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/password.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/base/middleware/CsrfMiddleware.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/base/middleware/AuthMiddleware.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/register.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/models/curd/Posts.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/base/Model.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/bbslist.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/views/web/user/find_password.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/controllers/web/User.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/controllers/web/Ask.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/views/web/common/header.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/base/Loader.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/bbs/views/web/bbslist/list.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/helpers/Timer.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/app/helpers/Handler.php" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
-  </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
-      <path value="$PROJECT_DIR$/vendor/plugin/verifycode" />
       <path value="$PROJECT_DIR$/vendor/composer" />
-      <path value="$PROJECT_DIR$/vendor/plugin/ckfinder" />
-      <path value="$PROJECT_DIR$/vendor/workerman/workerman" />
-      <path value="$PROJECT_DIR$/vendor/workerman/gateway-worker" />
-      <path value="$PROJECT_DIR$/vendor/workerman/gatewayclient" />
     </include_path>
   </component>
-  <component name="ProjectId" id="2oQtXz3q1AU4KNrd1gE2InRSFJb" />
+  <component name="ProjectId" id="2po1PhmiUjJE3BcwNnOAZelWYVO" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/doc/views/doc/web/index" />
-    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\data\www\dnmp\www\fish\doc\views\doc\web\index" />
-      <recent name="E:\data\www\dnmp\www\fish\doc\views\doc\web\tree_node" />
-      <recent name="E:\data\www\dnmp\www\fish\doc\views\doc\web\common" />
-      <recent name="E:\data\www\dnmp\www\fish\doc\models\doc" />
-      <recent name="E:\data\www\dnmp\www\fish\doc\controllers\api" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\data\www\dnmp\www\fish\doc\views\doc\web\user_structure" />
-      <recent name="E:\data\www\dnmp\www\fish\doc\views\doc\web" />
-      <recent name="E:\data\www\dnmp\www\fish\doc\views\doc" />
-      <recent name="E:\data\www\dnmp\www\fish\doc\views" />
-      <recent name="E:\data\www\dnmp\www\fish\doc\views\web" />
-    </key>
+  <component name="RunManager">
+    <configuration default="true" type="ComposerRunConfigurationType" factoryName="Composer Script">
+      <option name="pathToComposerJson" value="$PROJECT_DIR$/composer.json" />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
-      <changelist id="70599de6-1c42-4819-9704-773d568c4494" name="变更" comment="" />
-      <created>1730813672923</created>
+      <changelist id="0703e359-cca9-44b6-91dd-9392c44eb4d8" name="变更" comment="" />
+      <created>1733417597462</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1730813672923</updated>
-      <workItem from="1730813674983" duration="16542000" />
-      <workItem from="1730857816829" duration="8433000" />
-      <workItem from="1730867585099" duration="9000" />
-      <workItem from="1730879731509" duration="23860000" />
-      <workItem from="1730905934731" duration="9771000" />
-      <workItem from="1730944018535" duration="4288000" />
-      <workItem from="1730952473042" duration="343000" />
-      <workItem from="1730953171856" duration="39602000" />
-      <workItem from="1730997866149" duration="23000" />
-      <workItem from="1731031151881" duration="1299000" />
-      <workItem from="1731053922945" duration="32724000" />
-      <workItem from="1731121490644" duration="10517000" />
-      <workItem from="1731137918915" duration="5284000" />
-      <workItem from="1731148060698" duration="26000" />
-      <workItem from="1731148273507" duration="14285000" />
-      <workItem from="1731162692802" duration="58000" />
-      <workItem from="1731163149713" duration="7309000" />
-      <workItem from="1731173844136" duration="12000" />
-      <workItem from="1731173859002" duration="20000" />
-      <workItem from="1731230046358" duration="3813000" />
-      <workItem from="1733042264622" duration="14216000" />
-      <workItem from="1733062652174" duration="8890000" />
-      <workItem from="1733095749356" duration="6940000" />
-      <workItem from="1733102958845" duration="165000" />
-      <workItem from="1733112811797" duration="5104000" />
-      <workItem from="1733127043231" duration="604000" />
-      <workItem from="1733128271808" duration="70000" />
-      <workItem from="1733128884695" duration="5000" />
-      <workItem from="1733137718324" duration="15701000" />
-      <workItem from="1733310396425" duration="19403000" />
+      <updated>1733417597462</updated>
+      <workItem from="1733417600330" duration="5369000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

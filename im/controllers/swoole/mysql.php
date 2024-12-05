@@ -87,6 +87,7 @@ class Model{
     public function update($data, $where, $limit = 1)
     {
         $sql = $this->sql_query_builder->table($this->table)->limit($limit)->update($data, $where);
+        echo $sql."\n";
         return $this->db->exec($sql);
     }
 
@@ -159,7 +160,7 @@ class ChatMember extends Model{
         return $res;
     }
     public function save($data){
-        $this->update($data,['username'=>$data['username']]);
+        $this->update($data,['id'=>$data['id']]);
     }
 }
 
@@ -193,7 +194,21 @@ class ChatRecord extends Model{
         return $res;
     }
 }
-
+class ChatGroup extends Model{
+    public $table='chat_group';
+    public function __construct($config)
+    {
+        parent::__construct($config);
+    }
+    public function info($where){
+        $res = $this->find($where);
+        return $res;
+    }
+    public function create($data){
+        $res = $this->insert($data);
+        return $res;
+    }
+}
 
 
 

@@ -9,19 +9,14 @@
 namespace im\models\im;
 use im\base\Model;
 use im\base\exception\LogicException;
-use im\helpers\Input;
-
-class Group extends Model
+class Member extends Model
 {
-    public $db ='im';
-    public  $table='chat_group';
+    public $db = 'im';
+    public  $table='chat_member';
     public  $db_prefix='';
-
-    public $group_member = '';
 
     public function __construct()
     {
-        $this->group_member = new GroupMember();
         $this->table = $this->db_prefix.$this->table;
         parent::__construct();
     }
@@ -54,7 +49,6 @@ class Group extends Model
 
     public function info($data){
         $info = $this->find(['id'=>$data['id']],'*');
-        $info['avatar_url'] =  str_replace('im.php','',SITE_URL).'/upload/'.$info['avatar'];
         return $info;
     }
 
@@ -70,26 +64,26 @@ class Group extends Model
 
 
 
-    public function get_group_list($where=''){
-        $data= $this->find_all($where,0,1000,'*');
-        foreach ($data as $k=>$v){
-            $data[$k]['username'] = $v['group_name'];
-            $data[$k]['avatar_url'] =  str_replace('im.php','',SITE_URL).'/upload/'.$v['avatar'];
-        }
-        return $data;
-    }
 
     public static function get_config_status(){
         return [
+            0=>['id'=>0,'name'=>'在线'],
+            1=>['id'=>1,'name'=>'下线'],
+            2=>['id'=>2,'name'=>'隐身'],
+            -1=>['id'=>-1,'name'=>'删除'],
+
+        ];
+    }
+
+    public static function get_config_delete_status(){
+        return [
             0=>['id'=>0,'name'=>'正常'],
-            -1=>['id'=>-1,'name'=>'全体禁言'],
+            -1=>['id'=>-1,'name'=>'删除'],
 
         ];
     }
 
 
-
-
 }#end
 
-##生成时间:2024-12-05 16:24:44 文件路径：Group.php🐘
+##生成时间:2024-12-06 01:19:42 文件路径：Member.php🐘

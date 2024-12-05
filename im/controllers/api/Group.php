@@ -169,13 +169,22 @@ class Group extends ImController
     {
         $belong_id = Input::get_post('belong_id',1,'trim');
         $friends = $this->friend_group->get_group_member_list(0);
-        $data['mine'] = array(
-            'username' => 'hepm',
-            'id' => 1,
-            'status' => 'online',
-            'sign' => "在深邃的编码世界，做一枚轻盈的纸飞机",
-            'avatar' => 'http://127.0.0.1/upload/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg'
-        );
+        $data =[
+            1=>[
+                'username' => 'hepm',
+                'id' => 1,
+                'status' => 'online',
+                'sign' => "在深邃的编码世界，做一枚轻盈的纸飞机",
+                'avatar' => 'http://127.0.0.1/upload/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg'
+            ],
+            2=>[
+                'username' => 'fish',
+                'id' => 2,
+                'status' => 'online',
+                'sign' => "在知识的海洋徜徉",
+                'avatar' => 'http://127.0.0.1/upload/2024/12/05/6754a011395cffd2a0ff2e872f394bc1.jpg'
+            ]
+        ];
         $data_friend = [
             1 => [
                 [
@@ -225,7 +234,7 @@ class Group extends ImController
             'list'=>$data_friend[$belong_id],
             'status'=>0
         );
-
+            $data['mine'] = $data[$belong_id];
             $friends = array_merge($friends,[$data_group]);
             $data['friend'] = $friends;
             Input::ajax_return(0, '获取数据成功', $data);

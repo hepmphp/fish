@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\api;
+namespace im\controllers\api;
 
 use im\base\ImController;
 use im\base\exception\LogicException;
@@ -117,6 +117,7 @@ class Friend extends ImController{
         $data['total'] = $total;
         $data['page'] =$page;
         $data['per_page'] = $per_page;
+
         if($res){
             Input::ajax_return(0,'获取数据成功',$data);
         }else{
