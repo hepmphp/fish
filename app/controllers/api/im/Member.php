@@ -34,7 +34,13 @@ class Member extends BaseController{
             }
             $where['username'] = $username;
         }
-
+        $avatar = Input::get_post('avatar','','trim');
+        if($avatar){
+            if(!Validate::required('avatar')){
+                throw  new  LogicException(-1,'链接名称');
+            }
+            $where['avatar'] = $avatar;
+        }
         $nickname = Input::get_post('nickname','','trim');
         if($nickname){
             if(!Validate::required('nickname')){
@@ -44,7 +50,7 @@ class Member extends BaseController{
         }
 
         $status = Input::get_post('status','','trim');
-        if($status){
+        if(is_numeric($status)){
             if(!Validate::required('status')){
                 throw  new  LogicException(-1,'链接名称');
             }
@@ -84,7 +90,7 @@ class Member extends BaseController{
         }
 
 
-        $where = array_filter($where);
+        //$where = array_filter($where);
         return $where;
     }
 

@@ -53,6 +53,7 @@ class Member extends Model
             $form['salt'] = $salt;
         }
         $form['update_time'] = time();
+
         $res = $this->update($form,['id'=>$form['id']],1);
         if($res){
             throw new LogicException(0,'修改成功');
@@ -77,6 +78,7 @@ class Member extends Model
         $info['create_time'] = date('Y-m-d H:i:s',$info['create_time']);
         $info['update_time'] = date('Y-m-d H:i:s',$info['update_time']);
         $info['delete_time'] = date('Y-m-d H:i:s',$info['delete_time']);
+        $info['avatar_url'] = str_replace('index.php','',SITE_URL).'/upload/'.$info['avatar'];
         return $info;
     }
 
@@ -104,6 +106,14 @@ class Member extends Model
 
         ];
     }
+    public static function get_config_delete_status(){
+        return [
+            0=>['id'=>0,'name'=>'正常'],
+            -1=>['id'=>-1,'name'=>'删除'],
+
+        ];
+    }
+
 
 
 }#end

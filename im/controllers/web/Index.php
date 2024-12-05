@@ -19,10 +19,16 @@ class Index extends ImController{
     }
 
     public function index(){
-        error_log(12,3,'E:\data\www\web-demo\web-socket\on-meessage.log');
          echo "aaaaaaaaaaaaaaaaaaa";
         $this->view->display('web/index/index');
     }
 
+    public function talk(){
+        $this->view->display('web/index/talk');
+    }
+
+    public function talk_to(){
+        $this->view->display('web/index/talk_to');
+    }
 
 }

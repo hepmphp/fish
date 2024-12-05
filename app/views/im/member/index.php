@@ -229,7 +229,7 @@
                     id:body.find('#id').val(),
                     username:body.find('#username').val(),
                     nickname:body.find('#nickname').val(),
-                    avatar:body.find('#avatar').val(),
+                    avatar:body.find('.image-item').eq(0).attr('src'),
                     signature:body.find('#signature').val(),
                     password:body.find('#password').val(),
                     status:body.find('#status').val(),

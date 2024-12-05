@@ -31,12 +31,7 @@
                 <input id="nickname" name="nickname" type="text" value="<?=$form['nickname']?>" placeholder="昵称" class="form-control input-md">
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-sm-4 control-label" for="avatar">头像</label>
-            <div class="col-sm-4">
-                <input id="avatar" name="avatar" type="text" value="<?=$form['avatar']?>" placeholder="头像" class="form-control input-md">
-            </div>
-        </div>
+        <?php include APP_PATH.'/views/im/common/upload.php';?>
         <div class="form-group">
             <label class="col-sm-4 control-label" for="signature">签名</label>
             <div class="col-sm-4">
@@ -46,7 +41,21 @@
         <div class="form-group">
             <label class="col-sm-4 control-label" for="password">密码</label>
             <div class="col-sm-4">
-                <input id="password" name="password" type="password" value="<?=$form['password']?>" placeholder="密码" class="form-control input-md">
+                <input id="password" name="password" type="password" value="" placeholder="密码" class="form-control input-md">
+            </div>
+        </div>
+        <!-- Select Basic -->
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="delete_status">状态</label>
+            <div class="col-sm-4">
+                <select id="delete_status" name="delete_status" class="form-control">
+                    <option value="">请选择</option>
+                    <?php
+                    foreach($config_delete_status as $k=>$vo){
+                        ?>
+                        <option value="<?=$vo['id']?>" <?php if($vo['id']==$form['delete_status'] && is_numeric($form['delete_status'])){ echo "selected";}?>><?=$vo['name']?></option>
+                    <?php }?>
+                </select>
             </div>
         </div>
         <!-- Select Basic -->

@@ -126,9 +126,26 @@ class Member extends BaseController{
 
     public function create(){
         $form = $this->get_search_where();
+        $form['socket_id'] = 0;
+        $form['username'] = '';
+        $form['password'] = '';
+        $form['salt'] = '';
+        $form['nickname'] = '';
+        $form['avatar'] = '';
+        $form['avatar_url'] = '';
+        $form['signature'] = '';
+        $form['status'] = 0;
+        $form['delete_status'] = 0;
+        $form['login_time'] = 0;
+        $form['create_time'] = 0;
+        $form['update_time'] = 0;
+        $form['delete_time'] =0;
         $config_status = $this->chat_member->get_config_status();
         $this->view->assign('form',$form);
         $this->view->assign('config_status',$config_status);
+        $config_delete_status = $this->chat_member->get_config_delete_status();
+        $this->view->assign('config_delete_status',$config_delete_status);
+
         $this->view->display('im/member/create');
     }
 
@@ -136,6 +153,9 @@ class Member extends BaseController{
         $form = $this->get_search_where();
         $form = $this->chat_member->info(['id'=>$form['id']]);
         $config_status = $this->chat_member->get_config_status();
+        $config_delete_status = $this->chat_member->get_config_delete_status();
+        $this->view->assign('config_delete_status',$config_delete_status);
+
         $this->view->assign('form',$form);
         $this->view->assign('config_status',$config_status);
         $this->view->display('im/member/create');

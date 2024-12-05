@@ -103,8 +103,10 @@ class Url
             if(strpos($class,'_')!==false OR strpos($class,'-')!==false){
                 $class = str_replace(array('_','-'),array('',''),$class);
             }
+            $path = str_replace('im\\','',$path);
             $class = "\\im\\controllers\\{$path}\\".$class;
         }
+
         return [$path,$class,$method];
     }
 }
