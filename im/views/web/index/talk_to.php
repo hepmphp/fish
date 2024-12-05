@@ -22,6 +22,9 @@
     window.to_message = '';
     window.from_message = '';
     window.message_form_talk = '';
+    window.message_form = '';
+    window.Gsocket = '';
+
     layui.use('layim', function(layim){
 
         //演示自动回复
@@ -192,15 +195,15 @@
         });
 
         window.layim = layim;
-        var socket = new WebSocket('ws://127.0.0.1:9501');
+        window.Gsocket = new WebSocket('ws://127.0.0.1:9501');
 //连接成功时触发
-        socket.onopen = function(){
+        window.Gsocket .onopen = function(){
             console.log('onopen连接成功');
-            socket.send('{"onopen":1,"from_username":"hepm"}');
+            window.Gsocket.send('{"type":"onconnect",id:"2","from_username":"fish"}');
         };
 
 //监听收到的消息
-        socket.onmessage = function(evt){
+        window.Gsocket .onmessage = function(evt){
             //res为接受到的值，如 {"emit": "messageName", "data": {}}
             //emit即为发出的事件名，用于区分不同的消息
             var message_form_talk = JSON.parse(evt.data);
@@ -209,7 +212,7 @@
             console.log(window.from_message);
             var message_form = {
                 username:message_form_talk.to_username
-                ,avatar:  window.from_message.avatar
+                ,avatar:  window.to_message.avatar
                 ,id: window.to_message.id
                 ,type:"friend"
                 ,content: message_form_talk.content
@@ -241,7 +244,7 @@
                 "send_time": 1731248989,
                 "create_time": 1731248989
             };
-            socket.send(JSON.stringify(content));
+            window.Gsocket.send(JSON.stringify(content));
 
 
             //演示自动回复

@@ -23,11 +23,14 @@ use app\helpers\Validate;
     }
 
      public function index(){
+         [config_form]
+         $this->view->assign('form',$form);
          $this->view->display('[database]/[table]/index');
      }
 
      public function create(){
          $form = $this->get_search_where();
+         [config_form]
 [config_status]
          $this->view->assign('form',$form);
          $this->view->display('[database]/[table]/create');

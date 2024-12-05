@@ -4022,3 +4022,832 @@
   'onopen' => 1,
   'from_username' => 'hepm',
 )
+2024-12-05 13:36:32'	1
+2024-12-05 13:36:32'	1	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 13:36:35'	2
+2024-12-05 13:36:36'	2	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 13:37:22'	3
+2024-12-05 13:37:22'	3	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 13:37:35'	3	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'friend_id' => '1',
+    'friend_username' => '用户6011',
+    'groupId' => '5',
+    'remark' => '11111',
+  ),
+)
+2024-12-05 13:52:15'	1
+2024-12-05 13:52:15'	1	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 13:52:19'	2
+2024-12-05 13:52:19'	2	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 13:52:34'	2	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '1',
+    'friend_username' => '用户6011',
+    'group_id' => '4',
+    'remark' => '1111',
+  ),
+)
+2024-12-05 13:53:15'	1
+2024-12-05 13:53:15'	1	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 13:53:18'	2
+2024-12-05 13:53:18'	2	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 13:53:26'	1	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '1',
+    'friend_username' => '用户6011',
+    'group_id' => '2',
+    'remark' => '111',
+  ),
+)
+2024-12-05 13:55:48'	1
+2024-12-05 13:55:48'	1	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 13:55:56'	1	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '1',
+    'friend_username' => '用户6011',
+    'group_id' => '5',
+    'remark' => '11111111',
+  ),
+)
+2024-12-05 13:57:24'	1
+2024-12-05 13:57:24'	1	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 13:57:41'	1	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '1',
+    'friend_username' => '用户6011',
+    'group_id' => '2',
+    'remark' => '宇宙之神小明的请求',
+  ),
+)
+2024-12-05 13:58:29'	1
+2024-12-05 13:58:29'	1	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 13:58:35'	1	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '1',
+    'friend_username' => '用户6011',
+    'group_id' => '8',
+    'remark' => '111',
+  ),
+)
+2024-12-05 14:00:54'	1
+2024-12-05 14:00:54'	1	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:01:01'	1	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '6',
+    'remark' => '11111',
+  ),
+)
+2024-12-05 14:01:55'	1
+2024-12-05 14:01:55'	1	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:02:01'	1	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '4',
+    'remark' => '1111',
+  ),
+)
+2024-12-05 14:03:35'	1
+2024-12-05 14:03:35'	1	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:03:41'	1	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '6',
+    'remark' => '1111',
+  ),
+)
+2024-12-05 14:04:24'	2
+2024-12-05 14:04:24'	2	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:04:33'	3
+2024-12-05 14:04:33'	3	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:04:38'	3	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '2',
+    'remark' => '啊啊',
+  ),
+)
+2024-12-05 14:04:46'	2	array (
+  'from_id' => '2',
+  'to_id' => '1',
+  'from_username' => 'fish',
+  'to_username' => 'hepm',
+  'type' => 1,
+  'status' => 0,
+  'content' => '111',
+  'group_id' => 1,
+  'send_time' => 1731248989,
+  'create_time' => 1731248989,
+)
+2024-12-05 14:04:46'	2	array (
+  'id' => '1',
+  'socket_id' => '3',
+  'username' => 'hepm',
+  'password' => 'ae7f3b2aa2da8ab21fc52f97b0c960e5',
+  'salt' => 'mAgSCL',
+  'nickname' => 'hepm',
+  'avatar' => '/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg',
+  'signature' => '',
+  'status' => '0',
+  'delete_status' => '0',
+  'login_time' => '0',
+  'create_time' => '1733361750',
+  'update_time' => '1733362749',
+  'delete_time' => '0',
+)
+2024-12-05 14:04:51'	3	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '2',
+    'remark' => '啊啊',
+  ),
+)
+2024-12-05 14:04:59'	4
+2024-12-05 14:04:59'	4	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:05:04'	4	array (
+  'from_id' => 1,
+  'to_id' => '2',
+  'from_username' => 'hepm',
+  'to_username' => 'fish',
+  'type' => 1,
+  'status' => 0,
+  'content' => '11111',
+  'group_id' => 1,
+  'send_time' => 1731248989,
+  'create_time' => 1731248989,
+)
+2024-12-05 14:05:04'	4	array (
+  'id' => '2',
+  'socket_id' => '2',
+  'username' => 'fish',
+  'password' => 'aaa455c43c74542c3de43bc53ca64025',
+  'salt' => 'jek6rO',
+  'nickname' => 'fish',
+  'avatar' => '/2024/12/05/6754a011395cffd2a0ff2e872f394bc1.jpg',
+  'signature' => '',
+  'status' => '0',
+  'delete_status' => '0',
+  'login_time' => '0',
+  'create_time' => '1733362767',
+  'update_time' => '0',
+  'delete_time' => '0',
+)
+2024-12-05 14:05:08'	2	array (
+  'from_id' => '2',
+  'to_id' => '1',
+  'from_username' => 'fish',
+  'to_username' => 'hepm',
+  'type' => 1,
+  'status' => 0,
+  'content' => '1111',
+  'group_id' => 1,
+  'send_time' => 1731248989,
+  'create_time' => 1731248989,
+)
+2024-12-05 14:05:08'	2	array (
+  'id' => '1',
+  'socket_id' => '4',
+  'username' => 'hepm',
+  'password' => 'ae7f3b2aa2da8ab21fc52f97b0c960e5',
+  'salt' => 'mAgSCL',
+  'nickname' => 'hepm',
+  'avatar' => '/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg',
+  'signature' => '',
+  'status' => '0',
+  'delete_status' => '0',
+  'login_time' => '0',
+  'create_time' => '1733361750',
+  'update_time' => '1733362749',
+  'delete_time' => '0',
+)
+2024-12-05 14:05:16'	4	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '5',
+    'remark' => '啊啊啊啊',
+  ),
+)
+2024-12-05 14:06:06'	4	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '5',
+    'remark' => '啊啊啊啊',
+  ),
+)
+2024-12-05 14:06:21'	4	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '5',
+    'remark' => '啊啊啊啊',
+  ),
+)
+2024-12-05 14:07:03'	5
+2024-12-05 14:07:03'	5	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:07:09'	5	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '8',
+    'remark' => '1111111111111',
+  ),
+)
+2024-12-05 14:07:14'	5	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '8',
+    'remark' => '1111111111111',
+  ),
+)
+2024-12-05 14:07:23'	5	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '8',
+    'remark' => '1111111111111111',
+  ),
+)
+2024-12-05 14:08:32'	1
+2024-12-05 14:08:32'	1	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:08:38'	1	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '7',
+    'remark' => '11111',
+  ),
+)
+2024-12-05 14:09:50'	1
+2024-12-05 14:09:50'	1	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:09:51'	2
+2024-12-05 14:09:51'	2	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:11:42'	3
+2024-12-05 14:11:42'	3	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:11:44'	4
+2024-12-05 14:11:44'	4	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:11:54'	5
+2024-12-05 14:11:54'	5	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:11:56'	6
+2024-12-05 14:11:56'	6	array (
+  'onopen' => 2,
+  'from_username' => 'fish',
+)
+2024-12-05 14:14:06'	1
+2024-12-05 14:14:06'	1	array (
+  'onopen' => 1,
+  'from_username' => 'hepm',
+)
+2024-12-05 14:14:08'	2
+2024-12-05 14:14:08'	2	array (
+  'onopen' => 2,
+  'from_username' => 'fish',
+)
+2024-12-05 14:17:00'	1
+2024-12-05 14:17:00'	1	NULL
+2024-12-05 14:18:42'	1
+2024-12-05 14:18:42'	1	NULL
+2024-12-05 14:20:34'	1
+2024-12-05 14:20:34'	1	NULL
+2024-12-05 14:20:35'	2
+2024-12-05 14:20:35'	2	NULL
+2024-12-05 14:20:41'	2	array (
+  'from_id' => '2',
+  'to_id' => '1',
+  'from_username' => 'fish',
+  'to_username' => 'hepm',
+  'type' => 1,
+  'status' => 0,
+  'content' => '22222',
+  'group_id' => 1,
+  'send_time' => 1731248989,
+  'create_time' => 1731248989,
+)
+2024-12-05 14:20:41'	2	array (
+  'id' => '1',
+  'socket_id' => '1',
+  'username' => 'hepm',
+  'password' => 'ae7f3b2aa2da8ab21fc52f97b0c960e5',
+  'salt' => 'mAgSCL',
+  'nickname' => 'hepm',
+  'avatar' => '/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg',
+  'signature' => '',
+  'status' => '0',
+  'delete_status' => '0',
+  'login_time' => '0',
+  'create_time' => '1733361750',
+  'update_time' => '1733362749',
+  'delete_time' => '0',
+)
+2024-12-05 14:20:45'	1	array (
+  'from_id' => 1,
+  'to_id' => '1',
+  'from_username' => 'hepm',
+  'to_username' => 'hepm',
+  'type' => 1,
+  'status' => 0,
+  'content' => '111111',
+  'group_id' => 1,
+  'send_time' => 1731248989,
+  'create_time' => 1731248989,
+)
+2024-12-05 14:20:45'	1	array (
+  'id' => '1',
+  'socket_id' => '1',
+  'username' => 'hepm',
+  'password' => 'ae7f3b2aa2da8ab21fc52f97b0c960e5',
+  'salt' => 'mAgSCL',
+  'nickname' => 'hepm',
+  'avatar' => '/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg',
+  'signature' => '',
+  'status' => '0',
+  'delete_status' => '0',
+  'login_time' => '0',
+  'create_time' => '1733361750',
+  'update_time' => '1733362749',
+  'delete_time' => '0',
+)
+2024-12-05 14:20:53'	2	array (
+  'from_id' => '2',
+  'to_id' => '1',
+  'from_username' => 'fish',
+  'to_username' => 'hepm',
+  'type' => 1,
+  'status' => 0,
+  'content' => '111111',
+  'group_id' => 1,
+  'send_time' => 1731248989,
+  'create_time' => 1731248989,
+)
+2024-12-05 14:20:53'	2	array (
+  'id' => '1',
+  'socket_id' => '1',
+  'username' => 'hepm',
+  'password' => 'ae7f3b2aa2da8ab21fc52f97b0c960e5',
+  'salt' => 'mAgSCL',
+  'nickname' => 'hepm',
+  'avatar' => '/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg',
+  'signature' => '',
+  'status' => '0',
+  'delete_status' => '0',
+  'login_time' => '0',
+  'create_time' => '1733361750',
+  'update_time' => '1733362749',
+  'delete_time' => '0',
+)
+2024-12-05 14:21:00'	1	array (
+  'from_id' => 1,
+  'to_id' => '1',
+  'from_username' => 'hepm',
+  'to_username' => 'hepm',
+  'type' => 1,
+  'status' => 0,
+  'content' => '2222222',
+  'group_id' => 1,
+  'send_time' => 1731248989,
+  'create_time' => 1731248989,
+)
+2024-12-05 14:21:00'	1	array (
+  'id' => '1',
+  'socket_id' => '1',
+  'username' => 'hepm',
+  'password' => 'ae7f3b2aa2da8ab21fc52f97b0c960e5',
+  'salt' => 'mAgSCL',
+  'nickname' => 'hepm',
+  'avatar' => '/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg',
+  'signature' => '',
+  'status' => '0',
+  'delete_status' => '0',
+  'login_time' => '0',
+  'create_time' => '1733361750',
+  'update_time' => '1733362749',
+  'delete_time' => '0',
+)
+2024-12-05 14:21:05'	3
+2024-12-05 14:21:05'	3	NULL
+2024-12-05 14:21:06'	4
+2024-12-05 14:21:06'	4	NULL
+2024-12-05 14:21:07'	5
+2024-12-05 14:21:07'	5	NULL
+2024-12-05 14:21:07'	6
+2024-12-05 14:21:07'	6	NULL
+2024-12-05 14:21:08'	7
+2024-12-05 14:21:08'	7	NULL
+2024-12-05 14:21:08'	8
+2024-12-05 14:21:08'	8	NULL
+2024-12-05 14:21:10'	9
+2024-12-05 14:21:10'	9	NULL
+2024-12-05 14:21:22'	8	array (
+  'from_id' => 1,
+  'to_id' => '2',
+  'from_username' => 'hepm',
+  'to_username' => 'fish',
+  'type' => 1,
+  'status' => 0,
+  'content' => '1t2',
+  'group_id' => 1,
+  'send_time' => 1731248989,
+  'create_time' => 1731248989,
+)
+2024-12-05 14:21:22'	8	array (
+  'id' => '2',
+  'socket_id' => '2',
+  'username' => 'fish',
+  'password' => 'aaa455c43c74542c3de43bc53ca64025',
+  'salt' => 'jek6rO',
+  'nickname' => 'fish',
+  'avatar' => '/2024/12/05/6754a011395cffd2a0ff2e872f394bc1.jpg',
+  'signature' => '',
+  'status' => '0',
+  'delete_status' => '0',
+  'login_time' => '0',
+  'create_time' => '1733362767',
+  'update_time' => '0',
+  'delete_time' => '0',
+)
+2024-12-05 14:21:31'	9	array (
+  'from_id' => '2',
+  'to_id' => '1',
+  'from_username' => 'fish',
+  'to_username' => 'hepm',
+  'type' => 1,
+  'status' => 0,
+  'content' => '2t1',
+  'group_id' => 1,
+  'send_time' => 1731248989,
+  'create_time' => 1731248989,
+)
+2024-12-05 14:21:31'	9	array (
+  'id' => '1',
+  'socket_id' => '8',
+  'username' => 'hepm',
+  'password' => 'ae7f3b2aa2da8ab21fc52f97b0c960e5',
+  'salt' => 'mAgSCL',
+  'nickname' => 'hepm',
+  'avatar' => '/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg',
+  'signature' => '',
+  'status' => '0',
+  'delete_status' => '0',
+  'login_time' => '0',
+  'create_time' => '1733361750',
+  'update_time' => '1733362749',
+  'delete_time' => '0',
+)
+2024-12-05 14:21:36'	8	array (
+  'from_id' => 1,
+  'to_id' => '2',
+  'from_username' => 'hepm',
+  'to_username' => 'fish',
+  'type' => 1,
+  'status' => 0,
+  'content' => '1-2',
+  'group_id' => 1,
+  'send_time' => 1731248989,
+  'create_time' => 1731248989,
+)
+2024-12-05 14:21:36'	8	array (
+  'id' => '2',
+  'socket_id' => '9',
+  'username' => 'fish',
+  'password' => 'aaa455c43c74542c3de43bc53ca64025',
+  'salt' => 'jek6rO',
+  'nickname' => 'fish',
+  'avatar' => '/2024/12/05/6754a011395cffd2a0ff2e872f394bc1.jpg',
+  'signature' => '',
+  'status' => '0',
+  'delete_status' => '0',
+  'login_time' => '0',
+  'create_time' => '1733362767',
+  'update_time' => '0',
+  'delete_time' => '0',
+)
+2024-12-05 14:21:40'	9	array (
+  'from_id' => '2',
+  'to_id' => '1',
+  'from_username' => 'fish',
+  'to_username' => 'hepm',
+  'type' => 1,
+  'status' => 0,
+  'content' => '2-1',
+  'group_id' => 1,
+  'send_time' => 1731248989,
+  'create_time' => 1731248989,
+)
+2024-12-05 14:21:40'	9	array (
+  'id' => '1',
+  'socket_id' => '8',
+  'username' => 'hepm',
+  'password' => 'ae7f3b2aa2da8ab21fc52f97b0c960e5',
+  'salt' => 'mAgSCL',
+  'nickname' => 'hepm',
+  'avatar' => '/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg',
+  'signature' => '',
+  'status' => '0',
+  'delete_status' => '0',
+  'login_time' => '0',
+  'create_time' => '1733361750',
+  'update_time' => '1733362749',
+  'delete_time' => '0',
+)
+2024-12-05 14:21:48'	8	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '2',
+    'friend_username' => 'fish',
+    'group_id' => '7',
+    'remark' => 'ddddddddddddddd',
+  ),
+)
+2024-12-05 14:33:09'	10
+2024-12-05 14:33:09'	10	NULL
+2024-12-05 14:34:09'	11
+2024-12-05 14:34:09'	11	NULL
+2024-12-05 15:10:01'	12
+2024-12-05 15:10:01'	12	NULL
+2024-12-05 15:10:25'	13
+2024-12-05 15:10:25'	13	NULL
+2024-12-05 15:11:41'	14
+2024-12-05 15:11:41'	14	NULL
+2024-12-05 15:11:59'	15
+2024-12-05 15:11:59'	15	NULL
+2024-12-05 15:13:28'	16
+2024-12-05 15:13:28'	16	NULL
+2024-12-05 15:13:45'	17
+2024-12-05 15:13:45'	17	NULL
+2024-12-05 15:14:08'	17	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '4',
+    'friend_username' => 'lgt',
+    'group_id' => '6',
+    'remark' => '1111',
+  ),
+)
+2024-12-05 15:14:38'	18
+2024-12-05 15:14:38'	18	NULL
+2024-12-05 15:14:42'	19
+2024-12-05 15:14:42'	19	NULL
+2024-12-05 15:14:58'	20
+2024-12-05 15:14:58'	20	NULL
+2024-12-05 15:26:59'	21
+2024-12-05 15:26:59'	21	NULL
+2024-12-05 15:28:01'	22
+2024-12-05 15:28:01'	22	NULL
+2024-12-05 15:28:17'	23
+2024-12-05 15:28:17'	23	NULL
+2024-12-05 15:29:02'	24
+2024-12-05 15:29:02'	24	NULL
+2024-12-05 15:29:58'	25
+2024-12-05 15:29:58'	25	NULL
+2024-12-05 15:32:35'	26
+2024-12-05 15:32:35'	26	NULL
+2024-12-05 15:33:12'	27
+2024-12-05 15:33:12'	27	NULL
+2024-12-05 15:33:42'	28
+2024-12-05 15:33:42'	28	NULL
+2024-12-05 15:34:09'	29
+2024-12-05 15:34:09'	29	NULL
+2024-12-05 15:34:28'	30
+2024-12-05 15:34:28'	30	NULL
+2024-12-05 15:34:39'	31
+2024-12-05 15:34:39'	31	NULL
+2024-12-05 15:35:11'	32
+2024-12-05 15:35:11'	32	NULL
+2024-12-05 15:35:39'	33
+2024-12-05 15:35:39'	33	NULL
+2024-12-05 15:35:54'	34
+2024-12-05 15:35:54'	34	NULL
+2024-12-05 15:36:05'	35
+2024-12-05 15:36:05'	35	NULL
+2024-12-05 15:36:10'	36
+2024-12-05 15:36:10'	36	NULL
+2024-12-05 15:36:34'	37
+2024-12-05 15:36:34'	37	NULL
+2024-12-05 15:37:04'	38
+2024-12-05 15:37:04'	38	NULL
+2024-12-05 15:37:28'	39
+2024-12-05 15:37:28'	39	NULL
+2024-12-05 15:37:37'	40
+2024-12-05 15:37:37'	40	NULL
+2024-12-05 15:38:17'	41
+2024-12-05 15:38:17'	41	NULL
+2024-12-05 15:39:35'	42
+2024-12-05 15:39:35'	42	NULL
+2024-12-05 15:40:16'	43
+2024-12-05 15:40:16'	43	NULL
+2024-12-05 15:40:22'	44
+2024-12-05 15:40:22'	44	NULL
+2024-12-05 15:40:52'	45
+2024-12-05 15:40:52'	45	NULL
+2024-12-05 15:41:53'	46
+2024-12-05 15:41:53'	46	NULL
+2024-12-05 15:42:14'	47
+2024-12-05 15:42:14'	47	NULL
+2024-12-05 15:42:35'	48
+2024-12-05 15:42:35'	48	NULL
+2024-12-05 15:42:38'	49
+2024-12-05 15:42:38'	49	NULL
+2024-12-05 15:43:01'	49	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '4',
+    'friend_username' => 'lgt',
+    'group_id' => '1',
+    'remark' => '',
+  ),
+)
+2024-12-05 15:43:13'	49	array (
+  'type' => 'chatMsgbox',
+  'data' => 
+  array (
+    'action' => 'add_friend',
+    'from_id' => 1,
+    'from_username' => 'hepm',
+    'friend_id' => '4',
+    'friend_username' => 'lgt',
+    'group_id' => '1',
+    'remark' => '',
+  ),
+)
+2024-12-05 15:43:15'	50
+2024-12-05 15:43:15'	50	NULL
+2024-12-05 15:43:27'	51
+2024-12-05 15:43:27'	51	NULL

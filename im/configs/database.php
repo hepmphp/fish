@@ -28,5 +28,12 @@ $config['bbs'] = [
     'port' => 3306,
     'charset' => 'utf8',
 ];
-
+$config['im'] = [
+    'host' => '127.0.0.1',
+    'dbname' => 'fish_im',
+    'username' => 'root',
+    'password' => '123456',
+    'port' => 3306,
+    'charset' => 'utf8',
+];
 return $config;

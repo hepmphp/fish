@@ -114,7 +114,10 @@ EOT;
         $select_tree_str="";
         $select_tree_id_str="";
         $form_builder_type = '';
+
+        $form_fields = '$form = array('."\n";
         foreach($fields as $k=>$field){
+            $form_fields = $form_fields."\t\t\t\t'{$field}'=>'',\n";
             $searc_builder_type = $search_builder_types[$k];
             if($searc_builder_type=='search_text'){
                 $where_str .= str_replace('[field]',$field,$where_tpl);
@@ -126,6 +129,7 @@ EOT;
 
             }
         }
+        $form_fields = $form_fields."\t\t\t\t);";
         //自动添加配置
         //get_config_[field]
         list($db_fields,$select) = (new InfoSchema($database))->get_all_fields($table);
@@ -149,8 +153,8 @@ EOT;
         $database = str_replace('fish_','',$database);
         $table = str_replace(array('cms_','admin_','bbs_'),['','',''],$table);
         $content = str_replace(
-            array('[database]','[table]','[model]','[search_where]','[config_status]'),
-            array($database,$table,$tbname,$where_str,$config_str),
+            array('[database]','[table]','[model]','[search_where]','[config_status]','[config_form]'),
+            array($database,$table,$tbname,$where_str,$config_str,$form_fields),
             $content);
         return $content;
     }

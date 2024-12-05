@@ -78,16 +78,94 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
     if(isset($frame_data['is_heart_beat']) && $frame_data['is_heart_beat']==1){
 
         $server->push($frame->fd, json_encode($frame_data));
-    }elseif (isset($frame_data['onopen'])&&$frame_data['onopen']===1){
+    }elseif (isset($frame_data['type'])&&$frame_data['type']==='onconnect'){
+        $chat_member_data['id'] = $frame_data['id'];
         $chat_member_data['socket_id'] = $frame->fd;
         $chat_member_data['status'] = 0;
         $chat_member->save($chat_member_data);
 //        $to_user = $chat_member->info(['username'=>$frame_data['to_username']]);
         $server->push($frame->fd, json_encode($frame_data));
-    }else{
+    }elseif (isset($frame_data['type']) && $frame_data['type']=='chatMsgbox'){
+        //{"type":"","data":{"action":"add_friend","from_id":1,"friend_id":"1","friend_username":"用户6011","groupId":"5","remark":"11111"}}
+        /**
+         *
+        Column	Type	Comment
+        id	int unsigned Auto Increment
+        from_id	int unsigned [0]	消息发送者id
+        to_id	int unsigned [0]	消息接收者id
+        from_username	varchar(32) []	消息发送者
+        to_username	varchar(32) []	消息接收者
+        type	tinyint unsigned [0]	消息类型|0:请求添加用户,1:系统消息(加好友) ,2:请求加群,3:系统消息(加群)
+        status	tinyint unsigned [0]	状态|0:待处理,1:同意,2:拒绝,3:无须处理
+        remark	varchar(128) NULL []	附加消息
+        content	text	信息备注
+        friend_group_id	int NULL [0]	好友分组ID
+        group_id	int NULL [0]	群ID
+        send_time	int unsigned [0]	发送消息时间
+        read_time	int unsigned NULL [0]	读消息时间
+        create_time	int unsigned [0]	创建时间
+        update_time	int unsigned NULL [0]	修改时间
+        delete_time	int unsigned NULL [0]	删除时间
+         */
+
+        $chat_msgbox_data['from_id'] = $frame_data['data']['from_id'];
+        $chat_msgbox_data['to_id'] = $frame_data['data']['friend_id'];
+        $chat_msgbox_data['from_username'] = $frame_data['data']['from_username'];
+        $chat_msgbox_data['to_username'] = $frame_data['data']['friend_username'];
+        $chat_msgbox_data['type'] = 0;
+        $chat_msgbox_data['status'] = 0;
+        $chat_msgbox_data['remark'] = $frame_data['data']['remark'];
+        $chat_msgbox_data['content'] = isset($frame_data['data']['content'])&&!empty($frame_data['data']['content'])?$frame_data['data']['content']:'';
+        $chat_msgbox_data['group_id'] = $frame_data['data']['group_id'];
+        $chat_msgbox_data['send_time'] =time();
+        $chat_msgbox_data['create_time'] = time();
+        $chat_msgbox_data['update_time'] = 0;
+        $chat_msgbox_data['delete_time'] = 0;
+
+        $chat_msgbox->create($chat_msgbox_data);
+
+
         $chat_member_data['socket_id'] = $frame->fd;
         $chat_member_data['status'] = 0;
         $chat_member->save($chat_member_data);
+        $to_user = $chat_member->info(['id'=>$frame_data['data']['friend_id']]);
+
+
+        $chat_record_data['from_id'] = $frame_data['data']['from_id'];
+        $chat_record_data['to_id'] = $to_user['id'];
+        $chat_record_data['from_username'] = $frame_data['data']['from_username'];
+        $chat_record_data['to_username'] = $to_user['username'];
+        $chat_record_data['type'] = 0;
+        $chat_record_data['status'] = 0;
+        $chat_record_data['content'] =  isset($frame_data['data']['content'])&&!empty($frame_data['data']['content'])?$frame_data['data']['content']:'';
+        $chat_record_data['send_time'] = time();
+        $chat_record_data['create_time'] = time();
+        $chat_record->create($chat_record_data);
+
+        $chat_member_data['socket_id'] = $frame->fd;
+
+
+        $frame_to_data['from_id'] = $frame_data['data']['friend_id'];
+        $frame_to_data['to_id'] = $frame_data['data']['from_id'];
+        $frame_to_data['from_username'] = $frame_data['data']['friend_username'];
+        $frame_to_data['to_username'] = $frame_data['data']['from_username'];
+        $frame_to_data['type'] = 0;
+        $frame_to_data['status'] = 0;
+        $frame_to_data['content'] = 'hahaha add friend......';
+        $frame_to_data['send_time'] =time();
+        $frame_to_data['create_time'] = time();
+        $frame_to_data['update_time'] = 0;
+        $frame_to_data['delete_time'] = 0;
+
+//        $to_user = $chat_member->info(['username'=>$frame_data['to_username']]);
+        $server->push($to_user['socket_id'], json_encode($frame_to_data));
+        echo "send firend msg....1";
+    }else{
+        if(empty($frame_data)){
+            $server->push($frame->fd, json_encode(['code'=>-100,'msg'=>'传递的数据为空']) );
+            return 0;
+        }
+
         /**
         socket_id	int unsigned [0]	socket连接id
         username	varchar(32)	账号

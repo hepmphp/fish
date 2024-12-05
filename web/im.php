@@ -5,7 +5,7 @@
  *  author: hepm<ok_fish@qq.com>$
  */
 define('DEBUG',TRUE);
-define('SITE_URL','http://127.0.0.1/');
+define('SITE_URL','http://127.0.0.1/im.php/');
 define('WEB_PATH',__DIR__);
 define('STATIC_URL','http://127.0.0.1/static/im/');
 define('APP_PATH',WEB_PATH.'/../app/');

@@ -39,6 +39,7 @@ class Model{
     public function find($where, $fields = '*')
     {
         $sql = $this->sql_query_builder->table($this->table)->field($fields)->limit(1)->where($where)->fetch();
+        echo $sql."\n";
         $res = $this->db->fetch($sql);
         return  $res;
     }
@@ -71,6 +72,7 @@ class Model{
     public function insert($data)
     {
         $sql = $this->sql_query_builder->table($this->table)->insert($data);
+        echo $sql;
         $this->db->exec($sql);
         return  $this->db->last_insert_id();
 
@@ -191,4 +193,7 @@ class ChatRecord extends Model{
         return $res;
     }
 }
+
+
+
 
