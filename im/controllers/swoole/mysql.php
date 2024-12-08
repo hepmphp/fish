@@ -60,6 +60,7 @@ class Model{
             ->where($where)
             ->limit($limit, $offset)
             ->fetch_all();
+        echo $sql;
         $res = $this->db->fetch_all($sql);
         return $res;
     }
@@ -165,6 +166,9 @@ class ChatMember extends Model{
     public function save_socket_id($data){
         $this->update($data,['socket_id'=>$data['socket_id']]);
     }
+    public function save_socket_id_to_zero($socket_id){
+        $this->update(['socket_id'=>0],['socket_id'=>$socket_id]);
+    }
 }
 
 class ChatMsgbox extends Model{
@@ -214,4 +218,18 @@ class ChatGroup extends Model{
 }
 
 
-
+class ChatGroupMember extends Model{
+    public $table='chat_group_member';
+    public function __construct($config)
+    {
+        parent::__construct($config);
+    }
+    public function info($where){
+        $res = $this->find($where);
+        return $res;
+    }
+    public function create($data){
+        $res = $this->insert($data);
+        return $res;
+    }
+}

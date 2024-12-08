@@ -2,16 +2,24 @@
 
 namespace im\controllers\web;
 
+use app\helpers\Arr;
+use im\base\exception\LogicException;
 use im\base\ImController;
 use im\helpers\Input;
 use im\models\im\Friend as M_Friend;
+use im\models\im\Record;
+use im\models\im\Member;
 use app\helpers\Validate;
 class Friend extends ImController{
 
     public $chat_friend  = '';
+    public $chat_record = '';
+    public $chat_member = '';
     public function __construct()
     {
         $this->chat_friend = new M_Friend();
+        $this->chat_record = new Record();
+        $this->chat_member = new Member();
         parent::__construct();
     }
 
@@ -23,9 +31,22 @@ class Friend extends ImController{
             if(!Validate::required('id')){
                 throw  new  LogicException(-1,'链接名称');
             }
-            $where['id'] = $id;
+            $where['to_id'] = $id;
         }
-
+        $to_id = Input::get_post('to_id','','trim');
+        if($to_id){
+            if(!Validate::required('to_id')){
+                throw  new  LogicException(-1,'链接名称');
+            }
+            $where['to_id'] = $to_id;
+        }
+        $type = Input::get_post('type','','trim');
+        if($type){
+            if(!Validate::required('type')){
+                throw  new  LogicException(-1,'链接名称');
+            }
+            $where['type'] = $type;
+        }
         $group_id = Input::get_post('group_id','','trim');
         if($group_id){
             if(!Validate::required('group_id')){
@@ -34,21 +55,7 @@ class Friend extends ImController{
             $where['group_id'] = $group_id;
         }
 
-        $member_id = Input::get_post('member_id','','trim');
-        if($member_id){
-            if(!Validate::required('member_id')){
-                throw  new  LogicException(-1,'链接名称');
-            }
-            $where['member_id'] = $member_id;
-        }
 
-        $nickname = Input::get_post('nickname','','trim');
-        if($nickname){
-            if(!Validate::required('nickname')){
-                throw  new  LogicException(-1,'链接名称');
-            }
-            $where['nickname'] = $nickname;
-        }
 
         $create_time = Input::get_post('create_time','','trim');
         if($create_time){
@@ -140,6 +147,30 @@ class Friend extends ImController{
         $form = $this->get_search_where();
         $this->view->assign('form',$form);
         $this->view->display('web/friend/find');
+    }
+    public function chatlog(){
+        $form = $this->get_search_where();
+        if($form['type']==='group'){
+            if(isset($form['group_id'])){
+                $where_sql = " group_id={$form['group_id']} ";
+            }
+        }else{
+            if(isset($form['to_id'])){
+                $where_sql = " from_id={$form['to_id']} OR to_id={$form['to_id']}";
+            }
+        }
+
+        $page = Input::get_post('page',1,'intval');
+        $per_page = Input::get_post('per_page',20,'intval');
+        list($res,$total) = $this->chat_record->get_list_info($where_sql,$page,$per_page,'*');
+        $data['list'] = $res;
+        $data['total'] = $total;
+        $data['total_page'] = ceil($data['total']/$per_page);
+        $data['page'] =$page;
+        $data['per_page'] = $per_page;
+        $this->view->assign('form',$form);
+        $this->view->assign('data',$data);
+        $this->view->display('web/friend/chatlog');
     }
     public function info(){
         $form = $this->get_search_where();

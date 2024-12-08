@@ -183,6 +183,13 @@ class Group extends ImController
                 'status' => 'online',
                 'sign' => "在知识的海洋徜徉",
                 'avatar' => 'http://127.0.0.1/upload/2024/12/05/6754a011395cffd2a0ff2e872f394bc1.jpg'
+            ],
+            3=>[
+                'username' => 'pink',
+                'id' => 3,
+                'status' => 'online',
+                'sign' => "在知识的海洋徜徉",
+                "avatar" => "http://127.0.0.1/upload/2024/12/05/f942f64553eef272e28f6fec8af8c1aa.jpg",
             ]
         ];
         $data_friend = [
@@ -207,6 +214,26 @@ class Group extends ImController
                 ]
             ],
             2 => [
+                [
+                    "id" => "1",
+                    "username" => "hepm",
+                    "avatar" => "http://127.0.0.1/upload/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg",
+                    "sign" => "这些都是测试数据，实际使用请严格按照该格式返回"
+                ],
+                [
+                    "username" => "fish",
+                    "id" => "2",
+                    "avatar" => "http://127.0.0.1/upload/2024/12/05/6754a011395cffd2a0ff2e872f394bc1.jpg",
+                    "sign" => "微电商达人",
+                ],
+                [
+                    "username" => "pink",
+                    "id" => "3",
+                    "avatar" => "http://127.0.0.1/upload/2024/12/05/f942f64553eef272e28f6fec8af8c1aa.jpg",
+                    "sign" => "",
+                ]
+            ],
+            3 => [
                 [
                     "id" => "1",
                     "username" => "hepm",

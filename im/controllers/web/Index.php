@@ -30,5 +30,7 @@ class Index extends ImController{
     public function talk_to(){
         $this->view->display('web/index/talk_to');
     }
-
+    public function talk_three(){
+        $this->view->display('web/index/talk_three');
+    }
 }

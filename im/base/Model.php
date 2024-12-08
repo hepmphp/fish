@@ -66,6 +66,7 @@ class Model
             ->limit($limit, $offset)
             ->fetch_all();
         $this->debug_start($sql);
+
         $res = $this->db->fetch_all($sql);
         $this->debug_end($res);
         return $res;

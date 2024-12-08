@@ -10,10 +10,11 @@ namespace im\models\im;
 use app\helpers\Arr;
 use im\base\Model;
 use im\base\exception\LogicException;
-class Msgbox extends Model
+use im\models\im\Member;
+class Record extends Model
 {
     public $db = 'im';
-    public  $table='chat_msgbox';
+    public  $table='chat_record';
     public  $db_prefix='';
     public $chat_member = '';
 
@@ -58,18 +59,15 @@ class Msgbox extends Model
     public function get_list_info($where = array(), $limit = 1, $offset = 20, $fields = '*')
     {
         $total = $this->get_total($where);
-        $data = $this->get_list($where, $limit, $offset, $fields,'id desc');
-//        //根据用户id获取用户信息
-        $from_ids = Arr::getColumn($data,'from_id');
+        $data = $this->get_list($where, $limit, $offset, $fields);
+        //根据用户id获取用户信息
         $to_ids = Arr::getColumn($data,'to_id');
-        $from_ids = array_unique($from_ids);
         $to_ids = array_unique($to_ids);
-        $to_ids = array_merge($from_ids,$to_ids);
         $members = $this->chat_member->find_all(['id'=>$to_ids],0,1000);
         $members = Arr::index($members,'id');
         foreach ($data as $k=>$v){
-            $avatar = $members[$v['from_id']]['avatar'];
-            $data[$k]['avatar_url'] =  str_replace('im.php','',SITE_URL).'/upload/'.$avatar;
+            $avatar = $members[$v['to_id']]['avatar'];
+            $data[$k]['avator_url'] =  str_replace('im.php','',SITE_URL).'/upload/'.$avatar;
         }
         return [$data,$total['total']];
     }
@@ -77,22 +75,10 @@ class Msgbox extends Model
 
 
 
-    public static function get_config_type(){
-        return [
-            0=>['id'=>0,'name'=>'请求添加用户'],
-            1=>['id'=>1,'name'=>'系统消息(加好友) '],
-            2=>['id'=>2,'name'=>'请求加群'],
-            3=>['id'=>3,'name'=>'系统消息(加群)'],
-
-        ];
-    }
-
     public static function get_config_status(){
         return [
-            0=>['id'=>0,'name'=>'待处理'],
-            1=>['id'=>1,'name'=>'同意'],
-            2=>['id'=>2,'name'=>'拒绝'],
-            3=>['id'=>3,'name'=>'无须处理'],
+            0=>['id'=>0,'name'=>'正常'],
+            -1=>['id'=>-1,'name'=>'删除'],
 
         ];
     }
@@ -100,4 +86,4 @@ class Msgbox extends Model
 
 }#end
 
-##生成时间:2024-12-05 22:23:42 文件路径：Msgbox.php🐘
+##生成时间:2024-12-08 12:51:19 文件路径：Record.php🐘

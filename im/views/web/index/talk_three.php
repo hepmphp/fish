@@ -44,7 +44,7 @@
 
             //初始化接口
             init: {
-                url: '/im.php/api/group/get_group_member_list?belong_id=2'
+                url: '/im.php/api/group/get_group_member_list?belong_id=3'
                 ,data: {}
             }
 
@@ -198,35 +198,54 @@
 //连接成功时触发
         window.Gsocket.onopen = function(){
             console.log('onopen连接成功');
-            window.Gsocket.send('{"type":"onconnect","id":"2","from_username":"fish"}');
+            window.Gsocket.send('{"type":"onconnect","id":"3","from_username":"pink"}');
         };
-
+        window.chat_user = {};
+        ///im.php/api/group/get_group_member_list?belong_id=1
+        $.ajax({
+            type: "GET",
+            url: '/im.php/api/group/get_group_member_list',
+            data: {belong_id:3},
+            timeout: "4000",
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+                var mine = data.data.mine;
+                window.chat_user.from_id =mine.id;
+                window.chat_user.from_username = mine.username;
+            }
+        });
 //监听收到的消息
         window.Gsocket.onmessage = function(evt){
             //res为接受到的值，如 {"emit": "messageName", "data": {}}
-            //emit即为发出的事件名，用于区分不同的消息
             //emit即为发出的事件名，用于区分不同的消息
             var message_form_talk = JSON.parse(evt.data);
             window.message_form_talk = message_form_talk;
             console.log('message_form_talk',message_form_talk);
             console.log(window.from_message);
-            var message_form = {
-                username:message_form_talk.to_username
-                ,avatar:  window.to_message.avatar
-                ,id: window.to_message.id
-                ,type:"friend"
-                ,content: message_form_talk.content
-                ,timestamp: message_form_talk.create_time
-            };
+
             if(message_form_talk.type==2){
+                var message_form = {
+                    username:message_form_talk.to_username
+                    ,avatar:  message_form_talk.from_avatar
+                    ,id: window.to_message.id
+                    ,type:message_form_talk.type==1?'friend':'group'
+                    ,content: message_form_talk.content
+                    ,timestamp: message_form_talk.create_time
+                };
                 // layer.alert('有添加群消息,请及时处理',{icon:1},function () {
                 //     parent.layer.close(parent.layer.index);
                 //     parent.layer.close( layer.getFrameIndex('layui-layer-iframe3'));
                 // });
+                console.log('message_form_talk===>message_form:',message_form, message_form_talk.from_avatar);
+                window.message_form = message_form;
+
+                layim.getMessage(message_form);
+            }else{
                 var message_form = {
                     username:message_form_talk.to_username
-                    ,avatar:  message_form_talk.from_avatar
-                    ,id: message_form_talk.group_id
+                    ,avatar:  window.to_message.avatar
+                    ,id: window.to_message.id
                     ,type:message_form_talk.type==1?'friend':'group'
                     ,content: message_form_talk.content
                     ,timestamp: message_form_talk.create_time
@@ -234,24 +253,21 @@
                 window.message_form = message_form;
                 console.log('message_form:',message_form);
                 layim.getMessage(message_form);
-            }else{
-                window.message_form = message_form;
-                console.log('message_form:',message_form);
-                layim.getMessage(message_form);
-            }   //res为接受到的值，如 {"emit": "messageName", "data": {}}
+            }
+
+
         };
 
 
         //监听发送消息
         layim.on('sendMessage', function(data){
-            var to_message = data.to;
-            console.log(to_message)
             window.from_message = data.mine;
-            console.log(from_message);
+            console.log("from_message:",from_message);
             window.to_message = to_message;
+            console.log("to_message:",to_message);
             window.from_message = from_message;
             var is_group_message = $('.layim-chat-group').hasClass('layui-show');
-            var group_id = $('.layim-chat-box .layim-chat-group').data('id');
+            var group_id = $('.layim-chat-box .layim-chat-group').data('group_id');
             var content = {
                 "from_id": from_message.id,
                 "to_id": to_message.id,
@@ -267,6 +283,7 @@
             if(!content.to_username){
                 content.to_username = '群聊';
             }
+            console.log("sendMessage:content",content)
             window.Gsocket.send(JSON.stringify(content));
 
             // To = data.to;
@@ -560,7 +577,7 @@
         }
     };
     function getGroupList() {
-        var group_url ='/im.php/api/group/get_group_list?belong_id=2';
+        var group_url ='/im.php/api/group/get_group_list?belong_id=3';
         // 自定义接口获取群列表
         $.ajax({
             url: group_url, // 替换为您的服务器端接口地址

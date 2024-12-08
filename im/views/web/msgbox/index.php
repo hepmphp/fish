@@ -32,7 +32,7 @@
             <?php if($v['type']==0){?>
     <li data-uid="<?=$v['from_id']?>" data-fromgroup="0">
         <a href="" target="_blank">
-            <img src="http://127.0.0.1/upload/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg" class="layui-circle layim-msgbox-avatar"> </a>
+            <img src="<?=$v['avatar_url']?>" class="layui-circle layim-msgbox-avatar"> </a>
         <p class="layim-msgbox-user">
             <a href="#" target="_blank" data-to_id="<?=$v['to_id']?>"><?=$v['to_username']?></a> <span><?=date("Y-m-d H:i:s",$v['send_time'])?></span><span>刚刚</span> </p>
         <p class="layim-msgbox-content"> 申请添加你为好友 <span>附言: <?=$v['remark']?></span> </p> <p class="layim-msgbox-btn">
@@ -45,7 +45,7 @@
         <?php }elseif($v['type']==2){?>
             <li data-uid="<?=$v['from_id']?>" data-fromgroup="0">
                 <a href="" target="_blank">
-                    <img src="http://127.0.0.1/upload/2024/12/05/f0ae2f70ff77720b457a4e8e54858901.jpg" class="layui-circle layim-msgbox-avatar"> </a>
+                    <img src="<?=$v['avatar_url']?>" class="layui-circle layim-msgbox-avatar"> </a>
                 <p class="layim-msgbox-group">
                     <a href="#" target="_blank" data-to_id="<?=$v['from_id']?>"><?=$v['from_username']?></a><span><?=date("Y-m-d H:i:s",$v['send_time'])?></span> <span>刚刚</span> </p>
                 <p class="layim-msgbox-content"> 申请加群 <span>附言: <?=$v['remark']?></span> </p> <p class="layim-msgbox-btn">

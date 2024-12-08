@@ -188,7 +188,7 @@
             var myBut = $(this);
             var userid = myBut.data("userid");
             var username = myBut.data("username");
-
+            var avatar_url = myBut.data("avatar_url");
             // 修改按钮
             myBut.parent().html('<span class="c_red">已经提交申请</span>');
 
@@ -196,14 +196,15 @@
             layim.add({
                 type: 'friend'
                 ,username: 'fish'
-                ,avatar: 'http://127.0.0.1/upload/2024/12/05/6754a011395cffd2a0ff2e872f394bc1.jpg'
+                ,avatar:avatar_url
                 ,submit: function(group, remark, index){
                     // 推送一个消息
                     //请求添加用户
+                    console.log(parent.window.chat_user);
                     var msg = {
                         action: "add_friend",
-                        from_id:1,
-                        from_username:'hepm',
+                        from_id: parent.window.chat_user.from_id,
+                        from_username:parent.window.chat_user.from_username,
                         friend_id: userid,
                         friend_username:username,
                         group_id: group,
@@ -225,6 +226,7 @@
         $(document).on('click', '.addGroup', function() {
             var myBut = $(this);
             var groupid = myBut.data("groupid");
+            var avatar_url = myBut.data("avatar_url");
             console.log($(this));
             // 修改按钮
             myBut.parent().html('<span class="c_red">已经提交申请</span>');
@@ -233,19 +235,20 @@
             layim.add({
                 type: 'group'
                 ,username: 'fish'
-                ,avatar: 'aaa'
+                ,avatar: avatar_url
                 ,submit: function(group, remark, index){
                     // 推送一个消息
                     //请求添加用户
                     var msg = {
                         action: "add_group",
-                        from_id: 1,
-                        from_username:'hepm',
+                        from_id: parent.window.chat_user.from_id,
+                        from_username:parent.window.chat_user.from_username,
                         friend_id: '',
                         friend_username:'',
                         group_id: groupid,
                         remark: remark
                     };
+                    console.log(msg);
                     layer.msg('加群申请已发送，请等待对方确认', { icon: 1 });
                     parent.window.Gsocket.send(JSON.stringify({
                         type: 'chatMsgbox' // 随便定义，用于在服务端区分消息类型
@@ -278,7 +281,7 @@
                             <div class="layui-card">
                             <div class="avatar">
                             <img class="layadmin-homepage-pad-img" src="${friend.avatar_url}"> </div>
-                            <div class="units"> <p>${friend.id}</p> <p>${friend.nickname}</p> <p>  <button data-userid="${friend.id}" data-username="${friend.nickname}" class="addFriend layui-btn layui-btn-xs" style="background-color:#7ADDD4;">
+                            <div class="units"> <p>${friend.id}</p> <p>${friend.nickname}</p> <p>  <button data-avatar_url="${friend.avatar_url}" data-userid="${friend.id}" data-username="${friend.nickname}" class="addFriend layui-btn layui-btn-xs" style="background-color:#7ADDD4;">
                             <strong>+</strong> 好友 </button>  </p>
                             </div> </div>
                             </div>
@@ -321,7 +324,7 @@
                                     <p style="font-size: 14px;">${group.group_name}</p>
                                     <p><i class="layui-icon layui-icon-group icons"></i> 15<span class="line">|</span>
                                     <i class="layui-icon layui-icon-friends icons"></i>${group.belong}</p> <p>
-                                <button data-groupid="${group.id}" data-group_name="${group.group_name}" class="addGroup layui-btn layui-btn-xs" style="background-color:#7ADDD4;"> <strong>+</strong> 加群 </button>  </p>
+                                <button data-avatar_url="${group.avatar_url}" data-groupid="${group.id}" data-group_name="${group.group_name}" class="addGroup layui-btn layui-btn-xs" style="background-color:#7ADDD4;"> <strong>+</strong> 加群 </button>  </p>
                                 </div>
                                 </div>
                             </div>

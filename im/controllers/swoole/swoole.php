@@ -3,6 +3,7 @@
 # docker run -d -p 9501:9501 -v e:/data/www/dnmp/fish/im/controllers/swoole:/www  --network=dnmp_default --name swoole dnmp-php80
 use Swoole\Websocket\Server;
 include 'mysql.php';
+include 'Arr.php';
 $server = new Server('0.0.0.0', 9501);
 //$server->set(array(
 //    'worker_num' => 4,   //一般设置为服务器CPU数的1-4倍
@@ -12,6 +13,7 @@ $chat_member= new ChatMember([]);
 $chat_record = new ChatRecord([]);
 $chat_msgbox = new ChatMsgbox([]);
 $chat_group = new ChatGroup([]);
+$chat_group_member = new ChatGroupMember([]);
 
 set_error_handler('error_handler',E_ALL);
 set_exception_handler('exception_handler');
@@ -70,7 +72,7 @@ $server->on('open', function($server, $req) {
     echo "connection open: {$req->fd}\n";
 });
 
-$server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$chat_record,$chat_group) {
+$server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$chat_record,$chat_group,$chat_group_member) {
     echo "received message: {$frame->data}\n";
     $frame_data = json_decode($frame->data,true);
     error_log(date('Y-m-d H:i:s')."'\t".$frame->fd."\t".var_export($frame_data,true).PHP_EOL,3,'./swoole.log');
@@ -247,7 +249,7 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
         unset($chat_member_data['username']);
         $chat_member->save_socket_id($chat_member_data);
         // {"from_id":1,"to_id":"2","from_username":"hepm","to_username":"fish","type":1,"status":0,"content":"1111","group_id":1,"send_time":1731248989,"create_time":1731248989}
-        $to_user = $chat_member->info(['id'=>$frame_data['to_id']]);
+
 
         /**
          *
@@ -265,10 +267,11 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
         status	tinyint [0]	状态|0:正常,-1:删除
 
          */
+        $chat_record_data['group_id'] = isset($frame_data['group_id'])?$frame_data['group_id']:0;
         $chat_record_data['from_id'] = $frame_data['from_id'];
-        $chat_record_data['to_id'] = $to_user['id'];
+        $chat_record_data['to_id'] = isset($frame_data['to_id'])?$frame_data['to_id']:0;
         $chat_record_data['from_username'] = $frame_data['from_username'];
-        $chat_record_data['to_username'] = $to_user['username'];
+        $chat_record_data['to_username'] = $frame_data['to_username'];
         $chat_record_data['type'] = $frame_data['type'];
         $chat_record_data['status'] = 0;
         $chat_record_data['content'] = $frame_data['content'];
@@ -306,27 +309,57 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
 //    $chat_msgbox_data['send_time'] = time();
 //    $chat_msgbox_data['create_time'] = time();
 //    $chat_msgbox->create($chat_msgbox_data);
-
+        $frame_to_data['group_id'] = $chat_record_data['group_id'];
         $frame_to_data['from_id'] = $chat_record_data['to_id'];
         $frame_to_data['to_id'] = $chat_record_data['from_id'];
         $frame_to_data['from_username'] = $chat_record_data['to_username'];
         $frame_to_data['to_username'] = $frame_data['from_username'];
-        $frame_to_data['type'] = 0;
+        $frame_to_data['type'] =   $chat_record_data['group_id']>0?2:1;
         $frame_to_data['status'] = 0;
         $frame_to_data['content'] = $frame_data['content'];
         $frame_to_data['send_time'] =time();
         $frame_to_data['create_time'] = date("Y-m-d H:i:s",time());
         $frame_to_data['update_time'] = 0;
         $frame_to_data['delete_time'] = 0;
-        error_log(date('Y-m-d H:i:s')."'\t".$frame->fd."\t".var_export($to_user,true).PHP_EOL,3,'./swoole.log');
-        $server->push($to_user['socket_id'], json_encode($frame_to_data));
+        var_dump($frame_to_data);
+        $static_url = 'http://127.0.0.1/upload/';
+        //群聊
+        if( $chat_record_data['type']==2){
+            $members = $chat_group_member->find_all(['group_id'=>$chat_record_data['group_id']],0,10000);
+            $members = Arr::getColumn($members,'member_id');
+            $members = array_unique($members);
+
+            $member_sockets = $chat_member->find_all(['id'=>$members],1,10000);
+            $member_sockets= Arr::index($member_sockets,'id');
+            var_dump($member_sockets);
+
+            $frame_to_data['from_avatar'] = $static_url.$member_sockets[$chat_record_data['from_id']]['avatar'];
+          //  $frame_to_data['to_avatar'] = $static_url.$member_sockets[$chat_record_data['to_id']]['avatar'];
+            foreach ($member_sockets as $socket){
+                        if($socket['id']!=$chat_record_data['from_id']){
+                            error_log(date('Y-m-d H:i:s')."'\t".$frame->fd."\t".var_export($socket,true).PHP_EOL,3,'./swoole.log');
+                            $server->push($socket['socket_id'], json_encode($frame_to_data));
+                        }
+            }
+
+        }else{
+             $to_user = $chat_member->info(['id'=>$frame_data['to_id']]);
+            $frame_to_data['from_avatar'] = $static_url.$to_user['avatar'];
+            error_log(date('Y-m-d H:i:s')."'\t".$frame->fd."\t".var_export($to_user,true).PHP_EOL,3,'./swoole.log');
+            $server->push($to_user['socket_id'], json_encode($frame_to_data));
+            echo "send to friend...";
+        }
+
+
     }
 
 
 });
 
-$server->on('close', function($server, $fd) {
-    echo "connection close: {$fd}\n";
+$server->on('close', function($server, $frame) use($chat_member){
+    $chat_member->save_socket_id_to_zero($frame->fd);
+    echo "connection close: {$frame->fd}\n";
+
 });
 
 $server->start();

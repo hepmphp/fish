@@ -203,7 +203,6 @@
 
 //监听收到的消息
         window.Gsocket.onmessage = function(evt){
-            //res为接受到的值，如 {"emit": "messageName", "data": {}}
             //emit即为发出的事件名，用于区分不同的消息
             var message_form_talk = JSON.parse(evt.data);
             window.message_form_talk = message_form_talk;
@@ -217,16 +216,28 @@
                 ,content: message_form_talk.content
                 ,timestamp: message_form_talk.create_time
             };
-            if(message_form_talk.type=='group'){
-                 layer.alert('有添加群消息,请及时处理',{icon:1},function () {
-                     parent.layer.close(parent.layer.index);
-                     parent.layer.close( layer.getFrameIndex('layui-layer-iframe3'));
-                 });
+            if(message_form_talk.type==2){
+                // layer.alert('有添加群消息,请及时处理',{icon:1},function () {
+                //     parent.layer.close(parent.layer.index);
+                //     parent.layer.close( layer.getFrameIndex('layui-layer-iframe3'));
+                // });
+                var message_form = {
+                    username:message_form_talk.to_username
+                    ,avatar:  message_form_talk.from_avatar
+                    ,id: message_form_talk.group_id
+                    ,type:message_form_talk.type==1?'friend':'group'
+                    ,content: message_form_talk.content
+                    ,timestamp: message_form_talk.create_time
+                };
+                window.message_form = message_form;
+                console.log('message_form:',message_form);
+                layim.getMessage(message_form);
             }else{
                 window.message_form = message_form;
                 console.log('message_form:',message_form);
                 layim.getMessage(message_form);
-            }
+            }   //res为接受到的值，如 {"emit": "messageName", "data": {}}
+
 
         };
 
@@ -239,18 +250,23 @@
             console.log(from_message);
             window.to_message = to_message;
             window.from_message = from_message;
+            var is_group_message = $('.layim-chat-group').hasClass('layui-show');
+            var group_id = $('.layim-chat-box .layim-chat-group').data('id');
             var content = {
                 "from_id": from_message.id,
                 "to_id": to_message.id,
                 "from_username": from_message.username,
                 "to_username": to_message.username,
-                "type": 1,
+                "type": is_group_message?2:1,
                 "status": 0,
                 "content": from_message.content,
-                "group_id": 1,
+                "group_id": group_id,
                 "send_time": 1731248989,
                 "create_time": 1731248989
             };
+            if(!content.to_username){
+                content.to_username = '群聊';
+            }
             window.Gsocket.send(JSON.stringify(content));
 
             // To = data.to;
