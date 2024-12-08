@@ -128,6 +128,7 @@ class File extends Model
         foreach ($data as $k=>$v){
             $data[$k]['status'] = $v['status']==-1?'<span class="label btn-danger" style="background-color: red;" >删除</span>':'正常';
             $data[$k]['file'] = SiteUrl::get_image_url($v['file']);
+
         }
         return [$data,$total['total']];
     }

@@ -55,7 +55,7 @@ class Folder extends BaseController{
     public function create(){
         $form = $this->get_search_where();
         $config_status = $this->folder::get_config_status();
-        $select_categorys = $this->folder->get_config_menu(['id'=>$form['id']]);
+        $select_categorys = $this->folder->get_config_menu('',$form['id']);
         $this->view->assign('form',$form);
         $this->view->assign('config_status',$config_status);
         $this->view->assign('select_categorys',$select_categorys);
@@ -66,7 +66,7 @@ class Folder extends BaseController{
         $form = $this->get_search_where();
         $form = $this->folder->info(['id'=>$form['id']]);
         $config_status = $this->folder::get_config_status();
-        $select_categorys = $this->folder->get_config_menu(['id'=>$form['parentid']]);
+        $select_categorys = $this->folder->get_config_menu('',$form['parentid']);
         $this->view->assign('form',$form);
         $this->view->assign('config_status',$config_status);
         $this->view->assign('select_categorys',$select_categorys);

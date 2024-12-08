@@ -18,7 +18,7 @@
 <div class="container col-sm-12" style="margin-top: 10px;">
     <div class="form-horizontal">
         <pre>
-         <?=htmlspecialchars($form['rsync_log_file'])?>
+         <?=htmlspecialchars($form['www_backup_log'])?>
         </pre>
 
     </div>

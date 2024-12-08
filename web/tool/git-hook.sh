@@ -1,12 +1,12 @@
  #!/bin/sh
  echo `date +"%Y-%m-%d %H:%M:%S"`
  GIT_PATH=$1
- DEPLOY_PATH=/data/www/git
+ DEPLOY_PATH=/www/git
  if [ ! -d "$DEPLOY_PATH" ]; then
     mkdir -p $DEPLOY_PATH
  fi
   if [ ! -d "$DEPLOY_PATH/$GIT_PATH" ]; then
-     mkdir -p /data/logs/rsync/ && chmod 777 -R /data/logs/rsync/
+     mkdir -p /logs/rsync/ && chmod 777 -R /logs/rsync/
      mkdir -p $DEPLOY_PATH/$GIT_PATH.backup && chmod 777 -R  $DEPLOY_PATH/$GIT_PATH.backup
   fi
 
@@ -15,11 +15,13 @@
  #git stash
 
  if [ ! -d "$DEPLOY_PATH/$GIT_PATH" ]; then
-    git clone http://gogs:3000/hepm/$GIT_PATH.git
+     echo " haha $DEPLOY_PATH/$GIT_PATH";
+    git clone http://192.168.2.103:3000/hepm/$GIT_PATH.git
  else
     cd $DEPLOY_PATH
     rm -rf $GIT_PATH
-    git clone http://gogs:3000/hepm/$GIT_PATH.git
+    echo " rm -rf $GIT_PATH";
+    git clone http://192.168.2.103:3000/hepm/$GIT_PATH.git
     #git pull origin master
     #git fetch --all
     #git reset --hard origin/master

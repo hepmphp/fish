@@ -201,7 +201,7 @@
                     status:body.find('#status').val()
                 };
                 //todo生成js验证
-                if(param.id){
+                if(param.id>0){
                     var url = urls.update_url+'?id='+param.id;
                 }else{
                     var url = urls.create_url

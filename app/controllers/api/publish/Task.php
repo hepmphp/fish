@@ -136,7 +136,7 @@ class Task extends BaseController{
             exit();
         }
         //先执行备份操作
-        $back_status = $this->add_www_backup($task['id'],$project['rsync_local_www'],$project['keep_version_num']);
+        $back_status = $this->add_www_backup($task['id'],$project['rsync_local_www'],$project['rsync_back_www'],$project['keep_version_num']);
         if($back_status){
             if($task['file_list']=='*'){
                 list($rsync_log,$rsync_log_file,$rsync_status) = $this->rsync_all($project['rsync_local_www'],$project['rsync_user'],$project['rsync_remote_hosts'],$project['rsync_remote_www']);
@@ -184,21 +184,43 @@ class Task extends BaseController{
     /**
      * 添加备份 自动删除多余的备份
      */
-    function add_www_backup($publish_id,$local_www,$version_num){
+    function add_www_backup($publish_id,$local_www,$www_backup,$version_num){
         /*
           1.检查备份目录是否存在 不存在创建并修改权限
           2.检查备份数 超过自动删除  ls|sort -nr|awk 'NF{a=$0}END{print a}'|xargs rm -rf
          */
-        $www_backup = $local_www.'.backup';
+        $www_backup = $www_backup."/".$publish_id."/";
         if(!is_dir($www_backup)){
             mkdir("/data/logs/rsync/",0755,true);
-            mkdir($www_backup,0755,true);
-            chown($www_backup,'www');
+            mkdir($www_backup,0777,true);
+            chown($www_backup,'www-data');
         }
+        chdir($www_backup);
+        $www_backup_slash = str_replace('/',"\\/",$www_backup);
+        $cmd = <<<CMD
+        /bin/ls  %s|sort -nr|sed -n '%s,\$p'|sed 's/^/%s/'|xargs sudo rm -rf
+CMD;
+
+        $cmd = sprintf($cmd,$www_backup,$version_num,$www_backup_slash);
+        exec($cmd,$log,$return);
+        error_log(date("Y-m-d H:i:s")."\t".trim($cmd,"\n").var_export($log,true)."return:".$return.PHP_EOL,3,'/data/logs/rsync/add_www_backup.log');
+
+        //获取备份版本id
+        $cmd_wc_l = <<<CMD
+        /bin/ls  /www/git/fish.backup/4|sort -nr|head -n 1
+CMD;
+        $cmd_wc_l = sprintf($cmd_wc_l,$www_backup);
+
+        exec($cmd_wc_l,$cmd_wc_l_res,$return);
+        if(empty($cmd_wc_l_res)){
+            $version_num = 1;
+        }else{
+            $version_num =$cmd_wc_l_res[0]+1;
+        }
+
         //备份
         $cmd_cp = "/bin/cp -r %s %s";
-        $cmd_cp = sprintf($cmd_cp,$local_www,$www_backup."/".$publish_id);
-
+        $cmd_cp = sprintf($cmd_cp,$local_www,$www_backup."/".$version_num);
         exec($cmd_cp,$log_cp,$cp_return);
         error_log(date("Y-m-d H:i:s")."\t".$cmd_cp." log:"."return:".$cp_return.PHP_EOL,3,'/data/logs/rsync/add_www_backup.log');
         if(is_numeric($cp_return) && $cp_return==0){
@@ -216,11 +238,11 @@ class Task extends BaseController{
         $publish_id = Input::get_post('publish_id','0','intval');//发布id
         $task = $this->pub_publish_task->info(['id'=>$publish_id]);
         $project = $this->project->info(['id'=>$task['project_id']]);
-        $backup_dir = $project['rsync_back_www'];
+        $backup_dir = $project['rsync_back_www'].'/'.$publish_id;
         //scandir
         $backup_dir_list = scandir($backup_dir);
         $dir_list = array();
-        natcasesort($backup_dir_list);
+        rsort($backup_dir_list);
         foreach($backup_dir_list as $k=>$v){
             if($v=='.'||$v=='..'){
                 continue;
@@ -244,10 +266,10 @@ class Task extends BaseController{
         $task = $this->pub_publish_task->info(['id'=>$publish_id]);
         $project = $this->project->info(['id'=>$task['project_id']]);
 
-        $rollback_dir = $project['rsync_back_www']."/$backup_dir";
+        $rollback_dir = $project['rsync_back_www']."/{$publish_id}/{$backup_dir}";
         //检查备份是否存在
         if(!file_exists($rollback_dir)){
-            Input::ajax_return(0,"备份{$backup_dir}不存在");
+            Input::ajax_return(0,"备份{$rollback_dir}不存在");
         }
         $publish_data = [
             'id'=>$publish_id,
@@ -255,11 +277,11 @@ class Task extends BaseController{
             'status'=>3
         ];
         $this->pub_publish_task->save_result($publish_data);
-        list($rsync_log,$rsync_status) = $this->rsync_all($rollback_dir,$project['rsync_user'],$project['rsync_remote_hosts'],$project['rsync_remote_www'],$rollback_dir);
+        list($rsync_command,$rsync_log,$rsync_status) = $this->rsync_all($rollback_dir,$project['rsync_user'],$project['rsync_remote_hosts'],$project['rsync_remote_www'],$rollback_dir);
         if($rsync_status==0){
             $publish_data = [
                 'id'=>$publish_id,
-                'rsync_log'=>$rsync_log,
+                'rsync_log'=>$rsync_command,
                 'status'=>4
             ];
             $this->pub_publish_task->save_result($publish_data);
@@ -267,7 +289,7 @@ class Task extends BaseController{
         }else{
             $publish_data = [
                 'id'=>$publish_id,
-                'rsync_log'=>$rsync_log,
+                'rsync_log'=>$rsync_command,
                 'status'=>5
             ];
             $this->pub_publish_task->save_result($publish_data);
@@ -318,7 +340,7 @@ class Task extends BaseController{
             }
             Input::ajax_return(0,'',$tags);
         }else{
-            Input::ajax_return(1,'获取标签失败');
+            Input::ajax_return(1,'获取标签失败'.$git_tag."\n backup_git_dir:".$backup_git_dir."backup_git_dir_repo:".$backup_git_dir_repo);
         }
 
     }
@@ -348,7 +370,7 @@ class Task extends BaseController{
         error_log(date("Y-m-d H:i:s")."git checkout:{$git_checkout}".PHP_EOL,3,'/data/logs/rsync/rollback_from_git.log');
         exec($git_checkout,$check_log,$check_return);
         if(is_numeric($check_return) && $check_return==0){
-            list($rsync_log,$rsync_status) = $this->rsync_all($project['rsync_local_www'],$project['rsync_user'],$project['rsync_remote_hosts'],$project['rsync_remote_www'],$backup_git_dir);
+            list($rsync_command,$rsync_log,$rsync_status) = $this->rsync_all($project['rsync_local_www'],$project['rsync_user'],$project['rsync_remote_hosts'],$project['rsync_remote_www'],$backup_git_dir);
             if($rsync_status==0){
                 $publish_data = ['id'=>$publish_id,'rsync_log'=>$rsync_log,'status'=>4];
                 $this->pub_publish_task->save_result($publish_data);
@@ -372,7 +394,7 @@ class Task extends BaseController{
     function rsync_all($local_www,$rsync_user,$host,$remote_www,$rollback_dir=false){
         $remote_www = pathinfo($remote_www)['basename'];
         $local_www_final = pathinfo($local_www)['basename'];
-        $rsync_command = "rsync -avH --port=873 --progress --delete --exclude-from=%s --log-file=%s %s %s@%s::%s --password-file=/data/logs/rsync/passwd_rsync.txt";
+        $rsync_command = "sudo rsync -avH --port=873 --progress --delete --exclude-from=%s --log-file=%s %s %s@%s::%s --password-file=/data/logs/rsync/passwd_rsync.txt";
         $rsync_log_file = '/data/logs/rsync/rsync_log_file.txt';
         if($rollback_dir){
             $rsync_command = sprintf($rsync_command, '/data/logs/rsync/'.$local_www_final.'/rsync_exclude_from.txt', $rsync_log_file, $rollback_dir,$rsync_user,$host,$remote_www);
@@ -393,7 +415,7 @@ class Task extends BaseController{
         $rsync_log_file = '/data/logs/rsync/rsync_log_file.txt';
         $from_file = "/data/logs/publish/rsync_files_from.{$publish_id}.txt";
 
-        $rsync_command = "rsync -avH --port=873 --progress  --exclude-from=%s --log-file=%s --files-from=%s %s %s@%s::%s --password-file=/data/logs/rsync/passwd_rsync.txt";
+        $rsync_command = "sudo rsync -avH --port=873 --progress  --exclude-from=%s --log-file=%s --files-from=%s %s %s@%s::%s --password-file=/data/logs/rsync/passwd_rsync.txt";
         $rsync_command = sprintf($rsync_command,$exclude_from,$rsync_log_file,$from_file, $local_www,$rsync_user,$host,$remote_www);
         error_log(date("Y-m-d H:i:s")."\t".$rsync_command.PHP_EOL,3,'/data/logs/rsync/rsync.log');
         exec($rsync_command,$rsync_log,$rsync_return);

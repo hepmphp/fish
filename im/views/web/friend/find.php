@@ -202,14 +202,13 @@
                     //请求添加用户
                     var msg = {
                         action: "add_friend",
-                        from_id: 1,
+                        from_id:1,
                         from_username:'hepm',
                         friend_id: userid,
                         friend_username:username,
                         group_id: group,
                         remark: remark
                     };
-                    console.log(msg);return;
                     layer.msg('好友申请已发送，请等待对方确认', { icon: 1 });
                     parent.window.Gsocket.send(JSON.stringify({
                          type: 'chatMsgbox' // 随便定义，用于在服务端区分消息类型
@@ -247,7 +246,7 @@
                         group_id: groupid,
                         remark: remark
                     };
-                    layer.msg('好友申请已发送，请等待对方确认', { icon: 1 });
+                    layer.msg('加群申请已发送，请等待对方确认', { icon: 1 });
                     parent.window.Gsocket.send(JSON.stringify({
                         type: 'chatMsgbox' // 随便定义，用于在服务端区分消息类型
                         ,data: msg

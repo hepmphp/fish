@@ -155,4 +155,10 @@ use app\helpers\Validate;
          $this->view->display('publish/pub_publish_task/info');
      }
 
+     public function log_backup(){
+         $form['www_backup_log'] = file_get_contents('/data/logs/rsync/add_www_backup.log');
+         $this->view->assign('form',$form);
+         $this->view->display('publish/pub_publish_task/log_add_www_backup');
+     }
+
  }

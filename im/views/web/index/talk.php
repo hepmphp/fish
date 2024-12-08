@@ -105,8 +105,8 @@
             ,notice: true //是否开启桌面消息提醒，默认false
             //,voice: false //声音提醒，默认开启，声音文件为：default.mp3
 
-            ,msgbox:  "<?=SITE_URL?>"+'/web/msgbox/index' //消息盒子页面地址，若不开启，剔除该项即可
-            ,find: "<?=SITE_URL?>"+'web/friend/find' //发现页面地址，若不开启，剔除该项即可
+            ,msgbox:  "<?=SITE_URL?>"+'im.php/web/msgbox/index' //消息盒子页面地址，若不开启，剔除该项即可
+            ,find: "<?=SITE_URL?>"+'im.php/web/friend/find' //发现页面地址，若不开启，剔除该项即可
             ,chatLog: layui.cache.dir + 'css/modules/layim/html/chatlog.html' //聊天记录页面地址，若不开启，剔除该项即可
 
         });
@@ -198,7 +198,7 @@
 //连接成功时触发
         window.Gsocket.onopen = function(){
             console.log('onopen连接成功');
-            window.Gsocket.send('{"type":"onconnect",id:"1","from_username":"hepm"}');
+            window.Gsocket.send('{"type":"onconnect","id":"1","from_username":"hepm"}');
         };
 
 //监听收到的消息
@@ -215,7 +215,7 @@
                 ,id: window.to_message.id
                 ,type:"friend"
                 ,content: message_form_talk.content
-                ,timestamp: message_form_talk.send_time
+                ,timestamp: message_form_talk.create_time
             };
             if(message_form_talk.type=='group'){
                  layer.alert('有添加群消息,请及时处理',{icon:1},function () {
@@ -253,31 +253,31 @@
             };
             window.Gsocket.send(JSON.stringify(content));
 
-            To = data.to;
-            //演示自动回复
-            setTimeout(function(){
-                var obj = {};
-                if(To.type === 'group'){
-                    obj = {
-                        username: '模拟群员'+(Math.random()*100|0)
-                        ,avatar: layui.cache.dir + 'images/face/'+ (Math.random()*72|0) + '.gif'
-                        ,id: To.id
-                        ,type: To.type
-                        ,content: autoReplay[Math.random()*9|0]
-                    }
-                } else {
-                    obj = {
-                        username: To.name
-                        ,avatar: To.avatar
-                        ,id: To.id
-                        ,type: To.type
-                        ,content: autoReplay[Math.random()*9|0]
-                        ,timestamp: new Date().getTime()
-                    }
-                }
-                console.log(obj);
-                layim.getMessage(obj);
-            }, 1000);
+            // To = data.to;
+            // //演示自动回复
+            // setTimeout(function(){
+            //     var obj = {};
+            //     if(To.type === 'group'){
+            //         obj = {
+            //             username: '模拟群员'+(Math.random()*100|0)
+            //             ,avatar: layui.cache.dir + 'images/face/'+ (Math.random()*72|0) + '.gif'
+            //             ,id: To.id
+            //             ,type: To.type
+            //             ,content: autoReplay[Math.random()*9|0]
+            //         }
+            //     } else {
+            //         obj = {
+            //             username: To.name
+            //             ,avatar: To.avatar
+            //             ,id: To.id
+            //             ,type: To.type
+            //             ,content: autoReplay[Math.random()*9|0]
+            //             ,timestamp: new Date().getTime()
+            //         }
+            //     }
+            //     console.log(obj);
+            //     layim.getMessage(obj);
+            // }, 1000);
         });
 
         //监听查看群员

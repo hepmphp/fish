@@ -74,20 +74,19 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
     echo "received message: {$frame->data}\n";
     $frame_data = json_decode($frame->data,true);
     error_log(date('Y-m-d H:i:s')."'\t".$frame->fd."\t".var_export($frame_data,true).PHP_EOL,3,'./swoole.log');
-
     if(isset($frame_data['is_heart_beat']) && $frame_data['is_heart_beat']==1){
-
         $server->push($frame->fd, json_encode($frame_data));
     }elseif (isset($frame_data['type'])&&$frame_data['type']==='onconnect'){
         $chat_member_data['id'] = $frame_data['id'];
         $chat_member_data['socket_id'] = $frame->fd;
         $chat_member_data['status'] = 0;
+        unset($chat_member_data['username']);
         $chat_member->save($chat_member_data);
 //        $to_user = $chat_member->info(['username'=>$frame_data['to_username']]);
         $server->push($frame->fd, json_encode($frame_data));
     }elseif (isset($frame_data['type']) && $frame_data['type']=='chatMsgbox'){
 
-         var_dump($frame_data);
+
 
         //{"type":"","data":{"action":"add_friend","from_id":1,"friend_id":"1","friend_username":"用户6011","groupId":"5","remark":"11111"}}
         /**
@@ -179,16 +178,17 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
             $chat_msgbox_data['create_time'] = time();
             $chat_msgbox_data['update_time'] = 0;
             $chat_msgbox_data['delete_time'] = 0;
-
+            var_dump($chat_msgbox_data);
             $chat_msgbox->create($chat_msgbox_data);
 
 
             $chat_member_data['socket_id'] = $frame->fd;
             $chat_member_data['status'] = 0;
+
             $chat_member->save($chat_member_data);
             $to_user = $chat_member->info(['id'=>$frame_data['data']['friend_id']]);
 
-
+//
             $chat_record_data['from_id'] = $frame_data['data']['from_id'];
             $chat_record_data['to_id'] = $to_user['id'];
             $chat_record_data['from_username'] = $frame_data['data']['from_username'];
@@ -214,7 +214,7 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
             $frame_to_data['create_time'] = time();
             $frame_to_data['update_time'] = 0;
             $frame_to_data['delete_time'] = 0;
-
+            var_dump('to_user',$to_user,'socket_id:', $frame->fd);
 //        $to_user = $chat_member->info(['username'=>$frame_data['to_username']]);
             $server->push($to_user['socket_id'], json_encode($frame_to_data));
         }
@@ -226,7 +226,7 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
             $server->push($frame->fd, json_encode(['code'=>-100,'msg'=>'传递的数据为空']) );
             return 0;
         }
-        $chat_member_data['username'] =$frame_data['from_username'];
+
         /**
         socket_id	int unsigned [0]	socket连接id
         username	varchar(32)	账号
@@ -244,8 +244,10 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
 //        $chat_member_data['username'] =$frame_data['from_username'];
         $chat_member_data['socket_id'] = $frame->fd;
         $chat_member_data['status'] = 0;
-        $chat_member->save($chat_member_data);
-        $to_user = $chat_member->info(['username'=>$frame_data['to_username']]);
+        unset($chat_member_data['username']);
+        $chat_member->save_socket_id($chat_member_data);
+        // {"from_id":1,"to_id":"2","from_username":"hepm","to_username":"fish","type":1,"status":0,"content":"1111","group_id":1,"send_time":1731248989,"create_time":1731248989}
+        $to_user = $chat_member->info(['id'=>$frame_data['to_id']]);
 
         /**
          *
@@ -265,13 +267,14 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
          */
         $chat_record_data['from_id'] = $frame_data['from_id'];
         $chat_record_data['to_id'] = $to_user['id'];
-        $chat_record_data['from_username'] = $chat_member_data['username'];
+        $chat_record_data['from_username'] = $frame_data['from_username'];
         $chat_record_data['to_username'] = $to_user['username'];
         $chat_record_data['type'] = $frame_data['type'];
         $chat_record_data['status'] = 0;
         $chat_record_data['content'] = $frame_data['content'];
         $chat_record_data['send_time'] = time();
         $chat_record_data['create_time'] = time();
+
         $chat_record->create($chat_record_data);
         /**
          *  from_id	int unsigned [0]	消息发送者id
@@ -290,7 +293,7 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
         update_time	int unsigned NULL [0]	修改时间
         delete_time	int unsigned NULL [0]	删除时间
          */
-//    $chat_msgbox_data['from_id'] = $frame_data['user_id'];
+//    $chat_msgbox_data['from_id'] = $frame_data['from_id'];
 //    $chat_msgbox_data['to_id'] = $to_user['id'];
 //    $chat_msgbox_data['from_username'] = $chat_member_data['username'];
 //    $chat_msgbox_data['to_username'] = $to_user['username'];
@@ -304,8 +307,19 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
 //    $chat_msgbox_data['create_time'] = time();
 //    $chat_msgbox->create($chat_msgbox_data);
 
+        $frame_to_data['from_id'] = $chat_record_data['to_id'];
+        $frame_to_data['to_id'] = $chat_record_data['from_id'];
+        $frame_to_data['from_username'] = $chat_record_data['to_username'];
+        $frame_to_data['to_username'] = $frame_data['from_username'];
+        $frame_to_data['type'] = 0;
+        $frame_to_data['status'] = 0;
+        $frame_to_data['content'] = $frame_data['content'];
+        $frame_to_data['send_time'] =time();
+        $frame_to_data['create_time'] = date("Y-m-d H:i:s",time());
+        $frame_to_data['update_time'] = 0;
+        $frame_to_data['delete_time'] = 0;
         error_log(date('Y-m-d H:i:s')."'\t".$frame->fd."\t".var_export($to_user,true).PHP_EOL,3,'./swoole.log');
-        $server->push($to_user['socket_id'], json_encode($frame_data));
+        $server->push($to_user['socket_id'], json_encode($frame_to_data));
     }
 
 

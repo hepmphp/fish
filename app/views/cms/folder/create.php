@@ -17,7 +17,9 @@
 <body>
 <div class="container col-sm-12" style="margin-top: 10px;">
     <div class="form-horizontal">
+        <?php if(strpos($_SERVER['REQUEST_URI'],'update')!=false){?>
         <input type="hidden" id="id" value="<?=$form['id']?>">
+        <?php }?>
         <div class="form-group">
             <label class="col-sm-1 control-label" for="cate_id">分类</label>
             <div class="col-sm-4">
@@ -25,13 +27,6 @@
                     <option value="">请选择</option>
                     <?=$select_categorys?>
                 </select>
-            </div>
-        </div>
-
-        <div class="form-group" style="display: none">
-            <label class="col-sm-4 control-label" for="id">id</label>
-            <div class="col-sm-4">
-                <input id="id" name="id" type="hidden" value="<?=$form['id']?>" placeholder="id" class="form-control input-md">
             </div>
         </div>
         <div class="form-group">

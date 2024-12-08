@@ -162,6 +162,9 @@ class ChatMember extends Model{
     public function save($data){
         $this->update($data,['id'=>$data['id']]);
     }
+    public function save_socket_id($data){
+        $this->update($data,['socket_id'=>$data['socket_id']]);
+    }
 }
 
 class ChatMsgbox extends Model{

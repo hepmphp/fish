@@ -14,3 +14,4 @@ function call_debug_log() {
         }
     }
 }
+call_debug_log();

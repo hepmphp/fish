@@ -13,10 +13,10 @@
 </script>
 <body>
 <style>
-    html,body{width:100%;height:100%;margin:0;padding:0;overflow:hidden;}
+    html,body{width:100%;height:100%;margin:0;padding:0;overflow:scroll;}
     body{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;font-size:14px;line-height:1.428571429;color:#333333;}
     *,*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
-    #chart-container{overflow-x:auto;position:relative;margin-bottom:-120px;height:100%;text-align:center;}
+    #chart-container{overflow:scroll;position:relative;margin-bottom:-120px;height:auto;text-align:center;}
     .chart-switch{position:absolute;top:60px;right:30px;z-index:1111;}
     /* styles of background map */
     .backgroundMap{position:absolute;opacity:0.3;}
@@ -63,7 +63,7 @@
     <?php }?>
     <input type="button" value="树形结构重置" id="btn_node" onclick="node_reset()">
 </div>
-<div id="chart-container"></div>
+<div id="chart-container" ></div>
 <script src="<?= STATIC_URL ?>/js/logic/admin/ajax.js?<?=rand()?>"></script>
 <script>
 
@@ -292,16 +292,16 @@
             yes: function(index, layero){
                 var body = layer.getChildFrame('body', index);
                 var param ={
-
                     id:body.find('#id').val(),
                     name:body.find('#name').val(),
                     avator:body.find('.image-item').eq(0).attr('src'),
                     parentid:body.find('#parentid').val(),
                     parent_name:body.find('#parentid').find("option:selected").text(),
+                    tree_nod_id:body.find('#tree_nod_id').val(),
+                    tree_nod_name:body.find('#tree_nod_id').find("option:selected").text(),
                     status:body.find('#status').val(),
                     title:body.find('#title').val(),
                     level:body.find('#level').val()
-
                 };
                 var action = body.find('#action').val();
                 if(action=='create'){

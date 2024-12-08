@@ -215,7 +215,6 @@
             yes: function(index, layero){
                 var body = layer.getChildFrame('body', index);
                 var param ={
-
                     id:body.find('#id').val(),
                     name:body.find('#name').val(),
                     avator:body.find('.image-item').eq(0).attr('src'),
@@ -228,6 +227,7 @@
                     level:body.find('#level').val()
 
                 };
+
                 //todo生成js验证
                 if(param.id>0){
                     var url = urls.update_url+'?id='+param.id;

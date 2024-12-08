@@ -55,7 +55,7 @@ class Msgbox extends Model
     public function get_list_info($where = array(), $limit = 1, $offset = 20, $fields = '*')
     {
         $total = $this->get_total($where);
-        $data = $this->get_list($where, $limit, $offset, $fields);
+        $data = $this->get_list($where, $limit, $offset, $fields,'id desc');
         return [$data,$total['total']];
     }
 

@@ -67,20 +67,18 @@
         <table  data-toggle="table" class="table-item table">
             <thead>
             <tr>
-                
-<th>主键</th>
-<th>申请人员id</th>
-<th>发布人员id</th>
-<th>项目id</th>
-<th>项目名称</th>
-<th>文件列表</th>
-<th>发布状态</th>
-<th>rsync同步日志</th>
-<th>发布备注</th>
-<th>还原备注</th>
-<th>添加时候</th>
-
-                <th>操作</th>
+            <th>主键</th>
+            <th>申请人员id</th>
+            <th>发布人员id</th>
+            <th>项目id</th>
+            <th>项目名称</th>
+            <th>文件列表</th>
+            <th>发布状态</th>
+            <th>rsync同步日志</th>
+            <th>发布备注</th>
+            <th>还原备注</th>
+            <th>添加时间</th>
+            <th>操作</th>
             </tr>
             </thead>
             <tbody>
@@ -145,7 +143,7 @@
 '<td>[rollback_comment]</td>'+
 '<td>[addtime]</td>'+
 
-            '<td><a onclick="publish([id])" class="">[发布]</a>|<a onclick="rollback([id])" class="">[回滚]</a>|<a onclick="edit([id])" class="">[编辑]</a>|<a onclick="log([id])" class="">[查看日志]</a></td></tr>';
+            '<td><a onclick="publish([id])" class="">[发布]</a>|<a onclick="rollback([id])" class="">[回滚]</a>|<a onclick="edit([id])" class="">[编辑]</a>|<a onclick="log([id])" class="">[查看日志]</a><br/><a onclick="log_backup([id])" class="">[查看备份日志]</a></td></tr>';
         var list_html = '';
         $.getJSON('/api/publish/task/get_list/?' + $.param(param), function (data) {
             layer.closeAll();
@@ -228,6 +226,19 @@ function log(id) {
         content: url //iframe的url
     });
 }
+
+function log_backup(id){
+    var url = "/publish/task/log_backup?id="+id;
+    layer.open({
+        type: 2,
+        title: '备份日志查看',
+        shadeClose: true,
+        shade: 0.8,
+        area: ['800px', '600px'],
+        content: url //iframe的url
+    });
+}
+
 
 function info($id){
     var url = urls.info_url+"?id="+id;

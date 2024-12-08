@@ -24,9 +24,9 @@
         <?php }?>
         <input type="hidden" id="id" value="<?=$form['id']?>">
         <div class="form-group inline-block">
-            <label class="col-sm-4 control-label" for="parentid">树形结构名称</label>
+            <label class="col-sm-4 control-label" for="tree_node_id">树形结构名称</label>
             <div class="col-sm-4">
-                <select id="parentid" name="parentid" class="form-control">
+                <select id="tree_node_id" name="parentid" class="form-control">
                     <option value="0">作为一级菜单</option>
                     <?=$tree_node_config_menu?>
                 </select>

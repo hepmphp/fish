@@ -32,13 +32,14 @@
 
     <!--左边 end-->
     <div class="Business-right clearfix">
-        <?php include APP_PATH.'/views/cms/file/folder.php'?>
-<!--        <iframe id="J_iframe" class="iframe-box" name="J_iframe" width="100%" height="100%" src="/cms/file/folder?iframe=1" frameborder="0" data-id="index"></iframe>-->
+<!--        --><?php //include APP_PATH.'/views/cms/file/folder.php'?>
+        <iframe id="J_iframe" class="iframe-box" name="J_iframe" width="100%" height="100%" src="/cms/file/folder?iframe=1" frameborder="0" data-id="index"></iframe>
     </div>
 
 </div>
 
 </body>
+<script src="<?=STATIC_URL?>js/jquery.min.js"></script>
 <script>
     var folder_id = '<?=\app\helpers\Input::get_post('folder_id')?>';
     var zNodes = <?=json_encode($folders,JSON_UNESCAPED_SLASHES)?>;

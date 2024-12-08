@@ -355,4 +355,5 @@
 </script>
 <?=\app\helpers\AppAsset::run_javascript_end()?>
 </body>
+
 </html>

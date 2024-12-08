@@ -106,7 +106,7 @@ class Folder extends DocController
     {
         $form = $this->get_search_where();
         $form['id'] = 0;
-        $form['parentid'] = 0;
+        $form['parent_id'] = 0;
         if($form['folder_id']){
             $form['parent_id'] = $form['folder_id'];
         }
@@ -123,9 +123,7 @@ class Folder extends DocController
     {
         $form = $this->get_search_where();
         $form = $this->doc_folder->info(['id' => $form['id']]);
-        if($form['parentid']){
-            $form['parent_id'] = $form['parentid'];
-        }
+        $form['parent_id'] = $form['parentid'];
         $form['select_tree'] = $this->doc_folder->find_all([],0,1000);
         $config_status = $this->doc_folder->get_config_status();
         $this->view->assign('config_status', $config_status);

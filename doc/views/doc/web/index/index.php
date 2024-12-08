@@ -151,6 +151,7 @@
     </div>
     <script>
         function ajax_list(param){
+            param.iframe = 1;
             window.location.href = '/doc.php/web/file/index?'+'&'+$.param(param);
         }
         $(".pagination-outline").delegate('a', 'click', function () {

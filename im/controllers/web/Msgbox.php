@@ -159,6 +159,7 @@ class Msgbox extends ImController{
         list($res,$total) = $this->chat_msgbox->get_list_info($where,$page,$per_page,'*');
         $data['list'] = $res;
         $data['total'] = $total;
+        $data['total_page'] = ceil($total/$per_page);
         $data['page'] =$page;
         $data['per_page'] = $per_page;
         $form = array(

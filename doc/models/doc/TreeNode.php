@@ -7,6 +7,7 @@
  */
 
 namespace doc\models\doc;
+use doc\helpers\AppTreeNode;
 use app\helpers\Tree;
 use doc\base\Model;
 use doc\base\exception\LogicException;
@@ -80,7 +81,7 @@ class TreeNode extends Model
     }
 
     public function get_config_menu($form){
-        $tree = new Tree();
+        $tree = new AppTreeNode();
         $where = array();
 
         if(!empty($form['parentid'])){
@@ -89,7 +90,8 @@ class TreeNode extends Model
         if(!empty($form['level'])){
             $where['level>'] = $form['level'];
         }
-        $admin_menu = $this->find_all($where,1,10000);
+
+        $admin_menu = $this->find_all($where,1,10000,'id,parentid as tree_node_id,parent_name,level,name,logo,created_time,status');
         $array = array();
         foreach ($admin_menu as $r) {
             if(isset($form['id']) && $form['id'] !=null){

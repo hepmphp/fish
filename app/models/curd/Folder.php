@@ -82,7 +82,7 @@ class Folder extends Model
      * @param null $app_id
      * @return mixed
      */
-    public function get_config_menu($form){
+    public function get_config_menu($form,$selected_id=0){
         $tree = new Tree();
         $where = array();
 
@@ -93,12 +93,7 @@ class Folder extends Model
         $_menu = $this->find_all($where,1,10000);
         $array = array();
         foreach ($_menu as $r) {
-            if(isset($form['id']) && $form['id'] !=null){
-                $r['selected'] = $r['id'] == $form['id'] ? 'selected' : '';
-            }else{
-                $r['selected'] = '';
-            }
-
+            $r['selected'] = $r['id'] == $selected_id ? 'selected' : '';
             $array[] = $r;
         }
 

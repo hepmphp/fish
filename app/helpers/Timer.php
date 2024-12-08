@@ -99,9 +99,9 @@ class Timer
      */
     public static function go($id)
     {
-        if(isset($_SERVER['PATH_INFO'])  && ($_SERVER['PATH_INFO']!='/tool/log/index' ||  $_SERVER['PATH_INFO']!='/admin/user/logout')){
+       // if(isset($_SERVER['PATH_INFO'])  && ($_SERVER['PATH_INFO']!='/tool/log/index' ||  $_SERVER['PATH_INFO']!='/admin/user/logout')){
             self::start($id);
             register_shutdown_function('\\app\\helpers\\Timer::stop',$id);
-        }
+       // }
     }
 }
