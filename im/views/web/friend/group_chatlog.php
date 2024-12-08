@@ -110,8 +110,8 @@
 <script>
     function ajax_list(param){
         ///friend/chatlog?id=2&type=friend
-        param.type = "friend";
-        param.to_id = "<?=(isset($form['to_id'])?$form['to_id']:0);?>"
+        param.type = "group";
+        param.id = "<?=(isset($form['id'])?$form['id']:0);?>"
         window.location.href = '/im.php/web/friend/chatlog?'+$.param(param);
     }
     $(".pagination-outline").delegate('a', 'click', function () {

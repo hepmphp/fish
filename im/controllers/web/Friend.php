@@ -25,6 +25,13 @@ class Friend extends ImController{
 
     public function get_search_where(){
         $where = array();
+        $id = Input::get_post('id','','trim');
+        if($id){
+            if(!Validate::required('id')){
+                throw  new  LogicException(-1,'链接名称');
+            }
+            $where['id'] = $id;
+        }
 
         $id = Input::get_post('id','','trim');
         if($id){
@@ -33,6 +40,7 @@ class Friend extends ImController{
             }
             $where['to_id'] = $id;
         }
+
         $to_id = Input::get_post('to_id','','trim');
         if($to_id){
             if(!Validate::required('to_id')){
@@ -47,14 +55,13 @@ class Friend extends ImController{
             }
             $where['type'] = $type;
         }
-        $group_id = Input::get_post('group_id','','trim');
-        if($group_id){
-            if(!Validate::required('group_id')){
+        $id = Input::get_post('id','','trim');
+        if($id){
+            if(!Validate::required('id')){
                 throw  new  LogicException(-1,'链接名称');
             }
-            $where['group_id'] = $group_id;
+            $where['group_id'] = $id;
         }
-
 
 
         $create_time = Input::get_post('create_time','','trim');
@@ -154,23 +161,36 @@ class Friend extends ImController{
             if(isset($form['group_id'])){
                 $where_sql = " group_id={$form['group_id']} ";
             }
+            $page = Input::get_post('page',1,'intval');
+            $per_page = Input::get_post('per_page',20,'intval');
+            list($res,$total) = $this->chat_record->get_group_list_info($where_sql,$page,$per_page,'*');
+            $data['list'] = $res;
+            $data['total'] = $total;
+            $data['total_page'] = ceil($data['total']/$per_page);
+            $data['page'] =$page;
+            $data['per_page'] = $per_page;
+            $this->view->assign('form',$form);
+            $this->view->assign('data',$data);
+            $this->view->display('web/friend/group_chatlog');
+
         }else{
             if(isset($form['to_id'])){
-                $where_sql = " from_id={$form['to_id']} OR to_id={$form['to_id']}";
+                $where_sql = " (from_id={$form['to_id']} OR to_id={$form['to_id']}) ";
             }
+            $page = Input::get_post('page',1,'intval');
+            $per_page = Input::get_post('per_page',20,'intval');
+            list($res,$total) = $this->chat_record->get_list_info($where_sql,$page,$per_page,'*');
+            $data['list'] = $res;
+            $data['total'] = $total;
+            $data['total_page'] = ceil($data['total']/$per_page);
+            $data['page'] =$page;
+            $data['per_page'] = $per_page;
+            $this->view->assign('form',$form);
+            $this->view->assign('data',$data);
+            $this->view->display('web/friend/chatlog');
+
         }
 
-        $page = Input::get_post('page',1,'intval');
-        $per_page = Input::get_post('per_page',20,'intval');
-        list($res,$total) = $this->chat_record->get_list_info($where_sql,$page,$per_page,'*');
-        $data['list'] = $res;
-        $data['total'] = $total;
-        $data['total_page'] = ceil($data['total']/$per_page);
-        $data['page'] =$page;
-        $data['per_page'] = $per_page;
-        $this->view->assign('form',$form);
-        $this->view->assign('data',$data);
-        $this->view->display('web/friend/chatlog');
     }
     public function info(){
         $form = $this->get_search_where();

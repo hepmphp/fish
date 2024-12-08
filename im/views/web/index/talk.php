@@ -107,7 +107,7 @@
 
             ,msgbox:  "<?=SITE_URL?>"+'im.php/web/msgbox/index' //消息盒子页面地址，若不开启，剔除该项即可
             ,find: "<?=SITE_URL?>"+'im.php/web/friend/find' //发现页面地址，若不开启，剔除该项即可
-            ,chatLog: layui.cache.dir + 'css/modules/layim/html/chatlog.html' //聊天记录页面地址，若不开启，剔除该项即可
+            ,chatLog: "<?=SITE_URL?>"+'im.php/web/friend/chatlog' //聊天记录页面地址，若不开启，剔除该项即可
 
         });
 
