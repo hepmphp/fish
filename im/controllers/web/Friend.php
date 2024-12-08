@@ -33,6 +33,20 @@ class Friend extends ImController{
             $where['id'] = $id;
         }
 
+        $from_username = Input::get_post('to_username','','trim');
+        if($from_username){
+            if(!Validate::required('to_username')){
+                throw  new  LogicException(-1,'链接名称');
+            }
+            $where['from_username'] = $from_username;
+        }
+        $from_username = Input::get_post('from_username','','trim');
+        if($from_username){
+            if(!Validate::required('from_username')){
+                throw  new  LogicException(-1,'链接名称');
+            }
+            $where['from_username'] = $from_username;
+        }
         $id = Input::get_post('id','','trim');
         if($id){
             if(!Validate::required('id')){
@@ -176,6 +190,9 @@ class Friend extends ImController{
         }else{
             if(isset($form['to_id'])){
                 $where_sql = " (from_id={$form['to_id']} OR to_id={$form['to_id']}) ";
+            }
+            if(isset($form['from_username'])){
+                $where_sql = $where_sql."and(  from_username='{$form['from_username']}')";
             }
             $page = Input::get_post('page',1,'intval');
             $per_page = Input::get_post('per_page',20,'intval');

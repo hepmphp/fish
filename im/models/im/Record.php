@@ -66,17 +66,8 @@ class Record extends Model
         $total = $this->get_total($where_sql);
         $data = $this->get_list($where_sql, $limit, $offset, $fields);
         //根据用户id获取用户信息
-        $to_ids = Arr::getColumn($data,'to_id');
-        $to_ids = array_unique($to_ids);
-        $members = $this->chat_member->find_all(['id'=>$to_ids],0,1000);
-        $members = Arr::index($members,'id');
-
         foreach ($data as $k=>$v){
-            if($v['to_id']){
-                $avatar = $members[$v['to_id']]['avatar'];
-                $data[$k]['avatar_url'] =  str_replace('im.php','',SITE_URL).'/upload/'.$avatar;
-            }
-
+            $data[$k]['avatar_url'] =  str_replace('im.php','',SITE_URL).'/upload/'.$v['avatar'];
         }
         return [$data,$total['total']];
     }

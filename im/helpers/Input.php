@@ -152,9 +152,9 @@ class Input {
          }
     }
 
-    static function ajax_return($status,$msg,$data=[]){
+    static function ajax_return($code,$msg,$data=[]){
             $json_data = [
-                'code'=>$status,
+                'code'=>$code,
                 'msg'=>$msg,
                 'data'=>$data,
                 'request_data'=>Input::get_request()

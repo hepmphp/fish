@@ -71,14 +71,15 @@
             }
 
             //上传图片接口
+            //上传图片接口
             ,uploadImage: {
-                url: '/upload/image' //（返回的数据格式见下文）
+                url: '/im.php/api/uploader/layim' //（返回的数据格式见下文）
                 ,type: '' //默认post
             }
 
             //上传文件接口
             ,uploadFile: {
-                url: '/upload/file' //（返回的数据格式见下文）
+                url: '/im.php/api/uploader/layim' //（返回的数据格式见下文）
                 ,type: '' //默认post
             }
 
@@ -310,12 +311,12 @@
                 //layim.setChatStatus('<span style="color:#FF5722;">在线</span>');
             } else if(type === 'group'){
                 //模拟系统消息
-                layim.getMessage({
-                    system: true
-                    ,id: res.data.id
-                    ,type: "group"
-                    ,content: '模拟群员'+(Math.random()*100|0) + '加入群聊'
-                });
+                // layim.getMessage({
+                //     system: true
+                //     ,id: res.data.id
+                //     ,type: "group"
+                //     ,content: '模拟群员'+(Math.random()*100|0) + '加入群聊'
+                // });
             }
         });
 

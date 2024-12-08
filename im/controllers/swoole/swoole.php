@@ -267,6 +267,20 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
         status	tinyint [0]	状态|0:正常,-1:删除
 
          */
+
+        if($frame_data['type']==2){
+            $members = $chat_group_member->find_all(['group_id'=>$frame_data['group_id']],0,10000);
+            $members = Arr::getColumn($members,'member_id');
+            $members = array_unique($members);
+            $member_sockets = $chat_member->find_all(['id'=>$members],1,10000);
+            $member_index_sockets= Arr::index($member_sockets,'id');
+
+        }else{
+            $member_sockets = $chat_member->info(['id'=>$frame_data['from_id']]);
+            $member_index_sockets[$frame_data['from_id']] = $member_sockets;
+        }
+        var_dump('member_sockets',$member_index_sockets);
+        $chat_record_data['avatar'] = isset($member_index_sockets[$frame_data['from_id']])?$member_index_sockets[$frame_data['from_id']]['avatar']:'';
         $chat_record_data['group_id'] = isset($frame_data['group_id'])?$frame_data['group_id']:0;
         $chat_record_data['from_id'] = $frame_data['from_id'];
         $chat_record_data['to_id'] = isset($frame_data['to_id'])?$frame_data['to_id']:0;
@@ -274,7 +288,7 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
         $chat_record_data['to_username'] = $frame_data['to_username'];
         $chat_record_data['type'] = $frame_data['type'];
         $chat_record_data['status'] = 0;
-        $chat_record_data['content'] = $frame_data['content'];
+        $chat_record_data['content'] = addslashes($frame_data['content']);
         $chat_record_data['send_time'] = time();
         $chat_record_data['create_time'] = time();
 
@@ -325,13 +339,7 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
         $static_url = 'http://127.0.0.1/upload/';
         //群聊
         if( $chat_record_data['type']==2){
-            $members = $chat_group_member->find_all(['group_id'=>$chat_record_data['group_id']],0,10000);
-            $members = Arr::getColumn($members,'member_id');
-            $members = array_unique($members);
 
-            $member_sockets = $chat_member->find_all(['id'=>$members],1,10000);
-            $member_sockets= Arr::index($member_sockets,'id');
-            var_dump($member_sockets);
 
             $frame_to_data['from_avatar'] = $static_url.$member_sockets[$chat_record_data['from_id']]['avatar'];
           //  $frame_to_data['to_avatar'] = $static_url.$member_sockets[$chat_record_data['to_id']]['avatar'];
@@ -344,7 +352,7 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
 
         }else{
              $to_user = $chat_member->info(['id'=>$frame_data['to_id']]);
-            $frame_to_data['from_avatar'] = $static_url.$to_user['avatar'];
+            $frame_to_data['from_avatar'] = $static_url.$chat_record_data['avatar'];
             error_log(date('Y-m-d H:i:s')."'\t".$frame->fd."\t".var_export($to_user,true).PHP_EOL,3,'./swoole.log');
             $server->push($to_user['socket_id'], json_encode($frame_to_data));
             echo "send to friend...";
