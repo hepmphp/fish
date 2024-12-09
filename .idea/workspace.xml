@@ -3,15 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="0703e359-cca9-44b6-91dd-9392c44eb4d8" name="变更" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/Timer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/Timer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/admin/user/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/admin/user/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/FileUpload.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/FileUpload.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/controllers/api/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/controllers/api/Member.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/im/controllers/api/Msgbox.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/controllers/api/Msgbox.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/controllers/swoole/swoole.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/controllers/swoole/swoole.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/controllers/web/Friend.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/controllers/web/Friend.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/controllers/web/Member.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/controllers/web/Member.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/im/controllers/web/Msgbox.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/controllers/web/Msgbox.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/im/models/im/Msgbox.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/models/im/Msgbox.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/models/im/Record.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/models/im/Record.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/views/web/group/create.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/views/web/group/create.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/im/views/web/index/talk.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/views/web/index/talk.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/im/views/web/msgbox/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/views/web/msgbox/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/im.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/im.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/static/admin/js/debug.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/admin/js/debug.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/im/views/web/index/talk_to.php" beforeDir="false" afterPath="$PROJECT_DIR$/im/views/web/index/talk_to.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/static/im/js/upload/js/uploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/im/js/upload/js/uploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/static/im/layim2/dist/lay/modules/layim.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/static/im/layim2/dist/lay/modules/layim.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,8 +64,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/im/views/web/friend" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\data\www\dnmp\www\fish\im\views\web\friend" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -72,6 +82,8 @@
       <updated>1733417597462</updated>
       <workItem from="1733417600330" duration="5369000" />
       <workItem from="1733440889391" duration="10609000" />
+      <workItem from="1733680910754" duration="6231000" />
+      <workItem from="1733713640611" duration="11154000" />
     </task>
     <servers />
   </component>

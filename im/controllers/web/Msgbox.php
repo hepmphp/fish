@@ -7,12 +7,16 @@ use im\base\ImController;
 use im\helpers\Input;
 use im\models\im\Msgbox as M_Msgbox;
 use app\helpers\Validate;
+use im\models\im\Record;
+
 class Msgbox extends ImController{
 
     public $chat_msgbox  = '';
+    public $chat_record = '';
     public function __construct()
     {
         $this->chat_msgbox = new M_Msgbox();
+        $this->chat_record = new Record();
         parent::__construct();
     }
 
@@ -230,6 +234,12 @@ class Msgbox extends ImController{
 
     }
 
+    public function invite_group(){
+        $chat_msgbox_id = Input::get_post('chat_msgbox_id',0,'intval');
+        $record = $this->chat_msgbox->info(['id'=>$chat_msgbox_id]);
+        $this->view->assign('form',$record);
+        $this->view->display('web/msgbox/invite_group');
+    }
     public function info(){
         $form = $this->get_search_where();
         $this->view->assign('form',$form);

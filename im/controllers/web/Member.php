@@ -26,6 +26,8 @@ class Member extends ImController{
             $where['id'] = $id;
         }
 
+
+
         $socket_id = Input::get_post('socket_id','','trim');
         if($socket_id){
             if(!Validate::required('socket_id')){
@@ -203,5 +205,20 @@ class Member extends ImController{
         $form = $this->get_search_where();
         $this->view->assign('form',$form);
         $this->view->display('im/chat_member/info');
+    }
+    public function get_group_member_list(){
+        $form = $this->get_search_where();
+        $page = Input::get_post('page',1,'intval');
+        $per_page = Input::get_post('per_page',20,'intval');
+        list($res,$total) = $this->chat_member->get_list_info($form,$page,$per_page,'*');
+        $data['list'] = $res;
+        $data['total'] = $total;
+        $data['page'] =$page;
+        $data['per_page'] = $per_page;
+        $group_id = Input::get_post('group_id','','trim');
+        $form['group_id'] = $group_id;
+        $this->view->assign('data',$data);
+        $this->view->assign('form',$form);
+        $this->view->display('web/member/group_member_list');
     }
 }

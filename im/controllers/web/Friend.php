@@ -207,8 +207,9 @@ class Friend extends ImController{
             $this->view->display('web/friend/chatlog');
 
         }
-
     }
+
+
     public function info(){
         $form = $this->get_search_where();
         $this->view->assign('form',$form);

@@ -56,6 +56,7 @@ class Record extends Model
 
     public function info($data){
         $info = $this->find(['id'=>$data['id']],'*');
+
         return $info;
     }
 

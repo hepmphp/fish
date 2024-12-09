@@ -223,6 +223,61 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
 
 
         echo "send firend msg....1";
+    }elseif (isset($frame_data['type']) && $frame_data['type']=='invate_message'){
+
+        $member_sockets = $chat_member->info(['id'=>$frame_data['to_id']]);
+        $member_index_sockets[$frame_data['to_id']] = $member_sockets;
+        var_dump('member_sockets',$member_index_sockets);
+        $chat_record_data['avatar'] = isset($member_index_sockets[$frame_data['to_id']])?$member_index_sockets[$frame_data['to_id']]['avatar']:'';
+        $chat_record_data['group_id'] = isset($frame_data['group_id'])?$frame_data['group_id']:0;
+        $chat_record_data['from_id'] = 0;
+        $chat_record_data['to_id'] = isset($frame_data['to_id'])?$frame_data['to_id']:0;
+        $chat_record_data['from_username'] = 0;
+        $chat_record_data['to_username'] = $member_sockets['username'];
+        $chat_record_data['type'] = 3;
+        $chat_record_data['status'] = 0;
+        $chat_record_data['content'] = '发送加入群邀请';
+        $chat_record_data['send_time'] = time();
+        $chat_record_data['create_time'] = time();
+        $chat_record_id = $chat_record->create($chat_record_data);
+
+        $chat_msgbox_data['avatar'] =   $chat_record_data['avatar'];
+        $chat_msgbox_data['from_id'] =0;
+        $chat_msgbox_data['to_id'] =  $chat_record_data['to_id'];
+        $chat_msgbox_data['from_username'] = 0;
+        $chat_msgbox_data['to_username'] =  $member_sockets['username'];
+        $chat_msgbox_data['type'] = 3;
+        $chat_msgbox_data['status'] = 0;
+        $chat_msgbox_data['remark'] = '邀请加入群,群号：'.$frame_data['group_id'];
+        $chat_msgbox_data['content'] =  '邀请加入群,群号：'.$frame_data['group_id'];
+        $chat_msgbox_data['group_id'] =  $chat_record_data['group_id'] ;
+        $chat_msgbox_data['send_time'] =time();
+        $chat_msgbox_data['create_time'] = time();
+        $chat_msgbox_data['update_time'] = 0;
+        $chat_msgbox_data['delete_time'] = 0;
+        var_dump($chat_msgbox_data);
+        $chat_msgbox_id = $chat_msgbox->create($chat_msgbox_data);
+
+        $frame_to_data['chat_msgbox_id'] = $chat_msgbox_id;
+        $frame_to_data['group_id'] = $chat_record_data['group_id'];
+        $frame_to_data['from_id'] = 0;
+        $frame_to_data['to_id'] = $chat_record_data['to_id'];
+        $frame_to_data['from_username'] = 0;
+        $frame_to_data['to_username'] = $chat_record_data['to_username'];
+        $frame_to_data['type'] =   3;
+        $frame_to_data['status'] = 0;
+        $frame_to_data['content'] = '群邀加入群';
+        $frame_to_data['send_time'] =time();
+        $frame_to_data['create_time'] = date("Y-m-d H:i:s",time());
+        $frame_to_data['update_time'] = 0;
+        $frame_to_data['delete_time'] = 0;
+        $static_url = 'http://127.0.0.1/upload/';
+        $to_user = $chat_member->info(['id'=>$frame_data['to_id']]);
+        $frame_to_data['from_avatar'] = $static_url.$chat_record_data['avatar'];
+        error_log(date('Y-m-d H:i:s')."'\t".$frame->fd."\t".var_export($to_user,true).PHP_EOL,3,'./swoole.log');
+        $server->push($to_user['socket_id'], json_encode($frame_to_data));
+        echo "invate send to friend...";
+
     }else{
         if(empty($frame_data)){
             $server->push($frame->fd, json_encode(['code'=>-100,'msg'=>'传递的数据为空']) );
@@ -351,7 +406,7 @@ $server->on('message', function($server, $frame) use($chat_member,$chat_msgbox,$
             }
 
         }else{
-             $to_user = $chat_member->info(['id'=>$frame_data['to_id']]);
+            $to_user = $chat_member->info(['id'=>$frame_data['to_id']]);
             $frame_to_data['from_avatar'] = $static_url.$chat_record_data['avatar'];
             error_log(date('Y-m-d H:i:s')."'\t".$frame->fd."\t".var_export($to_user,true).PHP_EOL,3,'./swoole.log');
             $server->push($to_user['socket_id'], json_encode($frame_to_data));

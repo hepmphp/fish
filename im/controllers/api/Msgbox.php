@@ -290,4 +290,54 @@ class Msgbox extends ImController{
             Input::ajax_return(-100,'操作失败',['res'=>$res,'res1'=>$res1]);
         }
     }
+
+    public function system_agree_or_refuse_group(){
+        $form['from_id'] = Input::get_post('from_id',0,'intval');
+        $form['group_id'] = Input::get_post('group_id',0,'intval');
+        $form['to_id'] = Input::get_post('to_id',0,'intval');
+        $form['status'] = Input::get_post('status',0,'intval');;
+        $form['read_time'] = time();
+        $form['update_time'] = time();
+        $res = $this->chat_msgbox->update($form,['to_id'=>$form['to_id'],'group_id'=>$form['group_id']],1);
+        if($form['status']==1){
+            $group_id= Input::get_post('group_id',0,'intval');
+            /**
+             * id	int unsigned Auto Increment
+            group_id	int unsigned [0]	群ID
+            member_id	int unsigned [0]	用户ID
+            avatar	varchar(255) []	用户头像
+            type	tinyint unsigned [1]	用户类型|0:群主,1:会员
+            forbidden_speech_time	int unsigned [0]	禁言到某个时间
+            username	varchar(255) []	用户名
+            sign	varchar(255) []	签名
+            nickname	varchar(50) []	群员的群昵称
+            status	tinyint [0]	状态|0:正常,-1:群黑名单
+            create_time	int unsigned [0]	加群时间
+            update_time	int unsigned [0]	更新时间
+            delete_time	int unsigned [0]	删除时间
+             */
+            $chat_group_member_data['avatar'] = '';
+            $chat_group_member_data['group_id'] =$group_id;
+            $chat_group_member_data['member_id'] = 0;
+            $chat_group_member_data['username'] =0;
+            $chat_group_member_data['avatar'] = '';
+            //查询群主
+            $gruop = $this->chat_group->info(['id'=>$group_id]);
+            $chat_group_member_data['type'] = $gruop['belong_id']==$chat_group_member_data['member_id']?0:1;
+            $chat_group_member_data['forbidden_speech_time'] = 0;
+            $chat_group_member_data['sign'] = '';
+            $chat_group_member_data['nickname'] = '';
+            $chat_group_member_data['status'] = 0;
+            $chat_group_member_data['create_time'] = time();
+            $res1 = $this->group_member->insert($chat_group_member_data);
+        }else{
+            $res1 = 1;
+        }
+
+        if($res&&$res1){
+            Input::ajax_return(0,'操作成功',$form);
+        }else{
+            Input::ajax_return(-100,'操作失败',['res'=>$res,'res1'=>$res1]);
+        }
+    }
 }

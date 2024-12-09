@@ -12,7 +12,7 @@
     <script src="<?=STATIC_URL?>js/html5shiv.min.js"></script>
     <script src="<?=STATIC_URL?>js/respond.min.js"></script>
     <![endif]-->
-    <?php \app\helpers\AppFormAsset::run()?>
+    <?php \app\helpers\AppAsset::run()?>
 </head>
 <body>
 <div class="container col-sm-12" style="margin-top: 10px;">
@@ -62,5 +62,5 @@
 </div>
 
 </body>
-<?php \app\helpers\AppFormAsset::run_javascript_end()?>
+<?php \app\helpers\AppAsset::run_javascript_end()?>
 </html>

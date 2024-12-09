@@ -171,4 +171,5 @@ class Member extends ImController{
             throw new LogicException(100,'没有数据');
         }
     }
+
 }

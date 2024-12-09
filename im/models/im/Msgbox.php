@@ -52,6 +52,7 @@ class Msgbox extends Model
 
     public function info($data){
         $info = $this->find(['id'=>$data['id']],'*');
+        $info['avatar_url'] =  str_replace('im.php','',SITE_URL).'/upload/'.$info['avatar'];
         return $info;
     }
 
@@ -68,8 +69,10 @@ class Msgbox extends Model
         $members = $this->chat_member->find_all(['id'=>$to_ids],0,1000);
         $members = Arr::index($members,'id');
         foreach ($data as $k=>$v){
-            $avatar = $members[$v['from_id']]['avatar'];
-            $data[$k]['avatar_url'] =  str_replace('im.php','',SITE_URL).'/upload/'.$avatar;
+            if($v['from_id']){
+                $avatar = $members[$v['from_id']]['avatar'];
+                $data[$k]['avatar_url'] =  str_replace('im.php','',SITE_URL).'/upload/'.$avatar;
+            }
         }
         return [$data,$total['total']];
     }

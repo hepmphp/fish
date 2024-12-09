@@ -19,7 +19,7 @@ function uploadImg(){
             // headers: { 'X-CSRF-TOKEN': dataType },
             success: function (result) {
                 console.log(result);
-                if(result.status==0){
+                if(result.code==0){
                     console.log(result);
                     that.data('name', result.data.filename);
                     that.css({'z-index': '0'});
